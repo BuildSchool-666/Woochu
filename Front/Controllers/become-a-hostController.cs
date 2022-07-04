@@ -8,5 +8,10 @@ namespace Front.Controllers
         {
             return View();
         }
+
+        public IActionResult Intro()
+        {
+            return View();
+        }
     }
 }
