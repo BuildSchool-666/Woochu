@@ -1,0 +1,142 @@
+﻿<div class="container mt-5">
+    <div class="row m-auto">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb fw-bold">
+                <li class="breadcrumb-item"><a href="./Account_Page.html">賬號</a></li>
+                <li class="breadcrumb-item active" aria-current="page">隱私與分享</li>
+            </ol>
+        </nav>
+        <h1>隱私與分享</h1>
+        <div class="content d-flex flex-wrap justify-content-center">
+            <div class="data">
+                <div class="d-flex align-items-center justify-content-between w-100 border-bottom mb-4 pb-4">
+                    <div class="info w-75">
+                        <h2 class="fw-bold fs-6">在 Facebook 上分享我的動態</h2>
+                        <span class="fs-6">開啟此功能代表你的動態會分享到 Facebook,其中可能包括用戶名稱、個人資料相片和你造訪過的地點。</span>
+                    </div>
+                    <div class="edit">
+                        <input type="checkbox" id="toggle_checkbox">
+                        <label for="toggle_checkbox"></label>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between w-100 border-bottom mb-4 pb-4">
+                    <div class="info w-75">
+                        <h2 class="fs-6 fw-bold">讓我的個人資料及房源出現在搜尋引擎中</h2>
+                        <span>開啟此功能代表你的個人資料和房源頁面會出現在 Google 等搜尋引擎的搜尋結果中。</span>
+                    </div>
+                    <div class="edit">
+                        <input type="checkbox" id="toggle_checkbox2">
+                        <label for="toggle_checkbox2"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="information d-none d-md-block m-1 p-4 fs-1 border m-auto" style="width: 400px; ;">
+                <i class="fa-solid fa-share-nodes"></i>
+                <h3 class="fs-5 fw-bold my-3">選擇想分享的內容</h3>
+                <p class="fs-6 text-secondary my-3">Airbnb 非常重視你的隱私。你可以使用此頁面選擇分享活動的方式。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section topCSS
+{
+    <style>
+    h1
+    {
+        font-size:23px;
+        font-weight: bold;
+        margin-bottom: 70px;
+    }
+    #toggle_checkbox {
+        display: none;
+    }
+
+    #toggle_checkbox2 {
+        display: none;
+    }
+
+    .edit {
+        position: relative;
+    }
+
+    label {
+        position: absolute;
+        top: -10px;
+        /* right: 30px; */
+        left: -100px;
+        display: block;
+        width: 140px;
+        height: 70px;
+        margin: 0 auto;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    label:before {
+        top: 28px;
+        left: 50px;
+        width: 30px;
+        height: 30px;
+        border: 3px solid red;
+    }
+
+    label:after {
+        top: 20px;
+        right: 0;
+        width: 100px;
+        height: 45px;
+        border: 3px solid #143240;
+    }
+
+    label:before,
+    label:after {
+        content: "";
+        position: absolute;
+        border-radius: 50px;
+        box-sizing: border-box;
+        transition: 0.5s ease top, 0.5s ease left, 0.5s ease right, 0.5s ease width,
+            0.5s ease height, 0.5s ease border-color;
+    }
+
+    #toggle_checkbox:checked+label:before {
+        top: 20px;
+        left: 50px;
+        width: 100px;
+        height: 45px;
+        border-color: #143240;
+    }
+
+    #toggle_checkbox:checked+label:after {
+        top: 28px;
+        right: 0px;
+        width: 30px;
+        height: 30px;
+        border-color: green;
+    }
+
+    #toggle_checkbox2:checked+label:before {
+        top: 20px;
+        left: 50px;
+        width: 100px;
+        height: 45px;
+        border-color: #143240;
+    }
+
+    #toggle_checkbox2:checked+label:after {
+        top: 28px;
+        right: 0px;
+        width: 30px;
+        height: 30px;
+        border-color: green;
+    }
+    a
+    {
+        color: black;
+    }
+
+    .nav {
+        margin-left: 10px;
+    }
+    </style>
+ }
