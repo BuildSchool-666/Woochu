@@ -42,101 +42,103 @@
 @section topCSS
 {
     <style>
-    h1
-    {
-        font-size:23px;
-        font-weight: bold;
-        margin-bottom: 70px;
-    }
-    #toggle_checkbox {
-        display: none;
-    }
+        .container {
+            margin-top: 130px;
+        }
+        h1 {
+            font-size:23px;
+            font-weight: bold;
+            margin-bottom: 70px;
+        }
+        #toggle_checkbox {
+            display: none;
+        }
 
-    #toggle_checkbox2 {
-        display: none;
-    }
+        #toggle_checkbox2 {
+            display: none;
+        }
 
-    .edit {
-        position: relative;
-    }
+        .edit {
+            position: relative;
+        }
 
-    label {
-        position: absolute;
-        top: -10px;
-        /* right: 30px; */
-        left: -100px;
-        display: block;
-        width: 140px;
-        height: 70px;
-        margin: 0 auto;
-        transform: translateY(-50%);
-        cursor: pointer;
-    }
+        label {
+            position: absolute;
+            top: -10px;
+            /* right: 30px; */
+            left: -100px;
+            display: block;
+            width: 140px;
+            height: 70px;
+            margin: 0 auto;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
 
-    label:before {
-        top: 28px;
-        left: 50px;
-        width: 30px;
-        height: 30px;
-        border: 3px solid red;
-    }
+        label:before {
+            top: 28px;
+            left: 50px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid red;
+        }
 
-    label:after {
-        top: 20px;
-        right: 0;
-        width: 100px;
-        height: 45px;
-        border: 3px solid #143240;
-    }
+        label:after {
+            top: 20px;
+            right: 0;
+            width: 100px;
+            height: 45px;
+            border: 3px solid #143240;
+        }
 
-    label:before,
-    label:after {
-        content: "";
-        position: absolute;
-        border-radius: 50px;
-        box-sizing: border-box;
-        transition: 0.5s ease top, 0.5s ease left, 0.5s ease right, 0.5s ease width,
-            0.5s ease height, 0.5s ease border-color;
-    }
+        label:before,
+        label:after {
+            content: "";
+            position: absolute;
+            border-radius: 50px;
+            box-sizing: border-box;
+            transition: 0.5s ease top, 0.5s ease left, 0.5s ease right, 0.5s ease width,
+                0.5s ease height, 0.5s ease border-color;
+        }
 
-    #toggle_checkbox:checked+label:before {
-        top: 20px;
-        left: 50px;
-        width: 100px;
-        height: 45px;
-        border-color: #143240;
-    }
+        #toggle_checkbox:checked+label:before {
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 45px;
+            border-color: #143240;
+        }
 
-    #toggle_checkbox:checked+label:after {
-        top: 28px;
-        right: 0px;
-        width: 30px;
-        height: 30px;
-        border-color: green;
-    }
+        #toggle_checkbox:checked+label:after {
+            top: 28px;
+            right: 0px;
+            width: 30px;
+            height: 30px;
+            border-color: green;
+        }
 
-    #toggle_checkbox2:checked+label:before {
-        top: 20px;
-        left: 50px;
-        width: 100px;
-        height: 45px;
-        border-color: #143240;
-    }
+        #toggle_checkbox2:checked+label:before {
+            top: 20px;
+            left: 50px;
+            width: 100px;
+            height: 45px;
+            border-color: #143240;
+        }
 
-    #toggle_checkbox2:checked+label:after {
-        top: 28px;
-        right: 0px;
-        width: 30px;
-        height: 30px;
-        border-color: green;
-    }
-    a
-    {
-        color: black;
-    }
+        #toggle_checkbox2:checked+label:after {
+            top: 28px;
+            right: 0px;
+            width: 30px;
+            height: 30px;
+            border-color: green;
+        }
+        a
+        {
+            color: black;
+        }
 
-    .nav {
-        margin-left: 10px;
-    }
+        .nav {
+            margin-left: 10px;
+        }
     </style>
  }
