@@ -2,7 +2,7 @@
 
 namespace Front.Service.Order
 {
-    public interface IOrder
+    public interface IOrderService
     {
         
 
