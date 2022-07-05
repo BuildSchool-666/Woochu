@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MVCModels\MVCModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

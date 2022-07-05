@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MVCModels.DataModels.User
+@{
     ViewData["Title"] = "Account-Setting Page";
 }
 
@@ -6,8 +7,9 @@
     <div class="title ms-3 mb-5">
         <h1>帳號</h1>
         <div class="info d-flex">
-            <p>詠琦 林 ,</p>
-            <sapn>samy19990103@gamil.com .</sapn>
+            <p>@Model.FirstName @Model.LastName</p>
+            <p> ,</p>
+            <span>samy19990103@gamil.com .</span>
             <a href="#" class="link">前往個人資料</a>
         </div>
     </div>
