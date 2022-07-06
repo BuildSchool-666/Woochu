@@ -13,6 +13,8 @@ namespace MVCModels.DataModels
         public DateTime ApplyTime { get; set; }
         public int VerifyState { get; set; }
         public string VerifyData { get; set; }
+        public int? AuditRejectReason { get; set; }
+        public DateTime? AuditTime { get; set; }
 
         public virtual User User { get; set; }
     }

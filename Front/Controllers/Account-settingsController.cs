@@ -23,6 +23,7 @@ namespace Front.Controllers
                 UserId = query.UserId,
                 FirstName = query.FirstName,
                 LastName = query.LastName,
+                Email = query.Email,
             };
             return View(user);
         }

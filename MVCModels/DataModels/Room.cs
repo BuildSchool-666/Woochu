@@ -12,8 +12,7 @@ namespace MVCModels.DataModels
             AltPrices = new HashSet<AltPrice>();
             Comments = new HashSet<Comment>();
             ImageFiles = new HashSet<ImageFile>();
-            OrderDetails = new HashSet<OrderDetail>();
-            Prices = new HashSet<Price>();
+            Orders = new HashSet<Order>();
             RoomEvents = new HashSet<RoomEvent>();
             RoomFacilities = new HashSet<RoomFacility>();
             WishLists = new HashSet<WishList>();
@@ -37,14 +36,16 @@ namespace MVCModels.DataModels
         public int RoomStatus { get; set; }
         public string Description { get; set; }
         public int BrowseCount { get; set; }
+        public decimal? Discount { get; set; }
+        public decimal BasicPrice { get; set; }
+        public decimal? ServiceCharge { get; set; }
 
         public virtual RoomType RoomType { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<AltPrice> AltPrices { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<ImageFile> ImageFiles { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual ICollection<Price> Prices { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<RoomEvent> RoomEvents { get; set; }
         public virtual ICollection<RoomFacility> RoomFacilities { get; set; }
         public virtual ICollection<WishList> WishLists { get; set; }

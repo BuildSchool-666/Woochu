@@ -11,6 +11,9 @@ namespace MVCModels.DataModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int RoomId { get; set; }
+        public decimal? Discount { get; set; }
+        public decimal BasicPrice { get; set; }
+        public decimal? ServiceCharge { get; set; }
 
         public virtual Room Room { get; set; }
     }

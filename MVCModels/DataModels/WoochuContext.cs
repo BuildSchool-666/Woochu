@@ -24,8 +24,6 @@ namespace MVCModels.DataModels
         public virtual DbSet<ImageFile> ImageFiles { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<RoomEvent> RoomEvents { get; set; }
         public virtual DbSet<RoomFacility> RoomFacilities { get; set; }
@@ -54,11 +52,23 @@ namespace MVCModels.DataModels
                     .ValueGeneratedNever()
                     .HasComment("特殊價錢ID");
 
+                entity.Property(e => e.BasicPrice)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("初價");
+
+                entity.Property(e => e.Discount)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("折扣");
+
                 entity.Property(e => e.EndDate)
                     .HasColumnType("datetime")
                     .HasComment("特殊日價錢開始");
 
                 entity.Property(e => e.RoomId).HasComment("房間ID");
+
+                entity.Property(e => e.ServiceCharge)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("服務費");
 
                 entity.Property(e => e.StartDate)
                     .HasColumnType("datetime")
@@ -80,6 +90,12 @@ namespace MVCModels.DataModels
                     .HasComment("評論ID");
 
                 entity.Property(e => e.Accuracy).HasComment("準確度");
+
+                entity.Property(e => e.AuditRejectReason).HasComment("審核不通過原因");
+
+                entity.Property(e => e.AuditTime)
+                    .HasColumnType("datetime")
+                    .HasComment("審核時間");
 
                 entity.Property(e => e.CheckIn).HasComment("入住");
 
@@ -151,6 +167,12 @@ namespace MVCModels.DataModels
                     .HasColumnType("datetime")
                     .HasComment("申請時間");
 
+                entity.Property(e => e.AuditRejectReason).HasComment("審核時間");
+
+                entity.Property(e => e.AuditTime)
+                    .HasColumnType("datetime")
+                    .HasComment("審核不通過原因");
+
                 entity.Property(e => e.BankAccount)
                     .IsRequired()
                     .HasMaxLength(17)
@@ -161,7 +183,7 @@ namespace MVCModels.DataModels
 
                 entity.Property(e => e.VerifyData)
                     .IsRequired()
-                    .HasComment("房東申請資料");
+                    .HasComment("房東申請資料(一張身分卡)");
 
                 entity.Property(e => e.VerifyState).HasComment("1未審核，2審核通過，3審核未通過");
 
@@ -223,31 +245,6 @@ namespace MVCModels.DataModels
                     .ValueGeneratedNever()
                     .HasComment("訂單ID");
 
-                entity.Property(e => e.CustomerId).HasComment("顧客ID");
-
-                entity.Property(e => e.OrderDate)
-                    .HasColumnType("datetime")
-                    .HasComment("下單日期");
-
-                entity.Property(e => e.PayedStatus).HasComment("訂單狀態(1待付、2已付、3待取消訂單、4待退款、5已退款)");
-
-                entity.Property(e => e.UserId).HasComment("房東ID");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_User");
-            });
-
-            modelBuilder.Entity<OrderDetail>(entity =>
-            {
-                entity.ToTable("OrderDetail");
-
-                entity.Property(e => e.OrderDetailId)
-                    .ValueGeneratedNever()
-                    .HasComment("訂單資訊ID");
-
                 entity.Property(e => e.AdultCount).HasComment("成人數");
 
                 entity.Property(e => e.BabyCount).HasComment("嬰兒數");
@@ -260,9 +257,15 @@ namespace MVCModels.DataModels
                     .HasColumnType("datetime")
                     .HasComment("退房日期");
 
+                entity.Property(e => e.CustomerId).HasComment("顧客ID");
+
                 entity.Property(e => e.KidCount).HasComment("小孩數");
 
-                entity.Property(e => e.OrderId).HasComment("訂單ID");
+                entity.Property(e => e.OrderDate)
+                    .HasColumnType("datetime")
+                    .HasComment("下單日期");
+
+                entity.Property(e => e.PayedStatus).HasComment("訂單狀態(1待付、2已付、3待取消訂單、4待退款、5已退款)");
 
                 entity.Property(e => e.RoomId).HasComment("房源ID");
 
@@ -270,45 +273,19 @@ namespace MVCModels.DataModels
                     .HasColumnType("decimal(18, 0)")
                     .HasComment("總價");
 
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.OrderId)
+                entity.Property(e => e.UserId).HasComment("房東ID");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderDetails_Order");
+                    .HasConstraintName("FK_Order_User");
 
                 entity.HasOne(d => d.Room)
-                    .WithMany(p => p.OrderDetails)
+                    .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.RoomId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_OrderDetails_Room");
-            });
-
-            modelBuilder.Entity<Price>(entity =>
-            {
-                entity.ToTable("Price");
-
-                entity.Property(e => e.PriceId)
-                    .ValueGeneratedNever()
-                    .HasComment("價錢ID");
-
-                entity.Property(e => e.BasicPrice)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasComment("初價");
-
-                entity.Property(e => e.Discount)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasComment("折扣");
-
-                entity.Property(e => e.RoomId).HasComment("房源ID");
-
-                entity.Property(e => e.ServiceCharge)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasComment("服務費");
-
-                entity.HasOne(d => d.Room)
-                    .WithMany(p => p.Prices)
-                    .HasForeignKey(d => d.RoomId)
-                    .HasConstraintName("FK_Price_Room");
+                    .HasConstraintName("FK_Order_Room");
             });
 
             modelBuilder.Entity<Room>(entity =>
@@ -323,6 +300,10 @@ namespace MVCModels.DataModels
                     .IsRequired()
                     .HasComment("房源詳細地址");
 
+                entity.Property(e => e.BasicPrice)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("初價");
+
                 entity.Property(e => e.BrowseCount).HasComment("瀏覽次數");
 
                 entity.Property(e => e.City)
@@ -334,6 +315,10 @@ namespace MVCModels.DataModels
                     .HasComment("房屋建造日期");
 
                 entity.Property(e => e.Description).HasComment("房源描述(ckeditor, QuillEditor)");
+
+                entity.Property(e => e.Discount)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("折扣");
 
                 entity.Property(e => e.District)
                     .IsRequired()
@@ -363,6 +348,10 @@ namespace MVCModels.DataModels
                 entity.Property(e => e.RoomStatus).HasComment("1上架2暫時下架3刪除房源");
 
                 entity.Property(e => e.RoomTypeId).HasComment("房源樣式ID");
+
+                entity.Property(e => e.ServiceCharge)
+                    .HasColumnType("decimal(18, 0)")
+                    .HasComment("服務費");
 
                 entity.Property(e => e.UpdateTime)
                     .HasColumnType("datetime")
@@ -453,26 +442,24 @@ namespace MVCModels.DataModels
                     .ValueGeneratedNever()
                     .HasComment("房源樣式ID");
 
-                entity.Property(e => e.RoomTypeGroupId).HasComment("父類別ID");
-
-                entity.Property(e => e.RoomTypeGroupName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasComment("父類別名稱(Hotel, Apartment)");
+                entity.Property(e => e.ParentId).HasComment("父類別ID");
 
                 entity.Property(e => e.RoomTypeName)
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasComment("房源樣式名稱(Rental, Loft)");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.InverseParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .HasConstraintName("FK_RoomType_RoomType");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasComment("使用者ID");
+                entity.Property(e => e.UserId).HasComment("使用者ID");
 
                 entity.Property(e => e.About).HasComment("使用者自介");
 
@@ -511,9 +498,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者緊急連絡人名字");
 
                 entity.Property(e => e.EmergencyContactNumber)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength(true)
+                    .HasMaxLength(50)
                     .HasComment("使用者緊急連絡人手機號碼");
 
                 entity.Property(e => e.EmergencyContactRelation)
@@ -550,7 +535,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者email密碼");
 
                 entity.Property(e => e.PersonalPhoto)
-                    .HasMaxLength(50)
+                    .HasMaxLength(200)
                     .HasComment("使用者頭貼");
 
                 entity.Property(e => e.Phone)
@@ -572,18 +557,13 @@ namespace MVCModels.DataModels
                     .ValueGeneratedNever()
                     .HasComment("願望清單ID");
 
-                entity.Property(e => e.CreateTime)
+                entity.Property(e => e.InsertTime)
                     .HasColumnType("datetime")
-                    .HasComment("願望清單新增時間");
+                    .HasComment("房源新增時間");
 
                 entity.Property(e => e.RoomId).HasComment("房源ID");
 
                 entity.Property(e => e.UserId).HasComment("使用者ID");
-
-                entity.Property(e => e.WishListName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasComment("願望清單名稱");
 
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.WishLists)
