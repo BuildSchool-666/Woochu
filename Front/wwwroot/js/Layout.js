@@ -23,3 +23,23 @@ document.querySelector('#checkout-time').setAttribute('value', CheckOutTime)
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
+
+window.onload = () => {
+    var localhost = window.location.href;
+    //alert(window.location.pathname )
+    if (window.location.pathname == '/home/abc') {
+        document.getElementById("homePage").classList.add('active');
+        document.getElementById("roomList").classList.remove('active');
+        document.getElementById("roomType").classList.remove('active');
+    }
+    else if (window.location.pathname == '/Rooms/roomType') {
+        document.getElementById("homePage").classList.remove('active');
+        document.getElementById("roomList").classList.remove('active');
+        document.getElementById("roomType").classList.add('active');
+    }
+    else if (window.location.pathname == '/Rooms/roomList') {
+        document.getElementById("homePage").classList.remove('active');
+        document.getElementById("roomList").classList.add('active');
+        document.getElementById("roomType").classList.remove('active');
+    }
+}

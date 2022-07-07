@@ -8,5 +8,14 @@ namespace Back.Controllers
         {
             return View();
         }
+        public IActionResult roomlist()
+        {
+            return View();
+        }
+        public IActionResult roomtype()
+        {
+            return View();
+        }
+
     }
 }

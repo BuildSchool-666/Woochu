@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Front</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="stylesheet" href="~/css/Reset1.css" />
+
+    <link rel="stylesheet" href="~/css/LayoutRed.css" />
+    <link rel="stylesheet" href="~/css/payment.css" />
+
+    <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+
+    @await RenderSectionAsync("topCSS", required: false)
+    @await RenderSectionAsync("topJS", required: false)
+</head>
+<body>
+    <header>
+        <nav id="navBar" class="navbar-white">
+            <a href="website.html">
+                <img src="~/images/whoochu.red.png" class="logo" alt="">
+            </a>
+            <ul class="nav-links ">
+                <li><a href="website.html">首頁</a></li>
+                <li><a href="a.html" class="active">房屋清單</a></li>
+                <li><a href="house.html">熱門房型</a></li>
+            </ul>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn register-btn">
+                    <i class="fas fa-bars" style="font-size: 20px;"></i>
+                    <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#home">登入</a>
+                    <a href="#home">註冊</a>
+                    <a href="#home">出租房源</a>
+                </div>
+            </div>
+            <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    <script src="~/js/Layout.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCSS", required: false)
+</body>
+</html>
