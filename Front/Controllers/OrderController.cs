@@ -8,5 +8,9 @@ namespace Front.Controllers
         {
             return View();
         }
+        public IActionResult bankAccount()
+        {
+            return View();
+        }
     }
 }

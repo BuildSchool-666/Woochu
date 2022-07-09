@@ -39,7 +39,7 @@ namespace MVCModels.DataModels
         public string EmergencyContactNumber { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? LastOnlineTime { get; set; }
-        public string PersonalPhoto { get; set; }
+        public byte[] PersonalPhoto { get; set; }
         public string About { get; set; }
         public int? AverageReplyTime { get; set; }
 

@@ -33,5 +33,17 @@ namespace Front.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult abc()
+        {
+            return View();
+        }
+        public IActionResult houseList()
+        {
+            return View();
+        }
+        public IActionResult house()
+        {
+            return View();
+        }
     }
 }

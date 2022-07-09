@@ -52,6 +52,7 @@ nav {
 .register-btn:hover {
     background: #ff5361;
     color: #fff;
+    transition: all 0.3s ease;
 }
 
 .dropdown-content {
@@ -71,7 +72,10 @@ nav {
     text-decoration: none;
     display: block;
 }
-.show {display: block;}
+
+.show {
+    display: block;
+}
 
 .container {
     padding: 0 7%;
@@ -166,6 +170,7 @@ nav {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    font-size:1.1em
 }
 
 .exclusives .item {
@@ -173,9 +178,10 @@ nav {
     border-radius: 10px;
 }
 
+
 .exclusives .item:hover {
     transform: scale(1.35);
-    transition: 0.5s;
+    transition: 0.6s;
     z-index: 1;
 }
 
@@ -184,7 +190,7 @@ nav {
 
 .cta {
     margin: 80px 0;
-    background-image: linear-gradient(to right, #3f2321, transparent), url(images/banner-2.png);
+    background-image: linear-gradient(to right, #3f2321, transparent), url(https://assets.architecturaldigest.in/photos/6008446851daf9662c14962f/16:9/w_2560%2Cc_limit/mumbai-huges-road-homes-photos-1366x768.jpg);
     block-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -199,6 +205,7 @@ nav {
 }
 
 .cta p {
+    line-height: 1.8;
     font-size: 18px;
     margin: 10px 0;
 }
@@ -226,11 +233,13 @@ nav {
     width: 100%;
     border-radius: 10px;
 }
+
 .stories div:hover {
     transform: scale(1.10);
     transition: 0.5s;
     z-index: 1;
 }
+
 .stories div {
     position: relative;
     text-align: center;
@@ -239,13 +248,15 @@ nav {
 .stories p {
     width: 80%;
     position: absolute;
-    top: 90%;
+    top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 600;
-    background: gainsboro;
+    background: white;
+    border-radius: 10px;
+    padding: 5px 0 ;
 }
 
 .start-btn {
@@ -265,9 +276,9 @@ nav {
 /* -------- */
 .about-msg {
     text-align: center;
-    margin: 150px 300px;
+    margin: 150px 100px;
     color: #333;
-    font-size: 17px;
+    font-size: 19px;
     line-height: 2;
 }
 
@@ -281,7 +292,6 @@ nav {
 .footer {
     margin: 20px 0 10px;
     text-align: right;
-
 }
 
 .footer a {
@@ -447,7 +457,6 @@ nav .hidden-btn {
         font-size: 15px;
         margin: 150px 00px;
     }
-
 }
 
 /* -----------a.html */
@@ -469,10 +478,12 @@ nav .hidden-btn {
     color: #ff5361;
     border: 1px solid #ff5361;
 }
-.navbar-white .register-btn:hover{
+
+.navbar-white .register-btn:hover {
     border: none;
     color: black;
     border: 1px solid black;
+    transition: all 0.3s ease;
 }
 
 .navbar-white .hidden-btn {
@@ -500,8 +511,9 @@ nav .hidden-btn {
 
 .left-col h1 {
     color: #333;
-    font-weight: 600;
-    margin-bottom: 30px;
+    font-weight: 900;
+    font-size: 1.6em;
+    margin: 10px 0px 30px 0;
 }
 
 .house {
@@ -518,7 +530,7 @@ nav .hidden-btn {
 
 .house-info {
     flex-basis: 58%;
-    color: #555
+    color: #555;
 }
 
 .house-img img {
@@ -529,7 +541,9 @@ nav .hidden-btn {
 .house-info a {
     text-decoration: none;
 }
-
+.house-info p{
+    padding: 10px 0;
+}
 .house-info h3 {
     font-weight: 600;
     color: #333;
@@ -548,7 +562,8 @@ nav .hidden-btn {
 }
 
 .house-price h4 {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .house-price h4 span {
@@ -558,8 +573,8 @@ nav .hidden-btn {
 
 .sidebar {
     border: 1px solid #999;
-    padding: 20px 30px;
-    margin-top: 30px;
+    padding: 20px 20px;
+    margin-top: 80px;
 }
 
 .sidebar h2 {
@@ -592,9 +607,9 @@ nav .hidden-btn {
     margin: 20px 0;
 }
 
-.sidebar-link a {
-    text-decoration: none;
-}
+    .sidebar-link a {
+        text-decoration: none;
+    }
 
 .pagination {
     display: flex;
@@ -603,10 +618,10 @@ nav .hidden-btn {
     margin: 40px 0;
 }
 
-.pagination img {
-    width: 15px;
-    margin: 10px 20px;
-}
+    .pagination img {
+        width: 15px;
+        margin: 10px 20px;
+    }
 
 .right-arrow {
     transform: rotate(180deg);
@@ -618,13 +633,19 @@ nav .hidden-btn {
     height: 40px;
     line-height: 40px;
     text-align: center;
-    border-radius: 50%;
     cursor: pointer;
 }
 
-.pagination .current {
+    .pagination span a {
+        text-decoration: none;
+        color: #000;
+    }
+
+.pagination .current a {
+    padding: 10px;
     background: #333;
     color: #fff;
+    border-radius: 50%;
 }
 
 
@@ -641,17 +662,17 @@ nav .hidden-btn {
         flex-basis: 100%;
     }
 
-    .left-col h1 {
-        font-size: 22px;
-    }
+        .left-col h1 {
+            font-size: 22px;
+        }
 
-    .house-info h3 {
-        font-size: 18px;
-    }
+        .house-info h3 {
+            font-size: 18px;
+        }
 
-    .house-info i {
-        font-size: 16px;
-    }
+        .house-info i {
+            font-size: 16px;
+        }
 
     .pagination span {
         margin: 10px 2px;
@@ -668,9 +689,8 @@ nav .hidden-btn {
 
 /* ------house-details pages ------ */
 .house-details {
-    padding: 0 12%;
+    padding: 0 7%;
     margin-top: 150px;
-
 }
 
 .house-title {
@@ -724,17 +744,42 @@ nav .hidden-btn {
     font-size: 22px;
 }
 
+.service-item {
+    display: flex;
+    flex-direction: column;
+    margin: 60px 0 60px;
+}
+
+.groupitem {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    border: 1px solid black;
+    padding:20px 0;
+}
+
+.groupitem i {
+    display: flex;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+
+.groupitem p {
+    padding: 0 20px;
+}
+
 .line {
     border: 0;
     height: 1px;
-    background: #ccc;
+    background: black;
     width: 100%;
     max-width: 900px;
     margin: 20px 0 50px;
 }
 
 .check-form {
-    margin: 30px 0;
+    margin: 60px 0;
     background: #fff;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
@@ -772,6 +817,12 @@ nav .hidden-btn {
     text-decoration: none;
 }
 
+.check-form a:hover {
+    color: aliceblue;
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
 .guest-field {
     flex: 1;
 }
@@ -781,6 +832,167 @@ nav .hidden-btn {
     border: none;
     border-bottom: 1px solid #ccc;
 }
+/* ------house---comment */
+.house-comment {
+    flex-direction: column;
+    margin: 80px 0px 20;
+}
+
+.comment-rating {
+    margin-bottom: 30px;
+}
+
+.comment-rating i {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 0 10px 0;
+}
+
+.comment-rating h3 {
+    font-size: 15px;
+}
+
+.house-comment .score {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.house-comment .score-point {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 10px 10% 0 0;
+}
+
+.house-comment .score-point .title-score {
+    font-size: 16px;
+    width: 50%;
+    flex: 1;
+}
+
+.house-comment .score-point .point {
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.house-comment .score-point .point .progress {
+    width: 150px;
+    height: 3.5px;
+}
+
+.house-comment .score-point .point .progress .progress-bar {
+    background-color: black;
+}
+
+.house-comment .score-point .point .pppp {
+    font-weight: 600;
+    padding: 0 20px 0 20px;
+}
+
+.house-details .swiper {
+    width: 100%;
+    height: 450px;
+    margin: 50px 0;
+}
+
+.house-details .swiper .card .image {
+    display: flex;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: #ff5361;
+}
+
+.house-details .swiper .card .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.house-details .swiper .card {
+    position: relative;
+    border-radius: 20px;
+    background: #fff;
+    margin: 20px 0 0px;
+    height: 350px;
+}
+
+
+.house-details .swiper .card .card-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.house-details .swiper .card .card-content .list {
+    display: flex;
+    background-color: #ff5361;
+    border-radius: 20px 20px 0 0;
+}
+
+.house-details .swiper .card .card-content .list .name-profession {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    color: white;
+}
+
+.house-details .swiper .card .card-content .list .name-profession .name {
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+.house-details .swiper .card .card-content .list .name-profession p {
+    font-size: 15px;
+}
+
+.house-details .swiper .card .card-content .comment {
+    font-size: 15px;
+    padding: 20px 10px;
+    height: 200px;
+}
+
+.house-details .swiper .card .card-content .comment p {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+}
+
+.house-details .swiper .card .rating {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    margin: 18px;
+}
+
+.house-details .swiper .card .rating i {
+    font-size: 18px;
+    color: #ff5361;
+}
+
+.house-details .swiper.swiper .swiper-button-next,
+.house-details .swiper.swiper .swiper-button-prev {
+    color: black;
+    opacity: 0.2;
+    margin-top: 70px;
+}
+
+.house-details .swiper.swiper .swiper-pagination-bullet {
+    height: 7px;
+    width: 26px;
+}
+
+.swiper .swiper-pagination-bullet-active {
+    background: #ff5361;
+}
 
 .details-list {
     list-style: none;
@@ -788,9 +1000,9 @@ nav .hidden-btn {
 }
 
 .details-list li {
-    margin-left: 50px;
     font-size: 20px;
     font-weight: 500;
+    margin-left: 7px;
     margin-bottom: 20px;
     color: #555;
     position: relative;
@@ -835,8 +1047,8 @@ nav .hidden-btn {
 }
 
 .host {
-    display: flex;
-    align-items: center;
+display: flex;
+align-items: center;
 }
 
 .host img {
@@ -858,12 +1070,17 @@ nav .hidden-btn {
     display: inline-block;
     margin: 40px 0 40px 120px;
     text-decoration: none;
-    color: #555;
-    padding: 15px 50px;
+    color: #ff5361;
+    padding: 10px 40px;
     border: 1px solid #ff5361;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
+.contact-host:hover {
+    background-color: #ff5361;
+    color: white;
+    transition: all 0.3s ease;
+}
 .all {
     display: flex;
     margin: 30px 0;
@@ -886,7 +1103,7 @@ nav .hidden-btn {
 }
 
 .menu a {
-    display: block;
+    padding: 5px 20px;
     font-size: 15px;
     line-height: 30px;
     color: rgb(139, 137, 137);
@@ -894,10 +1111,12 @@ nav .hidden-btn {
 }
 
 .menu a:hover {
-    background: #ff352f;
+    transition: all 0.3s ease;
+    background: #ff5361;
     color: #fff;
-    border-radius: 100px;
+    border-radius: 20px;
 }
+
 
 @media screen and (max-width: 990px) {
     .house-details {
@@ -927,23 +1146,23 @@ nav .hidden-btn {
         padding: 10px 30px;
     }
 
-    .check-form div {
-        padding: 20px 0;
-        width: 100%;
-    }
+        .check-form div {
+            padding: 20px 0;
+            width: 100%;
+        }
 
-    .check-form input {
-        border-bottom: 1px solid #ccc;
-        width: 100%;
-        padding-bottom: 5px;
-    }
+        .check-form input {
+            border-bottom: 1px solid #ccc;
+            width: 100%;
+            padding-bottom: 5px;
+        }
 
-    .check-form a {
-        font-size: 14px;
-        margin-top: 10px;
-        margin-bottom: 15px;
-        border-radius: 4px;
-    }
+        .check-form a {
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
 
     .host {
         display: block;
@@ -970,7 +1189,6 @@ nav .hidden-btn {
         width: 100%;
         display: block;
         margin: 10px;
-
     }
 
     .menu h3 {
@@ -983,5 +1201,10 @@ nav .hidden-btn {
 
     .footer {
         margin: 0;
+    }
+
+
+    .house-comment .score {
+        display: none;
     }
 }

@@ -1,0 +1,257 @@
+﻿.banner {
+    display: flex;
+    /* border: 1px solid red; */
+    margin: 150px 10%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hostDetail {
+    border: 1px solid #bbb;
+    border-radius: 50px;
+    width: 30%;
+    height: 50%;
+    padding-bottom: 20px;
+}
+
+    .hostDetail img {
+        border-radius: 50%;
+        display: flex;
+        margin: auto;
+        padding: 40px 0;
+    }
+
+.showprofile h2 {
+    margin: 25px 20px;
+}
+
+.showprofile h3 {
+    margin: 20px 0px;
+}
+
+.showprofile i {
+    margin: 0 20px;
+}
+
+.showprofile p {
+    padding: 8px 0;
+    font-size: 15px;
+}
+
+hr {
+    margin: 20px;
+}
+
+.hostInfo {
+    width: 70%;
+    padding: 0 60px;
+    height: 100vh;
+}
+
+.aboutme .fa-angle-left {
+    font-size: 30px;
+    padding-right: 10px;
+    color: black;
+}
+
+.aboutme h1 {
+    display: inline-block;
+}
+
+.aboutme h3 {
+    padding: 30px 0 10px;
+}
+
+.aboutme p:nth-child(4) {
+    padding: 0px 0px 30px;
+}
+
+.aboutme .fa-house {
+    padding: 0 10px 0 0;
+}
+
+.abouthome {
+    display: flex;
+}
+
+.aboutme-rwd {
+    display: none;
+}
+
+.card {
+    width: 32%;
+    margin: 20px 5px;
+}
+
+    .card img {
+        border-radius: 10px;
+        width: 100%;
+        border: 1px solid #ccc;
+    }
+
+    .card i {
+        padding: 10px 0px;
+        font-size: 10px;
+        color: #ff5361;
+    }
+
+    .card h4 {
+        font-size: 16px;
+        padding-bottom: 5px;
+    }
+
+    .card p {
+        color: rgb(111, 107, 107);
+        font-size: 15px;
+    }
+
+.comment h4 {
+    padding: 20px 0;
+}
+
+.customercomment {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recommentcard {
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+    width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0rem 0 1rem #ccc;
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0px;
+}
+
+    .recommentcard:not(:first-child) {
+        margin-left: -100px;
+    }
+
+    .recommentcard:hover {
+        transform: translateY(-30px);
+        transition: 0.4s ease-out;
+    }
+
+        .recommentcard:hover ~ .recommentcard {
+            position: relative;
+            left: 100px;
+            transition: 0.4s ease-out;
+        }
+
+.title {
+    color: black;
+    font-weight: 500;
+    margin: 5px 5px;
+}
+
+.circle {
+    color: black;
+    margin: 0 5px;
+}
+
+    .circle p {
+        font-size: 10px;
+    }
+
+
+@media screen and (max-width:992px) {
+    .banner {
+        padding: 80px 0px;
+    }
+
+    .hostDetail {
+        width: 100%;
+    }
+
+        .hostDetail img {
+            width: 150px;
+            height: 150px;
+            padding: 5px 0;
+        }
+
+    .showprofile {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 10px;
+        /* margin-top: -10px; */
+    }
+
+        .showprofile hr {
+            display: none;
+        }
+
+        .showprofile h3 {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        .showprofile h2 {
+            font-size: 10px;
+            width: 100%;
+            margin: 10px 20px;
+        }
+
+        .showprofile p {
+            font-size: 5px;
+        }
+
+    .aboutme-rwd {
+        display: block;
+        font-size: 10px;
+        padding: 10px 20px 0px 20px;
+    }
+
+        .aboutme-rwd p {
+            padding: 10px 0px;
+        }
+
+        .aboutme-rwd i {
+            padding-right: 20px;
+        }
+
+    .hostInfo {
+        padding: 0;
+        width: 100%;
+        position: relative;
+    }
+
+        .hostInfo .aboutme {
+            display: none;
+        }
+
+        .hostInfo h2 {
+            text-align: center;
+            padding: 20px 0 5px 0;
+        }
+
+    .abouthome {
+        flex-wrap: wrap;
+    }
+
+    .hostInfo .abouthome .card {
+        width: 100%;
+    }
+
+    .hostInfo .comment {
+        display: none;
+    }
+
+
+    hr {
+        display: none;
+    }
+
+    .all {
+        display: none;
+    }
+
+    .footer {
+        display: none;
+    }
+}
