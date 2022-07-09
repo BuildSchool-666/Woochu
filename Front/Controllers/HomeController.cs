@@ -24,22 +24,31 @@ namespace Front.Controllers
 
         public IActionResult Index()
         {
-            var outputDto = _service.GetIndexData();
+            //var outputDto = _service.GetIndexData();
 
-            if (!outputDto.IsSuccess)
-            {
-            };
-
-            var vm = outputDto.VM;
-            //new IndexVM()
+            //if (!outputDto.IsSuccess)
             //{
-            //    CityCards = outputDto
-            //    //new List<A>
-            //    //{
-            //    //    new A(){CityName = "宜蘭", Price = 250, ImgUrl = ""},
-            //    //    new A(){CityName = "台北", Price = 500, ImgUrl = ""},
-            //    //}
             //};
+
+            var vm =
+            //outputDto.VM;
+            new IndexVM()
+            {
+                CityCards =
+                new List<CityCard>
+                {
+                    new CityCard(){
+                        CityName = "宜蘭",
+                        Price = 250,
+                        ImgUrl = "",
+                    },
+                    new CityCard(){
+                        CityName = "台北",
+                        Price = 500,
+                        ImgUrl = "",
+                    },
+                }
+            };
 
             return View(vm);
         }

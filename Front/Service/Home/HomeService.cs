@@ -77,7 +77,9 @@ namespace Front.Service.Home
             {
                 IsSuccess = false,
                 //Message = null,
-                //VM = null,
+                VM = new IndexVM{
+                    CityCards
+                }
             };
 
             if(false){
