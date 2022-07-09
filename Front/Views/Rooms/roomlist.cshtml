@@ -1,20 +1,26 @@
-﻿<div class="container">
+﻿@using Front.Models.ViewModels.Roomlist
+@model RoomlistVM
+
+<div class="container">
     <div class="list-container">
         <div class="left-col">
             <p>200+ 選擇</p>
-            <h1>選擇地點 : 台北</h1>
+            <h1>選擇地點 : 台北 @Model.city</h1>
             <div class="house">
                 <div class="house-img">
                     <a href="house.html">
-                        <img src="~/images/image-s1.png" alt="">
+                        
+                        <img src="@Model.imgUrl" alt="">
+                        @*<img src="~/images/image-s1.png" alt="">*@
                     </a>
                 </div>
                 <div class="house-info">
-                    <p>陽印成他老家</p>
+                    <p>陽印成他老家 @Model.title</p>
                     <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
+                        <h3>單人套房內含對外窗 @Model.HouseInfo</h3>
                     </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
+                    <p>1 @Model.BedCount 床 / 1 @Model.BathCount 廁所 / Wifi / 廚房</p>
+                    @Model.rating
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -22,7 +28,7 @@
                     <i class="far fa-star"></i>
                     <div class="house-price">
                         <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
+                        <h4>$ 100 @Model.RentPrice <span>/ 天</span></h4>
                     </div>
                 </div>
             </div>

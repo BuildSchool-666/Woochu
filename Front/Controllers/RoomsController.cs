@@ -1,6 +1,7 @@
 ﻿using Front.Models.DTOModels.Rooms;
 using Front.Models.ViewModels.Rooms;
 using Front.Service.Rooms;
+using Front.Models.ViewModels.Roomlist;
 using Microsoft.AspNetCore.Mvc;
 using MVCModels.Enum;
 
@@ -35,6 +36,17 @@ namespace Back.Controllers
         [HttpPost]
         public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
         {
+            //var vm = new RoomlistVM
+            //{
+            //    city = "Taiwan",
+            //    imgUrl = "https://picsum.photos/300/200/?random=10",
+            //    title = "ooxx",
+            //    HouseInfo = " idiot",
+            //    BedCount = 1,
+            //    BathCount = 1,
+            //    rating = 4.3,
+            //    RentPrice = 200,
+            //};
             var inputDto = new GetRoomsCardInputDTO() { 
                 City = requestParam.City,
                 CheckinTime = requestParam.CheckinTime,
