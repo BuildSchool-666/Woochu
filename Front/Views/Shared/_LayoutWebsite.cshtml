@@ -41,36 +41,36 @@
         <div class="container">
             <h1>Find Your Next Stay</h1>
             <div class="search-bar">
-                <form>
+                <form method="post" action="/Rooms/roomlist">
                     <div class="Location-input">
                         <label>地點</label>
                         <div>
-                            <select>
-                                <option value="1" selected>選擇前往地點 ?</option>
-                                <option value="2">台北</option>
-                                <option value="3">桃園</option>
-                                <option value="4">新竹</option>
-                                <option value="5">苗栗</option>
+                            <select name="City">
+                                <option value="0" selected>選擇前往地點 ?</option>
+                                <option value="1">台北</option>
+                                <option value="2">桃園</option>
+                                <option value="3">新竹</option>
+                                <option value="4">苗栗</option>
                             </select>
                         </div>
                     </div>
                     <div>
                         <label>入住時間 :</label>
-                        <input type="datetime-local" id="checkin-time" name="checkin-time" value="">
+                        <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
                     </div>
                     <div>
                         <label>退房時間 :</label>
-                        <input type="datetime-local" id="checkout-time" name="checkout-time" value="">
+                        <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
                     </div>
                     <div>
                         <label>旅客</label>
                         <div>
-                            <select>
-                                <option value="1" selected>新增人數</option>
-                                <option value="2">1 person</option>
-                                <option value="3">2 person</option>
-                                <option value="4">3 person</option>
-                                <option value="5">4 person</option>
+                            <select name="Person">
+                                <option value="0" selected>新增人數</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 person</option>
+                                <option value="3">3 person</option>
+                                <option value="4">4 person</option>
                             </select>
                         </div>
                     </div>

@@ -34,20 +34,24 @@ namespace Front.Controllers
             //outputDto.VM;
             new IndexVM()
             {
-                CityCards =
-                new List<CityCard>
-                {
-                    new CityCard(){
-                        CityName = "宜蘭",
-                        Price = 250,
-                        ImgUrl = "",
-                    },
-                    new CityCard(){
-                        CityName = "台北",
-                        Price = 500,
-                        ImgUrl = "",
-                    },
-                }
+                CityCards = new List<CityCard>
+                    {
+                        new CityCard(){
+                            CityName = "宜蘭",
+                            Price = 250,
+                            ImgUrl = "",
+
+                            //List<gk41o4> = new  List P{ 
+                            //    new { "海灘" , "fas fa-coffee"},
+                            //    new { "computer" , "fas fa-desktop"},
+                            //}
+                        },
+                        new CityCard(){
+                            CityName = "台北",
+                            Price = 500,
+                            ImgUrl = "",
+                        },
+                    }
             };
 
             return View(vm);
