@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Front.Models.ViewModels.Roomlist;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Back.Controllers
 {
@@ -9,11 +10,21 @@ namespace Back.Controllers
         {
             return View();
         }
-        [Route("~/[controller]/[action]/{City}")]
+        [Route("~/[controller]/[action]/{City?}")]
         public IActionResult roomlist([FromRoute]string City)
         {
-
-            return View();
+            var vm = new RoomlistVM
+            {
+                city = "Taiwan",
+                imgUrl = "https://picsum.photos/300/200/?random=10",
+                title = "ooxx",
+                HouseInfo = " idiot",
+                BedCount = 1,
+                BathCount = 1,
+                rating = 4.3,
+                RentPrice = 200,
+            };
+            return View(vm);
         }
         public IActionResult roomlistPage2()
         {
