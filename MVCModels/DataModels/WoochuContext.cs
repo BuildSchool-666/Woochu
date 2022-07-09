@@ -183,7 +183,7 @@ namespace MVCModels.DataModels
 
                 entity.Property(e => e.VerifyData)
                     .IsRequired()
-                    .HasComment("房東申請資料");
+                    .HasComment("房東申請資料(一張身分卡)");
 
                 entity.Property(e => e.VerifyState).HasComment("1未審核，2審核通過，3審核未通過");
 
@@ -292,9 +292,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("Room");
 
-                entity.Property(e => e.RoomId)
-                    .ValueGeneratedNever()
-                    .HasComment("房間ID");
+                entity.Property(e => e.RoomId).HasComment("房間ID");
 
                 entity.Property(e => e.Address)
                     .IsRequired()
@@ -334,7 +332,7 @@ namespace MVCModels.DataModels
                     .HasColumnType("decimal(9, 6)")
                     .HasComment("房源經度");
 
-                entity.Property(e => e.PrivacyTypeId).HasComment("房源空間(1Entire 2Privacy 3Shared)");
+                entity.Property(e => e.PrivacyTypeId).HasComment("房源空間(1Entire 2.Privacy獨間 3. Shared合併房間)");
 
                 entity.Property(e => e.PublishTime)
                     .HasColumnType("datetime")
@@ -411,9 +409,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("RoomFacility");
 
-                entity.Property(e => e.RoomFacilityId)
-                    .ValueGeneratedNever()
-                    .HasComment("房源設備ID");
+                entity.Property(e => e.RoomFacilityId).HasComment("房源設備ID");
 
                 entity.Property(e => e.FacilityId).HasComment("設備ID");
 
@@ -438,9 +434,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("RoomType");
 
-                entity.Property(e => e.RoomTypeId)
-                    .ValueGeneratedNever()
-                    .HasComment("房源樣式ID");
+                entity.Property(e => e.RoomTypeId).HasComment("房源樣式ID");
 
                 entity.Property(e => e.ParentId).HasComment("父類別ID");
 
@@ -459,9 +453,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("User");
 
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasComment("使用者ID");
+                entity.Property(e => e.UserId).HasComment("使用者ID");
 
                 entity.Property(e => e.About).HasComment("使用者自介");
 
@@ -500,9 +492,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者緊急連絡人名字");
 
                 entity.Property(e => e.EmergencyContactNumber)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength(true)
+                    .HasMaxLength(50)
                     .HasComment("使用者緊急連絡人手機號碼");
 
                 entity.Property(e => e.EmergencyContactRelation)
@@ -539,7 +529,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者email密碼");
 
                 entity.Property(e => e.PersonalPhoto)
-                    .HasMaxLength(50)
+                    .HasMaxLength(200)
                     .HasComment("使用者頭貼");
 
                 entity.Property(e => e.Phone)
@@ -561,9 +551,9 @@ namespace MVCModels.DataModels
                     .ValueGeneratedNever()
                     .HasComment("願望清單ID");
 
-                entity.Property(e => e.CreateTime)
+                entity.Property(e => e.InsertTime)
                     .HasColumnType("datetime")
-                    .HasComment("願望清單新增時間");
+                    .HasComment("房源新增時間");
 
                 entity.Property(e => e.RoomId).HasComment("房源ID");
 

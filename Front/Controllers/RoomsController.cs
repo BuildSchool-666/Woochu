@@ -4,12 +4,15 @@ namespace Back.Controllers
 {
     public class RoomsController : Controller
     {
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult roomlist()
+        [Route("~/[controller]/[action]/{City}")]
+        public IActionResult roomlist([FromRoute]string City)
         {
+
             return View();
         }
         public IActionResult roomlistPage2()

@@ -22,9 +22,4 @@
     <ProjectReference Include="..\MVCModels\MVCModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\DTOModels\" />
-    <Folder Include="Models\ViewModels\" />
-  </ItemGroup>
-
 </Project>

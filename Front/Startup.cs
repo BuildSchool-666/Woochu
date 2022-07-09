@@ -10,7 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using MVCModels.Repositories;
+using Front.Service.Home;
 
 namespace Front
 {
@@ -29,6 +30,8 @@ namespace Front
             services.AddControllersWithViews();
             services.AddDbContext<WoochuContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
+            services.AddScoped<WoochuRepository>();
+            services.AddScoped<IHomeService, HomeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

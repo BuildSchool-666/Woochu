@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MVCModels.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace MVCModels.Repositories
 {
     public class WoochuRepository
     {
-        private DbContext _context;
-        public WoochuRepository(DbContext context)
+        private WoochuContext _context;
+        public WoochuRepository(WoochuContext context)
         {
             if (context == null) { throw new ArgumentNullException(); }
             _context = context;
