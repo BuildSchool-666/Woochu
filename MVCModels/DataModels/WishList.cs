@@ -10,8 +10,7 @@ namespace MVCModels.DataModels
         public int WishListId { get; set; }
         public int UserId { get; set; }
         public int RoomId { get; set; }
-        public string WishListName { get; set; }
-        public DateTime CreateTime { get; set; }
+        public DateTime InsertTime { get; set; }
 
         public virtual Room Room { get; set; }
         public virtual User User { get; set; }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MVCModels.DataModels;
+//using MVCModels.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +26,8 @@ namespace Back
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<WoochuContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
+            //services.AddDbContext<WoochuContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

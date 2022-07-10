@@ -19,6 +19,8 @@ namespace MVCModels.DataModels
         public double? Location { get; set; }
         public double? CheckIn { get; set; }
         public double? Cp { get; set; }
+        public DateTime? AuditTime { get; set; }
+        public int? AuditRejectReason { get; set; }
 
         public virtual Room Room { get; set; }
         public virtual User User { get; set; }

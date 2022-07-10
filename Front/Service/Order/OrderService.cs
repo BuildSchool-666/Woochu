@@ -1,6 +1,6 @@
 ﻿namespace Front.Service.Order
 {
-    public class Order : IOrder
+    public class OrderService : IOrderService
     {
 
     }

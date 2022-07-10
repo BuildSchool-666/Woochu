@@ -9,14 +9,16 @@ namespace MVCModels.DataModels
     {
         public RoomType()
         {
+            InverseParent = new HashSet<RoomType>();
             Rooms = new HashSet<Room>();
         }
 
         public int RoomTypeId { get; set; }
         public string RoomTypeName { get; set; }
-        public int RoomTypeGroupId { get; set; }
-        public string RoomTypeGroupName { get; set; }
+        public int? ParentId { get; set; }
 
+        public virtual RoomType Parent { get; set; }
+        public virtual ICollection<RoomType> InverseParent { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
     }
 }
