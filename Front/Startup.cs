@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using MVCModels.Repositories;
 using Front.Service.Home;
 using Front.Service.Rooms;
-
+using Front.Service.RoomDetail;
 
 namespace Front
 {
@@ -34,7 +34,9 @@ namespace Front
                     options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
             services.AddScoped<WoochuRepository>();
             services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IRoomsService, RoomsService>();
+            services.AddScoped<IRoomsService, RoomsService>(); 
+            services.AddScoped<IRoomDetailService, RoomDetailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -48,9 +48,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("AltPrice");
 
-                entity.Property(e => e.AltPriceId)
-                    .ValueGeneratedNever()
-                    .HasComment("特殊價錢ID");
+                entity.Property(e => e.AltPriceId).HasComment("特殊價錢ID");
 
                 entity.Property(e => e.BasicPrice)
                     .HasColumnType("decimal(18, 0)")
@@ -85,9 +83,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("Comment");
 
-                entity.Property(e => e.CommentId)
-                    .ValueGeneratedNever()
-                    .HasComment("評論ID");
+                entity.Property(e => e.CommentId).HasComment("評論ID");
 
                 entity.Property(e => e.Accuracy).HasComment("準確度");
 
@@ -140,28 +136,23 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("Facility");
 
-                entity.Property(e => e.FacilityId)
-                    .ValueGeneratedNever()
-                    .HasComment("設備ID");
+                entity.Property(e => e.FacilityId).HasComment("設備ID");
 
                 entity.Property(e => e.FacilityName)
                     .IsRequired()
                     .HasMaxLength(20)
                     .HasComment("設備名稱");
 
+                entity.Property(e => e.Icon).HasMaxLength(50);
+
                 entity.Property(e => e.IsMulti).HasComment("是否為複數");
             });
 
             modelBuilder.Entity<HostApplication>(entity =>
             {
-                entity.HasKey(e => e.HostId)
-                    .HasName("PK_Host");
-
                 entity.ToTable("HostApplication");
 
-                entity.Property(e => e.HostId)
-                    .ValueGeneratedNever()
-                    .HasComment("房東ID");
+                entity.Property(e => e.HostApplicationId).HasComment("房東ID");
 
                 entity.Property(e => e.ApplyTime)
                     .HasColumnType("datetime")
@@ -200,13 +191,10 @@ namespace MVCModels.DataModels
 
                 entity.ToTable("ImageFile");
 
-                entity.Property(e => e.ImageId)
-                    .ValueGeneratedNever()
-                    .HasComment("房源照片ID");
+                entity.Property(e => e.ImageId).HasComment("房源照片ID");
 
                 entity.Property(e => e.Picture)
                     .IsRequired()
-                    .HasMaxLength(50)
                     .HasComment("房源照片URL");
 
                 entity.Property(e => e.RoomId).HasComment("房源ID");
@@ -241,9 +229,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.OrderId)
-                    .ValueGeneratedNever()
-                    .HasComment("訂單ID");
+                entity.Property(e => e.OrderId).HasComment("訂單ID");
 
                 entity.Property(e => e.AdultCount).HasComment("成人數");
 
@@ -382,9 +368,7 @@ namespace MVCModels.DataModels
 
                 entity.ToTable("RoomEvent");
 
-                entity.Property(e => e.EventId)
-                    .ValueGeneratedNever()
-                    .HasComment("房間事件ID");
+                entity.Property(e => e.EventId).HasComment("房間事件ID");
 
                 entity.Property(e => e.EventEndDate)
                     .HasColumnType("datetime")
@@ -547,9 +531,7 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("WishList");
 
-                entity.Property(e => e.WishListId)
-                    .ValueGeneratedNever()
-                    .HasComment("願望清單ID");
+                entity.Property(e => e.WishListId).HasComment("願望清單ID");
 
                 entity.Property(e => e.InsertTime)
                     .HasColumnType("datetime")

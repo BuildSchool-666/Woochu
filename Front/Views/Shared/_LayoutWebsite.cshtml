@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using MVCModels.MyEnum
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +22,7 @@
             <ul class="nav-links">
                 <li><a id='homePage' class="active" href="~/">首頁</a></li>
                 <li><a id='roomList' href="~/Rooms/roomlist">房屋清單</a></li>
-                <li><a id='roomType' href="/RoomDetails/roomDetails">熱門房型</a></li>
+                <li><a id='roomType' href="/RoomDetail/roomDetail">熱門房型</a></li>
             </ul>
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
@@ -47,10 +48,9 @@
                         <div>
                             <select name="City">
                                 <option value="0" selected>選擇前往地點 ?</option>
-                                <option value="1">台北</option>
-                                <option value="2">桃園</option>
-                                <option value="3">新竹</option>
-                                <option value="4">苗栗</option>
+                            @foreach(int i in Enum.GetValues( typeof(City)) ){
+                                <option value="@i">@( (City)i  )</option>
+                            };
                             </select>
                         </div>
                     </div>

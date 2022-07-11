@@ -1,31 +1,59 @@
 ﻿@using Front.Models.ViewModels.RoomDetails
-@model RoomDetailsVM
+@model RoomDetailVM
+
+@functions{
+    private void Facility()
+    {
+        <i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
+        <i class="fas fa-paw"><p>可攜帶寵物</p></i> 
+        <i class="fas fa-coffee"><p>早餐</p></i>
+        <i class="fas fa-smoking"><p>可吸煙</p></i>
+        <i class="fas fa-calendar-check"><p>可長期住宿</p></i>
+        <i class="fas fa-desktop"><p>電腦</p></i>
+        //foreach(var facility in Model.RoomInf)
+    }
+    private void Star(double star)
+    {
+        int num = (int)(star * 2);
+        int devide = num / 2;
+        int half = num % 2;
+        int left = 5 - devide - half;
+
+        for(int i=0;i < devide;i++)
+        {
+            <i class="fas fa-star"></i>
+        }
+        for(int i=0;i < half;i++)
+        {
+            <i class="fas fa-star-half-alt"></i>
+        }
+        for(int i=0;i < left;i++)
+        {
+            <i class="far fa-star"></i>
+        }
+    }
+}
 
 <div class="house-details">
         <div class="house-title">
-            <h1>陽印成他老家 @Model.Title</h1>
+            <h1>@Model.Title</h1>
             <div class="row">
                 <div>
-                    @Model.Rating
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
+                    @*@{Star(Model.Rating);}*@
                     <span>245 觀看紀錄</span>
                 </div>
                 <div>
-                    <p>地點 : 新竹市東區明湖路775巷青草湖自行車道 @Model.Address</p>
+                    <p>地點 : @Model.Address</p>
                 </div>
             </div>
         </div>
         <div class="gallery">
             <div class="gallery-img-1"><img src="@Model.ImgUrls[0]"></div>
             @*<div class="gallery-img-1"><img src="~/images/house-1.png"></div>*@
-            @for( int i = 1;  i<5; i++)
-        {
+            @for(int i = 1;i<5;i++)
+            {
             <div><img src=" @Model.ImgUrls[i]"></div>
-        }
+            }
 @*                      
             <div><img src="~/images/house-2.png"></div>
             <div><img src="~/images/house-3.png"></div>
@@ -34,9 +62,9 @@
 *@       </div>
         
         <div class="small-details">
-            <h2>熱門景點公寓出租 @Model.RoomInfo</h2>
-            <p>2 人 &nbsp; &nbsp;  @Model.BedCount 1 床 &nbsp; &nbsp; 1 廁所 @Model.BathCount</p>
-            <h4>$ 100 @Model.RentPrice / day</h4>
+            <h2>@Model.RoomInfo</h2>
+            <p>(2) 人/@Model.BedCount 床/@Model.BathCount 廁所</p>
+            <h4>$@Model.RentPrice/day</h4>
         </div>
         <form class="check-form">
 
@@ -59,7 +87,7 @@
                 </select>
             </div>
             <!-- <button type="submit"></button> -->
-            <a href="payment.html">預定</a>
+            <a href="#">預定</a>
         </form>
 
         <div class="service-item">
@@ -67,10 +95,6 @@
             <div class="groupitem">
                 <i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
                 <i class="fas fa-paw"><p>可攜帶寵物</p></i> 
-                <i class="fas fa-coffee"><p>早餐</p></i>
-                <i class="fas fa-smoking"><p>可吸煙</p></i>
-                <i class="fas fa-calendar-check"><p>可長期住宿</p></i>
-                <i class="fas fa-desktop"><p>電腦</p></i>
             </div>
         </div>
     
@@ -509,7 +533,7 @@
             日出或日落甲板 - 取決於一天中的時間。您將在我們的豪華床上像木頭一樣睡覺，
             美麗的亞麻布被所有的木頭包圍！樓下的兩間臥室都可以選擇記憶海綿
             枕頭或鵝絨特大號枕頭。我們使用 100% 亞麻和 Actil First Line Cotton 床單的組合
-            （用平紋細布編織）為終極睡眠。 @Model.Discribtion</p>
+            （用平紋細布編織）為終極睡眠。 @Model.Description</p>
 
         <hr class="line">
 
@@ -535,7 +559,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
-                    </span>&nbsp; &nbsp; 加入時間：2015年10月 @Model.JoinTime &nbsp; &nbsp; 回覆率 : 100% &nbsp; &nbsp; 回覆時間: 1天內 @Model.ReplyTime</p>
+                    </span>&nbsp; &nbsp; 加入時間：2015年10月 @Model.JoinTime &nbsp; &nbsp; 回覆率 : 100% &nbsp; &nbsp;</p>
             </div>
         </div>
         <a href="host.html" class="contact-host">連絡房東</a>

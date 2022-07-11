@@ -1,9 +1,9 @@
 ﻿using Front.Models.DTOModels.Rooms;
 using Front.Models.ViewModels.Rooms;
 using Front.Service.Rooms;
-using Front.Models.ViewModels.Roomlist;
 using Microsoft.AspNetCore.Mvc;
-using MVCModels.Enum;
+using MVCModels.MyEnum;
+using System;
 
 namespace Back.Controllers
 {
@@ -22,9 +22,18 @@ namespace Back.Controllers
         }
 
         [HttpGet("~/[controller]/[action]/{city?}")]
-        public IActionResult Roomlist([FromRoute]City city)
+        public IActionResult Roomlist([FromRoute]string city)
         {
-            var inputDto = new GetRoomsCardInputDTO() { City = city};
+            var inputDto = new GetRoomsCardInputDTO();
+            if(city == null)
+            {
+                inputDto.City = 0;
+            }
+            else
+            {
+                inputDto.City = (City)Enum.Parse(typeof(City), city);
+            }
+            
             var outputDto = _service.GetRoomsCard(inputDto);
 
             //if (!outputDto.IsSuccess)
