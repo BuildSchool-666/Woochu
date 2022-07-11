@@ -2,15 +2,18 @@
 @model RoomDetailVM
 
 @functions{
-    private void Facility()
+    private void FacilityPrint(List<FacilityIcon> fIcon)
     {
-        <i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
-        <i class="fas fa-paw"><p>可攜帶寵物</p></i> 
-        <i class="fas fa-coffee"><p>早餐</p></i>
-        <i class="fas fa-smoking"><p>可吸煙</p></i>
-        <i class="fas fa-calendar-check"><p>可長期住宿</p></i>
-        <i class="fas fa-desktop"><p>電腦</p></i>
-        //foreach(var facility in Model.RoomInf)
+        foreach(var item in fIcon)
+        {
+    <i class="@item.FacilityDisplay"><p>@item.FacilityName</p></i> 
+            
+        }
+        //<i class="fas fa-paw"><p>可攜帶寵物</p></i> 
+        //<i class="fas fa-coffee"><p>早餐</p></i>
+        //<i class="fas fa-smoking"><p>可吸煙</p></i>
+        //<i class="fas fa-calendar-check"><p>可長期住宿</p></i>
+        //<i class="fas fa-desktop"><p>電腦</p></i>
     }
     private void Star(double star)
     {
@@ -21,15 +24,15 @@
 
         for(int i=0;i < devide;i++)
         {
-            <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
         }
         for(int i=0;i < half;i++)
         {
-            <i class="fas fa-star-half-alt"></i>
+    <i class="fas fa-star-half-alt"></i>
         }
         for(int i=0;i < left;i++)
         {
-            <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
         }
     }
 }
@@ -40,7 +43,7 @@
             <div class="row">
                 <div>
                     @*@{Star(Model.Rating);}*@
-                    <span>245 觀看紀錄</span>
+                    <span>@Model.BrowseCount 觀看紀錄</span>
                 </div>
                 <div>
                     <p>地點 : @Model.Address</p>
@@ -93,8 +96,9 @@
         <div class="service-item">
             <h4>有提供的設備與服務</h4>
             <div class="groupitem">
-                <i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
-                <i class="fas fa-paw"><p>可攜帶寵物</p></i> 
+                @*<i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
+                <i class="fas fa-paw"><p>可攜帶寵物</p></i> *@
+                @{FacilityPrint(Model.FacilityItem);}
             </div>
         </div>
     
@@ -105,7 +109,7 @@
         <section class="house-comment">
             <div class="comment-rating">
                 <i class="fas fa-star">4.91</i>
-                <h3>11則評論</h3>
+                <h3>@Model.CommentCount 則評論</h3>
             </div>
             <div class="score">
                 <div class="score-point">
