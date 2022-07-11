@@ -1,0 +1,360 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>選擇提供的空間類型</title>
+</head>
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="title">
+            <h1><strong>房源的位置在哪裡？</strong></h1>
+        </div>
+        <div class="right">
+            <div class="d-flex">
+            <div class="btngroup">
+                <button type="button" class="btn-h text-white"><strong>協助</strong></button>
+                <button type="button" class="btn-h text-white"><strong>儲存並退出</strong></button>
+            </div>
+            </div>
+            <img src="https://maps.googleapis.com/maps/api/staticmap?size=405x821&zoom=12&center=23.5,121&scale=1&&client=gme-airbnbinc&channel=monorail-prod&signature=btoy9uKdyO12XQLtN_3KkGyG2fg%3D" alt="" class="map">
+            <div class="wrapper">
+                <div class="search-input">
+                <input type="text" type="select" placeholder="輸入你的地址" style="font-size:16px; padding-left: 60px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="position:absolute; top:20px; left:25px;">
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                </svg>
+                <div class="autocom-box">
+                </div>
+                <div class="select">
+                    <div class="auto d-flex mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16" style="margin-top:20px; margin-left:20px;background-color:#F0F0F0 ;border-radius:50%;width:30px; height:20px;">
+                            <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
+                        </svg>
+                        <li style="list-style: none;padding-left: 20px;padding-top: 10px; padding-bottom: 20px; margin:10px 0px" onclick=" gettingPosition()" id="getposition">使用目前爲止</li>
+                    </div>
+                    <a href="https://shichyilim.github.io/Project/Location2.html">
+                        <button style="background-color: white ; border:none; margin:10px;text-decoration: underline;font-size: 12px;"><strong>手動輸入地址</strong></button>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+            <div class="last-bar">
+                <button type="button" class="back"><strong>返回</strong></button>
+                <button type="button" class="next text-white" id="next">下一步</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
+
+@section TopCSS{
+    <style>
+        .title{
+    background: url(https://a0.muscache.com/im/pictures/Hosting/Gradient/original/4abb91ab-2c70-46d7-80a5-9c83ef0221ef.png) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    position: fixed;
+    left:0;
+
+}
+
+.title h1{
+    margin: auto;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+
+.right{
+    width: 100%;
+    height: 60vh;
+    position: fixed;
+    right: 0;
+    bottom: -5vh;
+    background-color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;}
+
+.btngroup{
+    position: fixed;
+    top:0;
+    right:-50%;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: transparent;
+    z-index: 0;
+}
+.btn-h{
+    height: 35px;
+    width: 20%;
+    background-color: black;
+    border-radius: 20px;
+    border:none;
+    margin: 10px;
+    padding: 5px 15px;
+    font-size: 10px;
+
+}
+
+.last-bar{
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    right:0;
+    bottom:0;   
+    background-color: white;
+    border-top: 2px solid #F0F0F0;
+    z-index: 1;
+}
+
+.back{
+    position: relative;
+    top: 0;
+    left: 10px;
+    background-color: transparent;
+    border:none;
+    text-decoration: underline;
+}
+
+.next{
+    position: relative;
+    right:10px;
+    top:0;
+    height: 50px;
+    padding:10px 15px;
+    width: 20vh;
+    border-radius:10px;
+    border: none;
+    background-color: 	#D0D0D0;
+}
+
+.map{
+    position:relative;
+    object-fit: cover;
+    width: 100% ;
+    height:100vh;
+    z-index: -2;
+    
+}
+
+.wrapper{
+    width: 80%;
+    margin: 40px 50px;
+    position:absolute;
+    z-index: 1;
+    top: 0;
+    left:0;
+}
+
+.wrapper .search-input{
+    background-color: white;
+    width: 100%;
+    border-radius: 15px;
+    
+}
+
+.search-input input{
+    width: 100%;
+    height:55px;
+    outline: none;
+    border:none;
+    border-radius: 15px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+}
+
+.search-input .autocom-box{
+    padding:0px; 
+    max-height:280px;
+    overflow-y: auto;
+    opacity:0;
+    pointer-events: none;
+
+}
+
+.search-input.active .autocom-box{
+    padding:10px 8px;
+    opacity: 1;
+    pointer-events: auto; 
+}
+
+.autocom-box li{
+    list-style: none;
+    padding: 8px 12px;
+    cursor:  default;
+    border-radius: 3px;
+    display:none;
+}
+
+.search-input.active .autocom-box li{
+    display: block;
+}
+
+.autocom-box li:hover{
+    background-color: #efefef;
+}
+
+.select{
+    display: none;
+}
+
+.auto:hover{
+    background-color: #F0F0F0;
+    
+}
+    </style>
+
+    <style media="screen and (min-width:744px)">
+        .title{
+        width: 50%;
+        height: 100vh;
+    }
+
+
+    .right{
+        width: 50%;
+        height: 100%;
+        bottom: 0;
+        overflow: hidden;
+    }
+    
+    .btngroup{
+        width: 50%;
+        right:-25%;
+    }
+
+    .last-bar{
+        width: 50%;
+    }
+
+    .wrapper{
+        width: 70%;
+        margin: 150px auto;
+        left:100px;
+    }
+    </style>
+}
+@section EndJS{
+    <script>
+        let suggestion = ["臺北市","新北市","桃園市","臺中市","臺南市","高雄市","新竹縣","苗栗縣","彰化縣","南投縣","雲林縣","嘉義縣","屏東縣","宜蘭縣","花蓮縣","臺東縣","澎湖縣","金門縣","連江縣","基隆市","嘉義市"];
+    </script>
+    <script>
+        const btn = document.getElementById('next');
+        const searchWrapper = document.querySelector(".search-input");
+        const inputbox = searchWrapper.querySelector("input");
+        const suggbox = searchWrapper.querySelector(".autocom-box");
+        const selectitem = searchWrapper.querySelector(".select");
+
+        inputbox.onclick = function(e){
+            selectitem.style.display="block";
+            inputbox.style.border="2px solid black"
+            e.stopPropagation();
+        }  
+        document.onclick = function(e){
+            selectitem.style.display="none";
+        }
+
+        inputbox.onkeyup = (e) =>{
+            let userData = e.target.value;
+            let emptyArray = [];
+            if(userData){
+                emptyArray = suggestion.filter((data)=>{
+                    return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+                });
+                emptyArray = emptyArray.map((data)=>{
+                    return data = '<li>'+ data +'</li>';
+                });
+                console.log(emptyArray);
+                searchWrapper.classList.add("active");
+                showSuggestions(emptyArray);
+
+                let allList = suggbox.querySelectorAll("li");
+                for (let i = 0; i < allList.length; i++) {
+                    allList[i].setAttribute("onclick","select(this)")
+                    
+                }
+            }else{
+                searchWrapper.classList.remove("active");
+            }
+
+            btn.style.backgroundColor = "black";
+            document.querySelector('.next').onclick= function(){
+            location.href ="https://shichyilim.github.io/Project/Location2.html";
+            }
+        }
+            
+        
+
+        function select(element){
+            let selectUserData = element.textContent;
+            inputbox.value = selectUserData;
+            searchWrapper.classList.remove("active");
+        }
+
+        function showSuggestions(list){
+            let listData;
+            if(!list.length){
+
+                userValue = inputbox.value;
+                listData = "<li>" + userValue + "</li>";
+            }
+            else{
+                listData = list.join('');
+            }
+            suggbox.innerHTML = listData;
+        }
+        
+        document.getElementById("getposition").onclick= function(){
+            location.href = "https://shichyilim.github.io/Project/Location2.html";
+        }
+
+        function gettingPosition(){
+        if(navigator.geolocation){
+        return new Promise((resolve, reject) => {
+            let option = {
+                enableAcuracy:false, // 提高精確度
+                maximumAge:0, // 設定上一次位置資訊的有效期限(毫秒)
+                timeout:10000 // 逾時計時器(毫秒)
+            };
+            navigator.geolocation.getCurrentPosition(resolve, reject, option);
+            
+        })
+        }else{
+        alert("Does not support positioning!");
+        }
+        }
+
+    function successCallback(position){
+    console.log(position);
+    
+
+    }
+    function errorCallback(error) {
+    alert(error.message); //error.code
+    }
+
+
+gettingPosition()
+.then(position => successCallback(position))
+.catch(error => errorCallback(error))
+
+    </script>
+}
