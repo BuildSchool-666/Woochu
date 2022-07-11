@@ -15,7 +15,7 @@ namespace Back.Controllers
         {
             var vm = new RoomlistVM
             {
-                city = "Taiwan",
+                city = City,
                 imgUrl = "https://picsum.photos/300/200/?random=10",
                 title = "ooxx",
                 HouseInfo = " idiot",
