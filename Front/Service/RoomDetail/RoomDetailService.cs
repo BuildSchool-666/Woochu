@@ -30,7 +30,7 @@ namespace Front.Service.RoomDetail
             }
 
             var vm = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
-            var roomFacility = _repo.GetAll<RoomFacility>()
+            var roomFacilityIdList = _repo.GetAll<RoomFacility>()
                                 .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
             //var facility = _repo.GetAll<Facility>()
             //                    .SingleOrDefault(f => f.FacilityId == );
@@ -49,9 +49,7 @@ namespace Front.Service.RoomDetail
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
-                FacilityName = new List<string>(),
-                FacilityIcon = new List<string>(),
-
+                FacilityItem = new List<FacilityIcon>(),
                 RentPrice = (int)vm.BasicPrice,
                 Description = vm.Description,
                 CleanlinessStar = _repo.GetAll<Comment>().SingleOrDefault(c => c.RoomId == input.RoomId).Cleanliness,
@@ -74,29 +72,28 @@ namespace Front.Service.RoomDetail
                 LastOnlineTime = 200 / 60,
             };
 
-            roomFacility.ForEach(fId =>
+            roomFacilityIdList.ForEach(fId =>
             {
-                if (_repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == fId) != null)
-                {
-                    result.VM.FacilityName.Add(
-                        _repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == fId)
-                            
-                            .FacilityName
-                   );  
-                }
+                result.VM.FacilityItem.Add(
+                    new FacilityIcon()
+                    {
+                        FacilityName = _repo.GetAll<Facility>()
+                            .SingleOrDefault(ff => ff.FacilityId == fId).FacilityName,
+                        FacilityDisplay = _repo.GetAll<Facility>()
+                            .SingleOrDefault(ff => ff.FacilityId == fId).Icon,
+                    }
+                );
             });
-            roomFacility.ForEach(f =>
-            {
-                if (_repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == f).FacilityId == f)
-                {
-                    result.VM.FacilityIcon.Add(
-                        _repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == f).Icon.ToString());
-                }
-            });
+            //roomFacility.ForEach(f =>
+            //{
+            //    if (_repo.GetAll<Facility>()
+            //                .SingleOrDefault(ff => ff.FacilityId == f).FacilityId == f)
+            //    {
+            //        result.VM.FacilityIcon.Add(
+            //            _repo.GetAll<Facility>()
+            //                .SingleOrDefault(ff => ff.FacilityId == f).Icon.ToString());
+            //    }
+            //});
 
             result.IsSuccess = true;
 
