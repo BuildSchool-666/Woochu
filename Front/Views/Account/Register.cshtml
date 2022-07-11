@@ -1,0 +1,142 @@
+﻿@using Front.Models.ViewModels.Account
+@model RegisterVM
+<form method ="post">
+    <div class="container mt-5">
+        <div class="box w-50 m-auto border border-secondary rounded">
+            <div class="title p-3 text-center border-bottom fw-bold">
+                登入或註冊
+            </div>
+            <div class="content m-5">
+                <h1>Airbnb 歡迎你</h1>
+                <label class="form-floating w-100" id="Phone">
+                    <input type="text" class="form-control" id="floatingInputValue" placeholder="電話號碼">
+                    <label for="floatingInputValue">電話號碼</label>
+                </label>
+                <label class="form-floating w-100" id="Email" style="display:none;">
+                    <input name="Email" type="text" class="form-control" id="floatingInputValue" placeholder="Email" value="@Model?.Email">
+                    <label for="floatingInputValue">電子郵件</label>
+                </label>
+                <label class="form-floating w-100" id="Password" style="display:none;">
+                    <input name="Password" type="password" class="form-control" id="floatingInputValue" placeholder="Password" value="@Model?.Password">
+                    <label for="floatingInputValue">密码</label>
+                </label>
+                <label class="form-floating w-100" id="PasswordConfirm" style="display:none;">
+                    <input name="PasswordConfirm" type="password" class="form-control" id="floatingInputValue" placeholder="PasswordConfirm" alue="@Model?.PasswordConfirm">
+                    <label for="floatingInputValue">密码確認</label>
+                </label>
+                <span>我們會打電話或傳簡訊，以確認你的電話號碼。可能會產生一般簡訊和數據傳輸費用。<a href="#">私隱政策</a></span>
+                <button class="btn w-100 text-light mt-3 mb-3 fw-bold continue" type="submit">繼續</button>
+                <hr class="line" />
+                <div class="hr-text">或</div>
+                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6">
+                    <i class="fa-brands fa-google"></i>
+                    繼續使用Google登入
+                </button>
+                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6" id="ByEmail">
+                   <i class="fa-solid fa-envelope"></i>
+                    繼續使用Email登入
+                </button>
+                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6" id="ByPhone" style="display:none;">
+                    <i class="fa-solid fa-phone"></i>
+                    繼續使用手机登入
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</form>
+
+
+    @section topCSS
+    {
+        <style>
+        h1
+        {
+            font-size: large;
+            font-weight: bold;
+            margin: 20px 0px;
+        }
+        .continue
+        {
+            background-color: #ff385c;
+        }
+        .continue:hover
+        {
+            background-color: #da0b64;
+        }
+        span
+        {
+            font-size: small;
+        }
+        a
+        {
+            color: black;
+            font-weight: bold;
+        }
+        hr.line 
+        {
+            border: 0;
+            height: 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .hr-text
+        {
+            height: 20px;
+            width: 50px;
+            position: relative;
+            left: 45%; 
+            top: -30px;
+            vertical-align: middle; 
+            text-align: center;
+            border-radius: 4px;
+            background-color: white;
+        }
+        button
+        {
+            margin:10px 0px;
+        }
+        .form-floating
+        {
+            margin:5px 0px;
+            
+        }
+        
+    </style>
+
+    }
+    @section endJS
+    {
+         <script>
+              const btn_ByEmail = document.getElementById('ByEmail')
+              const Email = document.getElementById('Email')
+              const Phone = document.getElementById('Phone')
+              const btn_ByPhone = document.getElementById('ByPhone')
+              const Password = document.getElementById('Password')
+              const PasswordComfirm = document.getElementById('PasswordComfirm')
+
+              btn_ByEmail.onclick = () =>
+              {
+                  Email.setAttribute("style","display:block;")
+                  btn_ByPhone.setAttribute("style","display:block;")
+                  btn_ByEmail.setAttribute("style","display:none;")
+                  Phone.setAttribute("style","display:none;")
+                  Password.setAttribute("style","display:block;")
+                  PasswordConfirm.setAttribute("style","display:block;")
+
+              }
+
+              btn_ByPhone.onclick = () =>
+              {
+                  Phone.setAttribute("style","display:block;")
+                  btn_ByEmail.setAttribute("style","display:block;")
+                  btn_ByPhone.setAttribute("style","display:none;")
+                  Email.setAttribute("style","display:none;")
+                  Password.setAttribute("style","display:none;")
+                  PasswordConfirm.setAttribute("style","display:none;")
+              }
+          </script>
+          <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
+         
+
+    }

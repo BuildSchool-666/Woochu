@@ -7,7 +7,7 @@ namespace MVCModels.DataModels
 {
     public partial class HostApplication
     {
-        public int HostApplicationId { get; set; }
+        public int HostId { get; set; }
         public int UserId { get; set; }
         public string BankAccount { get; set; }
         public DateTime ApplyTime { get; set; }

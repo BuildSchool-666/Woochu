@@ -15,7 +15,6 @@ namespace MVCModels.DataModels
         public int FacilityId { get; set; }
         public string FacilityName { get; set; }
         public bool IsMulti { get; set; }
-        public string Icon { get; set; }
 
         public virtual ICollection<RoomFacility> RoomFacilities { get; set; }
     }
