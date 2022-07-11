@@ -1,6 +1,6 @@
 ﻿using Front.Models.DTOModels;
 using Front.Models.ViewModels.Account;
-using Front.Service.Interface;
+using Front.Service.Account;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Front.Controllers

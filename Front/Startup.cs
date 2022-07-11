@@ -12,9 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MVCModels.Repositories;
 using Front.Service.Home;
-using Front.Service.Interface;
 using Front.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Front.Service.Account;
 
 namespace Front
 {
