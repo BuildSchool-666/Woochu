@@ -12,6 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MVCModels.Repositories;
 using Front.Service.Home;
+using Front.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Front.Service.Account;
 using Front.Service.Rooms;
 using Front.Service.RoomDetail;
 
@@ -33,7 +36,19 @@ namespace Front
             services.AddDbContext<WoochuContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
             services.AddScoped<WoochuRepository>();
+            services.AddHttpContextAccessor();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                //options.LoginPath = new PathString("/Account/Login");
+
+                //options.ReturnUrlParameter = "ReturnUrl";
+
+                //options.LogoutPath = new PathString("/Account/Logout");
+
+                //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+            });
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
 
@@ -56,6 +71,8 @@ namespace Front
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

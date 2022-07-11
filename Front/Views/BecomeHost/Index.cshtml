@@ -1,0 +1,160 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="become-a-host.css">
+    <title>建立房源</title>
+</head>
+<body>
+
+    <div class="video-banner justify-content-center">
+        <video autoplay controls muted loop class="video" style="object-fit: cover; object-position:center top;">
+            <source src="https://a0.muscache.com/v/8b/04/8b0456c7-13f8-54bc-889a-7cf549f144a3/8b0456c713f854bc889a7cf549f144a3_4000k_1.mp4" type="video/mp4" style="box-sizing: border-box;">
+        </video>
+        <div class="banner-title ">
+            <button type="button" class="btn-quit">退出</button>
+            <div class="text">
+                <h1><strong>成為房東只需10個簡單步驟</strong></h1>
+                <p>加入之後，我們會全程為你提供協助。</p>
+                <button type="button" class="start text-white " asp-controller="BecomeHost" asp-action="property_type_group"><strong>馬上開始！</strong></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
+@section TopCSS{
+    <style>
+            .video-banner{
+        display: block;
+        background-color: black; 
+        height: 100vh; 
+        width: 100%;
+    }
+
+    .video{
+        display: block;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        box-sizing: border-box;
+        top:0vh;
+    }
+    .banner-title{
+        width: 100%;
+        height: 50vh;
+        text-align:left;
+        position: relative;
+        top: -50vh;
+        z-index: 1;
+        background-color: black;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .text{
+        padding: 20px;
+        
+    }
+
+    .banner-title h1{
+        font-size:40px;
+        text-align:start;
+        /* line-height: 70px; */
+        letter-spacing: -0.02em;
+        color: white;
+        padding-top: 0vh;
+
+        }
+    .banner-title p{
+        font-size:15px;
+        text-align: start;
+        color: white;
+
+        }
+
+    .start{
+        background-color:rgb(237, 70, 98);
+        padding: 10px 20px ;
+        margin: auto;
+        margin-bottom: 50px;
+        margin-top: 80px;
+        display: block;
+        width: 90vh;
+        border-radius:10px;
+    }
+
+.btn-quit{
+    display: none;
+}
+
+.btn-quit:hover{
+    color: black;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+    </style>
+
+<style media="screen and (min-width:744px)">
+     .video-banner{
+      display: flex;
+    }
+
+    .video{
+        display: block;
+        height: 100%;
+        width: 50%;
+        float: right;
+        top:0;
+    }
+    .banner-title{
+    width: 50%;
+    text-align: center;
+    top: 0vh;
+    background-color: transparent;
+    }
+
+    .text{
+        position: relative;
+        top:25vh;
+    }
+
+    .banner-title h1{
+    text-align: center;
+
+        }
+    .banner-title p{
+        text-align: center;
+        }
+
+    .start{
+        width: 30vh;
+        
+    }
+
+    .btn-quit{
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 10px 20px;
+    position: relative;
+    right:-80%;
+    top:5vh;
+    color: white;
+    font-size: 12px;
+    display: block;
+}
+
+    </style>
+}
+
+@section EndJS{
+
+}
+
