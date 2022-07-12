@@ -201,7 +201,9 @@
                             </div>
 
                             <div class="rating">
-                                @{Star(person.PersonRatingStar);}
+                                @*@{Star(person.PersonRatingStar);}*@
+                                <i class="fas fa-star"></i>
+                                @{decimal.Round((decimal)person.PersonRatingStar, 1);}
                             </div>
                         </div>
                     </div>

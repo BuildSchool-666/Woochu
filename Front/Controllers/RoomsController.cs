@@ -37,40 +37,12 @@ namespace Back.Controllers
 
             var outputDto = _service.GetRoomsCard(inputDto);
             var vm = outputDto.VM;
-            //new RoomlistVM
-            //{
-            //    City = "City",
-            //    Rooms = new List<RoomVM>
-            //    {
-            //        new RoomVM
-            //        {
-            //            ImgUrl = "https://picsum.photos/300/200/?random=10",
-            //            Title = "ooxx",
-            //            HouseInfo = " idiot",
-            //            BedCount = 1,
-            //            BathCount = 1,
-            //            Rating = 4.3,
-            //            RentPrice = 200,
-            //        },
-            //    },
-            //};
-
             return View(vm);
         }
         [HttpPost]
         public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
         {
-            //var vm = new RoomlistVM
-            //{
-            //    city = "Taiwan",
-            //    imgUrl = "https://picsum.photos/300/200/?random=10",
-            //    title = "ooxx",
-            //    HouseInfo = " idiot",
-            //    BedCount = 1,
-            //    BathCount = 1,
-            //    rating = 4.3,
-            //    RentPrice = 200,
-            //};
+            
             var inputDto = new GetRoomsCardInputDTO()
             {
                 City = requestParam.City,
