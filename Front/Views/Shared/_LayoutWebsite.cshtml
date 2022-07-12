@@ -45,10 +45,9 @@
                         <label>地點</label>
                         <select name="City">
                             <option value="0" selected>選擇前往地點 ?</option>
-                            <option value="1">台北</option>
-                            <option value="2">桃園</option>
-                            <option value="3">新竹</option>
-                            <option value="4">苗栗</option>
+                            @foreach(int i in Enum.GetValues( typeof(City)) ){
+                            <option value="@i">@( (City)i  )</option>
+                            };
                         </select>
 
                     </div>
