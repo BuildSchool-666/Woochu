@@ -20,7 +20,7 @@
             <ul class="nav-links">
                 <li><a id='homePage' class="active" href="~/">首頁</a></li>
                 <li><a id='roomList' href="~/Rooms/roomlist">房屋清單</a></li>
-                <li><a id='roomType' href="/RoomDetail/roomDetail">熱門房型</a></li>
+                <li><a id='roomType' href="/RoomDetail/roomDetail/6">熱門房型</a></li>
             </ul>
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
@@ -43,22 +43,22 @@
                 <form>
                     <div class="Location-input">
                         <label>地點</label>
-                        <select>
-                            <option value="1" selected>選擇前往地點 ?</option>
-                            <option value="2">台北</option>
-                            <option value="3">桃園</option>
-                            <option value="4">新竹</option>
-                            <option value="5">苗栗</option>
+                        <select name="City">
+                            <option value="0" selected>選擇前往地點 ?</option>
+                            <option value="1">台北</option>
+                            <option value="2">桃園</option>
+                            <option value="3">新竹</option>
+                            <option value="4">苗栗</option>
                         </select>
 
                     </div>
                     <div>
                         <label>入住時間 :</label>
-                        <input type="datetime-local" id="checkin-time" name="checkin-time" value="">
+                        <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
                     </div>
                     <div class="checkout">
                         <label>退房時間 :</label>
-                        <input type="datetime-local" id="checkout-time" name="checkout-time" value="">
+                        <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
                     </div>
                     
                     <button type="submit"><img src="~/images/search.png" alt=""></button>
