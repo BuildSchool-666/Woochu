@@ -579,17 +579,17 @@ nav .hidden-btn {
         flex-basis: 100%;
     }
 
-        .left-col h1 {
-            font-size: 22px;
-        }
+    .left-col h1 {
+        font-size: 22px;
+    }
 
-        .house-info h3 {
-            font-size: 18px;
-        }
+    .house-info h3 {
+        font-size: 18px;
+    }
 
-        .house-info i {
-            font-size: 16px;
-        }
+    .house-info i {
+        font-size: 16px;
+    }
 
     nav .white {
         margin: 80px 0 0 0;
@@ -1065,23 +1065,23 @@ nav .hidden-btn {
         padding: 10px 30px;
     }
 
-        .check-form div {
-            padding: 20px 0;
-            width: 100%;
-        }
+    .check-form div {
+        padding: 20px 0;
+        width: 100%;
+    }
 
-        .check-form input {
-            border-bottom: 1px solid #ccc;
-            width: 100%;
-            padding-bottom: 5px;
-        }
+    .check-form input {
+        border-bottom: 1px solid #ccc;
+        width: 100%;
+        padding-bottom: 5px;
+    }
 
-        .check-form a {
-            font-size: 14px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
+    .check-form a {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
 
     .host {
         display: block;
