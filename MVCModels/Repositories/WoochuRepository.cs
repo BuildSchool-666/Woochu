@@ -39,17 +39,18 @@ namespace MVCModels.Repositories
         public double CalStar(int roomId)
         {
             double score = 0;
-            _context.Comments.Where(c => c.RoomId == roomId).ToList().ForEach(c =>
+            _context.Comments.Where(c => c.RoomId == roomId).ToList().ForEach(cs =>
             {
-                score += (double)c.Cleanliness;
-                score += (double)c.Accuracy;
-                score += (double)c.CheckIn;
-                score += (double)c.Communication;
-                score += (double)c.Cp;
+                score += cs.Cleanliness;
+                score += cs.Accuracy;
+                score += cs.CheckIn;
+                score += cs.Communication;
+                score += cs.Cp;
+                score += cs.Location;
             });
-            int person = _context.Comments.Count(c => c.RoomId == roomId);
+            double person = _context.Comments.Count(c => c.RoomId == roomId);
 
-            score = score / 5 / person;
+            score = score / 6.0 / person;
             return score;
         }
     }
