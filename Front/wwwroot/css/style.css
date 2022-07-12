@@ -363,10 +363,10 @@ nav .hidden-btn {
         transition: max-height 0.5s;
     }
 
-        nav .nav-links li {
-            margin: 10px 0;
-            display: block;
-        }
+    nav .nav-links li {
+        margin: 10px 0;
+        display: block;
+    }
 
     .register-btn {
         display: none;
@@ -404,32 +404,32 @@ nav .hidden-btn {
         position: relative;
     }
 
-        .search-bar form {
-            display: block;
-        }
+    .search-bar form {
+        display: block;
+    }
 
-            .search-bar form select {
-                border-bottom: 1px solid #ddd;
-                width: 100%;
-                margin-bottom: 20px;
-                margin-top: 10px;
-                padding-bottom: 10px;
-            }
+    .search-bar form select {
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
 
-            .search-bar form input {
-                border-bottom: 1px solid #ddd;
-                width: 100%;
-                margin-bottom: 20px;
-                margin-top: 10px;
-                padding-bottom: 10px;
-            }
+    .search-bar form input {
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
 
-            .search-bar form button {
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%, 50%);
-            }
+    .search-bar form button {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
 
     .sup-title {
         font-size: 6vw;
@@ -439,14 +439,14 @@ nav .hidden-btn {
         padding: 15% 5%;
     }
 
-        .cta h3 {
-            font-size: 7vw;
-            line-height: 8vw;
-        }
+    .cta h3 {
+        font-size: 7vw;
+        line-height: 8vw;
+    }
 
-        .cta p {
-            font-size: 14px;
-        }
+    .cta p {
+        font-size: 14px;
+    }
 
     .cta-btn {
         padding: 6px 15px;
@@ -477,30 +477,30 @@ nav .hidden-btn {
     padding: 20px 15%;
 }
 
-    .navbar-white .nav-links li a {
-        color: #000;
-    }
+.navbar-white .nav-links li a {
+    color: #000;
+}
 
-    .navbar-white .register-btn {
-        background-color: white;
-        color: #ff5361;
-        border: 1px solid #ff5361;
-    }
+.navbar-white .register-btn {
+    background-color: white;
+    color: #ff5361;
+    border: 1px solid #ff5361;
+}
 
-        .navbar-white .register-btn:hover {
-            border: none;
-            color: black;
-            border: 1px solid black;
-            transition: all 0.3s ease;
-        }
+.navbar-white .register-btn:hover {
+    border: none;
+    color: black;
+    border: 1px solid black;
+    transition: all 0.3s ease;
+}
 
-    .navbar-white .hidden-btn {
-        color: #000;
-    }
+.navbar-white .hidden-btn {
+    color: #000;
+}
 
-    .navbar-white .active::after {
-        background: #ff5361;
-    }
+.navbar-white .active::after {
+    background: #ff5361;
+}
 
 .container-Roomlist {
     padding: 0 15%;
@@ -561,14 +561,14 @@ nav .hidden-btn {
     right: 0;
 }
 
-    .house-price h4 {
-        font-size: 20px;
-    }
+.house-price h4 {
+    font-size: 20px;
+}
 
-        .house-price h4 span {
-            font-size: 16px;
-            font-weight: 500;
-        }
+.house-price h4 span {
+    font-size: 16px;
+    font-weight: 500;
+}
 
 
 /* ------------ */
