@@ -65,6 +65,7 @@ namespace MVCModels.Repositories
                 + ValueStar;
 
             score /= 6;
+            decimal.Round((decimal)score, 1);
             return score;
         }
     }
