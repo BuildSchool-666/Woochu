@@ -30,12 +30,7 @@ namespace Front.Service.RoomDetail
             }
 
             var vm = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
-            var roomFacilityIdList = _repo.GetAll<RoomFacility>()
-                                .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
-            //var facility = _repo.GetAll<Facility>()
-            //                    .SingleOrDefault(f => f.FacilityId == );
             
-
             result.VM = new RoomDetailVM()
             {
                 Title = vm.RoomName,
@@ -58,10 +53,9 @@ namespace Front.Service.RoomDetail
                 LocationStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Location).Average(),
                 CheckInStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.CheckIn).Average(),
                 ValueStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Cp).Average(),
-                RatingStar = _repo.CalStar(input.RoomId),
+                RatingStar = _repo.CalRoomStar(input.RoomId),
                 CommentCount = _repo.GetAll<Comment>().Count(c => c.RoomId == input.RoomId),
-                //CommentName = 
-                //CommentContent = 
+                CommentItem = new List<CommentInformation>(),
                 HostId = vm.UserId,
                 HostName = (_repo.GetAll<User>()
                                 .SingleOrDefault(u => u.UserId == vm.UserId).LastName)
@@ -72,6 +66,10 @@ namespace Front.Service.RoomDetail
                 LastOnlineTime = 200 / 60,
             };
 
+            var roomFacilityIdList = _repo.GetAll<RoomFacility>()
+                                .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
+            var roomComment = _repo.GetAll<Comment>()       //everyone's comment to the room
+                                .Where(c => c.RoomId == input.RoomId).ToList();
             roomFacilityIdList.ForEach(fId =>
             {
                 result.VM.FacilityItem.Add(
@@ -84,16 +82,20 @@ namespace Front.Service.RoomDetail
                     }
                 );
             });
-            //roomFacility.ForEach(f =>
-            //{
-            //    if (_repo.GetAll<Facility>()
-            //                .SingleOrDefault(ff => ff.FacilityId == f).FacilityId == f)
-            //    {
-            //        result.VM.FacilityIcon.Add(
-            //            _repo.GetAll<Facility>()
-            //                .SingleOrDefault(ff => ff.FacilityId == f).Icon.ToString());
-            //    }
-            //});
+            //double personStar = roomComment
+            roomComment.ForEach(rc =>
+            {
+                result.VM.CommentItem.Add(
+                    new CommentInformation()
+                    {
+                        CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
+                                      +_repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
+                        CommentContent = rc.Content,
+                        CommentDate = rc.CreateTime,
+                        PersonRatingStar = _repo.CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
+                    }
+                );
+            });
 
             result.IsSuccess = true;
 

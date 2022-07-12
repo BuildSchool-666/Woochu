@@ -97,12 +97,11 @@ namespace MVCModels.DataModels
 
                 entity.Property(e => e.Cleanliness).HasComment("整潔度");
 
-                entity.Property(e => e.Comment1)
-                    .IsRequired()
-                    .HasColumnName("Comment")
-                    .HasComment("評論");
-
                 entity.Property(e => e.Communication).HasComment("溝通度");
+
+                entity.Property(e => e.Content)
+                    .IsRequired()
+                    .HasComment("評論");
 
                 entity.Property(e => e.Cp)
                     .HasColumnName("CP")

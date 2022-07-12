@@ -14,7 +14,7 @@ namespace Front.Models.ViewModels.RoomDetails
         public int PersonCount { get; set; }
         public int BathCount { get; set; }
         public List <string> ImgUrls { get; set; }
-        public List<FacilityIcon> FacilityItem { get; set; }
+        public List<FacilityIcon>? FacilityItem { get; set; }
         public int RentPrice { get; set; }
         public string Description { get; set; }
         public double CleanlinessStar { get; set; }
@@ -40,5 +40,16 @@ namespace Front.Models.ViewModels.RoomDetails
     {
         public string CommentName { get; set; }
         public string CommentContent { get; set; }
+        public DateTime CommentDate { get; set; }
+        public double PersonRatingStar { get; set; }
+    }
+    public class CommentStar
+    {
+        public double CleanlinessStar { get; set; }
+        public double AccuracyStar { get; set; }
+        public double CommunicationSt { get; set; }
+        public double LocationStar { get; set; }
+        public double CheckInStar { get; set; }
+        public double ValueStar { get; set; }
     }
 }

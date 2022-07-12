@@ -10,7 +10,7 @@ namespace MVCModels.DataModels
         public int CommentId { get; set; }
         public int? RoomId { get; set; }
         public int UserId { get; set; }
-        public string Comment1 { get; set; }
+        public string Content { get; set; }
         public DateTime CreateTime { get; set; }
         public bool IsDelete { get; set; }
         public double Cleanliness { get; set; }

@@ -7,7 +7,6 @@
         foreach(var item in fIcon)
         {
     <i class="@item.FacilityDisplay"><p>@item.FacilityName</p></i> 
-            
         }
         //<i class="fas fa-paw"><p>可攜帶寵物</p></i> 
         //<i class="fas fa-coffee"><p>早餐</p></i>
@@ -184,6 +183,8 @@
             </section>
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper content">
+                @foreach(var person in Model.CommentItem)
+                {
                     <div class="swiper-slide card">
                         <div class="card-content">
                             <div class="list">
@@ -191,25 +192,26 @@
                                     <img src="https://raw.githubusercontent.com/YongChyi/YongChyi.github.io/main/45296.jpg">
                                 </div>
                                 <div class="name-profession">
-                                    <span class="name">林詠琦</span>
-                                    <p>7月 2022</p>
+                                    <span class="name">@person.CommentName</span>
+                                    <p>@person.CommentDate</p>
                                 </div>
                             </div>
                             <div class="comment">
-                                <p>公寓位於非常好的中心位置，乾淨舒適，入住很方便，與金錢與性價比相比，這是合理的，在過去幾天內，公寓附近有一些施工，在我住宿的過去3-4天內，上午9點至下午4點5點非常煩人，但我認為它已經過了。
-                                </p>
+                                <p>@person.CommentContent</p>
                             </div>
 
                             <div class="rating">
-                                <i class="fas fa-star">4.5</i>
+                                @{Star(person.PersonRatingStar);}
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide card">
+                }
+                    
+                    @*<div class="swiper-slide card">
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/ycm123/FileStorage/main/20712.jpg">
+                                    <img src="https:raw.githubusercontent.com/ycm123/FileStorage/main/20712.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">余仲恩</span>
@@ -230,7 +232,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/Silmonght/Silmonght.github.io/main/steven.jpg">
+                                        src="https:raw.githubusercontent.com/Silmonght/Silmonght.github.io/main/steven.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">林秉謙</span>
@@ -251,7 +253,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/ShiChyiLim/ShiChyiLim.github.io/main/1784C24F-3C76-475D-A246-B8B1F58CBD7E.jpg">
+                                        src="https:raw.githubusercontent.com/ShiChyiLim/ShiChyiLim.github.io/main/1784C24F-3C76-475D-A246-B8B1F58CBD7E.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">林詩琦</span>
@@ -272,7 +274,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/Neil-Yang3759/Neil-Yang3759.github.io/main/JS/HW1/selfie.jpg">
+                                        src="https:raw.githubusercontent.com/Neil-Yang3759/Neil-Yang3759.github.io/main/JS/HW1/selfie.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">Neil</span>
@@ -292,7 +294,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/JiaXuan1083/FileStorage/main/IMG_7403.JPG">
+                                    <img src="https:raw.githubusercontent.com/JiaXuan1083/FileStorage/main/IMG_7403.JPG">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -312,7 +314,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/yu1129/hard/main/%E4%BD%99.jpg">
+                                    <img src="https:raw.githubusercontent.com/yu1129/hard/main/%E4%BD%99.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -332,7 +334,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/wen-0510/FileStorages/main/1.jpg">
+                                    <img src="https:raw.githubusercontent.com/wen-0510/FileStorages/main/1.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -353,7 +355,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/t333685/t333685.github.io/590201655655be034c9866169ddbab949d138e33/S__7020548.jpg">
+                                        src="https:raw.githubusercontent.com/t333685/t333685.github.io/590201655655be034c9866169ddbab949d138e33/S__7020548.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -374,7 +376,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/chihwen1215/FileStorage/main/S__35127335.jpg">
+                                        src="https:raw.githubusercontent.com/chihwen1215/FileStorage/main/S__35127335.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -394,7 +396,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/LittleY11/FileStorage/main/photo.jpg">
+                                    <img src="https:raw.githubusercontent.com/LittleY11/FileStorage/main/photo.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -415,7 +417,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/hi8787h/hi8787h.github.io/main/photo/Myphoto.png">
+                                        src="https:raw.githubusercontent.com/hi8787h/hi8787h.github.io/main/photo/Myphoto.png">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -436,7 +438,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/Kuan1215/FileStorage/main/D6480B08-E095-456D-BB43-C0372D0FB0AC.jpg">
+                                        src="https:raw.githubusercontent.com/Kuan1215/FileStorage/main/D6480B08-E095-456D-BB43-C0372D0FB0AC.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -456,7 +458,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/Jamie1721/FileStorage/main/S__6267102.jpg">
+                                    <img src="https:raw.githubusercontent.com/Jamie1721/FileStorage/main/S__6267102.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -477,7 +479,7 @@
                             <div class="list">
                                 <div class="image">
                                     <img
-                                        src="https://raw.githubusercontent.com/Ankepoyou/FileStorage/main/IMG_20210518_154803_800.jpg">
+                                        src="https:raw.githubusercontent.com/Ankepoyou/FileStorage/main/IMG_20210518_154803_800.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -497,7 +499,7 @@
                         <div class="card-content">
                             <div class="list">
                                 <div class="image">
-                                    <img src="https://raw.githubusercontent.com/3TeT3/FileStorage_/main/16140801732026.jpg">
+                                    <img src="https:raw.githubusercontent.com/3TeT3/FileStorage_/main/16140801732026.jpg">
                                 </div>
                                 <div class="name-profession">
                                     <span class="name">楊印成</span>
@@ -512,7 +514,7 @@
                                 <i class="fas fa-star">4.5</i>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
