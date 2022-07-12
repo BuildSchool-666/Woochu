@@ -17,13 +17,13 @@ namespace Front.Models.ViewModels.RoomDetails
         public List<FacilityIcon> FacilityItem { get; set; }
         public int RentPrice { get; set; }
         public string Description { get; set; }
-        public double? CleanlinessStar { get; set; }
-        public double? AccuracyStar { get; set; }
-        public double? CommunicationStar { get; set; }
-        public double? LocationStar { get; set; }
-        public double? CheckInStar { get; set; }
-        public double? ValueStar { get; set; }
-        public double? RatingStar { get; set; }
+        public double CleanlinessStar { get; set; }
+        public double AccuracyStar { get; set; }
+        public double CommunicationStar { get; set; }
+        public double LocationStar { get; set; }
+        public double CheckInStar { get; set; }
+        public double ValueStar { get; set; }
+        public double RatingStar { get; set; }
         public int CommentCount { get; set; }
         public List<CommentInformation>? CommentItem { get; set; }
         public int HostId { get; set; }
