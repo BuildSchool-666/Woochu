@@ -97,14 +97,19 @@ nav {
     border-radius: 50px;
 }
 
+.search-bar div {
+    padding: 0 20px;
+    font-size: 20px;
+}
+
 .search-bar form {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    /* flex-wrap: wrap; */
 }
 
 .search-bar form input {
+    font-size: 20px;
     display: block;
     border: 0;
     outline: none;
@@ -170,7 +175,6 @@ nav {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    font-size:1.1em
 }
 
 .exclusives .item {
@@ -178,10 +182,9 @@ nav {
     border-radius: 10px;
 }
 
-
 .exclusives .item:hover {
     transform: scale(1.35);
-    transition: 0.6s;
+    transition: 0.8s;
     z-index: 1;
 }
 
@@ -205,7 +208,6 @@ nav {
 }
 
 .cta p {
-    line-height: 1.8;
     font-size: 18px;
     margin: 10px 0;
 }
@@ -248,15 +250,13 @@ nav {
 .stories p {
     width: 80%;
     position: absolute;
-    top: 95%;
+    top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: black;
-    font-size: 22px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 26px;
     font-weight: 600;
-    background: white;
-    border-radius: 10px;
-    padding: 5px 0 ;
 }
 
 .start-btn {
@@ -562,44 +562,12 @@ nav .hidden-btn {
 }
 
 .house-price h4 {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 20px;
 }
 
 .house-price h4 span {
     font-size: 16px;
     font-weight: 500;
-}
-
-.sidebar {
-    border: 1px solid #999;
-    padding: 20px 20px;
-    margin-top: 80px;
-}
-
-.sidebar h2 {
-    font-weight: 500;
-}
-
-.sidebar h3 {
-    font-weight: 500;
-    margin: 20px 0 10px;
-}
-
-.filter {
-    display: flex;
-    align-items: center;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.filter p {
-    flex: 1;
-}
-
-.filter input {
-    margin-right: 15px;
-    cursor: pointer;
 }
 
 .sidebar-link {
@@ -662,17 +630,17 @@ nav .hidden-btn {
         flex-basis: 100%;
     }
 
-        .left-col h1 {
-            font-size: 22px;
-        }
+    .left-col h1 {
+        font-size: 22px;
+    }
 
-        .house-info h3 {
-            font-size: 18px;
-        }
+    .house-info h3 {
+        font-size: 18px;
+    }
 
-        .house-info i {
-            font-size: 16px;
-        }
+    .house-info i {
+        font-size: 16px;
+    }
 
     .pagination span {
         margin: 10px 2px;
@@ -701,20 +669,19 @@ nav .hidden-btn {
     font-weight: 600;
 }
 
-.house-title .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+.house-title .rating {
+    flex-direction: column;
     margin: 10px 0;
 }
 
-.house-title span {
-    margin: 0 20px;
-}
+    .house-title .rating p {
+        font-size: 20px;
+    }
 
 .house-title i {
     color: #ff5361;
-    font-size: 14px;
+    font-size: 26px;
+    padding: 10px 0;
 }
 
 .gallery {
@@ -747,7 +714,11 @@ nav .hidden-btn {
 .service-item {
     display: flex;
     flex-direction: column;
-    margin: 60px 0 60px;
+    margin: 80px 0 60px;
+}
+
+.service-item h4 {
+    font-size: 30px;
 }
 
 .groupitem {
@@ -762,7 +733,8 @@ nav .hidden-btn {
     display: flex;
     width: 50%;
     box-sizing: border-box;
-    padding: 10px 20px;
+    padding: 30px 20px;
+    font-size: 20px;
 }
 
 .groupitem p {
@@ -794,7 +766,8 @@ nav .hidden-btn {
 }
 
 .check-form div {
-    padding: 20px;
+    margin: 20px;
+    padding: 0 100px 0 0;
 }
 
 .check-form input {
@@ -926,6 +899,8 @@ nav .hidden-btn {
     display: flex;
     flex-direction: column;
     position: relative;
+    border: 1px solid #bbb;
+    border-radius: 20px 20px 0 0;
 }
 
 .house-details .swiper .card .card-content .list {
@@ -1081,6 +1056,7 @@ align-items: center;
     color: white;
     transition: all 0.3s ease;
 }
+
 .all {
     display: flex;
     margin: 30px 0;
@@ -1146,27 +1122,32 @@ align-items: center;
         padding: 10px 30px;
     }
 
-        .check-form div {
-            padding: 20px 0;
-            width: 100%;
-        }
+    .check-form div {
+        padding: 20px 0;
+        width: 100%;
+    }
 
-        .check-form input {
-            border-bottom: 1px solid #ccc;
-            width: 100%;
-            padding-bottom: 5px;
-        }
+    .check-form input {
+        border-bottom: 1px solid #ccc;
+        width: 100%;
+        padding-bottom: 5px;
+    }
 
-        .check-form a {
-            font-size: 14px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
+    .check-form a {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
 
     .host {
         display: block;
         line-height: 28px;
+        flex-direction: column;
+    }
+
+    .host h2 {
+        margin-top: 20px;
     }
 
     .contact-host {
