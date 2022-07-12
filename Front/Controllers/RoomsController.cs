@@ -24,43 +24,16 @@ namespace Back.Controllers
         [HttpGet("~/[controller]/[action]/{city?}")]
         public IActionResult Roomlist([FromRoute]string city)
         {
-            var inputDto = new GetRoomsCardInputDTO();
-            if(city == null)
+            var vm = new RoomlistVM
             {
-                inputDto.City = 0;
-            }
-            else
-            {
-                inputDto.City = (City)Enum.Parse(typeof(City), city);
-            }
-            
-            var outputDto = _service.GetRoomsCard(inputDto);
-
-            //if (!outputDto.IsSuccess)
-            //{
-            //}
-
-            return View(outputDto.VM);
-        }
-        [HttpPost]
-        public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
-        {
-            //var vm = new RoomlistVM
-            //{
-            //    city = "Taiwan",
-            //    imgUrl = "https://picsum.photos/300/200/?random=10",
-            //    title = "ooxx",
-            //    HouseInfo = " idiot",
-            //    BedCount = 1,
-            //    BathCount = 1,
-            //    rating = 4.3,
-            //    RentPrice = 200,
-            //};
-            var inputDto = new GetRoomsCardInputDTO() { 
-                City = requestParam.City,
-                CheckinTime = requestParam.CheckinTime,
-                CheckoutTime = requestParam.CheckoutTime,
-                Person = requestParam.Person,
+                city = "Taiwan",
+                imgUrl = "https://picsum.photos/300/200/?random=10",
+                title = "ooxx",
+                HouseInfo = " idiot",
+                BedCount = 1,
+                BathCount = 1,
+                rating = 4.3,
+                RentPrice = 200,
             };
             var outputDto = _service.GetRoomsCard(inputDto);
 
