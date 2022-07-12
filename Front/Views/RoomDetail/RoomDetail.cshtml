@@ -112,7 +112,9 @@
 
         <section class="house-comment">
             <div class="comment-rating">
-                @{Star(Model.RatingStar);}
+                @*@{Star(Model.RatingStar);}*@
+                @{var roomStar = Math.Round(Model.RatingStar, 1); }
+                <i class="fas fa-star">@roomStar</i>
                     <h3>@Model.CommentCount 則評論</h3>
                 </div>
                 @*<div class="score">
@@ -201,7 +203,9 @@
                             </div>
 
                             <div class="rating">
-                                @{Star(person.PersonRatingStar);}
+                                @*@{Star(person.PersonRatingStar);}*@
+                                @{var personStar = Math.Round(person.PersonRatingStar, 1); }
+                                <i class="fas fa-star">@personStar</i>    
                             </div>
                         </div>
                     </div>
@@ -227,301 +231,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/Silmonght/Silmonght.github.io/main/steven.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">林秉謙</span>
-                                    <p>1月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>非常寬敞､乾淨､價格合理，地理位置優越。我可以輕鬆與房東交談，他非常有幫助。 晚上有點吵，但不太吵。我對這個地方感到非常滿意！</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.3</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/ShiChyiLim/ShiChyiLim.github.io/main/1784C24F-3C76-475D-A246-B8B1F58CBD7E.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">林詩琦</span>
-                                    <p>12月 2021</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>地理位置非常中心。我們在住宿期間獲得一切協助</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.8</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/Neil-Yang3759/Neil-Yang3759.github.io/main/JS/HW1/selfie.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">Neil</span>
-                                    <p>5月 2021</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>一切都很棒！ 非常好的位置，很好的公寓。強烈推薦！</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.4</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/JiaXuan1083/FileStorage/main/IMG_7403.JPG">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>就位置而言，因為入住時有空房，所以更容易，感謝您所做的一切</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/yu1129/hard/main/%E4%BD%99.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>輕鬆入住，完美的位置</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/wen-0510/FileStorages/main/1.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>一切都很棒！房東非常友善，我們成為朋友。房源與價格相符</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/t333685/t333685.github.io/590201655655be034c9866169ddbab949d138e33/S__7020548.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>地理位置非常方便，靠近任何地方</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/chihwen1215/FileStorage/main/S__35127335.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>位置方面有美麗景觀的房源</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/LittleY11/FileStorage/main/photo.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>完美的中心位置，超級乾淨，安靜，物超所值</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/hi8787h/hi8787h.github.io/main/photo/Myphoto.png">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>漂亮的公寓，位置優越！設備精良､乾淨！</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/Kuan1215/FileStorage/main/D6480B08-E095-456D-BB43-C0372D0FB0AC.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>非常好的位置。如果您開車來，您可能會遇到停車問題。</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/Jamie1721/FileStorage/main/S__6267102.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>房源位於市中心，可輕鬆前往任何地方。</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img
-                                        src="https:raw.githubusercontent.com/Ankepoyou/FileStorage/main/IMG_20210518_154803_800.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>我們在這個地方住了一個月，我們很喜歡！地理位置極佳､空間寬敞和友善的員工。我們絕對推薦這個地方！</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/3TeT3/FileStorage_/main/16140801732026.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">楊印成</span>
-                                    <p>七月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>地理位置非常好</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4.5</i>
-                            </div>
-                        </div>
-                    </div>*@
+                    *@
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
 
-            <ul class="details-list">
+            @*<ul class="details-list">
                 <li><i class="fas fa-home"></i>整個房子
                     <span>您將擁有整個公寓.</span>
                 </li>
@@ -534,18 +251,10 @@
                 <li><i class="fas fa-heart"></i>很棒的入住體驗
                     <span>100% 的近期客人對入住過程給予 5 星評價.</span>
                 </li>
-            </ul>
+            </ul>*@
             <hr class="line">
 
-            <p class="home-desc">在我們儲備充足的廚房烹製一場風暴，舉辦一場精彩的晚宴（餐桌座位
-                x10)。混凝土長凳、儲藏豐富的步入式食品儲藏室、美食必需品、奈斯派索咖啡機、蘇打水
-                Stream、微波爐、商業級炊具、微波爐、洗碗機、獵鷹燃氣灶和電烤箱
-                非常適合製作您最喜歡的飯菜。享受廚房用具、電飯煲、炒鍋、曼陀林和
-                我們廣泛收集的砧板（我們喜歡用作盤子）。在外面吃飯
-                日出或日落甲板 - 取決於一天中的時間。您將在我們的豪華床上像木頭一樣睡覺，
-                美麗的亞麻布被所有的木頭包圍！樓下的兩間臥室都可以選擇記憶海綿
-                枕頭或鵝絨特大號枕頭。我們使用 100% 亞麻和 Actil First Line Cotton 床單的組合
-                （用平紋細布編織）為終極睡眠。 @Model.Description</p>
+            <p class="home-desc">@Model.Description</p>
 
             <hr class="line">
 
