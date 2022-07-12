@@ -57,6 +57,31 @@ namespace Back.Controllers
 
             return View(vm);
         }
+        [HttpPost]
+        public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
+        {
+            //var vm = new RoomlistVM
+            //{
+            //    city = "Taiwan",
+            //    imgUrl = "https://picsum.photos/300/200/?random=10",
+            //    title = "ooxx",
+            //    HouseInfo = " idiot",
+            //    BedCount = 1,
+            //    BathCount = 1,
+            //    rating = 4.3,
+            //    RentPrice = 200,
+            //};
+            var inputDto = new GetRoomsCardInputDTO()
+            {
+                City = requestParam.City,
+                CheckinTime = requestParam.CheckinTime,
+                CheckoutTime = requestParam.CheckoutTime,
+                Person = requestParam.Person,
+            };
+            var outputDto = _service.GetRoomsCard(inputDto);
+
+            return View(outputDto.VM);
+        }
         public IActionResult roomlistPage2()
         {
             return View();
