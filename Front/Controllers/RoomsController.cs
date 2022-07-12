@@ -25,12 +25,18 @@ namespace Back.Controllers
         [HttpGet("~/[controller]/[action]/{city?}")]
         public IActionResult Roomlist([FromRoute]string city)
         {
-            var outputDto = new GetRoomsCardInputDTO
+            var inputDto = new GetRoomsCardInputDTO();
+            if (city == null)
             {
-                City = city,
-
+                inputDto.City = 0;
             }
-            var vm = 
+            else
+            {
+                inputDto.City = (City)Enum.Parse(typeof(City), city);
+            }
+
+            var outputDto = _service.GetRoomsCard(inputDto);
+            var vm = outputDto.VM;
             //new RoomlistVM
             //{
             //    City = "City",
@@ -48,7 +54,6 @@ namespace Back.Controllers
             //        },
             //    },
             //};
-            var outputDto = _service.GetRoomsCard(inputDto);
 
             return View(vm);
         }

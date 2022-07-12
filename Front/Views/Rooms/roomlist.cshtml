@@ -4,22 +4,27 @@
 @functions{
     private void Star(double star)
     {
-        int num = (int)(star * 2);
-        int devide = num / 2;
-        int half = num % 2;
-        int left = 5 - devide - half;
+        if(!double.IsNaN(star)){
+            int num = (int)(star * 2);
+            int devide = num / 2;
+            int half = num % 2;
+            int left = 5 - devide - half;
 
-        for(int i=0;i < devide;i++)
-        {
-            <i class="fas fa-star"></i>
+            for(int i=0;i < devide;i++)
+            {
+                <i class="fas fa-star"></i>
+            }
+            for(int i=0;i < half;i++)
+            {
+                <i class="fas fa-star-half-alt"></i>
+            }
+            for(int i=0;i < left;i++)
+            {
+                <i class="far fa-star"></i>
+            }
         }
-        for(int i=0;i < half;i++)
-        {
-            <i class="fas fa-star-half-alt"></i>
-        }
-        for(int i=0;i < left;i++)
-        {
-            <i class="far fa-star"></i>
+        else{
+            <div>尚無評價</div>
         }
     }
 }

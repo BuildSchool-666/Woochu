@@ -41,10 +41,10 @@ namespace Front.Service.RoomDetail
                 Title = vm.RoomName,
                 Address = vm.Address,
                 RoomInfo = "RoomInfo",
-                BrowseCount = vm.BrowseCount,
+                BrowseCount = (int)vm.BrowseCount,
                 BedCount = _repo.GetAll<RoomFacility>()
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
-                PersonCount = vm.GuestCount,
+                PersonCount = (int)vm.GuestCount,
                 BathCount = _repo.GetAll<RoomFacility>()
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()

@@ -87,7 +87,7 @@ namespace Front.Service
         public void VerifyAccount(int userId)
         {
             var user = FindAccountOrNull(userId);
-            if(!user.EmailVerify)
+            if(!(bool)user.EmailVerify)
             {
                 user.EmailVerify = true;
                 user.CreateTime = DateTime.UtcNow;
