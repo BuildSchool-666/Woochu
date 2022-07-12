@@ -4,6 +4,7 @@ using Front.Service.Rooms;
 using Microsoft.AspNetCore.Mvc;
 using MVCModels.MyEnum;
 using System;
+using System.Collections.Generic;
 
 namespace Back.Controllers
 {
@@ -24,20 +25,32 @@ namespace Back.Controllers
         [HttpGet("~/[controller]/[action]/{city?}")]
         public IActionResult Roomlist([FromRoute]string city)
         {
-            var vm = new RoomlistVM
+            var outputDto = new GetRoomsCardInputDTO
             {
-                city = "Taiwan",
-                imgUrl = "https://picsum.photos/300/200/?random=10",
-                title = "ooxx",
-                HouseInfo = " idiot",
-                BedCount = 1,
-                BathCount = 1,
-                rating = 4.3,
-                RentPrice = 200,
-            };
+                City = city,
+
+            }
+            var vm = 
+            //new RoomlistVM
+            //{
+            //    City = "City",
+            //    Rooms = new List<RoomVM>
+            //    {
+            //        new RoomVM
+            //        {
+            //            ImgUrl = "https://picsum.photos/300/200/?random=10",
+            //            Title = "ooxx",
+            //            HouseInfo = " idiot",
+            //            BedCount = 1,
+            //            BathCount = 1,
+            //            Rating = 4.3,
+            //            RentPrice = 200,
+            //        },
+            //    },
+            //};
             var outputDto = _service.GetRoomsCard(inputDto);
 
-            return View(outputDto.VM);
+            return View(vm);
         }
         public IActionResult roomlistPage2()
         {
