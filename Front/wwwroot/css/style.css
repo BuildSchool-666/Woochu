@@ -30,10 +30,10 @@ nav {
     margin: 10px 30px;
 }
 
-    .nav-links li a {
-        text-decoration: none;
-        color: white;
-    }
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+}
 
 .register-btn {
     background-color: white;
@@ -45,15 +45,15 @@ nav {
     align-items: center;
 }
 
-    .register-btn .fas {
-        margin: 0 5px;
-    }
+.register-btn .fas {
+    margin: 0 5px;
+}
 
-    .register-btn:hover {
-        background: #ff5361;
-        color: #fff;
-        transition: all 0.3s ease;
-    }
+.register-btn:hover {
+    background: #ff5361;
+    color: #fff;
+    transition: all 0.3s ease;
+}
 
 .dropdown-content {
     display: none;
@@ -66,12 +66,12 @@ nav {
     border-radius: 10px;
 }
 
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
 
 .show {
     display: block;
@@ -97,34 +97,34 @@ nav {
     border-radius: 50px;
 }
 
-    .search-bar div {
-        padding: 0 20px;
-        font-size: 20px;
-    }
+.search-bar div {
+    padding: 0 20px;
+    font-size: 20px;
+}
 
-    .search-bar form {
-        display: flex;
-        align-items: center;
-        /* flex-wrap: wrap; */
-    }
+.search-bar form {
+    display: flex;
+    align-items: center;
+    /* flex-wrap: wrap; */
+}
 
-        .search-bar form input {
-            font-size: 20px;
-            display: block;
-            border: 0;
-            outline: none;
-            background: transparent;
-        }
+.search-bar form input {
+    font-size: 20px;
+    display: block;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
 
-        .search-bar form button {
-            background-color: #ff5361;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 0;
-            outline: none;
-            cursor: pointer;
-        }
+.search-bar form button {
+    background-color: #ff5361;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
 
 .Location-input select {
     font-size: 20px;
@@ -162,43 +162,43 @@ nav {
     grid-gap: 80px;
 }
 
-    .exclusives div img {
-        width: 100%;
-        height: 250px;
-        border-radius: 10px;
-    }
+.exclusives div img {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
 
-    .exclusives div {
-        position: relative;
-    }
+.exclusives div {
+    position: relative;
+}
 
-        .exclusives div span {
-            position: absolute;
-            top: 80%;
-            left: 70%;
-            font-weight: 900;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-        }
+.exclusives div span {
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    font-weight: 900;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
 
-    .exclusives .item {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-    }
+.exclusives .item {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
 
-        .exclusives .item:hover {
-            transform: scale(1.35);
-            transition: 0.8s;
-            z-index: 1;
-        }
+.exclusives .item:hover {
+    transform: scale(1.35);
+    transition: 0.8s;
+    z-index: 1;
+}
 
 
 /* --------- */
 
 .cta {
     margin: 80px 0;
-    background-image: linear-gradient(to right, #3f2321, transparent), url(https://assets.architecturaldigest.in/photos/6008446851daf9662c14962f/16:9/w_2560%2Cc_limit/mumbai-huges-road-homes-photos-1366x768.jpg);
+    background-image: linear-gradient(to right, #3f2321, transparent), url(images/banner-2.png);
     block-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -206,16 +206,16 @@ nav {
     color: white;
 }
 
-    .cta h3 {
-        font-size: 3vw;
-        line-height: 5.3vw;
-        font-weight: 500;
-    }
+.cta h3 {
+    font-size: 3vw;
+    line-height: 5.3vw;
+    font-weight: 500;
+}
 
-    .cta p {
-        font-size: 18px;
-        margin: 10px 0;
-    }
+.cta p {
+    font-size: 18px;
+    margin: 10px 0;
+}
 
 .cta-btn {
     background-color: #ff5361;
@@ -236,33 +236,33 @@ nav {
     margin-bottom: 30px;
 }
 
-    .stories div img {
-        width: 100%;
-        border-radius: 10px;
-    }
+.stories div img {
+    width: 100%;
+    border-radius: 10px;
+}
 
-    .stories div:hover {
-        transform: scale(1.10);
-        transition: 0.5s;
-        z-index: 1;
-    }
+.stories div:hover {
+    transform: scale(1.10);
+    transition: 0.5s;
+    z-index: 1;
+}
 
-    .stories div {
-        position: relative;
-        text-align: center;
-    }
+.stories div {
+    position: relative;
+    text-align: center;
+}
 
-    .stories p {
-        width: 80%;
-        position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-        color: white;
-        font-size: 26px;
-        font-weight: 600;
-    }
+.stories p {
+    width: 80%;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+}
 
 .start-btn {
     text-decoration: none;
@@ -287,11 +287,11 @@ nav {
     line-height: 2;
 }
 
-    .about-msg h2 {
-        font-size: 28px;
-        margin-bottom: 30px;
-        font-weight: 500;
-    }
+.about-msg h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
 
 /* ------- */
 .footer {
@@ -299,44 +299,45 @@ nav {
     text-align: right;
 }
 
-    .footer a {
-        text-decoration: none;
-        color: black;
-        font-size: 22px;
-        margin: 0 10px;
-    }
+.footer a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+    margin: 0 10px;
+}
 
-    .footer hr {
-        background: black;
-        height: 1px;
-        width: 100%;
-        border: 0;
-        margin: 20px 0;
-    }
+.footer hr {
+    background: black;
+    height: 1px;
+    width: 100%;
+    border: 0;
+    margin: 20px 0;
+}
 
-    .footer p {
-        padding-bottom: 15px;
-    }
+.footer p {
+    padding-bottom: 15px;
+}
 
 .active {
     position: relative;
 }
 
-    .active::after {
-        content: '';
-        background-color: white;
-        width: 25px;
-        height: 2px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -12px;
-        border-radius: 2px;
-    }
+.active::after {
+    content: '';
+    background-color: white;
+    width: 25px;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -12px;
+    border-radius: 2px;
+}
 
 nav .hidden-btn {
     display: none;
 }
+
 
 /* --------手機板 */
 
