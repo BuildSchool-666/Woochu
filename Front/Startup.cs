@@ -39,14 +39,17 @@ namespace Front
             services.AddHttpContextAccessor();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IAccountService, AccountService>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                //options.LoginPath = new PathString("/Account/Login");
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //options.LoginPath = new PathString("/Account/Login");
 
-                //options.ReturnUrlParameter = "ReturnUrl";
+                    //options.ReturnUrlParameter = "ReturnUrl";
 
-                //options.LogoutPath = new PathString("/Account/Logout");
+                    //options.LogoutPath = new PathString("/Account/Logout");
 
+                    //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+                });
                 //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
             });
             services.AddScoped<IRoomsService, RoomsService>(); 

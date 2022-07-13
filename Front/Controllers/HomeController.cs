@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Front.Models.ViewModels.Home;
 using Front.Service.Home;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Front.Controllers
 {
@@ -56,7 +57,7 @@ namespace Front.Controllers
 
             return View(vm);
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();
