@@ -1,30 +1,58 @@
-﻿using Front.Models.ViewModels.Roomlist;
+﻿using Front.Models.DTOModels.Rooms;
+using Front.Models.ViewModels.Rooms;
+using Front.Service.Rooms;
 using Microsoft.AspNetCore.Mvc;
+using MVCModels.MyEnum;
+using System;
+using System.Collections.Generic;
 
 namespace Back.Controllers
 {
     public class RoomsController : Controller
     {
+        private readonly IRoomsService _service;
+
+        public RoomsController(IRoomsService service)
+        {
+            _service = service;
+        }
 
         public IActionResult Index()
         {
             return View();
         }
-        [Route("~/[controller]/[action]/{City?}")]
-        public IActionResult roomlist([FromRoute]string City)
+
+        [HttpGet("~/[controller]/[action]/{city?}")]
+        public IActionResult Roomlist([FromRoute]string city)
         {
-            var vm = new RoomlistVM
+            var inputDto = new GetRoomsCardInputDTO();
+            if (city == null)
             {
-                city = "Taiwan",
-                imgUrl = "https://picsum.photos/300/200/?random=10",
-                title = "ooxx",
-                HouseInfo = " idiot",
-                BedCount = 1,
-                BathCount = 1,
-                rating = 4.3,
-                RentPrice = 200,
-            };
+                inputDto.City = 0;
+            }
+            else
+            {
+                inputDto.City = (City)Enum.Parse(typeof(City), city);
+            }
+
+            var outputDto = _service.GetRoomsCard(inputDto);
+            var vm = outputDto.VM;
             return View(vm);
+        }
+        [HttpPost]
+        public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
+        {
+            
+            var inputDto = new GetRoomsCardInputDTO()
+            {
+                City = requestParam.City,
+                CheckinTime = requestParam.CheckinTime,
+                CheckoutTime = requestParam.CheckoutTime,
+                //Person = requestParam.Person,
+            };
+            var outputDto = _service.GetRoomsCard(inputDto);
+
+            return View(outputDto.VM);
         }
         public IActionResult roomlistPage2()
         {

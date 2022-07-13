@@ -15,6 +15,8 @@ using Front.Service.Home;
 using Front.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Front.Service.Account;
+using Front.Service.Rooms;
+using Front.Service.RoomDetail;
 
 namespace Front
 {
@@ -48,6 +50,11 @@ namespace Front
 
                     //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
+                //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+            });
+            services.AddScoped<IRoomsService, RoomsService>(); 
+            services.AddScoped<IRoomDetailService, RoomDetailService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

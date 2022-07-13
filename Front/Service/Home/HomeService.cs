@@ -68,9 +68,6 @@ namespace Front.Service.Home
         }
         public GetIndexDataOutputDTO GetIndexData()
         {
-            //throw new NotImplementedException();
-
-
             //this.CreateData();
 
             var result = new GetIndexDataOutputDTO
