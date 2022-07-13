@@ -40,19 +40,31 @@ namespace MVCModels.Repositories
         public double CalRoomStar(int roomId)
         {
             double score = 0;
-            _context.Comments.Where(c => c.RoomId == roomId).ToList().ForEach(cs =>
-            {
-                score += cs.Cleanliness;
-                score += cs.Accuracy;
-                score += cs.CheckIn;
-                score += cs.Communication;
-                score += cs.Cp;
-                score += cs.Location;
-            });
-            double person = _context.Comments.Count(c => c.RoomId == roomId);
+            var roomComment = _context.Comments.Where(c => c.RoomId == roomId).ToList();
 
-            score = score / 6.0 / person;
-            return score;
+            roomComment.ForEach(cs =>
+            {
+                if(!(double.IsNaN(cs.Cleanliness) || double.IsNaN(cs.Accuracy) || double.IsNaN(cs.CheckIn) || double.IsNaN(cs.Communication) || double.IsNaN(cs.Cp) || double.IsNaN(cs.Location)))
+                {
+                    score += cs.Cleanliness;
+                    score += cs.Accuracy;
+                    score += cs.CheckIn;
+                    score += cs.Communication;
+                    score += cs.Cp;
+                    score += cs.Location;
+                }
+                
+            });
+
+            var person = roomComment.Count;
+            if (person > 0 ) {
+                score = score / 6.0 / person;
+                return score;
+            }
+            else
+            {
+                return double.NaN;
+            }
         }
         public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
         {

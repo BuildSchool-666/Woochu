@@ -273,14 +273,13 @@
             <div class="host">
                 <img src="~/images/host.png" alt="">
                 <div>
-                    <h2>房東 : James @Model.HostName</h2>
-                    <p><span>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </span>&nbsp; &nbsp; 加入時間：2015年10月 @Model.JoinTime &nbsp; &nbsp; 回覆率 : 100% &nbsp; &nbsp;</p>
+                    <h2>房東 : @Model.HostName</h2>
+                    <p>
+                        <span>
+                            @{Star(Model.HostRatingStar);}
+                            &nbsp; &nbsp; 加入時間：@Model.JoinTime &nbsp; &nbsp; 最後上線時間 : @Model.LastOnlineTime 個小時以上
+                        </span>
+                    </p>
                 </div>
             </div>
             <a href="host.html" class="contact-host">連絡房東</a>
