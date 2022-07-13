@@ -1,12 +1,15 @@
 ﻿using Front.Helpers;
-using Front.Models.DTOModels;
+using Front.Models.DTOModels.Account;
 using Front.Service.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using MVCModels.DataModels;
 using MVCModels.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace Front.Service
 {
@@ -20,7 +23,7 @@ namespace Front.Service
             _repo = repo;
             _httpContextAccessor = httpContextAccessor;
         }
-
+        //註冊
         public CreateAccountOutputDTO CreateAccount(CreateAccountInputDTO input)
         {
             var result = new CreateAccountOutputDTO()
@@ -60,7 +63,7 @@ namespace Front.Service
             string body = $@"
                 <h3>點擊
                     <a href='https://{_httpContextAccessor.HttpContext.Request.Host.Value}/Account/Verify?VIP_NO={UserId}' target='_blank'>鏈接</a>
-            已啓用賬戶
+            以啓用賬戶
                 </h3>
             ";
             MailHelper.SendMail(
@@ -69,7 +72,18 @@ namespace Front.Service
                 body
             );
         }
+        public void VerifyAccount(int userId)
+                {
+                    var user = FindAccountOrNull(userId);
+                    if(!user.EmailVerify)
+                    {
+                        user.EmailVerify = true;
+                        user.CreateTime = DateTime.UtcNow;
 
+                        _repo.Update(user);
+                        _repo.SaveChanges();
+                    }
+                }
         public bool IsExistAccount(string email)
         {
             return _repo.GetAll<User>().Any(m => m.Email == email);
@@ -84,22 +98,65 @@ namespace Front.Service
             return _repo.GetAll<User>().FirstOrDefault(m => m.UserId == userId);
         }
 
-        public void VerifyAccount(int userId)
+        
+        //登入 登出
+        public LoginAccountOutputDTO LoginAccount(LoginAccountInputDTO input)
         {
-            var user = FindAccountOrNull(userId);
-            if(!user.EmailVerify)
+            var result = new LoginAccountOutputDTO
             {
-                user.EmailVerify = true;
-                user.CreateTime = DateTime.UtcNow;
+                IsSuccess = false,
+            };
 
-                _repo.Update(user);
-                _repo.SaveChanges();
+            var memberFound = FindAccountOrNull(input.Email);
+
+            if(memberFound == null)
+            {
+                result.Message = "使用者账号不存在";
+                return result;
             }
-        }
+            if (!memberFound.EmailVerify)
+            {
+                result.Message = "使用者账号尚未驗證";
+                return result;
+            }
+            if(memberFound.Password != Encryption.SHA256(input.Password))
+            {
+                result.Message = "密碼錯誤";
+                return result;
+            }
 
-        public void VerifyAccount(string email)
+            result.IsSuccess = true;
+
+            List<Claim> claims = new List<Claim>()
+            {
+                new Claim( ClaimTypes.Name, memberFound.UserId.ToString()),
+                new Claim(ClaimTypes.Email,memberFound.Email),
+                //new Claim("Phone",memberFound.Phone),
+
+            };
+
+            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims
+                , CookieAuthenticationDefaults.AuthenticationScheme
+                );
+
+            ClaimsPrincipal claimPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            AuthenticationProperties authenticationProperties = new AuthenticationProperties
+            {
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(111),
+                IsPersistent = true,
+            };
+
+             _httpContextAccessor.HttpContext.SignInAsync(
+                claimPrincipal,authenticationProperties);
+
+            return result;
+
+
+        }
+        public void LogoutAccount()
         {
-            throw new NotImplementedException();
+            _httpContextAccessor.HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }
 }

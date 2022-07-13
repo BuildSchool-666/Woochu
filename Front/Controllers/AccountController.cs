@@ -1,6 +1,8 @@
-﻿using Front.Models.DTOModels;
+﻿using Front.Models.DTOModels.Account;
 using Front.Models.ViewModels.Account;
 using Front.Service.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Front.Controllers
@@ -20,7 +22,7 @@ namespace Front.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Register(RegisterVM requestParam)
+        public IActionResult Register([FromForm] RegisterVM requestParam)
         {
             if (!ModelState.IsValid)
             {
@@ -48,9 +50,36 @@ namespace Front.Controllers
             _service.VerifyAccount(VIP_NO);
             return View();
         }
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null )
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Login([FromForm] LoginVM requestParam, string returnUrl = null)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(requestParam);
+            }
+            var inputDto = new LoginAccountInputDTO
+            {
+                Email = requestParam.Email,
+                Password = requestParam.Password
+            };
+            var outputDto = _service.LoginAccount(inputDto);
+
+            if (!outputDto.IsSuccess)
+            {
+                ModelState.AddModelError(string.Empty, outputDto.Message);
+                return View(requestParam);
+            }
+
+            return Redirect(returnUrl ?? "/");
+        }
+        public IActionResult LogOut()
+        {
+            _service.LogoutAccount();
+            return Redirect("/");
         }
     }
 }

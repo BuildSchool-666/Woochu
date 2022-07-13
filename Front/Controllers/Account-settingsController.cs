@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCModels.DataModels;
 using MVCModels.Repositories;
@@ -17,20 +18,23 @@ namespace Front.Controllers
 
         public IActionResult Index(int id)
         {
-            var query = _context.Users.Where(u => u.UserId == 1).FirstOrDefault();
-            User user = new User
-            {
-                UserId = query.UserId,
-                FirstName = query.FirstName,
-                LastName = query.LastName,
-                Email = query.Email,
-            };
-            return View(user);
+            //var query = _context.Users.Where(u => u.UserId == 1).FirstOrDefault();
+            //User user = new User
+            //{
+            //    UserId = query.UserId,
+            //    FirstName = query.FirstName,
+            //    LastName = query.LastName,
+            //    Email = query.Email,
+            //};
+            return View();
+            //return View(user);
         }
+        
         public IActionResult PersonalInformation()
         {
             return View();
         }
+        
         public IActionResult Privacy()
         {
             return View();
