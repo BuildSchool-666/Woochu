@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-//using Front.Models.ViewModels.RoomDetail;
+
 
 namespace MVCModels.Repositories
 {
@@ -37,48 +37,7 @@ namespace MVCModels.Repositories
         {
             return _context.Set<T>();
         }
-        public double CalRoomStar(int roomId)
-        {
-            double score = 0;
-            var roomComment = _context.Comments.Where(c => c.RoomId == roomId).ToList();
-
-            roomComment.ForEach(cs =>
-            {
-                if(!(double.IsNaN(cs.Cleanliness) || double.IsNaN(cs.Accuracy) || double.IsNaN(cs.CheckIn) || double.IsNaN(cs.Communication) || double.IsNaN(cs.Cp) || double.IsNaN(cs.Location)))
-                {
-                    score += cs.Cleanliness;
-                    score += cs.Accuracy;
-                    score += cs.CheckIn;
-                    score += cs.Communication;
-                    score += cs.Cp;
-                    score += cs.Location;
-                }
-                
-            });
-
-            var person = roomComment.Count;
-            if (person > 0 ) {
-                score = score / 6.0 / person;
-                return score;
-            }
-            else
-            {
-                return double.NaN;
-            }
-        }
-        public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
-        {
-            double score =
-                CleanlinessStar
-                + AccuracyStar
-                + CommunicationStar
-                + LocationStar
-                + CheckInStar
-                + ValueStar;
-
-            score /= 6;
-            decimal.Round((decimal)score, 1);
-            return score;
-        }
+        
+        
     }
 }

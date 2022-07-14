@@ -96,7 +96,7 @@ namespace Front.Service.Rooms
                     BathCount = _repo.GetAll<RoomFacility>()
                                     .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
                     RentPrice = (int)r.BasicPrice,
-                    Rating = _repo.CalRoomStar(r.RoomId),
+                    Rating = CalStar.CalRoomStar(_repo, r.RoomId),
                 }
 
                 ).ToList(),

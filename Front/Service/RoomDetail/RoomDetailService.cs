@@ -55,7 +55,7 @@ namespace Front.Service.RoomDetail
                 LocationStar = roomStar.Select(c => c.Location).Average(),
                 CheckInStar = roomStar.Select(c => c.CheckIn).Average(),
                 ValueStar = roomStar.Select(c => c.Cp).Average(),
-                RatingStar = _repo.CalRoomStar(input.RoomId),
+                RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
                 CommentCount = _repo.GetAll<Comment>().Count(c => c.RoomId == input.RoomId),
                 CommentItem = new List<CommentInformation>(),
                 HostId = room.UserId,
@@ -95,7 +95,7 @@ namespace Front.Service.RoomDetail
                                       +_repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
                         CommentContent = rc.Content,
                         CommentDate = rc.CreateTime,
-                        PersonRatingStar = _repo.CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
+                        PersonRatingStar = CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
                     }
                 );
             });
@@ -105,7 +105,7 @@ namespace Front.Service.RoomDetail
             double hostRoomStar = 0;
             hostRoomIdList.ForEach(roomId =>
             {
-                double star = _repo.CalRoomStar(roomId);
+                double star = CalStar.CalRoomStar(_repo, roomId);
                 if (!double.IsNaN(star))
                 {
                     hostRoomStar += star;
@@ -119,6 +119,21 @@ namespace Front.Service.RoomDetail
             result.IsSuccess = true;
 
             return result;
+        }
+
+        public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
+        {
+            double score =
+                CleanlinessStar
+                + AccuracyStar
+                + CommunicationStar
+                + LocationStar
+                + CheckInStar
+                + ValueStar;
+
+            score /= 6;
+            decimal.Round((decimal)score, 1);
+            return score;
         }
     }
 }
