@@ -1,4 +1,4 @@
-﻿namespace Front.Models.DTOModels
+﻿namespace Front.Models.DTOModels.Account
 {
     public class CreateAccountInputDTO
     {
@@ -8,10 +8,9 @@
         public string PasswordConfirm { get; set; }
 
     }
-    public class CreateAccountOutputDTO
+    public class CreateAccountOutputDTO: BaseOutputDTO
     {
-        public bool IsSuccess { get; set; }
-        public string Message { get; set; }
+        
 
     }
 }

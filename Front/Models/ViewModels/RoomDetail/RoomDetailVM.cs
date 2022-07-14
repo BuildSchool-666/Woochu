@@ -28,6 +28,8 @@ namespace Front.Models.ViewModels.RoomDetails
         public List<CommentInformation>? CommentItem { get; set; }
         public int HostId { get; set; }
         public string HostName { get; set; }
+        public string HostPic { get; set; }
+        public double HostRatingStar { get; set; }
         public DateTime JoinTime { get; set; }
         public int LastOnlineTime { get; set; }
     }

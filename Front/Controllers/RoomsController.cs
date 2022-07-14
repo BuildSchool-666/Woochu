@@ -48,7 +48,7 @@ namespace Back.Controllers
                 City = requestParam.City,
                 CheckinTime = requestParam.CheckinTime,
                 CheckoutTime = requestParam.CheckoutTime,
-                Person = requestParam.Person,
+                //Person = requestParam.Person,
             };
             var outputDto = _service.GetRoomsCard(inputDto);
 

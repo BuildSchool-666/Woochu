@@ -29,47 +29,49 @@ namespace Front.Service.RoomDetail
                 result.Message = "some failure msg";
             }
 
-            var vm = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
+            var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
+            var roomStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId);
             
+
             result.VM = new RoomDetailVM()
             {
-                Title = vm.RoomName,
-                Address = vm.Address,
+                Title = room.RoomName,
+                Address = room.Address,
                 RoomInfo = "RoomInfo",
-                BrowseCount = (int)vm.BrowseCount,
+                BrowseCount = (int)room.BrowseCount,
                 BedCount = _repo.GetAll<RoomFacility>()
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
-                PersonCount = (int)vm.GuestCount,
+                PersonCount = (int)room.GuestCount,
                 BathCount = _repo.GetAll<RoomFacility>()
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
                 FacilityItem = new List<FacilityIcon>(),
-                RentPrice = (int)vm.BasicPrice,
-                Description = vm.Description,
-                CleanlinessStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Cleanliness).Average(),
-                AccuracyStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Accuracy).Average(),
-                CommunicationStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Communication).Average(),
-                LocationStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Location).Average(),
-                CheckInStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.CheckIn).Average(),
-                ValueStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId).Select(c => c.Cp).Average(),
-                RatingStar = _repo.CalRoomStar(input.RoomId),
+                RentPrice = (int)room.BasicPrice,
+                Description = room.Description,
+                CleanlinessStar = roomStar.Select(c => c.Cleanliness).Average(),
+                AccuracyStar = roomStar.Select(c => c.Accuracy).Average(),
+                CommunicationStar = roomStar.Select(c => c.Communication).Average(),
+                LocationStar = roomStar.Select(c => c.Location).Average(),
+                CheckInStar = roomStar.Select(c => c.CheckIn).Average(),
+                ValueStar = roomStar.Select(c => c.Cp).Average(),
+                RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
                 CommentCount = _repo.GetAll<Comment>().Count(c => c.RoomId == input.RoomId),
                 CommentItem = new List<CommentInformation>(),
-                HostId = vm.UserId,
+                HostId = room.UserId,
                 HostName = (_repo.GetAll<User>()
-                                .SingleOrDefault(u => u.UserId == vm.UserId).LastName)
+                                .SingleOrDefault(u => u.UserId == room.UserId).LastName)
                             + " " +
                            (_repo.GetAll<User>()
-                                .SingleOrDefault(u => u.UserId == vm.UserId).FirstName),
-                JoinTime = vm.CreateTime,
+                                .SingleOrDefault(u => u.UserId == room.UserId).FirstName),
+                HostPic = "",
+                HostRatingStar = 0.0,
+                JoinTime = room.CreateTime,
                 LastOnlineTime = 200 / 60,
             };
 
             var roomFacilityIdList = _repo.GetAll<RoomFacility>()
                                 .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
-            var roomComment = _repo.GetAll<Comment>()       //everyone's comment to the room
-                                .Where(c => c.RoomId == input.RoomId).ToList();
             roomFacilityIdList.ForEach(fId =>
             {
                 result.VM.FacilityItem.Add(
@@ -82,8 +84,9 @@ namespace Front.Service.RoomDetail
                     }
                 );
             });
-            //double personStar = roomComment
-            roomComment.ForEach(rc =>
+            var roomCommentList = _repo.GetAll<Comment>()       //everyone's comment to the room
+                                .Where(c => c.RoomId == input.RoomId).ToList();
+            roomCommentList.ForEach(rc =>
             {
                 result.VM.CommentItem.Add(
                     new CommentInformation()
@@ -92,14 +95,45 @@ namespace Front.Service.RoomDetail
                                       +_repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
                         CommentContent = rc.Content,
                         CommentDate = rc.CreateTime,
-                        PersonRatingStar = _repo.CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
+                        PersonRatingStar = CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
                     }
                 );
             });
 
+            var hostRoomIdList = _repo.GetAll<Room>().Where(c => c.UserId == room.UserId).Select(c => c.RoomId).ToList();
+            int hostRoomCount = 0;
+            double hostRoomStar = 0;
+            hostRoomIdList.ForEach(roomId =>
+            {
+                double star = CalStar.CalRoomStar(_repo, roomId);
+                if (!double.IsNaN(star))
+                {
+                    hostRoomStar += star;
+                    hostRoomCount++;
+                }
+                
+            });
+            result.VM.HostRatingStar = hostRoomStar / hostRoomCount;
+
+
             result.IsSuccess = true;
 
             return result;
+        }
+
+        public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
+        {
+            double score =
+                CleanlinessStar
+                + AccuracyStar
+                + CommunicationStar
+                + LocationStar
+                + CheckInStar
+                + ValueStar;
+
+            score /= 6;
+            decimal.Round((decimal)score, 1);
+            return score;
         }
     }
 }

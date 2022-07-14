@@ -1,4 +1,4 @@
-﻿using Front.Models.DTOModels;
+﻿using Front.Models.DTOModels.Account;
 using MVCModels.DataModels;
 
 namespace Front.Service.Account
@@ -6,15 +6,14 @@ namespace Front.Service.Account
     public interface IAccountService
     {
         CreateAccountOutputDTO CreateAccount(CreateAccountInputDTO input);
-        //LoginAccountOutputDTO LoginAccount(LoginAccountInputDTO);
-        //void LogoutAccount();
+        LoginAccountOutputDTO LoginAccount(LoginAccountInputDTO input);
+        void LogoutAccount();
         bool IsExistAccount(string email);
 
         void SendVerifyMail(string email);
         User FindAccountOrNull(string email);
 
         User FindAccountOrNull(int userId);
-        void VerifyAccount(string email);
         void VerifyAccount(int userId);
 
     }

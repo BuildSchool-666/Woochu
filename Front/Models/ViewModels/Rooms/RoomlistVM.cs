@@ -9,7 +9,7 @@ namespace Front.Models.ViewModels.Rooms
         public City City { get; set; }
         public DateTime CheckinTime { get; set; }
         public DateTime CheckoutTime { get; set; }
-        public int Person { get; set; }
+        //public int Person { get; set; }
     }
 
     public class RoomlistVM
