@@ -75,7 +75,7 @@ namespace Front.Service
         public void VerifyAccount(int userId)
                 {
                     var user = FindAccountOrNull(userId);
-                    if(!user.EmailVerify)
+                    if(!(bool)user.EmailVerify)
                     {
                         user.EmailVerify = true;
                         user.CreateTime = DateTime.UtcNow;
@@ -98,7 +98,8 @@ namespace Front.Service
             return _repo.GetAll<User>().FirstOrDefault(m => m.UserId == userId);
         }
 
-        
+
+
         //登入 登出
         public LoginAccountOutputDTO LoginAccount(LoginAccountInputDTO input)
         {
@@ -114,7 +115,7 @@ namespace Front.Service
                 result.Message = "使用者账号不存在";
                 return result;
             }
-            if (!memberFound.EmailVerify)
+            if (!(bool)memberFound.EmailVerify)
             {
                 result.Message = "使用者账号尚未驗證";
                 return result;

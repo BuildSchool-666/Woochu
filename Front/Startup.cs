@@ -50,8 +50,7 @@ namespace Front
 
                     //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
-                //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
-            });
+                
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
 

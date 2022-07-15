@@ -1,4 +1,6 @@
-﻿<div class="container mt-5">
+﻿@model MVCModels.DataModels.User
+@*@Html.AntiForgeryToken()*@
+<div class="container mt-5">
         <div class="row m-auto">
               <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb fw-bold">
@@ -13,7 +15,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100 ">
                             <div class="info">
                                 <h2 class="fs-5">法定名稱</h2>
-                                <p class="fs-6" id="name"></p>
+                                <p class="fs-6" id="name">@Html.Display("FirstName") @Html.Display("LastName")</p>
                             </div>
                             <div class="edit">
                                 <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
@@ -24,17 +26,19 @@
                         </div>
 
                         <div class="collapse" id="btnname">
-                            <form class="mb-3">
+                            <form class="mb-3" method="post" action="~/Account_settings/PersonalInformation">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name" id="FirstName">
+                                          @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", name="FirstName"} })
+                                        @*<input type="text" class="form-control" placeholder="First name" id="FirstName">*@
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name" id="LastName">
+                                         @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" , name="LastName"} })
+                                         @*<input type="text" class="form-control" placeholder="Last name" id="LastName">*@
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-dark" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
                             </form>
-                            <button type="button" class="btn btn-dark" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
                         </div>
                     </div>
 
@@ -94,7 +98,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100">
                             <div class="info">
                                 <h2 class="fs-5">電子郵件</h2>
-                                <span class="fs-6" id="email"></span>
+                                <span class="fs-6" id="email">@Model.Email</span>
                             </div>
                             <div class="edit">
                                 <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
@@ -276,7 +280,7 @@
 
         btn_name.onclick = () =>
         {
-            name.innerText = firstname.value + " " + lastname.value;
+           name.innerText = firstname.value + lastname.value
         }
 
         const btn_gender = document.querySelector('#btn_gender')

@@ -67,7 +67,6 @@ namespace Front.Controllers
                 Password = requestParam.Password
             };
             var outputDto = _service.LoginAccount(inputDto);
-
             if (!outputDto.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, outputDto.Message);
