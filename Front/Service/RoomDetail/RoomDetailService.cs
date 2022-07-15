@@ -88,16 +88,21 @@ namespace Front.Service.RoomDetail
                                 .Where(c => c.RoomId == input.RoomId).ToList();
             roomCommentList.ForEach(rc =>
             {
-                result.VM.CommentItem.Add(
-                    new CommentInformation()
-                    {
-                        CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
-                                      +_repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
-                        CommentContent = rc.Content,
-                        CommentDate = rc.CreateTime,
-                        PersonRatingStar = CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
-                    }
-                );
+                List<double> stars = new List<double> { rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp };
+                if (!stars.Any())
+                {
+                    result.VM.CommentItem.Add(
+                        new CommentInformation()
+                        {
+                            CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
+                                          + _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
+                            CommentContent = rc.Content,
+                            CommentDate = rc.CreateTime,
+                            PersonRatingStar = CalStar.CalPersonStar(rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp),
+                        }
+                    );
+                }
+                
             });
 
             var hostRoomIdList = _repo.GetAll<Room>().Where(c => c.UserId == room.UserId).Select(c => c.RoomId).ToList();
@@ -121,19 +126,19 @@ namespace Front.Service.RoomDetail
             return result;
         }
 
-        public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
-        {
-            double score =
-                CleanlinessStar
-                + AccuracyStar
-                + CommunicationStar
-                + LocationStar
-                + CheckInStar
-                + ValueStar;
+        //public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
+        //{
+        //    double score =
+        //        CleanlinessStar
+        //        + AccuracyStar
+        //        + CommunicationStar
+        //        + LocationStar
+        //        + CheckInStar
+        //        + ValueStar;
 
-            score /= 6;
-            decimal.Round((decimal)score, 1);
-            return score;
-        }
+        //    score /= 6;
+        //    decimal.Round((decimal)score, 1);
+        //    return score;
+        //}
     }
 }
