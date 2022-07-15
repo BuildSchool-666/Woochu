@@ -37,8 +37,7 @@ namespace Front
                     options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
             services.AddScoped<WoochuRepository>();
             services.AddHttpContextAccessor();
-            services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IAccountService, AccountService>();
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -53,7 +52,8 @@ namespace Front
                 
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
-
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IAccountService, AccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
