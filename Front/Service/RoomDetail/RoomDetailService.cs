@@ -74,35 +74,40 @@ namespace Front.Service.RoomDetail
                                 .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
             roomFacilityIdList.ForEach(fId =>
             {
-                result.VM.FacilityItem.Add(
-                    new FacilityIcon()
-                    {
-                        FacilityName = _repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == fId).FacilityName,
-                        FacilityDisplay = _repo.GetAll<Facility>()
-                            .SingleOrDefault(ff => ff.FacilityId == fId).Icon,
-                    }
-                );
+                var facilityItem = _repo.GetAll<Facility>()
+                                    .SingleOrDefault(ff => ff.FacilityId == fId);
+                if (facilityItem != null)
+                {
+                    result.VM.FacilityItem.Add(
+                        new FacilityIcon()
+                        {
+                            FacilityName = facilityItem.FacilityName,
+                            FacilityDisplay = facilityItem.Icon,
+                        }
+                    );
+                }
+                
             });
             var roomCommentList = _repo.GetAll<Comment>()       //everyone's comment to the room
                                 .Where(c => c.RoomId == input.RoomId).ToList();
             roomCommentList.ForEach(rc =>
             {
                 List<double> stars = new List<double> { rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp };
-                if (!stars.Any())
+                if (stars.Any(s => s != null))
                 {
+                    var userName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId);
+
                     result.VM.CommentItem.Add(
                         new CommentInformation()
                         {
-                            CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
-                                          + _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
+                            CommentName = userName.LastName + userName.FirstName,
                             CommentContent = rc.Content,
                             CommentDate = rc.CreateTime,
                             PersonRatingStar = CalStar.CalPersonStar(rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp),
                         }
                     );
                 }
-                
+
             });
 
             var hostRoomIdList = _repo.GetAll<Room>().Where(c => c.UserId == room.UserId).Select(c => c.RoomId).ToList();

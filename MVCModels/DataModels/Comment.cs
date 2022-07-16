@@ -8,7 +8,7 @@ namespace MVCModels.DataModels
     public partial class Comment
     {
         public int CommentId { get; set; }
-        public int? RoomId { get; set; }
+        public int RoomId { get; set; }
         public int UserId { get; set; }
         public string Content { get; set; }
         public DateTime CreateTime { get; set; }
