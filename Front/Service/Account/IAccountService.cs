@@ -14,6 +14,7 @@ namespace Front.Service.Account
         User FindAccountOrNull(string email);
 
         User FindAccountOrNull(int userId);
+
         void VerifyAccount(int userId);
 
     }

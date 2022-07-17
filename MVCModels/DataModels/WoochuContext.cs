@@ -36,7 +36,7 @@ namespace MVCModels.DataModels
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=Woochu;");
+                optionsBuilder.UseSqlServer("Data Source=woochu.database.windows.net;Database=Woochu;User ID=bs;Password=P@ssword;");
             }
         }
 
@@ -122,6 +122,7 @@ namespace MVCModels.DataModels
                 entity.HasOne(d => d.Room)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.RoomId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Comment_Room");
 
                 entity.HasOne(d => d.User)
@@ -452,6 +453,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者生日");
 
                 entity.Property(e => e.Email)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasComment("使用者email");
@@ -475,7 +477,6 @@ namespace MVCModels.DataModels
                     .HasComment("使用者緊急連絡人關係");
 
                 entity.Property(e => e.FirstName)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsFixedLength(true)
                     .HasComment("使用者名");
@@ -489,7 +490,6 @@ namespace MVCModels.DataModels
                 entity.Property(e => e.IsHost).HasComment("是否為房東");
 
                 entity.Property(e => e.LastName)
-                    .IsRequired()
                     .HasMaxLength(10)
                     .IsFixedLength(true)
                     .HasComment("使用者姓");
@@ -499,7 +499,7 @@ namespace MVCModels.DataModels
                     .HasComment("使用者最後上線");
 
                 entity.Property(e => e.Password)
-                    .HasMaxLength(50)
+                    .IsRequired()
                     .HasComment("使用者email密碼");
 
                 entity.Property(e => e.PersonalPhoto)

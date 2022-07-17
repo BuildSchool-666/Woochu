@@ -87,6 +87,7 @@ namespace Front.Service.Rooms
 
                 new RoomVM
                 {
+                    roomId = r.RoomId,
                     Title = r.RoomName,
                     ImgUrl = _repo.GetAll<ImageFile>()
                                     .FirstOrDefault(img => img.RoomId == r.RoomId).Picture,

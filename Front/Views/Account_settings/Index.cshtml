@@ -1,15 +1,10 @@
 ﻿@model MVCModels.DataModels.User
-@{
-    ViewData["Title"] = "Account-Setting Page";
-}
-
-<div class="container m-auto ">
     <div class="title ms-3 mb-5">
         <h1>帳號</h1>
         <div class="info d-flex">
-            @*<p>@Model.FirstName @Model.LastName</p>*@
+            <p>@Model.FirstName @Model.LastName</p>
             <p> ,</p>
-            @*<span>@Model.Email</span>*@
+            <span>@Model.Email</span>
             <a href="#" class="link">前往個人資料</a>
         </div>
     </div>
@@ -163,7 +158,6 @@
         <div class="text-center">想要想要停用你的帳號嗎？</div>
         <a href="#" class="text-dark fw-bold">立即處理</a>
     </div>
-</div>
 
 @section topCSS{
 <style>
