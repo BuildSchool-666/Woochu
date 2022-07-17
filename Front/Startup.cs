@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Front.Service.Account;
 using Front.Service.Rooms;
 using Front.Service.RoomDetail;
+using Front.Service.Order;
 
 namespace Front
 {
@@ -55,6 +56,8 @@ namespace Front
             services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IAccountService, AccountService>();
+
+            services.AddScoped<IOrderService, OrderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

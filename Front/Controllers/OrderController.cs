@@ -1,4 +1,6 @@
-﻿using Front.Models.ViewModels.Order;
+﻿using Front.Models.DTOModels.Order;
+using Front.Models.ViewModels.Order;
+using Front.Service.Order;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -6,45 +8,41 @@ namespace Front.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Index()
+        private readonly IOrderService _service;
+
+        public OrderController( IOrderService service)
         {
-            return View();
+            _service = service;
         }
-        public IActionResult bankAccount()
+        [HttpGet]
+        public IActionResult BankAccount([FromRoute] int roomId)
         {
+            var inputDto = new GetorderDetailInputDTO();
 
-            var date = new DateTime(2021, 10, 03);
-            string dt = date.ToShortDateString();
-            var date2 = new DateTime(2022, 10, 03);
-            string dt2 = date2.ToShortDateString();
+            inputDto.RoomId = roomId;
 
-            int Oprice = 200 * 365;
-            int Tprice = 200 * 365 + 70;
+            var outputDto = _service.GetOrderData(inputDto);
 
 
-            OrderVM order = new OrderVM
+            if (!outputDto.IsSuccess)
             {
-                ImgUrll = "https://picsum.photos/300/200/?random=11",
-                ImgUrl2 = "https://picsum.photos/300/200/?random=12",
-                ImgUrl3 = "https://picsum.photos/300/200/?random=13",
-                ImgUrl4 = "https://picsum.photos/300/200/?random=14",
-                ImgUrl5 = "https://picsum.photos/300/200/?random=15",
-                Title = "Taiwan 101",
-                RoomInfo = "The Highest Building In The World",
-                BedCount = 2,
-                BathCount = 4,
-                RatingScore = 4.5,
-                RentPrice = 200,
-                StarDate = dt,
-                endDate = dt2,
-                DateRange = date2.Subtract(date).Days,
-                OrderPrice = Oprice,
-                ServiceFee = 70,
-                TotalPrice = Tprice,
-
-            };
-
-            return View(order);
+                return Redirect("/");
+                //return RedirectToAction("Index","Home");
+            }
+            return View(outputDto.VM);
         }
+        [HttpPost]
+        public IActionResult BankAccount([FromForm] OrderFilterForm requestParam)
+        {
+            var inputDto = new GetorderDetailInputDTO()
+            {
+                CheckinTime = requestParam.CheckinTime,
+                CheckoutTime = requestParam.CheckoutTime,
+            };
+            var outputDto = _service.GetOrderData(inputDto);
+
+            return View(outputDto.VM);
+        }
+
     }
 }

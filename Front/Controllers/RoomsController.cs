@@ -23,6 +23,8 @@ namespace Back.Controllers
         }
 
         [HttpGet("~/[controller]/[action]/{city?}")]
+
+        //city search
         public IActionResult Roomlist([FromRoute]string city)
         {
             var inputDto = new GetRoomsCardInputDTO();
@@ -40,6 +42,7 @@ namespace Back.Controllers
             return View(vm);
         }
         [HttpPost]
+        //search form
         public IActionResult Roomlist([FromForm] RoomFilterForm requestParam)
         {
             
