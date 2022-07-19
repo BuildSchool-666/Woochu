@@ -6,6 +6,7 @@ namespace Front.Models.ViewModels.RoomDetails
 
     public class RoomDetailVM
     {
+        public int RoomId { get; set; }
         public string Title { get; set; }
         public string Address { get; set; }
         public string RoomInfo { get; set; }

@@ -199,7 +199,7 @@ nav {
 .cta {
     margin: 80px 0;
     background-image: linear-gradient(to right, #3f2321, transparent), url(https://www.ascham.nsw.edu.au/wp-content/uploads/2017/07/Duntrim-House-Aschams-beautiful-new-boarding-facility-small.jpg);
-    block-size: auto;
+    block-size: cover;
     background-position: center;
     border-radius: 10px;
     padding: 5%;

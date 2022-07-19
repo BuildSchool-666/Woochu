@@ -31,11 +31,13 @@ namespace Front.Controllers
             }
             return View(outputDto.VM);
         }
-        [HttpPost]
-        public IActionResult BankAccount([FromForm] OrderFilterForm requestParam)
+        //[HttpPost]
+        [HttpPost("~/[controller]/[action]/{roomId}")]
+        public IActionResult BankAccount([FromForm] OrderFilterForm requestParam, [FromRoute] int roomId)
         {
             var inputDto = new GetorderDetailInputDTO()
             {
+                RoomId = roomId,
                 CheckinTime = requestParam.CheckinTime,
                 CheckoutTime = requestParam.CheckoutTime,
             };

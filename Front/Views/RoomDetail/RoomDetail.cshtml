@@ -73,28 +73,19 @@
             <p>(2) 人/@Model.BedCount 床/@Model.BathCount 廁所</p>
             <h4>$@Model.RentPrice/day</h4>
         </div>
-        <form class="check-form">
+        <form class="check-form" method="post" action="~/Order/bankAccount/@Model.RoomId">
 
             <div>
                 <label>入住時間 : </label>
-                <input type="datetime-local" id="checkin-time" name="checkin-time" value="">
+                <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
             </div>
             <div>
                 <label>退房時間 : </label>
-                <input type="datetime-local" id="checkout-time" name="checkout-time" value="">
+                <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
             </div>
-            <div class="guest-field">
-                <label>人數</label>
-
-                <select>
-                    <option value="1">1 人</option>
-                    <option value="2" selected>2 人</option>
-                    <option value="3">3 人</option>
-                    <option value="4">4 人</option>
-                </select>
-            </div>
+            
             <!-- <button type="submit"></button> -->
-            <a href="~/Order/bankAccount">預定</a>
+            <button type="submit" >預定</button>
         </form>
 
         <div class="service-item">

@@ -33,10 +33,18 @@ namespace Front.Service.Order
 
             }
             var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
-            var order = _repo.GetAll<MVCModels.DataModels.Order>().SingleOrDefault(r => r.RoomId == input.RoomId);
+
+            var order = _repo.GetAll<MVCModels.DataModels.Order>().FirstOrDefault(r => r.RoomId == input.RoomId);
+
+            var starDate = input.CheckinTime;
+            var endDate = input.CheckoutTime;
+            var dateRange = input.CheckoutTime.Subtract(input.CheckinTime).Days;
+            var roomPrice = (int)room.BasicPrice * (input.CheckoutTime.Subtract(input.CheckinTime).Days);
+            var totalPrice = (int)room.BasicPrice * (input.CheckoutTime.Subtract(input.CheckinTime).Days) + (int)room.ServiceCharge;
 
             result.VM = new OrderVM()
             {
+                RoomId = room.RoomId,
                 Title = room.RoomName,
                 RoomInfo = "RoomInfo",
                 BedCount = _repo.GetAll<RoomFacility>()
@@ -47,12 +55,12 @@ namespace Front.Service.Order
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
                 RatingScore = CalStar.CalRoomStar(_repo, input.RoomId),
                 RentPrice = (int)room.BasicPrice,
-                StarDate = order.CheckInDate,
-                endDate = order.CheckOutDate,
-                DateRange = order.CheckOutDate.Subtract(order.CheckOutDate).Days,
-                OrderPrice = (int)room.BasicPrice * (order.CheckOutDate.Subtract(order.CheckOutDate).Days),
+                StarDate = starDate,
+                endDate = endDate,
+                DateRange = dateRange,
+                OrderPrice = roomPrice,
                 ServiceFee = (int)room.ServiceCharge,
-                TotalPrice = (int)room.BasicPrice * (order.CheckOutDate.Subtract(order.CheckOutDate).Days) + (int)room.ServiceCharge,
+                TotalPrice = totalPrice,
             };
 
 

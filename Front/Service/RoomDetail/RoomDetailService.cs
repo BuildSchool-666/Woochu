@@ -35,6 +35,7 @@ namespace Front.Service.RoomDetail
 
             result.VM = new RoomDetailVM()
             {
+                RoomId = room.RoomId,
                 Title = room.RoomName,
                 Address = room.Address,
                 RoomInfo = "RoomInfo",

@@ -6,12 +6,15 @@ namespace Front.Models.ViewModels.Order
 {
     public class OrderFilterForm
     {
+        public int RoomId { get; set; }
+
         public DateTime CheckinTime { get; set; }
         public DateTime CheckoutTime { get; set; }
     }
 
     public class OrderVM
     {
+        public int RoomId { get; set; }
         public List<string> ImgUrls { get; set; }
         public string Title { get; set; }
         public string RoomInfo { get; set; }
