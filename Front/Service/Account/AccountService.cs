@@ -75,7 +75,7 @@ namespace Front.Service
         public void VerifyAccount(int userId)
                 {
                     var user = FindAccountOrNull(userId);
-                    if(!(bool)user.EmailVerify)
+                    if(user.EmailVerify==false)
                     {
                         user.EmailVerify = true;
                         user.CreateTime = DateTime.UtcNow;
@@ -115,7 +115,7 @@ namespace Front.Service
                 result.Message = "使用者账号不存在";
                 return result;
             }
-            if (!(bool)memberFound.EmailVerify)
+            if (memberFound.EmailVerify==false)
             {
                 result.Message = "使用者账号尚未驗證";
                 return result;
