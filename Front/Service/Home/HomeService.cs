@@ -17,6 +17,7 @@ namespace Front.Service.Home
         }
         private void CreateData()
         {
+            int a = 1;
             var entity = new Room
             {
                 RoomName = "宜蘭1",
