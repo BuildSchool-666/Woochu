@@ -32,7 +32,6 @@ namespace Front.Service.RoomDetail
             var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
             var roomStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId);
             
-
             result.VM = new RoomDetailVM()
             {
                 Title = room.RoomName,
@@ -88,16 +87,20 @@ namespace Front.Service.RoomDetail
                                 .Where(c => c.RoomId == input.RoomId).ToList();
             roomCommentList.ForEach(rc =>
             {
-                result.VM.CommentItem.Add(
-                    new CommentInformation()
-                    {
-                        CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
-                                      +_repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
-                        CommentContent = rc.Content,
-                        CommentDate = rc.CreateTime,
-                        PersonRatingStar = CalPersonStar(rc.Cleanliness,rc.Accuracy,rc.Communication,rc.Location,rc.CheckIn,rc.Cp),
-                    }
-                );
+                List<double> stars = new List<double> { rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp };
+                if (!stars.Any())
+                {
+                    result.VM.CommentItem.Add(
+                        new CommentInformation()
+                        {
+                            CommentName = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).LastName
+                                          + _repo.GetAll<User>().SingleOrDefault(u => u.UserId == rc.UserId).FirstName,
+                            CommentContent = rc.Content,
+                            CommentDate = rc.CreateTime,
+                            PersonRatingStar = CalStar.CalPersonStar(rc.Cleanliness, rc.Accuracy, rc.Communication, rc.Location, rc.CheckIn, rc.Cp),
+                        }
+                    );
+                }
             });
 
             var hostRoomIdList = _repo.GetAll<Room>().Where(c => c.UserId == room.UserId).Select(c => c.RoomId).ToList();
