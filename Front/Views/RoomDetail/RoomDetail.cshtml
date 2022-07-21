@@ -74,7 +74,6 @@
             <h4>$@Model.RentPrice/day</h4>
         </div>
         <form class="check-form" method="post" action="~/Order/bankAccount/@Model.RoomId">
-
             <div>
                 <label>入住時間 : </label>
                 <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
@@ -83,9 +82,9 @@
                 <label>退房時間 : </label>
                 <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
             </div>
-            
+
             <!-- <button type="submit"></button> -->
-            <button type="submit" >預定</button>
+            <button type="submit">預定</button>
         </form>
 
         <div class="service-item">
@@ -105,7 +104,7 @@
             <div class="comment-rating">
                 @*@{Star(Model.RatingStar);}*@
                 @{var roomStar = Math.Round(Model.RatingStar, 1); }
-                <i class="fas fa-star">@roomStar</i>
+                <i class="fas fa-star"> @roomStar</i>
                     <h3>@Model.CommentCount 則評論</h3>
                 </div>
                 @*<div class="score">

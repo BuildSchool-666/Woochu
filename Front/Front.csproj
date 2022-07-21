@@ -16,6 +16,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,4 +30,25 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="Service\Payment\" />
+    <None Remove="Service\Payment\Interfaces\" />
+    <None Remove="Service\Payment\Enums\" />
+    <None Remove="Service\Payment\Configurations\" />
+    <None Remove="Views\Payment\" />
+    <None Remove="Service\Payment\Service\" />
+    <None Remove="Models\DTOModels\Payment\" />
+    <None Remove="Models\ViewModels\Payment\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\Payment\" />
+    <Folder Include="Service\Payment\Interfaces\" />
+    <Folder Include="Service\Payment\Enums\" />
+    <Folder Include="Service\Payment\Configurations\" />
+    <Folder Include="Views\Payment\" />
+    <Folder Include="Service\Payment\Service\" />
+    <Folder Include="Models\DTOModels\Payment\" />
+    <Folder Include="Models\ViewModels\Payment\" />
+  </ItemGroup>
 </Project>

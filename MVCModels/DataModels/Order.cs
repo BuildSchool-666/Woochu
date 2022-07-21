@@ -7,9 +7,9 @@ namespace MVCModels.DataModels
 {
     public partial class Order
     {
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
         public int CustomerId { get; set; }
-        public int UserId { get; set; }
+        public int HostId { get; set; }
         public DateTime OrderDate { get; set; }
         public int PayedStatus { get; set; }
         public int RoomId { get; set; }

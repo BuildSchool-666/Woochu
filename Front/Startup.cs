@@ -19,6 +19,7 @@ using Front.Service.Rooms;
 using Front.Service.RoomDetail;
 using Front.Service.Order;
 using Front.Service.Account_setting;
+using Front.Service.Payment.Service;
 
 namespace Front
 {
@@ -55,9 +56,12 @@ namespace Front
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IAccountService, AccountService>(); 
-            services.AddScoped<IAccount_settingService, Account_settingService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+
+            services.AddScoped<IAccount_settingService, Account_settingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
