@@ -1,0 +1,64 @@
+﻿ <div class="row m-auto">
+            <nav style="--bs-breadcrumb-divider: '>'; margin-bottom: 50px;" aria-label="breadcrumb">
+                <ol class="breadcrumb fw-bold">
+                    <li class="breadcrumb-item"><a href="./Account_Page.html">賬號</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">差旅</li>
+                </ol>
+            </nav>
+            <div class="content d-flex flex-wrap justify-content-center">
+                <div class="data w-75">
+                    
+                    <div class="d-flex align-items-center justify-content-between w-100 mb-4 pb-4" >
+                        <div class="info w-75">
+                            <h2 class="fw-bold fs-4">加入商務Airbnb</h2>
+                            <span class="fs-6 d-block mb-4">新增工作電子郵件，即可輕鬆報帳並享有商務差旅獨家優惠。</span>
+                            <h3 class="fs-6 fw-bold">工作電子郵件地址</h3>
+                            <form class="form-floating mb-3" id="email">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="" required>
+                                <label for="floatingInput">Email address</label>
+                            </form>
+                            <button class="btn" type="submit" form="email" style="background-color: #008489;color: white;font-weight: bold;">新增工作電子郵件信箱</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="information w-25 d-none d-md-block p-4 fs-1 border">
+                    <i class="fa-brands fa-optin-monster text-danger"></i>
+                    <h3 class="fs-5 fw-bold">簡化報帳流程</h3>
+                    <p class="fs-6 text-secondary">我們會將差旅收據寄至你的工作電子郵件信箱，以便報帳核銷。</p>
+                    <i class="fa-solid fa-clipboard text-danger fw-lighter" ></i>
+                    <h3 class="fs-5 fw-bold">旅程說明</h3>
+                    <p class="fs-6 text-secondary">新增商務差旅的支出代碼和業務目的。</p>
+                    <i class="fa-solid fa-lock text-danger"></i>
+                    <h3 class="fs-5 fw-bold">不公開私人旅程資訊</h3>
+                    <p class="fs-6 text-secondary">貴公司只會看到你付款時標記為商務差旅的旅程資料。</p>
+                </div>
+            </div>
+        </div>
+
+@section topCSS
+{
+    <style>
+        
+        .nav{
+            margin-left: 10px;
+
+        }
+        .container
+        {
+            width: 1200px;
+        }
+        a{
+            color: black;
+        }
+        /*@@media only screen and (max-width: 768px){
+            .data{
+                width: 100% !important;
+            }
+        }*/
+        
+    </style>
+}
+@section endJS
+{
+     <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
+}

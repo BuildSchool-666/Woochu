@@ -1,95 +1,118 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using MVCModels.DataModels;
-using MVCModels.Repositories;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using System.Security.Principal;
+using Front.Models.DTOModels.Account_setting_DTO;
+using Front.Service.Account_setting;
 using Front.Models.ViewModels.Account_settings;
 
 namespace Front.Controllers
 {
     public class Account_settingsController : Controller
     {
+        private readonly IAccount_settingService _service;
         private readonly WoochuContext _context;
-        public Account_settingsController(WoochuContext context)
+        public Account_settingsController(WoochuContext context, IAccount_settingService service)
         {
             _context = context;
+            _service = service;
         }
 
         public async Task<IActionResult> Index()
         {
+            var inputDto = new PersonalDetailsInputDTO();
 
-            //var users = User.Identity.Name;
-            //int use = int.Parse(users);
+            inputDto.Email = User.Identity.Name;
 
-            //var query = _context.Users.Where(u => u.UserId == use).FirstOrDefault();
+            var outputDto = _service.GetUserData(inputDto);
 
-            //User user = new User
-            //{
-            //    UserId = query.UserId,
-            //    FirstName = query.FirstName,
-            //    LastName = query.LastName,
-            //    Email = query.Email,
-            //};
-            var userid = int.Parse(User.Identity.Name);
-            var user = await _context.Users.FindAsync(userid);
-            return View(user);
+            if (!outputDto.IsSuccess)
+            {
+                return Redirect("/");
+
+            }
+            return View(outputDto.VM);
+
+            //var userid = int.Parse(User.Identity.Name);
+            //var user = await _context.Users.FindAsync(userid);
+            //return View(user);
 
         }
         [HttpGet]
         public async Task<IActionResult> PersonalInformation()
         {
-            var userid = int.Parse(User.Identity.Name); 
-            var user = await _context.Users.FindAsync(userid);
-            
-            return View(user);
+            var inputDto = new PersonalDetailsInputDTO();
+
+            inputDto.Email = User.Identity.Name;
+
+
+            var outputDto = _service.GetUserData(inputDto);
+
+            if (!outputDto.IsSuccess)
+            {
+                return Redirect("/");
+
+            }
+            return View(outputDto.VM);
+            //var userid = int.Parse(User.Identity.Name);
+            //var user = await _context.Users.FindAsync(userid);
+
+            //return View(user);
 
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public IActionResult PersonalInformation(User user)
+        public IActionResult PersonalInformation([FromForm] PersonalInformationVM requestParam)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(requestParam);
+            }
+            var inputDto = new PersonalDetailsInputDTO()
+            {
+                Email = User.Identity.Name,
+                VM = new PersonalInformationVM
+                {
+                    FirstName = requestParam.FirstName,
+                    LastName = requestParam.LastName,
+                    Email = requestParam.Email,
+                    Gender = requestParam.Gender,
+                    Dob = requestParam.Dob,
+                    Phone = requestParam.Phone,
+                    EmergencyContactName = requestParam.EmergencyContactName,
+                    EmergencyContactNumber = requestParam.EmergencyContactNumber,
+                    Address = requestParam.Address,
 
-            int userId = int.Parse(User.Identity.Name);
-            //int user = userId);
+                }
 
-            var query = _context.Users.SingleOrDefault(u => u.UserId == userId);
-            query.FirstName = user.FirstName;
-            query.LastName = user.LastName;
-            //User member = new User
-            //{
-            //    UserId = query.UserId,
-            //    FirstName = query.FirstName,
-            //    LastName = query.LastName,
-            //    Email = query.Email,
-            //};
-            //_context.Add(member).State = EntityState.Modified;
-            _context.SaveChanges();
+            };
+            var outputDto = _service.UpdateUserData(inputDto);
 
-            return View(query);
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Entry(user).State = EntityState.Modified;
-        //        _context.SaveChanges();
-
-        //    }
-        ////    return View(user);
-        //if (ModelState.IsValid)
+            if (!outputDto.IsSuccess)
+            {
+                ModelState.AddModelError(string.Empty, outputDto.Message);
+                return View(requestParam);
+            }
+            return View(outputDto.VM);
+        }
+        //[ValidateAntiForgeryToken]
+        //public IActionResult PersonalInformation(User user)
         //{
-        //    _context.Users.Add(user);
-        //    _context.SaveChanges();
-        //    return Content("储存成功");
-        //}
-        
-    }
 
-    public IActionResult Privacy()
+        //    int userId = int.Parse(User.Identity.Name);
+
+        //    var query = _context.Users.SingleOrDefault(u => u.UserId == userId);
+        //    query.FirstName = user.FirstName;
+        //    query.LastName = user.LastName;
+        //    query.Gender = user.Gender;
+
+        //    _context.SaveChanges();
+
+        //    return View(query);
+
+        //}
+
+        public IActionResult Privacy()
         {
             return View();
         }
@@ -97,11 +120,19 @@ namespace Front.Controllers
         {
             return View();
         }
-        public IActionResult GuesrReferrals()
+        public IActionResult GuestReferrals()
         {
             return View();
         }
         public IActionResult ProfessionalHostTools()
+        {
+            return View();
+        }
+        public IActionResult Notification()
+        {
+            return View();
+        }
+        public IActionResult TravelForWork()
         {
             return View();
         }

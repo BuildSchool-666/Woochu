@@ -1,12 +1,17 @@
 ﻿@using Front.Models.ViewModels.Account
 @model RegisterVM
+
+@if(TempData["message"] != null)
+{
+    <script>alert( "@Html.Raw(@TempData["message"] )" );</script>
+}
 <form method ="post">
-    <div class="content mt-5">
+    <div class="content">
         <div class="box w-50 m-auto border border-secondary rounded">
             <div class="title p-3 text-center border-bottom fw-bold">
                 登入或註冊
             </div>
-            <div class="content m-5">
+            <div class="Box m-5">
                 <h1>Airbnb 歡迎你</h1>
                 <label class="form-floating w-100" id="Phone">
                     <input type="text" class="form-control" id="floatingInputValue" placeholder="電話號碼">
@@ -39,17 +44,16 @@
                 <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6" id="ByPhone" style="display:none;">
                     <i class="fa-solid fa-phone"></i>
                     繼續使用手机登入
-                </button>
-                
+                </button> 
             </div>
         </div>
     </div>
 </form>
 
 
-    @section topCSS
-    {
-        <style>
+@section topCSS
+{
+    <style>
         .content
         {
             margin-top:150px;
@@ -104,11 +108,11 @@
         {
             margin:5px 0px;
             
-        }
-        
+        }     
     </style>
+}
+        
 
-    }
     @section endJS
     {
          <script>

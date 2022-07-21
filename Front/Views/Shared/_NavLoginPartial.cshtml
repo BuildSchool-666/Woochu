@@ -1,14 +1,41 @@
-﻿@if(User.Identity.IsAuthenticated)
+﻿@using Microsoft.AspNetCore.Identity
+@*@model MVCModels.DataModels.User*@
+@if(User.Identity.IsAuthenticated)
+@*@if(SignInManager<TUser>.IsSignedIn(User))*@
 {
-    @*<p>@User.Identity.Name</p>*@
-    <a asp-area="" asp-controller="Account" asp-action="Logout">登出</a>
-    <a href="#home">出租房源</a>
+ 
+    <p style="color:white;">Welcome! @User.Identity.Name</p>
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn register-btn">
+            <i class="fas fa-bars" style="font-size: 20px;"></i>
+            <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+        </button>
+        <div id="myDropdown" class="dropdown-content">
+                @*<p>@User.Identity.Name</p>*@
+            <a asp-area="" asp-controller="Account" asp-action="Logout">登出</a>
+            <a href="#home">出租房源</a>
+            <a href="~/Account_settings/Index">帳戶</a>
+        </div>
+    </div>
+
 }
 else
 {
-    <a href="/Account/Register">註冊</a>
-    <a asp-area="" asp-controller="Account" asp-action="Login">登入</a>
-    <a href="#home">出租房源</a>
+    
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn register-btn">
+            <i class="fas fa-bars" style="font-size: 20px;"></i>
+            <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+        </button>
+        <div id="myDropdown" class="dropdown-content">
+                @*<p>@User.Identity.Name</p>*@
+            <a href="/Account/Register">註冊</a>
+            <a asp-area="" asp-controller="Account" asp-action="Login">登入</a>
+            <a href="#home">出租房源</a>
+        </div>
+    </div>
+            
+    
 }
 
 
