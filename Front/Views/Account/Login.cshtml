@@ -1,5 +1,8 @@
 ﻿@model Front.Models.ViewModels.Account.LoginVM
-
+@if(TempData["message"] != null)
+{
+    <script>alert( "@Html.Raw(@TempData["message"] )" );</script>
+}
 <form method="post">
     <div class="content">
         <div class="box w-50 m-auto border border-secondary rounded">

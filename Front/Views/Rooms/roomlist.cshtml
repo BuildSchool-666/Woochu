@@ -32,25 +32,28 @@
 <div class="container">
     <div class="list-container">
         <div class="left-col">
-            <p>200+ 選擇</p>
             @if(!(Model.City == "0"))
             {
-            <h1>選擇地點 : @Model.City</h1>
+                <h1>選擇地點 : @Model.City</h1>
+            }
+            else
+            {
+                <h1>選擇地點 : 全部</h1>
             }
 
             @foreach(var room in Model.Rooms)
             {
             <div class="house">
                 <div class="house-img">
-                    <a href="#">
+                    <a href="~/RoomDetail/RoomDetail/@room.roomId">
                         <img src="@room.ImgUrl" alt="">
                     </a>
                 </div>
                 <div class="house-info">
                     <p> @room.Title</p>
-                    <a href="house.html">
-                        <h3>@room.HouseInfo</h3>
-                    </a>
+                    
+                    <h3>@room.HouseInfo</h3>
+
                     <p>@room.BedCount 床 / @room.BathCount 廁所 </p>
                     
                     @{Star(room.Rating);}
@@ -177,66 +180,7 @@
                 </div>
             </div>*@
         </div>
-        <div class="right-col">
-            <div class="sidebar">
-                <h2>篩選</h2>
-                <h3>房屋總類</h3>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>透天</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>旅館</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>公寓</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>小木屋</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>套房</p> <span>(0)</span>
-                </div>
-
-                <h3>設施</h3>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>冷氣</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>網路</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>健身房</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>游泳池</p> <span>(0)</span>
-                </div>
-                <div class="filter">
-                    <input type="checkbox">
-                    <p>廚房</p> <span>(0)</span>
-                </div>
-
-                <div class="sidebar-link">
-                    <a href="#">更多</a>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <div class="pagination">
-        <img src="images/arrow.png" alt="">
-        <span class="current"><a href="~/Rooms/roomlist">1</a></span>
-        <span><a href="~/Rooms/roomlistPage2">2</a></span>
-        <span><a href="~/Rooms/roomlistPage3">3</a></span>
-
-        <img src="~/images/arrow.png" class="right-arrow" alt="">
-    </div>
+    
 </div>

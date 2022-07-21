@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Front.Models.ViewModels.Account_settings
 {
+
     public class PersonalInformationVM
     {
         public string LastName { get; set; }
@@ -23,5 +25,14 @@ namespace Front.Models.ViewModels.Account_settings
         public string PersonalPhoto { get; set; }
         public string About { get; set; }
         
+    }
+    public class PersonalInfoName
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+    public class PersonalInfoEmail
+    {
+        public string Email { get; set; }
     }
 }

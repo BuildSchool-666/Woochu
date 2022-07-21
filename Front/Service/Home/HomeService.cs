@@ -16,6 +16,7 @@ namespace Front.Service.Home
             _repo = repo;
         }
         private void CreateData()
+        
         {
             var entity = new Room
             {
