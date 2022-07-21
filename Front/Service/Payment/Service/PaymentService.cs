@@ -46,7 +46,7 @@ namespace Front.Service.Payment.Service
             };
             var entity = new MVCModels.DataModels.Order()
             {
-                OrderId = int.Parse(input.OrderId),
+                OrderId = input.OrderId,
                 CustomerId = input.CustomerId,
                 HostId = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId).UserId,
                 OrderDate = input.OrderDate.DateTime,
@@ -76,7 +76,7 @@ namespace Front.Service.Payment.Service
             {
                 IsSuccess = false,
             };
-            var order = _repo.GetAll<MVCModels.DataModels.Order>().SingleOrDefault(o => o.OrderId == int.Parse(id));
+            var order = _repo.GetAll<MVCModels.DataModels.Order>().SingleOrDefault(o => o.OrderId == id);
             try
             {
                 order.PayedStatus = 2;
