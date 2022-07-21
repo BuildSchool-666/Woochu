@@ -1,29 +1,30 @@
 ﻿@using Front.Models.ViewModels.Order
 @model OrderVM
 <div class="container">
-    <form action="">
+    <form method="post" asp-controller="Payment" asp-action="checkout">
 
         <div class="row">
             <div class="house">
                 <div class="house-img">
-                    <div class="gallery">
-                        <div class="gallery-img-1"><img src=" @Model.ImgUrls[0]"></div>
-                        @for(int i = 1;i<5;i++)
-                        {
-                        <div><img src=" @Model.ImgUrls[i]"></div>
-                        }
-                    </div>
+                    <a href="~/RoomDetail/RoomDetail/@Model.RoomId">
+                        <div class="gallery">
+                            <div class="gallery-img-1">
+                                <img src="@Model.ImgUrls[0]">
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="house-info">
                     <p>@Model.Title</p>
-                    <a href="house.html">
+                    
                         <h3>@Model.RoomInfo</h3>
-                    </a>
-                    <p>@Model.BedCount 床 / @Model.BathCount 廁所</p>
-                    <i class="fas fa-star"> @Model.RatingScore </i>
-                   
+                    
+                    <p>@Model.BedCount 床 / @Model.BathCount 廁所 @TempData["roomId"]</p>
+                    @{var roomStar = Math.Round(Model.RatingStar, 1); }
+                    <i class="fas fa-star"> @roomStar</i>
+
                     <div class="house-price">
-                        <h4>$ @Model.RentPrice <span>/ 天</span></h4>
+                        <h4>$ @Model.BasicPrice <span>/ 天</span></h4>
                     </div>
                 </div>
             </div>
@@ -34,10 +35,9 @@
                         <h3>你的旅程 :</h3>
                         <div class="paymentinfo">
                             <h4>日期 :</h4>
-                            <p> @Model.StarDate ~ @Model.endDate</p>
+                            <p> @Model.StartDate  ~  @Model.EndDate</p>
                             <h4>價格詳情 :</h4>
-                            <p>$ @Model.RentPrice x @Model.DateRange 晚
-                                @Model.OrderPrice</p>
+                            <p>$ @Model.BasicPrice x @Model.DateRange 晚 = $ @Model.RentPrice</p>
                             <h4>服務費 :</h4>
                             <p>$ @Model.ServiceFee</p>
                             <h4>總價 (TWD) :</h4>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="payment">
+                @*<div class="payment">
                     <div class="billing-address">
                         <h3 class="title">billing address</h3>
 
@@ -111,12 +111,12 @@
                         </div>
 
                     </div>
-                </div>
+                </div>*@
 
 
             </div>
         </div>
-        <a href="house.html" class="goback">上一步 . . .</a>
+        <a href="~/RoomDetail/RoomDetail/@Model.RoomId" class="goback">上一步 . . .</a>
         <input type="submit" value="proceed to checkout" class="submit-btn">
     </form>
 </div>

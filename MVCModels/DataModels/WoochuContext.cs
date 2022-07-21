@@ -259,7 +259,7 @@ namespace MVCModels.DataModels
                     .HasColumnType("decimal(18, 0)")
                     .HasComment("總價");
 
-                entity.Property(e => e.UserId).HasComment("房東ID");
+                entity.Property(e => e.HostId).HasComment("房東ID");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)

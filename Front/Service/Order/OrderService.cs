@@ -4,6 +4,7 @@ using Front.Models.ViewModels.Order;
 using MVCModels.DataModels;
 using MVCModels.MyEnum;
 using MVCModels.Repositories;
+using System;
 using System.Linq;
 
 namespace Front.Service.Order
@@ -19,7 +20,6 @@ namespace Front.Service.Order
 
         public GetOrderOutputDTO GetOrderData(GetorderDetailInputDTO input)
         {
-            //this.CreateData();
 
             var result = new GetOrderOutputDTO
             {
@@ -34,17 +34,15 @@ namespace Front.Service.Order
             }
             var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
 
-            var order = _repo.GetAll<MVCModels.DataModels.Order>().FirstOrDefault(r => r.RoomId == input.RoomId);
-
-            var starDate = input.CheckinTime;
-            var endDate = input.CheckoutTime;
-            var dateRange = input.CheckoutTime.Subtract(input.CheckinTime).Days;
-            var roomPrice = (int)room.BasicPrice * (input.CheckoutTime.Subtract(input.CheckinTime).Days);
-            var totalPrice = (int)room.BasicPrice * (input.CheckoutTime.Subtract(input.CheckinTime).Days) + (int)room.ServiceCharge;
+            DateTime startDate = input.CheckinTime;
+            DateTime endDate = input.CheckoutTime;
+            int dateRange = endDate.Subtract(startDate).Days;
+            int roomBasicPrice = (int)room.BasicPrice * dateRange;
+            int roomTotalPrice = roomBasicPrice + (int)room.ServiceCharge;
 
             result.VM = new OrderVM()
             {
-                RoomId = room.RoomId,
+                RoomId = input.RoomId,
                 Title = room.RoomName,
                 RoomInfo = "RoomInfo",
                 BedCount = _repo.GetAll<RoomFacility>()
@@ -53,14 +51,14 @@ namespace Front.Service.Order
                                 .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
-                RatingScore = CalStar.CalRoomStar(_repo, input.RoomId),
-                RentPrice = (int)room.BasicPrice,
-                StarDate = starDate,
-                endDate = endDate,
+                RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
+                BasicPrice = (int)room.BasicPrice,
+                StartDate = startDate,
+                EndDate = endDate,
                 DateRange = dateRange,
-                OrderPrice = roomPrice,
+                RentPrice= roomBasicPrice,
                 ServiceFee = (int)room.ServiceCharge,
-                TotalPrice = totalPrice,
+                TotalPrice = roomTotalPrice,
             };
 
 

@@ -20,15 +20,15 @@ namespace Front.Models.ViewModels.Order
         public string RoomInfo { get; set; }
         public int BedCount { get; set; }
         public int BathCount { get; set; }
-        public double RatingScore { get; set; }
+        public double RatingStar { get; set; }
         public int RentPrice { get; set; }
 
-        public DateTime StarDate { get; set; }
-        public DateTime endDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public int DateRange { get; set; }
-        public int OrderPrice { get; set; }
-        public int TotalPrice { get; set; }
+        public int BasicPrice { get; set; }
         public int ServiceFee { get; set; }
+        public int TotalPrice { get; set; }
 
         
     }
