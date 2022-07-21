@@ -16,7 +16,7 @@
 <body>
     <header>
         <nav id="navBar" class="navbar-white">
-            <a href="website.html">
+            <a href="~/">
                 <img src="~/images/whoochu.red.png" class="logo" alt="">
             </a>
             <ul class="nav-links ">
@@ -24,7 +24,8 @@
                 <li><a href="a.html" class="active">房屋清單</a></li>
                 <li><a href="house.html">熱門房型</a></li>
             </ul>
-            <div class="dropdown">
+             @await Html.PartialAsync("_NavLoginPartial",(object)Model)
+           @* <div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
                     <i class="fas fa-bars" style="font-size: 20px;"></i>
                     <i class="fas fa-user-circle" style="font-size: 30px;"></i>
@@ -34,7 +35,7 @@
                     <a href="/Account/Register">註冊</a>
                     <a href="#home">出租房源</a>
                 </div>
-            </div>
+            </div>*@
             <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
         </nav>
     </header>

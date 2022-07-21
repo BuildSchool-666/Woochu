@@ -38,7 +38,7 @@ namespace Back.Controllers
             }
 
             var outputDto = _service.GetRoomsCard(inputDto);
-            var vm = outputDto.VM;
+            var vm = outputDto.VM;//
             return View(vm);
         }
         [HttpPost]

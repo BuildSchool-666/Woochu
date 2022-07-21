@@ -18,6 +18,7 @@ using Front.Service.Account;
 using Front.Service.Rooms;
 using Front.Service.RoomDetail;
 using Front.Service.Order;
+using Front.Service.Account_setting;
 
 namespace Front
 {
@@ -54,8 +55,8 @@ namespace Front
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
-            services.AddScoped<IAccountService, AccountService>();
-
+            services.AddScoped<IAccountService, AccountService>(); 
+            services.AddScoped<IAccount_settingService, Account_settingService>();
             services.AddScoped<IOrderService, OrderService>();
         }
 

@@ -1,7 +1,10 @@
-﻿namespace Front.Service.Account_setting
+﻿using Front.Models.DTOModels.Account_setting_DTO;
+
+namespace Front.Service.Account_setting
 {
-    public interface IAccount_setting
+    public interface IAccount_settingService
     {
-        public void a();
+        PersonalDetailsOutputDTO GetUserData(PersonalDetailsInputDTO input);
+        PersonalDetailsOutputDTO UpdateUserData(PersonalDetailsInputDTO input);
     }
 }

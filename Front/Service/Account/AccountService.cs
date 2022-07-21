@@ -29,7 +29,7 @@ namespace Front.Service
             var result = new CreateAccountOutputDTO()
             {
                 IsSuccess = false,
-                //Message = null
+                Message = null
 
             };
             if(IsExistAccount(input.Email))
@@ -73,17 +73,17 @@ namespace Front.Service
             );
         }
         public void VerifyAccount(int userId)
-                {
-                    var user = FindAccountOrNull(userId);
-                    if(!(bool)user.EmailVerify)
-                    {
-                        user.EmailVerify = true;
-                        user.CreateTime = DateTime.UtcNow;
+        {
+            var user = FindAccountOrNull(userId);
+            if(!(bool)user.EmailVerify)
+            {
+                user.EmailVerify = true;
+                user.CreateTime = DateTime.UtcNow;
 
-                        _repo.Update(user);
-                        _repo.SaveChanges();
-                    }
-                }
+                _repo.Update(user);
+                _repo.SaveChanges();
+            }
+        }
         public bool IsExistAccount(string email)
         {
             return _repo.GetAll<User>().Any(m => m.Email == email);
@@ -130,8 +130,8 @@ namespace Front.Service
 
             List<Claim> claims = new List<Claim>()
             {
-                new Claim( ClaimTypes.Name, memberFound.UserId.ToString()),
-                new Claim(ClaimTypes.Email,memberFound.Email),
+                new Claim( ClaimTypes.Name, memberFound.Email.ToString()),
+                new Claim( ClaimTypes.Email, memberFound.Email),
                 //new Claim("Phone",memberFound.Phone),
 
             };

@@ -3,7 +3,9 @@ using Front.Models.ViewModels.Account;
 using Front.Service.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Front.Controllers
 {
@@ -36,6 +38,8 @@ namespace Front.Controllers
                 PasswordConfirm = requestParam.PasswordConfirm
             };
             var outputDto = _service.CreateAccount(inputDto);
+            TempData["message"] = outputDto.Message;
+
             if (!outputDto.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, outputDto.Message);
@@ -66,7 +70,9 @@ namespace Front.Controllers
                 Email = requestParam.Email,
                 Password = requestParam.Password
             };
+            //var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
             var outputDto = _service.LoginAccount(inputDto);
+            TempData["message"] = outputDto.Message;
             if (!outputDto.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, outputDto.Message);
