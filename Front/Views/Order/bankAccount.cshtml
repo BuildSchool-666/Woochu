@@ -1,7 +1,7 @@
 ﻿@using Front.Models.ViewModels.Order
 @model OrderVM
 <div class="container">
-    <form method="post" asp-controller="Payment" asp-action="checkout">
+    <form method="post" action="~/Payment/checkout/@Model.RoomId">      @* asp-controller="Payment" asp-action="checkout"*@
 
         <div class="row">
             <div class="house">
@@ -35,7 +35,7 @@
                         <h3>你的旅程 :</h3>
                         <div class="paymentinfo">
                             <h4>日期 :</h4>
-                            <p> @Model.StartDate  ~  @Model.EndDate</p>
+                            <p Name=> @Model.StartDate  ~  @Model.EndDate</p>
                             <h4>價格詳情 :</h4>
                             <p>$ @Model.BasicPrice x @Model.DateRange 晚 = $ @Model.RentPrice</p>
                             <h4>服務費 :</h4>

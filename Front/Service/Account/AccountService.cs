@@ -132,6 +132,8 @@ namespace Front.Service
             {
                 new Claim( ClaimTypes.Name, memberFound.Email.ToString()),
                 new Claim( ClaimTypes.Email, memberFound.Email),
+                //new Claim( "id", memberFound.UserId.ToString()),
+                new Claim( ClaimTypes.Role, "User"),
                 //new Claim("Phone",memberFound.Phone),
 
             };
@@ -148,7 +150,7 @@ namespace Front.Service
                 IsPersistent = true,
             };
 
-             _httpContextAccessor.HttpContext.SignInAsync(
+            _httpContextAccessor.HttpContext.SignInAsync(
                 claimPrincipal,authenticationProperties);
 
             return result;

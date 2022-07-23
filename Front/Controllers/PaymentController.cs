@@ -22,13 +22,10 @@ namespace Front.Controllers
         }
 
 
-        [HttpPost("checkout")]
-        public IActionResult CheckOut()
+        [HttpPost("/[controller]/checkout/{roomId}")]
+        public IActionResult CheckOut([FromRoute]int roomId)
         {
-            var b = TempData["roomId"];
-            var c = TempData["roomId"].ToString();
-            //var a = int.Parse(b);
-            //var outputDto = _service.GetRoom(a); 
+            var getRoomOutputDto = _service.GetRoom(roomId); 
 
             var service = new
             {
@@ -36,23 +33,20 @@ namespace Front.Controllers
                 MerchantId = "2000132",
                 HashKey = "5294y06JbISpM5x9",
                 HashIV = "v77hoKGq4kWxNNIS",
-                ServerUrl = "https://0255-220-141-64-49.jp.ngrok.io/Payment/callback", 
-                ClientUrl = "https://0255-220-141-64-49.jp.ngrok.io/"
+                ServerUrl = "https://e0a6-106-104-77-95.jp.ngrok.io/Payment/callback", 
+                ClientUrl = "https://e0a6-106-104-77-95.jp.ngrok.io/"
             };
             var transaction = new
             {
                 No = "Woochu",
-                Description = "Woochu",
-                Date = DateTime.Now,
+                Description = "Woochu Desciption",
+                Date = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 Method = EPaymentMethod.Credit,
                 Items = new List<Item>{
                     new Item{
-                        //Name = outputDto.VM.Title,
-                        //Price = outputDto.VM.RentPrice,
-                        //Quantity = outputDto.VM.PersonCount,
-                        Name = "asd",
-                        Price = 100,
-                        Quantity = 2,
+                        Name = getRoomOutputDto.VM.Title,
+                        Price = getRoomOutputDto.VM.RentPrice,
+                        Quantity = getRoomOutputDto.VM.PersonCount,
                     },
                 }
             };
@@ -78,12 +72,13 @@ namespace Front.Controllers
                     items: transaction.Items)
                 .Generate();
 
+            var getUserOutputDto = _service.GetUser(User.Identity.Name);
 
-            //var inputDto = new CreateOrderInputDTO()
+            //var inputDto = new CreateOrderInputDTO()        //use api post
             //{
             //    OrderId = payment.MerchantTradeNo,
-            //    RoomId = (int)TempData["roomId"],
-            //    CustomerId = int.Parse(TempData["customerId"] as string),
+            //    RoomId = roomId,
+            //    CustomerId = getUserOutputDto.VM.UserId,
             //    OrderDate = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8),
             //    CheckinTime = (DateTime)TempData["startDate"],
             //    CheckoutTime = (DateTime)TempData["endDate"],
@@ -92,11 +87,11 @@ namespace Front.Controllers
             //    ServiceFee = (int)TempData["serviceFee"],
             //    TotalPrice = (int)TempData["totalPrice"],
             //};
-            //var result = _service.CreateOrder(inputDto);
-            //if(result.IsSuccess != true)
-            //{
+            var result = _service.CreateOrder(inputDto);
+            if (result.IsSuccess != true)
+            {
 
-            //}
+            }
 
             return View(payment);
         }

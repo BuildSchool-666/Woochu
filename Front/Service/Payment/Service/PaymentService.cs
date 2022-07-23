@@ -7,6 +7,8 @@ using System.Linq;
 using Front.Models.DTOModels.RoomDetail;
 using Front.Models.ViewModels.RoomDetails;
 using Front.Models.DTOModels;
+using Front.Models.DTOModels.Account_setting_DTO;
+using Front.Models.ViewModels.Account_settings;
 
 namespace Front.Service.Payment.Service
 {
@@ -32,6 +34,24 @@ namespace Front.Service.Payment.Service
                 Title = room.RoomName,
                 RentPrice = (int)room.BasicPrice,
                 PersonCount = (int)room.GuestCount,
+            };
+            result.IsSuccess = true;
+
+            return result;
+        }
+        public PersonalDetailsOutputDTO GetUser(string email)
+        {
+            var result = new PersonalDetailsOutputDTO
+            {
+                IsSuccess = false,
+            };
+            var user = _repo.GetAll<User>().SingleOrDefault(r => r.Email == email);
+
+            result.VM = new PersonalInformationVM
+            { 
+                Email = email,
+                UserId = user.UserId,
+
             };
             result.IsSuccess = true;
 

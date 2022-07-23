@@ -6,6 +6,7 @@ namespace Front.Models.ViewModels.Account_settings
 
     public class PersonalInformationVM
     {
+        public int UserId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public int? Gender { get; set; }
