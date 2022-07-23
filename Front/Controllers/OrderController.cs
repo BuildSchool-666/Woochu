@@ -34,25 +34,40 @@ namespace Front.Controllers
         [HttpPost("~/[controller]/[action]/{roomId}")]
         public IActionResult BankAccount([FromForm] OrderFilterForm requestParam, [FromRoute] int roomId)
         {
+
             var inputDto = new GetorderDetailInputDTO()
             {
                 RoomId = roomId,
+                CustomerMail = User.Identity.Name,
                 CheckinTime = requestParam.CheckinTime,
                 CheckoutTime = requestParam.CheckoutTime,
             };
             var outputDto =  _service.GetOrderData(inputDto);
+            var orderData = new OrderVM
+            {
+                RoomId = roomId,
+                CustomerId = outputDto.VM.CustomerId,
+                StartDate = requestParam.CheckinTime,
+                EndDate = requestParam.CheckoutTime,
+                BasicPrice = outputDto.VM.BasicPrice,
+                DateRange = outputDto.VM.DateRange,
+                ServiceFee = outputDto.VM.ServiceFee,
+                TotalPrice = outputDto.VM.TotalPrice,
+            };
 
-            TempData["roomId"] = roomId;
-            TempData["customerId"] = User.Identity.Name;
-            TempData["startDate"] = requestParam.CheckinTime;
-            TempData["endDate"] = requestParam.CheckoutTime;
-            TempData["basicPrice"] = outputDto.VM.BasicPrice;
-            TempData["quantity"] = outputDto.VM.DateRange;
-            TempData["serviceFee"] = outputDto.VM.ServiceFee;
-            TempData["totalPrice"] = outputDto.VM.TotalPrice;
+            TempData["RoomId"] = orderData.RoomId;
+            TempData["CustomerId"] = orderData.CustomerId;
+            TempData["StartDate"] = orderData.StartDate;
+            TempData["EndDate"] = orderData.EndDate;
+            TempData["BasicPrice"] = orderData.BasicPrice;
+            TempData["DateRange"] = orderData.DateRange;
+            TempData["ServiceFee"] = orderData.ServiceFee;
+            TempData["TotalPrice"] = orderData.TotalPrice;
+            TempData.Keep();
 
             return View(outputDto.VM);
         }
 
     }
+    
 }

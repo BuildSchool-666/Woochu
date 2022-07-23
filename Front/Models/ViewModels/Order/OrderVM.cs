@@ -15,6 +15,7 @@ namespace Front.Models.ViewModels.Order
     public class OrderVM
     {
         public int RoomId { get; set; }
+        public int CustomerId { get; set; }
         public List<string> ImgUrls { get; set; }
         public string Title { get; set; }
         public string RoomInfo { get; set; }

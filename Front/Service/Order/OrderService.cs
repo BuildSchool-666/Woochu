@@ -33,6 +33,7 @@ namespace Front.Service.Order
 
             }
             var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
+            var customer = _repo.GetAll<User>().SingleOrDefault(c => c.Email == input.CustomerMail);
 
             DateTime startDate = input.CheckinTime;
             DateTime endDate = input.CheckoutTime;
@@ -43,6 +44,7 @@ namespace Front.Service.Order
             result.VM = new OrderVM()
             {
                 RoomId = input.RoomId,
+                CustomerId = customer.UserId,
                 Title = room.RoomName,
                 RoomInfo = "RoomInfo",
                 BedCount = _repo.GetAll<RoomFacility>()

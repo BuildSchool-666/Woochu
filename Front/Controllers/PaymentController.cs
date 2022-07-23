@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Front.Models.DTOModels.Payment;
+using Front.Models.ViewModels.Order;
 using Front.Models.ViewModels.Payment;
 using Front.Service.Payment;
 using Front.Service.Payment.Enums;
@@ -25,7 +26,7 @@ namespace Front.Controllers
         [HttpPost("/[controller]/checkout/{roomId}")]
         public IActionResult CheckOut([FromRoute]int roomId)
         {
-            var getRoomOutputDto = _service.GetRoom(roomId); 
+            var getRoomOutputDto = _service.GetRoom(roomId);
 
             var service = new
             {
@@ -33,8 +34,8 @@ namespace Front.Controllers
                 MerchantId = "2000132",
                 HashKey = "5294y06JbISpM5x9",
                 HashIV = "v77hoKGq4kWxNNIS",
-                ServerUrl = "https://e0a6-106-104-77-95.jp.ngrok.io/Payment/callback", 
-                ClientUrl = "https://e0a6-106-104-77-95.jp.ngrok.io/"
+                ServerUrl = "https://86a0-106-104-77-95.jp.ngrok.io/Payment/callback", 
+                ClientUrl = "https://86a0-106-104-77-95.jp.ngrok.io/"
             };
             var transaction = new
             {
@@ -45,8 +46,8 @@ namespace Front.Controllers
                 Items = new List<Item>{
                     new Item{
                         Name = getRoomOutputDto.VM.Title,
-                        Price = getRoomOutputDto.VM.RentPrice,
-                        Quantity = getRoomOutputDto.VM.PersonCount,
+                        Price = (int)TempData["BasicPrice"],
+                        Quantity = (int)TempData["DateRange"],
                     },
                 }
             };
@@ -74,23 +75,24 @@ namespace Front.Controllers
 
             var getUserOutputDto = _service.GetUser(User.Identity.Name);
 
-            //var inputDto = new CreateOrderInputDTO()        //use api post
-            //{
-            //    OrderId = payment.MerchantTradeNo,
-            //    RoomId = roomId,
-            //    CustomerId = getUserOutputDto.VM.UserId,
-            //    OrderDate = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8),
-            //    CheckinTime = (DateTime)TempData["startDate"],
-            //    CheckoutTime = (DateTime)TempData["endDate"],
-            //    BasicPrice = (int)TempData["basicPrice"],
-            //    Quantity = (int)TempData["quantity"],
-            //    ServiceFee = (int)TempData["serviceFee"],
-            //    TotalPrice = (int)TempData["totalPrice"],
-            //};
+            var a = int.Parse(TempData["CustomerId"].ToString());
+
+            var inputDto = new CreateOrderInputDTO()        //use api post
+            {
+                OrderId = payment.MerchantTradeNo,
+                RoomId = (int)TempData["RoomId"],
+                CustomerId = (int)TempData["CustomerId"],
+                OrderDate = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8),
+                CheckinTime = (DateTime)TempData["StartDate"],
+                CheckoutTime = (DateTime)TempData["EndDate"],
+                BasicPrice = (int)TempData["BasicPrice"],
+                Quantity = (int)TempData["DateRange"],
+                ServiceFee = (int)TempData["ServiceFee"],
+                TotalPrice = (int)TempData["TotalPrice"],
+            };
             var result = _service.CreateOrder(inputDto);
             if (result.IsSuccess != true)
             {
-
             }
 
             return View(payment);

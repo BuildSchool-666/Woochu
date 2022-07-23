@@ -11,6 +11,7 @@ namespace Front.Models.DTOModels.Order
     public class GetorderDetailInputDTO
     {
         public int RoomId { get; set; }
+        public string CustomerMail { get; set; }
         public DateTime CheckinTime { get; set; }
         public DateTime CheckoutTime { get; set; }
 

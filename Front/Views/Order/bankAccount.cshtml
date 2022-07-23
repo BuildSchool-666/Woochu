@@ -1,8 +1,10 @@
 ﻿@using Front.Models.ViewModels.Order
 @model OrderVM
+
+
+
 <div class="container">
     <form method="post" action="~/Payment/checkout/@Model.RoomId">      @* asp-controller="Payment" asp-action="checkout"*@
-
         <div class="row">
             <div class="house">
                 <div class="house-img">
@@ -19,7 +21,7 @@
                     
                         <h3>@Model.RoomInfo</h3>
                     
-                    <p>@Model.BedCount 床 / @Model.BathCount 廁所 @TempData["roomId"]</p>
+                    <p>@Model.BedCount 床 / @Model.BathCount 廁所</p>
                     @{var roomStar = Math.Round(Model.RatingStar, 1); }
                     <i class="fas fa-star"> @roomStar</i>
 
@@ -29,7 +31,6 @@
                 </div>
             </div>
             <div class="col">
-
                 <div class="myTrip">
                     <div class="title">
                         <h3>你的旅程 :</h3>
