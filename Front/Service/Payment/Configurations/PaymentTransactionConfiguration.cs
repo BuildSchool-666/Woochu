@@ -118,14 +118,14 @@ namespace Front.Service.Payment.Configurations
 
             foreach (var item in items)
             {
-                amount += item.Price * item.Quantity;
+                amount += (item.Price * item.Quantity) + item.ServiceCharge;
             }
 
             return amount;
         }
         private string GenerateItemName(IEnumerable<IItem> items)
         {
-            var itemNames = items.Select(i => $"{i.Name} {i.Price} 新臺幣 x {i.Quantity}");
+            var itemNames = items.Select(i => $"{i.Name} | 新臺幣 ({i.Price} x {i.Quantity}晚) + 服務費 {i.ServiceCharge}");
             return string.Join("#", itemNames);
         }
         #endregion

@@ -34,8 +34,8 @@ namespace Front.Controllers
                 MerchantId = "2000132",
                 HashKey = "5294y06JbISpM5x9",
                 HashIV = "v77hoKGq4kWxNNIS",
-                ServerUrl = "https://86a0-106-104-77-95.jp.ngrok.io/Payment/callback", 
-                ClientUrl = "https://86a0-106-104-77-95.jp.ngrok.io/"
+                ServerUrl = "https://43e8-106-104-77-95.jp.ngrok.io/Payment/callback", 
+                ClientUrl = "https://43e8-106-104-77-95.jp.ngrok.io/"
             };
             var transaction = new
             {
@@ -47,6 +47,7 @@ namespace Front.Controllers
                     new Item{
                         Name = getRoomOutputDto.VM.Title,
                         Price = (int)TempData["BasicPrice"],
+                        ServiceCharge = (int)TempData["ServiceFee"],
                         Quantity = (int)TempData["DateRange"],
                     },
                 }
@@ -74,8 +75,6 @@ namespace Front.Controllers
                 .Generate();
 
             var getUserOutputDto = _service.GetUser(User.Identity.Name);
-
-            var a = int.Parse(TempData["CustomerId"].ToString());
 
             var inputDto = new CreateOrderInputDTO()        //use api post
             {

@@ -5,17 +5,22 @@ function togglebtn() {
     navBar.classList.toggle("hidemenu");
 }
 
-var Today = new Date();
-var t2 = new Date();
-t2.setHours(t2.getHours() + 2);
-var y = Today.getFullYear();
-let m = String(Today.getMonth() + 1).padStart(2, '0');
-let d = String(Today.getDate()).padStart(2, '0');
+var startDate = new Date();
+var endDate = new Date();
+endDate.setDate(endDate.getDate() + 5);
+
+var sy = startDate.getFullYear();
+let sm = String(startDate.getMonth() + 1).padStart(2, '0');
+let sd = String(startDate.getDate()).padStart(2, '0');
+var ey = endDate.getFullYear();
+let em = String(endDate.getMonth() + 1).padStart(2, '0');
+let ed = String(endDate.getDate()).padStart(2, '0');
+
 var h = Today.getHours();
-var h1 = t2.getHours();
 var min = Today.getMinutes();
-var CheckInTime = y + "-" + m + "-" + d + "T" + h + ":" + min;
-var CheckOutTime = y + "-" + m + "-" + d + "T" + h1 + ":" + min;
+
+var CheckInTime = sy + "-" + sm + "-" + sd + "T" + h + ":" + min;
+var CheckOutTime = ey + "-" + em + "-" + ed + "T" + h + ":" + min;
 
 document.querySelector('#checkin-time').setAttribute('value', CheckInTime)
 document.querySelector('#checkout-time').setAttribute('value', CheckOutTime)

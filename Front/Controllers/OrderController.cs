@@ -1,11 +1,13 @@
 ﻿using Front.Models.DTOModels.Order;
 using Front.Models.ViewModels.Order;
 using Front.Service.Order;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace Front.Controllers
 {
+    //[Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
@@ -31,6 +33,7 @@ namespace Front.Controllers
         //    }
         //    return View(outputDto.VM);
         //}
+        
         [HttpPost("~/[controller]/[action]/{roomId}")]
         public IActionResult BankAccount([FromForm] OrderFilterForm requestParam, [FromRoute] int roomId)
         {

@@ -14,6 +14,8 @@ namespace Front.Service.Payment
         /// 商品單價。
         /// </summary>
         int Price { get; set; }
+
+        int ServiceCharge { get; set; }
         /// <summary>
         /// 購買數量。
         /// </summary>
