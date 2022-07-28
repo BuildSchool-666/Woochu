@@ -14,12 +14,13 @@ using MVCModels.Repositories;
 using Front.Service.Home;
 using Front.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Front.Service.Account;
 using Front.Service.Rooms;
 using Front.Service.RoomDetail;
 using Front.Service.Order;
 using Front.Service.Account_setting;
 using Front.Service.Payment.Service;
+using Front.Service.Accounts;
+using Front.Service.Cloudinarys;
 
 namespace Front
 {
@@ -59,7 +60,7 @@ namespace Front
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();
-
+            services.AddScoped<CloudinaryService>();
             services.AddScoped<IAccount_settingService, Account_settingService>();
 
         }

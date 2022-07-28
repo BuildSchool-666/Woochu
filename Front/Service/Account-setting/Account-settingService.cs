@@ -8,6 +8,7 @@ using MVCModels.Repositories;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
+using System;
 
 namespace Front.Service.Account_setting
 {
@@ -41,7 +42,7 @@ namespace Front.Service.Account_setting
                LastName = user.LastName,
                Email = user.Email,
                Gender = user.Gender,
-
+               PersonalPhoto = user.PersonalPhoto,
             };
             
             result.IsSuccess = true;
@@ -102,6 +103,51 @@ namespace Front.Service.Account_setting
 
             return result;
         }
+        
+        public PersonalDetailsOutputDTO UpdateProfilePhoto(PersonalDetailsInputDTO input)
+        {
+            var result = new PersonalDetailsOutputDTO
+            {
+                IsSuccess = false,
+                Message = null
+            };
+
+            if (false)
+            {
+                result.Message = "some failure msg";
+            }
+
+            User user = new User();
+            try
+            {
+                user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
+                user.PersonalPhoto = input.VM.PersonalPhoto;
+
+                _repo.Update(user);
+                _repo.SaveChanges();
+                result.IsSuccess = true;
+            }
+            catch(Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+            }
+            
+
+            user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
+            result.VM = new PersonalInformationVM()
+            {
+               PersonalPhoto = user.PersonalPhoto,
+               LastName = user.LastName,
+               FirstName = user.FirstName,
+               
+               
+            };
+            result.IsSuccess = true;
+
+            return result;
+        }
+
     }
 
 

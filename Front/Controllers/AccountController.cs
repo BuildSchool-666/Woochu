@@ -1,6 +1,6 @@
 ﻿using Front.Models.DTOModels.Account;
 using Front.Models.ViewModels.Account;
-using Front.Service.Account;
+using Front.Service.Accounts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;

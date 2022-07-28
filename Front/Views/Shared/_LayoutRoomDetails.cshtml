@@ -28,7 +28,7 @@
                 <li><a id='roomList' href="~/Rooms/roomlist">房屋清單</a></li>
                 <li><a id='roomType' class="active"  href="~/RoomDetails/roomDetails">熱門房型</a></li>
             </ul>
-            <div class="dropdown">
+            @*<div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
                     <i class="fas fa-bars" style="font-size: 20px;"></i>
                     <i class="fas fa-user-circle" style="font-size: 30px;"></i>
@@ -38,7 +38,8 @@
                     <a href="/Account/Register">註冊</a>
                     <a href="#home">出租房源</a>
                 </div>
-            </div>
+            </div>*@
+             @await Html.PartialAsync("_NavLoginPartial",(object)Model)
             <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
         </nav>
     </header>
