@@ -5,6 +5,15 @@ using System.Threading.Tasks;
 using Front.Models.DTOModels.Account_setting_DTO;
 using Front.Service.Account_setting;
 using Front.Models.ViewModels.Account_settings;
+using System.Configuration;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System.Text.RegularExpressions;
+using System.Drawing;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using Front.Models.DTOModels.Cloudinary;
+using Front.Service.Cloudinarys;
 
 namespace Front.Controllers
 {
@@ -12,10 +21,14 @@ namespace Front.Controllers
     {
         private readonly IAccount_settingService _service;
         private readonly WoochuContext _context;
-        public Account_settingsController(WoochuContext context, IAccount_settingService service)
+        private readonly CloudinaryService _cloudinaryService;
+
+        public Account_settingsController(WoochuContext context, IAccount_settingService service,CloudinaryService cloudinaryService)
         {
             _context = context;
             _service = service;
+            _cloudinaryService = cloudinaryService;
+            
         }
 
         public async Task<IActionResult> Index()
@@ -38,6 +51,53 @@ namespace Front.Controllers
             //return View(user);
 
         }
+        public async Task<IActionResult> Profile()
+        {
+            var inputDto = new PersonalDetailsInputDTO();
+
+            inputDto.Email = User.Identity.Name;
+
+
+            var outputDto = _service.GetUserData(inputDto);
+
+            if (!outputDto.IsSuccess)
+            {
+                return Redirect("/");
+
+            }
+            return View(outputDto.VM);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Profile([FromForm] IFormFile File)
+        {
+            var inputDto = new UploadImgInputDTO()
+            {
+                File = File
+            };
+            var outputDTO = await _cloudinaryService.UploadAsync(inputDto);
+
+            var input = new PersonalDetailsInputDTO()
+            {
+                Email = User.Identity.Name,
+                VM = new PersonalInformationVM
+                {
+                    PersonalPhoto = outputDTO.Url
+                }
+            };
+
+            var output = _service.UpdateProfilePhoto(input);
+
+            if (!output.IsSuccess)
+            {
+                ModelState.AddModelError(string.Empty, output.Message);
+                return View(output);
+            }
+            return View(output.VM);
+
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> PersonalInformation()
         {
@@ -94,7 +154,8 @@ namespace Front.Controllers
                 return View(requestParam);
             }
             return View(outputDto.VM);
-        }
+        }      
+        
         //[ValidateAntiForgeryToken]
         //public IActionResult PersonalInformation(User user)
         //{

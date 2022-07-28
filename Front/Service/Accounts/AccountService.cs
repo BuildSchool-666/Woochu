@@ -1,6 +1,6 @@
 ﻿using Front.Helpers;
 using Front.Models.DTOModels.Account;
-using Front.Service.Account;
+using Front.Service.Accounts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
-namespace Front.Service
+namespace Front.Service.Accounts
 {
     public class AccountService : IAccountService
     {

@@ -1,7 +1,7 @@
 ﻿using Front.Models.DTOModels.Account;
 using MVCModels.DataModels;
 
-namespace Front.Service.Account
+namespace Front.Service.Accounts
 {
     public interface IAccountService
     {
