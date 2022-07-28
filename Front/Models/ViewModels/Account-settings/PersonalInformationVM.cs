@@ -25,7 +25,9 @@ namespace Front.Models.ViewModels.Account_settings
         public string EmergencyContactNumber { get; set; }
         public string PersonalPhoto { get; set; }
         public string About { get; set; }
-        
+        public DateTime CreateTime { get; set; }
+
+
     }
     public class PersonalInfoName
     {

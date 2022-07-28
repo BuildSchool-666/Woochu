@@ -43,6 +43,7 @@ namespace Front.Service.Account_setting
                Email = user.Email,
                Gender = user.Gender,
                PersonalPhoto = user.PersonalPhoto,
+               CreateTime = (DateTime)user.CreateTime
             };
             
             result.IsSuccess = true;
