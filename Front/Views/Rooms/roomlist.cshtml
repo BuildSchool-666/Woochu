@@ -32,7 +32,7 @@
 <div class="container">
     <div class="list-container">
         <div class="left-col">
-            @if(!(Model.City == "0"))
+            @if (!(Model.City == "0"))
             {
                 <h1>選擇地點 : @Model.City</h1>
             }
@@ -41,29 +41,29 @@
                 <h1>選擇地點 : 全部</h1>
             }
 
-            @foreach(var room in Model.Rooms)
+            @foreach (var room in Model.Rooms)
             {
-            <div class="house">
-                <div class="house-img">
-                    <a href="~/RoomDetail/RoomDetail/@room.roomId">
-                        <img src="@room.ImgUrl" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p> @room.Title</p>
-                    
-                    <h3>@room.HouseInfo</h3>
+                <div class="house">
+                    <div class="house-img">
+                        <a href="~/RoomDetail/RoomDetail/@room.roomId">
+                            <img src="@room.ImgUrl" alt="">
+                        </a>
+                    </div>
+                    <div class="house-info">
+                        <p> @room.Title</p>
 
-                    <p>@room.BedCount 床 / @room.BathCount 廁所 </p>
-                    
-                    @{Star(room.Rating);}
-                    <div class="house-price">
-                        <h4>$@room.RentPrice<span>/ 天</span></h4>
+                        <h3>@room.HouseInfo</h3>
+
+                        <p>@room.BedCount 床 / @room.BathCount 廁所 </p>
+
+                        @{Star(room.Rating);}
+                        <div class="house-price">
+                            <h4>$@room.RentPrice<span>/ 天</span></h4>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
-           
+
             @*<div class="house">
                 <div class="house-img">
                     <a href="house.html">
@@ -87,98 +87,59 @@
                     </div>
                 </div>
             </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s3.png" alt="">
-                    </a>
+            *@
+        </div>
+        <div class="right-col">
+            <div class="sidebar">
+                <h2>篩選</h2>
+                <h3>房屋總類</h3>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>透天</p> <span>(0)</span>
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>旅館</p> <span>(0)</span>
                 </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s4.png" alt="">
-                    </a>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>公寓</p> <span>(0)</span>
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>小木屋</p> <span>(0)</span>
                 </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s5.png" alt="">
-                    </a>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>套房</p> <span>(0)</span>
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+
+                <h3>設施</h3>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>冷氣</p> <span>(0)</span>
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>網路</p> <span>(0)</span>
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>健身房</p> <span>(0)</span>
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>游泳池</p> <span>(0)</span>
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>廚房</p> <span>(0)</span>
+                </div>
+
+                <div class="sidebar-link">
+                    <a href="#">更多</a>
                 </div>
             </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s6.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
 
