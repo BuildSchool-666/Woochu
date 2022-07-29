@@ -97,7 +97,7 @@ namespace Front.Service.Account_setting
                 LastName = user.LastName,
                 Email = user.Email,
                 Gender = user.Gender,
-
+                CreateTime = (DateTime)user.CreateTime
             };
 
             result.IsSuccess = true;
@@ -141,6 +141,8 @@ namespace Front.Service.Account_setting
                PersonalPhoto = user.PersonalPhoto,
                LastName = user.LastName,
                FirstName = user.FirstName,
+               CreateTime = (DateTime)user.CreateTime,
+               Email = user.Email
                
                
             };

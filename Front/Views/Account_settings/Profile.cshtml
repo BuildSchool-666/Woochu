@@ -15,18 +15,18 @@
                         <input type="file" id="wizard-picture" name="File" >
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-dark">點擊上傳</button>
+                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
             </form>
             <h6>身分驗證</h6>
             <p>透過身分驗證徽章展示你真的是本人。</p>
             <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
             <hr>
-            <h5>@Model.FirstName 已確認</h5>
+            <h5>@Model.LastName 已確認</h5>
             <p>信箱</p>
         </div>
         <div class="rightbox w-50 m-3">
             <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
-            <p class="mb-5">加入時間:@Model.CreatedTime</p>
+            <p class="mb-5">加入時間:@Model.CreateTime</p>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -42,10 +42,10 @@ else
                 <div class="picture-container mb-5">
                     <div class="picture">
                         <img src="@Model.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
-                        <input type="file" id="wizard-picture" name="File" >
+                        <input type="file" id="wizard-picture" name="File">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-dark">點擊上傳</button>
+                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
             </form>
             <h6>身分驗證</h6>
             <p>透過身分驗證徽章展示你真的是本人。</p>
@@ -141,6 +141,7 @@ else
         $(document).ready(function () {
             // Prepare the preview for profile picture
             $("#wizard-picture").change(function () {
+                $("#btn-upload").attr('disabled',false)
                 readURL(this);
             });
         });

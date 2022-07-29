@@ -73,12 +73,12 @@ namespace Front.Service.Accounts
             );
         }
         public void VerifyAccount(int userId)
-                {
-                    var user = FindAccountOrNull(userId);
-                    if(user.EmailVerify==false)
-                    {
-                        user.EmailVerify = true;
-                        user.CreateTime = DateTime.UtcNow;
+        {
+            var user = FindAccountOrNull(userId);
+            if(user.EmailVerify==false)
+            {
+                user.EmailVerify = true;
+                user.CreateTime = DateTime.UtcNow;
 
                 _repo.Update(user);
                 _repo.SaveChanges();

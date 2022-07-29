@@ -114,11 +114,7 @@ namespace Front.Controllers
 
             }
             return View(outputDto.VM);
-            //var userid = int.Parse(User.Identity.Name);
-            //var user = await _context.Users.FindAsync(userid);
-
-            //return View(user);
-
+            
         }
 
         [HttpPost]
@@ -156,22 +152,7 @@ namespace Front.Controllers
             return View(outputDto.VM);
         }      
         
-        //[ValidateAntiForgeryToken]
-        //public IActionResult PersonalInformation(User user)
-        //{
-
-        //    int userId = int.Parse(User.Identity.Name);
-
-        //    var query = _context.Users.SingleOrDefault(u => u.UserId == userId);
-        //    query.FirstName = user.FirstName;
-        //    query.LastName = user.LastName;
-        //    query.Gender = user.Gender;
-
-        //    _context.SaveChanges();
-
-        //    return View(query);
-
-        //}
+      
 
         public IActionResult Privacy()
         {
