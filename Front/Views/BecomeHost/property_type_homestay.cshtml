@@ -22,27 +22,27 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="one">
+            <button type="button" class="type" id="family-travel">
                 <p class="grouptitle"><strong>家庭式旅館</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">為房客提供早餐，且有房東在現場的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="two">
+            <button type="button" class="type" id="natural-cottages">
                 <p class="grouptitle"><strong>自然小屋</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">靠近森林、山間等自然環境的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="three">
+            <button type="button" class="type" id="farm-accomodation">
                 <p class="grouptitle"><strong>農場住宿</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">位於鄉村地區的房屋，旅客可以體驗農村生活或與動物共度時光。</p>
             </button>
-            <button type="button" class="type" id="four">
+            <button type="button" class="type" id="taiwan-homestay">
                 <p class="grouptitle"><strong>台灣民宿</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">為房客提供獨立房間的臺灣專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="five">
+            <button type="button" class="type" id="cuban">
                 <p class="grouptitle"><strong>古巴式家庭旅館</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">古巴式家庭旅館內的獨立房間。</p>
             </button>
-            <button type="button" class="type" id="six">
+            <button type="button" class="type" id="japanese-hotel">
                 <p class="grouptitle"><strong>日式旅館</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">為房客提供獨特文化體驗的日本小旅館。</p>
             </button>
@@ -239,4 +239,44 @@
             
         }
     </style>
+}
+
+@section EndJS{
+    <script>
+        const btn = document.getElementById('next');
+         window.onload = function(){
+                btn.style.backgroundColor = "#D0D0D0";
+            };
+        document.getElementById("family-travel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("natural-cottages").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("farm-accomodation").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("taiwan-homestay").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("cuban").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("japanese-hotel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        
+    </script>
 }

@@ -22,27 +22,27 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="one">
+            <button type="button" class="type" id="rental">
                 <p class="grouptitle"><strong>出租住所</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">集合住宅大樓或複合式建築中的出租屋。</p>
             </button>
-            <button type="button" class="type" id="two" >
+            <button type="button" class="type" id="private" >
                 <p class="grouptitle"><strong>私有公寓</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">位於集合住宅大樓或複合式建築的住處，產權歸住戶所有。</p>
             </button>
-            <button type="button" class="type" id="three">
+            <button type="button" class="type" id="loft">
                 <p class="grouptitle"><strong>Loft空間</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">開放式的公寓，內牆可能較矮。</p>
             </button>
-            <button type="button" class="type" id="four">
+            <button type="button" class="type" id="serviced">
                 <p class="grouptitle"><strong>服務式公寓</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">由專業管理公司提供飯店式管理服務的公寓。</p>
             </button>
-            <button type="button" class="type" id="five">
+            <button type="button" class="type" id="cuban">
                 <p class="grouptitle"><strong>古巴式家庭旅館</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">古巴式家庭旅館內的獨立房間。</p>
             </button>
-            <button type="button" class="type" id="six">
+            <button type="button" class="type" id="holiday-house">
                 <p class="grouptitle"><strong>度假屋</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">裝潢齊全的出租房源，包括廚房和浴室，且可能會提供前台等客房服務。</p>
             </button>
@@ -247,4 +247,43 @@
             bottom:0;   
         }
     </style>
+}
+
+@section EndJS{
+    <script>
+        const btn = document.getElementById('next');
+         window.onload = function(){
+                btn.style.backgroundColor = "#D0D0D0";
+            };
+        document.getElementById("rental").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("private").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("loft").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("serviced").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("cuban").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("holiday-house").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+    </script>
 }

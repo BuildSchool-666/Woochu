@@ -223,3 +223,56 @@
         }
     </style>
 }
+@section EndJS{
+    <script>
+        const btn = document.getElementById('next');
+        const aprt = document.getElementById('apartmentbtn');
+        const detached = document.getElementById('detachedbtn');
+        const building = document.getElementById('buidingbtn');
+        const special = document.getElementById('specialbtn');
+        const family = document.getElementById('familybtn');
+        const hotel = document.getElementById('hotelbtn');
+
+            aprt.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href = "@Url.Action("property_type_apartment","BecomeHost")";
+            }
+            };
+
+            detached.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href ="@Url.Action("property_type_detached","BecomeHost")";
+            }
+            };
+
+            building.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href = "@Url.Action("property_type_building","BecomeHost")";
+            }
+            };
+
+            special.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href = "@Url.Action("property_type_uniqueproperties","BecomeHost")";
+            }
+            };
+
+            family.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href ="@Url.Action("property_type_homestay","BecomeHost")";
+            }
+            };
+
+            hotel.onclick = function(){
+            btn.style.backgroundColor = "black";
+            btn.onclick = function(){
+            location.href ="@Url.Action("property_type_boutiquehotel","BecomeHost")";
+            }
+            };
+    </script>
+}

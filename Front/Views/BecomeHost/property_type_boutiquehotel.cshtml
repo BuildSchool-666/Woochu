@@ -22,39 +22,39 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="one">
+            <button type="button" class="type" id="hotel">
                 <p class="grouptitle"><strong>飯店</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">為房客提供獨立房間、套房或獨特房源的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="two">
+            <button type="button" class="type" id="hostel">
                 <p class="grouptitle"><strong>青年旅舍</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">出租合住房間床位和獨立房間的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="three">
+            <button type="button" class="type" id="holiday-house">
                 <p class="grouptitle"><strong>度假村</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">比飯店提供更多服務的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="four">
+            <button type="button" class="type" id="natural-cottages">
                 <p class="grouptitle"><strong>自然小屋</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">為房客提供獨立房間的臺灣專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="five">
+            <button type="button" class="type" id="boutique-hotel">
                 <p class="grouptitle"><strong>精品旅店</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">具有獨特風格或裝潢主題的專業管理住宿。</p>
             </button>
-            <button type="button" class="type" id="six">
+            <button type="button" class="type" id="apartment-hotel">
                 <p class="grouptitle"><strong>公寓式旅店</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">提供飯店式服務與房間的公寓式住宿。</p>
             </button>
-            <button type="button" class="type" id="seven">
+            <button type="button" class="type" id="serviced">
                 <p class="grouptitle"><strong>服務式公寓</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">由專業管理公司提供飯店式管理服務的公寓。</p>
             </button>
-            <button type="button" class="type" id="eight">
+            <button type="button" class="type" id="culture-heritage">
                 <p class="grouptitle"><strong>文化遺產旅店</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">由歷史建築改造而成的印度住宿。</p>
             </button>
-            <button type="button" class="type" id="nine">
+            <button type="button" class="type" id="inn">
                 <p class="grouptitle"><strong>客棧</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">具有當地特色和完善設施的中國住宿。</p>
             </button>
@@ -250,4 +250,57 @@
             width: 50%;
         }
     </style>
+}
+@section EndJS{
+    <script>
+        const btn = document.getElementById('next');
+         window.onload = function(){
+                btn.style.backgroundColor = "#D0D0D0";
+            };
+        document.getElementById("hotel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("hostel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("holiday-house").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("natural-cottages").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("boutique-hotel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("apartment-hotel").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("serviced").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("culture-heritage").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("inn").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+    </script>
 }

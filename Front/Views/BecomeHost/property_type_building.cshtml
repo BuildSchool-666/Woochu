@@ -22,19 +22,19 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="one">
+            <button type="button" class="type" id="guest-housing">
                 <p class="grouptitle"><strong>客用住房</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">與主屋分開的獨立建築。</p>
             </button>
-            <button type="button" class="type" id="two">
+            <button type="button" class="type" id="guest-suit">
                 <p class="grouptitle"><strong>客用套房</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">擁有獨立入口的房源，位於較大建築物內或與之相連。</p>
             </button>
-            <button type="button" class="type" id="three">
+            <button type="button" class="type" id="farm-accomodation">
                 <p class="grouptitle"><strong>農場住宿</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">位於鄉村地區的房屋，旅客可以體驗農村生活或與動物共度時光。</p>
             </button>
-            <button type="button" class="type" id="four">
+            <button type="button" class="type" id="holiday-house">
                 <p class="grouptitle"><strong>度假屋</strong></p>
                 <p style="font-size: 14px; color:#9D9D9D; width: 70%;">裝潢齊全的出租房源，包括廚房和浴室，且可能會提供前台等客房服務。</p>
             </button>
@@ -233,4 +233,32 @@
             width: 50%;
         }
     </style>
+}
+@section EndJS{
+     <script>
+        const btn = document.getElementById('next');
+         window.onload = function(){
+                btn.style.backgroundColor = "#D0D0D0";
+            };
+        document.getElementById("guest-housing").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+        document.getElementById("guest-suit").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("farm-accomodation").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }};
+         document.getElementById("holiday-house").onclick = function(){
+                btn.style.backgroundColor = "black";
+                btn.onclick = function(){
+            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
+            }}; 
+    </script>
 }
