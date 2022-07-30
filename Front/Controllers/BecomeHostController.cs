@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Front.Controllers
 {
     public class BecomeHostController : Controller
     {
-
+        [Authorize]
         public IActionResult Index()
         {
             return View();
