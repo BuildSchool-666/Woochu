@@ -1,16 +1,76 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Front.Models.DTOModels.Order;
+using Front.Models.ViewModels.Order;
+using Front.Service.Order;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Front.Controllers
 {
+    //[Authorize]
     public class OrderController : Controller
     {
-        public IActionResult Index()
+        private readonly IOrderService _service;
+
+        public OrderController( IOrderService service)
         {
-            return View();
+            _service = service;
         }
-        public IActionResult bankAccount()
+        //[HttpGet]
+        //public IActionResult BankAccount([FromRoute] int roomId)
+        //{
+        //    var inputDto = new GetorderDetailInputDTO();
+
+        //    inputDto.RoomId = roomId;
+
+        //    var outputDto = _service.GetOrderData(inputDto);
+
+
+        //    if (!outputDto.IsSuccess)
+        //    {
+        //        return Redirect("/");
+        //        //return RedirectToAction("Index","Home");
+        //    }
+        //    return View(outputDto.VM);
+        //}
+        
+        [HttpPost("~/[controller]/[action]/{roomId}")]
+        public IActionResult BankAccount([FromForm] OrderFilterForm requestParam, [FromRoute] int roomId)
         {
-            return View();
+
+            var inputDto = new GetorderDetailInputDTO()
+            {
+                RoomId = roomId,
+                CustomerMail = User.Identity.Name,
+                CheckinTime = requestParam.CheckinTime,
+                CheckoutTime = requestParam.CheckoutTime,
+            };
+            var outputDto =  _service.GetOrderData(inputDto);
+            var orderData = new OrderVM
+            {
+                RoomId = roomId,
+                CustomerId = outputDto.VM.CustomerId,
+                StartDate = requestParam.CheckinTime,
+                EndDate = requestParam.CheckoutTime,
+                BasicPrice = outputDto.VM.BasicPrice,
+                DateRange = outputDto.VM.DateRange,
+                ServiceFee = outputDto.VM.ServiceFee,
+                TotalPrice = outputDto.VM.TotalPrice,
+            };
+
+            TempData["RoomId"] = orderData.RoomId;
+            TempData["CustomerId"] = orderData.CustomerId;
+            TempData["StartDate"] = orderData.StartDate;
+            TempData["EndDate"] = orderData.EndDate;
+            TempData["BasicPrice"] = orderData.BasicPrice;
+            TempData["DateRange"] = orderData.DateRange;
+            TempData["ServiceFee"] = orderData.ServiceFee;
+            TempData["TotalPrice"] = orderData.TotalPrice;
+            TempData.Keep();
+
+            return View(outputDto.VM);
         }
+
     }
+    
 }

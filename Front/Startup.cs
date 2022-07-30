@@ -12,6 +12,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using MVCModels.Repositories;
 using Front.Service.Home;
+using Front.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Front.Service.Rooms;
+using Front.Service.RoomDetail;
+using Front.Service.Order;
+using Front.Service.Account_setting;
+using Front.Service.Payment.Service;
+using Front.Service.Accounts;
+using Front.Service.Cloudinarys;
 
 namespace Front
 {
@@ -31,7 +40,29 @@ namespace Front
             services.AddDbContext<WoochuContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WoochuContext")));
             services.AddScoped<WoochuRepository>();
+            services.AddHttpContextAccessor();
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    //options.LoginPath = new PathString("/Account/Login");
+
+                    //options.ReturnUrlParameter = "ReturnUrl";
+
+                    //options.LogoutPath = new PathString("/Account/Logout");
+
+                    //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
+                });
+                
+            services.AddScoped<IRoomsService, RoomsService>(); 
+            services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<CloudinaryService>();
+            services.AddScoped<IAccount_settingService, Account_settingService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +82,8 @@ namespace Front
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

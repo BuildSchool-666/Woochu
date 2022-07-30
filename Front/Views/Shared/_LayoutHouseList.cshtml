@@ -22,19 +22,20 @@
             <ul class="nav-links">
                 <li><a id='homePage' href="~/Home/">首頁</a></li>
                 <li><a id='roomList' class="active" href="~/Rooms/roomlist">房屋清單</a></li>
-                <li><a id='roomType' href="~/RoomDetails/roomDetails">熱門房型</a></li>
+                <li><a id='roomType' href="~/RoomDetail/roomDetail/6">熱門房型</a></li>
             </ul>
-            <div class="dropdown">
+            @*<div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
                     <i class="fas fa-bars" style="font-size: 20px;"></i>
                     <i class="fas fa-user-circle" style="font-size: 30px;"></i>
                 </button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#home">登入</a>
-                    <a href="#home">註冊</a>
+                    <a href="~/Account/Login">登入</a>
+                    <a href="~/Account/Register">註冊</a>
                     <a href="#home">出租房源</a>
                 </div>
-            </div>
+            </div>*@
+             @await Html.PartialAsync("_NavLoginPartial",(object)Model)
             <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
         </nav>
     </header>

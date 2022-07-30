@@ -1,56 +1,52 @@
-﻿
-<div class="container">
-    <form action="">
+﻿@using Front.Models.ViewModels.Order
+@model OrderVM
 
+
+
+<div class="container">
+    <form method="post" action="~/Payment/checkout/@Model.RoomId">      @* asp-controller="Payment" asp-action="checkout"*@
         <div class="row">
             <div class="house">
                 <div class="house-img">
-                    <div class="gallery">
-                        <div class="gallery-img-1"><img src="~/images/house-1.png"></div>
-                        <div><img src="~/images/house-2.png"></div>
-                        <div><img src="~/images/house-3.png"></div>
-                        <div><img src="~/images/house-4.png"></div>
-                        <div><img src="~/images/house-5.png"></div>
-                    </div>
+                    <a href="~/RoomDetail/RoomDetail/@Model.RoomId">
+                        <div class="gallery">
+                            <div class="gallery-img-1">
+                                <img src="@Model.ImgUrls[0]">
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
+                    <p>@Model.Title</p>
+                    
+                        <h3>@Model.RoomInfo</h3>
+                    
+                    <p>@Model.BedCount 床 / @Model.BathCount 廁所</p>
+                    @{var roomStar = Math.Round(Model.RatingStar, 1); }
+                    <i class="fas fa-star"> @roomStar</i>
+
                     <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
+                        <h4>$ @Model.BasicPrice <span>/ 天</span></h4>
                     </div>
                 </div>
             </div>
             <div class="col">
-
                 <div class="myTrip">
                     <div class="title">
-                        <h3>你的旅程 :　</h3>
+                        <h3>你的旅程 :</h3>
                         <div class="paymentinfo">
                             <h4>日期 :</h4>
-                            <p>7月6日至13日</p>
-                            <h4>房客人數 :</h4>
-                            <p>一位房客 </p>
+                            <p Name=> @Model.StartDate  ~  @Model.EndDate</p>
                             <h4>價格詳情 :</h4>
-                            <p>$100.00 x 7晚
-                                $700.00</p>
+                            <p>$ @Model.BasicPrice x @Model.DateRange 晚 = $ @Model.RentPrice</p>
                             <h4>服務費 :</h4>
-                            <p>$60.00</p>
+                            <p>$ @Model.ServiceFee</p>
                             <h4>總價 (TWD) :</h4>
-                            <p>$760.00</p>
+                            <p>$ @Model.TotalPrice</p>
                         </div>
                     </div>
                 </div>
-                <div class="payment">
+                @*<div class="payment">
                     <div class="billing-address">
                         <h3 class="title">billing address</h3>
 
@@ -89,7 +85,7 @@
 
                         <div class="inputBox">
                             <span>cards accepted :</span>
-                            <img src="images/card_img.png" alt="">
+                            <img src="~/images/card_img.png" alt="">
                         </div>
                         <div class="inputBox">
                             <span>name on card :</span>
@@ -116,12 +112,12 @@
                         </div>
 
                     </div>
-                </div>
+                </div>*@
 
 
             </div>
         </div>
-        <a href="house.html" class="goback">上一步 . . .</a>
+        <a href="~/RoomDetail/RoomDetail/@Model.RoomId" class="goback">上一步 . . .</a>
         <input type="submit" value="proceed to checkout" class="submit-btn">
     </form>
 </div>

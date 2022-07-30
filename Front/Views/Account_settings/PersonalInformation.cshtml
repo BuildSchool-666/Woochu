@@ -1,4 +1,7 @@
-﻿<div class="container mt-5">
+﻿@*@model MVCModels.DataModels.User*@
+@*@Html.AntiForgeryToken()*@
+@using Front.Models.ViewModels
+<div class="container mt-5">
         <div class="row m-auto">
               <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb fw-bold">
@@ -13,7 +16,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100 ">
                             <div class="info">
                                 <h2 class="fs-5">法定名稱</h2>
-                                <p class="fs-6" id="name"></p>
+                                <p class="fs-6" id="name">@Model.FirstName @Model.LastName</p>
                             </div>
                             <div class="edit">
                                 <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
@@ -24,17 +27,19 @@
                         </div>
 
                         <div class="collapse" id="btnname">
-                            <form class="mb-3">
-                                <div class="row">
+                            <form class="mb-3" method="post" action="~/Account_settings/PersonalInformation">
+                                <div class="row mb-3">
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="First name" id="FirstName">
+                                          @*@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", name="FirstName"} })*@
+                                        <input type="text" class="form-control" name="FirstName" placeholder="First name" id="FirstName" value="@Model?.FirstName" />
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" placeholder="Last name" id="LastName">
+                                         @*@Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" , name="LastName"} })*@
+                                         <input type="text" class="form-control" name="LastName" placeholder="Last name" id="LastName" value="@Model?.LastName" />
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-dark" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
                             </form>
-                            <button type="button" class="btn btn-dark" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
                         </div>
                     </div>
 
@@ -42,7 +47,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100 mb-3">
                             <div class="info">
                                 <h2 class="fs-5">性別</h2>
-                                <span id="gender"></span>
+                                <span id="gender">@Model.Gender</span>
                             </div>
                             <div class="edit">
                                 <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
@@ -53,15 +58,15 @@
                             </div>
                         </div>
                         <div class="collapse" id="btngender">
-                            <div class="form-group mb-3">
-                                <select class="form-control" id="selectGender">
+                            <form class="form-group mb-3" method="post" action="~/Account_settings/PersonalInformation">
+                                <select class="form-control mb-3" id="selectGender" name="Gender" value="@Model?.Gender">
                                     <option value="" selected>Choose...</option>
-                                    <option value="male">男</option>
-                                    <option value="female">女</option>
-                                    <option value="other">其他</option>
-                                </select>                                    
-                            </div>
-                            <button type="button" class="btn btn-dark" id="btn_gender" data-bs-toggle="collapse" data-bs-target="#btngender">儲存</button>
+                                    <option value="1">男</option>
+                                    <option value="2">女</option>
+                                    <option value="3">其他</option>
+                                </select>
+                                <button type="submit" class="btn btn-dark" id="btn_gender" data-bs-toggle="collapse" data-bs-target="#btngender">儲存</button>
+                            </form>
                         </div>
                         
 
@@ -81,10 +86,10 @@
                             </div>                            
                         </div>
                         <div class="collapse" id="btnDOB">
-                            <div class="form-floating mb-3">
+                            <form class="form-floating mb-3" method="post" action="~/Account_settings/PersonalInformation">
                                 <input type="date" class="form-control" id="selectDOB" value="">
                                 <label for="selectDOB">出生日期</label>
-                            </div>
+                            </form>
                             <button type="button" class="btn btn-dark" id="btn_DOB" data-bs-toggle="collapse" data-bs-target="#btnDOB">儲存</button>
                         </div>
                         
@@ -94,7 +99,7 @@
                         <div class="d-flex align-items-center justify-content-between w-100">
                             <div class="info">
                                 <h2 class="fs-5">電子郵件</h2>
-                                <span class="fs-6" id="email"></span>
+                                <span class="fs-6" id="email">@Model.Email</span>
                             </div>
                             <div class="edit">
                                 <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
@@ -106,7 +111,7 @@
                         </div>
                         <div class="collapse" id="btnEmail">
                             <p class="mb-3">使用你隨時可存取的電子郵件地址。</p>
-                            <form class="form-floating mb-3">
+                            <form class="form-floating mb-3" method="post" action="~/Account_settings/PersonalInformation">
                                 <input type="emailAddress" class="form-control" id="emailAddress" placeholder="name@example.com" value="">
                                 <label for="floatingInput">Email address</label>
                             </form>
@@ -130,7 +135,7 @@
                             </div>
                         </div>
                         <div class="collapse" id="btnContact">
-                            <form class="form-floating">
+                            <form class="form-floating" method="post" action="~/Account_settings/PersonalInformation">
                                 <select class="form-control" id="countryCode">
                                     <option value="" selected>Choose...</option>
                                     <option value="male">台灣(+886)</option>
@@ -199,17 +204,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between w-100 border-bottom mb-4 pb-4">
-                        <div class="info">
-                            <h2 class="fs-5">中國旅遊的護照資訊</h2>
-                            <span class="fs-6">未提供</span>
-                        </div>
-                        <div class="edit">
-                            <button class="btn btn-link text-dark">
-                                新增
-                            </button>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="information d-none d-md-block m-auto p-4 fs-1 border ml-2">
                     <i class="fa-solid fa-bag-shopping text-danger"></i>
@@ -276,7 +271,7 @@
 
         btn_name.onclick = () =>
         {
-            name.innerText = firstname.value + " " + lastname.value;
+           name.innerText = firstname.value + lastname.value
         }
 
         const btn_gender = document.querySelector('#btn_gender')
@@ -288,7 +283,7 @@
             if(selectGender.value == '')
             gender.innerText = '未指定'
             else
-            gender.innerText = selectGender.value
+            gender.innerText = selectGender.Text
             
         }
 

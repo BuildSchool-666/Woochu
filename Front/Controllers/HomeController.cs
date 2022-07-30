@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Front.Models.ViewModels.Home;
 using Front.Service.Home;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Front.Controllers
 {
@@ -24,35 +25,39 @@ namespace Front.Controllers
 
         public IActionResult Index()
         {
-            //var outputDto = _service.GetIndexData();
+            var outputDto = _service.GetIndexData();
 
-            //if (!outputDto.IsSuccess)
-            //{
-            //};
+            if (!outputDto.IsSuccess)
+            {
+            };
 
             var vm =
-            //outputDto.VM;
-            new IndexVM()
-            {
-                CityCards =
-                new List<CityCard>
-                {
-                    new CityCard(){
-                        CityName = "宜蘭",
-                        Price = 250,
-                        ImgUrl = "",
-                    },
-                    new CityCard(){
-                        CityName = "台北",
-                        Price = 500,
-                        ImgUrl = "",
-                    },
-                }
-            };
+            outputDto.VM;
+            //new IndexVM()
+            //{
+            //    CityCards = new List<CityCard>
+            //        {
+            //            new CityCard(){
+            //                CityName = "宜蘭",
+            //                Price = 250,
+            //                ImgUrl = "",
+
+            //                //List<gk41o4> = new  List P{ 
+            //                //    new { "海灘" , "fas fa-coffee"},
+            //                //    new { "computer" , "fas fa-desktop"},
+            //                //}
+            //            },
+            //            new CityCard(){
+            //                CityName = "台北",
+            //                Price = 500,
+            //                ImgUrl = "",
+            //            },
+            //        }
+            //};
 
             return View(vm);
         }
-
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

@@ -1,11 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using MVCModels.MyEnum
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Front</title>
-    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
-    @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="~/css/Reset1.css" />
     <link rel="stylesheet" href="~/css/style.css" />
 
@@ -17,63 +16,39 @@
 <body>
     <div class="header">
         <nav id="navBar">
-            <a href="~/Home/Index"><img src="~/images/Whoochu.png" class="logo" alt=""></a>
+            <a href="~/"><img src="~/images/Whoochu.png" class="logo" alt=""></a>
             <ul class="nav-links">
                 <li><a id='homePage' class="active" href="~/">首頁</a></li>
                 <li><a id='roomList' href="~/Rooms/roomlist">房屋清單</a></li>
-                <li><a id='roomType' href="/RoomDetails/roomDetails">熱門房型</a></li>
+                <li><a id='roomType' href="/RoomDetail/roomDetail/6">熱門房型</a></li>
             </ul>
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn register-btn">
-                    <i class="fas fa-bars" style="font-size: 20px;"></i>
-                    <i class="fas fa-user-circle" style="font-size: 30px;"></i>
-                </button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#home">登入</a>
-                    <a href="#home">註冊</a>
-                    <a href="#home">出租房源</a>
-                </div>
-            </div>
-
-
+            @await Html.PartialAsync("_NavLoginPartial",(object)Model)
             <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
         </nav>
+    
         <div class="container">
             <h1>Find Your Next Stay</h1>
             <div class="search-bar">
-                <form>
+                <form method="post" action="/Rooms/roomlist">
                     <div class="Location-input">
                         <label>地點</label>
-                        <div>
-                            <select>
-                                <option value="1" selected>選擇前往地點 ?</option>
-                                <option value="2">台北</option>
-                                <option value="3">桃園</option>
-                                <option value="4">新竹</option>
-                                <option value="5">苗栗</option>
-                            </select>
-                        </div>
+                        <select name="City">
+                            <option value="0" selected>選擇前往地點 ?</option>
+                            @foreach(int i in Enum.GetValues( typeof(City)) ){
+                            <option value="@i">@( (City)i  )</option>
+                            };
+                        </select>
+
                     </div>
                     <div>
                         <label>入住時間 :</label>
-                        <input type="datetime-local" id="checkin-time" name="checkin-time" value="">
+                        <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
                     </div>
-                    <div>
+                    <div class="checkout">
                         <label>退房時間 :</label>
-                        <input type="datetime-local" id="checkout-time" name="checkout-time" value="">
+                        <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
                     </div>
-                    <div>
-                        <label>旅客</label>
-                        <div>
-                            <select>
-                                <option value="1" selected>新增人數</option>
-                                <option value="2">1 person</option>
-                                <option value="3">2 person</option>
-                                <option value="4">3 person</option>
-                                <option value="5">4 person</option>
-                            </select>
-                        </div>
-                    </div>
+                    
                     <button type="submit"><img src="~/images/search.png" alt=""></button>
                 </form>
             </div>

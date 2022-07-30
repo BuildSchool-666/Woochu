@@ -1,0 +1,161 @@
+﻿@using Front.Models.ViewModels
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@if(Model.PersonalPhoto == null)
+{
+        <div class="content d-flex justify-content-center">
+        <div class="leftbox border w-25 m-3">
+            <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
+                <div class="picture-container mb-5">
+                    <div class="picture">
+                        <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+                            class="picture-src" id="wizardPicturePreview" title="">
+                        <input type="file" id="wizard-picture" name="File" >
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
+            </form>
+            <h6>身分驗證</h6>
+            <p>透過身分驗證徽章展示你真的是本人。</p>
+            <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
+            <hr>
+            <h5>@Model.LastName 已確認</h5>
+            <p>信箱</p>
+        </div>
+        <div class="rightbox w-50 m-3">
+            <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
+            <p class="mb-5">加入時間:@Model.CreateTime</p>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+        <div class="content d-flex justify-content-center">
+        <div class="leftbox border w-25 m-3">
+            <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
+                <div class="picture-container mb-5">
+                    <div class="picture">
+                        <img src="@Model.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
+                        <input type="file" id="wizard-picture" name="File">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
+            </form>
+            <h6>身分驗證</h6>
+            <p>透過身分驗證徽章展示你真的是本人。</p>
+            <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
+            <hr>
+            <h5>@Model.LastName 已確認</h5>
+            <p>@Model.Email</p>
+        </div>
+        <div class="rightbox w-50 m-3">
+            <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
+            <p class="mb-5">加入時間: @Model.CreateTime</p>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+}
+ 
+
+@section topCSS
+{
+    <style>
+        
+        .leftbox {
+            padding: 30px;
+        }
+        .content{
+            margin-top:100px;
+        }
+        .picture-container{
+            position: relative;
+            cursor: pointer;
+            text-align: center;
+            
+        }
+        .picture{
+            width: 106px;
+            height: 106px;
+            background-color: #999999;
+            border: 4px solid #CCCCCC;
+            color: #FFFFFF;
+            border-radius: 50%;
+            margin: 0px auto;
+            overflow: hidden;
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
+        }
+        .picture:hover{
+            border-color: #2ca8ff;
+        }
+        .content.ct-wizard-green .picture:hover{
+            border-color: #05ae0e;
+        }
+        .content.ct-wizard-blue .picture:hover{
+            border-color: #3472f7;
+        }
+        .content.ct-wizard-orange .picture:hover{
+            border-color: #ff9500;
+        }
+        .content.ct-wizard-red .picture:hover{
+            border-color: #ff3b30;
+        }
+        .picture input[type="file"] {
+            cursor: pointer;
+            display: block;
+            height: 100%;
+            left: 0;
+            opacity: 0 !important;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        .picture-src{
+            width: 100%;
+            
+        }
+        h6
+        {
+            font-weight: bolder;
+            font-size: larger;
+        }
+        h5{
+            font-weight: bolder;
+            font-size: larger;
+        }
+    </style>
+}
+@section endJS
+{
+    <script>
+        $(document).ready(function () {
+            // Prepare the preview for profile picture
+            $("#wizard-picture").change(function () {
+                $("#btn-upload").attr('disabled',false)
+                readURL(this);
+            });
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
+}
+

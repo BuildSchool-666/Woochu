@@ -1,16 +1,13 @@
-﻿@model MVCModels.DataModels.User
-@{
-    ViewData["Title"] = "Account-Setting Page";
-}
+﻿@using Front.Models.ViewModels
 
-<div class="container m-auto ">
+
     <div class="title ms-3 mb-5">
         <h1>帳號</h1>
         <div class="info d-flex">
             <p>@Model.FirstName @Model.LastName</p>
             <p> ,</p>
             <span>@Model.Email</span>
-            <a href="#" class="link">前往個人資料</a>
+            <a href="~/Account_settings/Profile" class="link">前往個人資料</a>
         </div>
     </div>
     <div class="row m-auto">
@@ -63,7 +60,7 @@
             </a>
         </div>
         <div class="col-md-6 col-lg-4">
-            <a href="#" class="card-link">
+            <a href="~/Account_settings/Notification" class="card-link">
                 <div class="card mb-4 shadow bg-white rounded" style="height: 10em;">
                     <div class="card-body d-flex flex-wrap align-content-between">
                         <div class="logo w-100">
@@ -111,7 +108,7 @@
             </a>
         </div>
         <div class="col-md-6 col-lg-4">
-            <a href="./TravelforWork.html" class="card-link">
+            <a href="~/Account_settings/TravelForWork" class="card-link">
                 <div class="card mb-4 shadow bg-white rounded" style="height: 10em;">
                     <div class="card-body d-flex flex-wrap align-content-between">
                         <div class="logo w-100">
@@ -127,7 +124,7 @@
             </a>
         </div>
         <div class="col-md-6 col-lg-4">
-            <a href="#" class="card-link">
+            <a href="~/Account_settings/ProfessionalHostTools" class="card-link">
                 <div class="card mb-4 shadow bg-white rounded" style="height: 10em;">
                     <div class="card-body d-flex flex-wrap align-content-between">
                         <div class="logo w-100">
@@ -163,7 +160,6 @@
         <div class="text-center">想要想要停用你的帳號嗎？</div>
         <a href="#" class="text-dark fw-bold">立即處理</a>
     </div>
-</div>
 
 @section topCSS{
 <style>

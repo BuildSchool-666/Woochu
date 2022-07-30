@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MVCModels.Repositories
 {
     public class WoochuRepository
@@ -36,5 +37,7 @@ namespace MVCModels.Repositories
         {
             return _context.Set<T>();
         }
+        
+        
     }
 }

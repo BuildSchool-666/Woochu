@@ -16,6 +16,7 @@ namespace Front.Service.Home
             _repo = repo;
         }
         private void CreateData()
+        
         {
             var entity = new Room
             {
@@ -68,9 +69,6 @@ namespace Front.Service.Home
         }
         public GetIndexDataOutputDTO GetIndexData()
         {
-            //throw new NotImplementedException();
-
-
             //this.CreateData();
 
             var result = new GetIndexDataOutputDTO
