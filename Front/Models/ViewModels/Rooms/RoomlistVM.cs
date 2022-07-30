@@ -22,7 +22,7 @@ namespace Front.Models.ViewModels.Rooms
 
     public class RoomVM
     {
-        public int roomId { get; set; }
+        public int RoomId { get; set; }
         public string Title { get; set; }
         public string ImgUrl { get; set; }
         public string HouseInfo { get; set; }

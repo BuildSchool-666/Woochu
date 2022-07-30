@@ -21,6 +21,7 @@ using Front.Service.Account_setting;
 using Front.Service.Payment.Service;
 using Front.Service.Accounts;
 using Front.Service.Cloudinarys;
+using Microsoft.OpenApi.Models;
 
 namespace Front
 {
@@ -53,7 +54,18 @@ namespace Front
 
                     //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
-                
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Front", Version = "v1" });
+            });
+            services.AddCors(options =>{options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
@@ -78,8 +90,13 @@ namespace Front
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Front v1"));
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 

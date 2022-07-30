@@ -12,19 +12,19 @@
 
             for(int i=0;i < devide;i++)
             {
-                <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
             }
             for(int i=0;i < half;i++)
             {
-                <i class="fas fa-star-half-alt"></i>
+    <i class="fas fa-star-half-alt"></i>
             }
             for(int i=0;i < left;i++)
             {
-                <i class="far fa-star"></i>
+    <i class="far fa-star"></i>
             }
         }
         else{
-            <div>尚無評價</div>
+    <div>尚無評價</div>
         }
     }
 }
@@ -34,7 +34,7 @@
         <div class="left-col">
             @if(!(Model.City == "0"))
             {
-                <h1>選擇地點 : @Model.City</h1>
+                <h1>選擇地點 : @Model.RoomsCard.City</h1>
             }
             else
             {
@@ -45,7 +45,7 @@
             {
             <div class="house">
                 <div class="house-img">
-                    <a href="~/RoomDetail/RoomDetail/@room.roomId">
+                    <a href="~/RoomDetail/RoomDetail/@room.RoomId">
                         <img src="@room.ImgUrl" alt="">
                     </a>
                 </div>
@@ -63,124 +63,288 @@
                 </div>
             </div>
             }
-           
-            @*<div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s2.png" alt="">
-                    </a>
+        </div>
+
+        <div class="right-col">
+            <div class="sidebar">
+                <h2>篩選</h2>
+                <h3>房屋總類</h3>
+                @*@foreach(var )
+                {
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>透天</p> 
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家j</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+                }*@
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>透天</p> 
                 </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s3.png" alt="">
-                    </a>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>旅館</p>
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>公寓</p>
                 </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s4.png" alt="">
-                    </a>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>小木屋</p>
                 </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>套房</p>
+                </div>
+                <h3>設施</h3>
+                @*<div class="filter">
+                    <input type="checkbox">
+                    <p>冷氣</p>
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>網路</p> 
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>健身房</p> 
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>游泳池</p> 
+                </div>
+                <div class="filter">
+                    <input type="checkbox">
+                    <p>廚房</p>
+                </div>
+                *@
+                <div class="sidebar-link">
+                    <a href="#">更多</a>
+                </div>
+                <div class="sidebar-link">
+                    <a id="ClearFilter" href="#">清除勾選</a>
                 </div>
             </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s5.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s6.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>*@
         </div>
     </div>
-
-    
 </div>
+
+@section topCSS{
+    <style>
+        .navbar-white {
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar-white .nav-links li a {
+            color: #000;
+        }
+
+        .navbar-white .register-btn {
+            background-color: white;
+            color: #ff5361;
+            border: 1px solid #ff5361;
+        }
+        .navbar-white .register-btn:hover{
+            border: none;
+            color: black;
+            border: 1px solid black;
+        }
+
+        .navbar-white .hidden-btn {
+            color: #000;
+        }
+
+        .navbar-white .active::after {
+            background: #ff5361;
+        }
+
+        .list-container {
+            margin-top: 150px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .left-col {
+            flex-basis: 70%;
+        }
+
+        .right-col {
+            flex-basis: 25%;
+        }
+
+        .left-col h1 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .house {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 30px 0;
+            border-top: 1px solid #ccc;
+        }
+
+        .house-img {
+            flex-basis: 40%;
+        }
+
+        .house-info {
+            flex-basis: 58%;
+            color: #555
+        }
+
+        .house-img img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .house-info a {
+            text-decoration: none;
+        }
+
+        .house-info h3 {
+            font-weight: 600;
+            color: #333;
+            font-size: 22px;
+            margin: 4px 0;
+        }
+
+        .house-info i {
+            color: #ff5361;
+            font-size: 18px;
+            margin: 10px 1px;
+        }
+
+        .house-price {
+            text-align: right;
+        }
+
+        .house-price h4 {
+            font-size: 20px;
+        }
+
+        .house-price h4 span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .sidebar {
+            border: 1px solid #999;
+            padding: 20px 30px;
+            margin-top: 30px;
+        }
+
+        .sidebar h2 {
+            font-weight: 500;
+        }
+
+        .sidebar h3 {
+            font-weight: 500;
+            margin: 20px 0 10px;
+        }
+
+        .filter {
+            display: flex;
+            align-items: center;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .filter p {
+            flex: 1;
+        }
+
+        .filter input {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .sidebar-link {
+            text-align: right;
+            margin: 20px 0;
+        }
+
+        .sidebar-link a {
+            text-decoration: none;
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .pagination img {
+            width: 15px;
+            margin: 10px 20px;
+        }
+
+        .right-arrow {
+            transform: rotate(180deg);
+        }
+
+        .pagination span {
+            margin: 10px 8px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .pagination .current {
+            background: #333;
+            color: #fff;
+        }
+        @@media screen and (max-width:992px) {
+            .list-container {
+                margin-top: 150px;
+            }
+
+            .left-col,
+            .right-col,
+            .house-img,
+            .house-info {
+                flex-basis: 100%;
+            }
+
+            .left-col h1 {
+                font-size: 22px;
+            }
+
+            .house-info h3 {
+                font-size: 18px;
+            }
+
+            .house-info i {
+                font-size: 16px;
+            }
+
+            .pagination span {
+                margin: 10px 2px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 12px;
+            }
+
+            nav .pages {
+                color: #000;
+            }
+        }
+    </style>
+}
+
+@section endJS{
+
+}

@@ -49,7 +49,7 @@ namespace Front.Service.Cloudinarys
 
             //取得作業系統的完整檔案路徑
             string filePath = Path.Combine(
-                 Directory.GetCurrentDirectory(),
+                Directory.GetCurrentDirectory(),
                 @"wwwroot\",
                 @"CloudinaryImage\",
                 Guid.NewGuid().ToString()   //避免大量使用者同時上傳，檔名重疊覆蓋，使用全域ID，反正待會會刪掉

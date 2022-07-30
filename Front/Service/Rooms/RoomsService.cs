@@ -4,6 +4,7 @@ using MVCModels.DataModels;
 using MVCModels.MyEnum;
 using MVCModels.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Front.Service.Rooms
@@ -15,6 +16,35 @@ namespace Front.Service.Rooms
         public RoomsService(WoochuRepository repo)
         {
             _repo = repo;
+        }
+        public List<GetFacilityOutputDTO> GetFacility()
+        {
+            var facilitys = _repo.GetAll<Facility>().ToList();
+            var result = new List<GetFacilityOutputDTO>();
+            facilitys.ForEach(f =>
+            {
+                var facility = new GetFacilityOutputDTO { 
+                    FacilityId = f.FacilityId, 
+                    FacilityName = f.FacilityName
+                };
+                result.Add(facility);
+            });
+            return result;
+        }
+        public List<GetRoomTypeOutputDTO> GetRoomType()
+        {
+            var roomTypes = _repo.GetAll<RoomType>().ToList();
+            var result = new List<GetRoomTypeOutputDTO>();
+            roomTypes.ForEach(rt =>
+            {
+                var roomType = new GetRoomTypeOutputDTO
+                {
+                    RoomTypeId = rt.RoomTypeId,
+                    RoomTypeName = rt.RoomTypeName
+                };
+                result.Add(roomType);
+            });
+            return result;
         }
         public GetRoomsCardOutputDTO GetRoomsCard(GetRoomsCardInputDTO input)
         {
@@ -63,31 +93,10 @@ namespace Front.Service.Rooms
             result.VM = new RoomlistVM
             {
                 City = input.City.ToString(),
-                Rooms = tmp.ToList().Select(r =>
-                //{
-                //    RoomVM rvm = new RoomVM()
-                //    {
-                //        Title = r.RoomName,
-                //        HouseInfo = r.Description,
-                //        RentPrice = (int)r.BasicPrice,
-                //        Rating = 2.5,
-                //    };
-
-                //    rvm.ImgUrl = _repo.GetAll<ImageFile>()
-                //                        .FirstOrDefault(img => img.RoomId == r.RoomId).Picture;
-                //    rvm.BedCount = _repo.GetAll<RoomFacility>()
-                //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed);
-
-                //    rvm.BathCount = _repo.GetAll<RoomFacility>()
-                //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath);
-
-
-                //    return rvm;
-                //}
-
+                Rooms = tmp.ToList().Select(r =>               
                 new RoomVM
                 {
-                    roomId = r.RoomId,
+                    RoomId = r.RoomId,
                     Title = r.RoomName,
                     ImgUrl = _repo.GetAll<ImageFile>()
                                     .FirstOrDefault(img => img.RoomId == r.RoomId).Picture,

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVCModels.MyEnum;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 
 namespace Back.Controllers
 {
@@ -37,8 +38,13 @@ namespace Back.Controllers
                 inputDto.City = (City)Enum.Parse(typeof(City), city);
             }
 
-            var outputDto = _service.GetRoomsCard(inputDto);
-            var vm = outputDto.VM;//
+            var getRoomsCardOutputDto = _service.GetRoomsCard(inputDto);
+            var getFacilityOutputDto = _service.GetFacility();
+            var getRoomTypeOutputDto = _service.GetRoomType();
+            dynamic vm = new ExpandoObject();
+            vm.RoomsCard = getRoomsCardOutputDto.VM;
+            vm.Facility = getFacilityOutputDto;
+            vm.RoomType = getRoomTypeOutputDto;
             return View(vm);
         }
         [HttpPost]
@@ -51,24 +57,24 @@ namespace Back.Controllers
                 City = requestParam.City,
                 CheckinTime = requestParam.CheckinTime,
                 CheckoutTime = requestParam.CheckoutTime,
-                //Person = requestParam.Person,
+                
             };
             var outputDto = _service.GetRoomsCard(inputDto);
 
             return View(outputDto.VM);
         }
-        public IActionResult roomlistPage2()
-        {
-            return View();
-        }
-        public IActionResult roomlistPage3()
-        {
-            return View();
-        }
-        public IActionResult roomtype()
-        {
-            return View();
-        }
+        //public IActionResult roomlistPage2()
+        //{
+        //    return View();
+        //}
+        //public IActionResult roomlistPage3()
+        //{
+        //    return View();
+        //}
+        //public IActionResult roomtype()
+        //{
+        //    return View();
+        //}
 
     }
 }
