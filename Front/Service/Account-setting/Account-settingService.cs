@@ -132,8 +132,9 @@ namespace Front.Service.Account_setting
             {
                 result.IsSuccess = false;
                 result.Message = ex.Message;
+                return result;
             }
-            
+
 
             user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
             result.VM = new PersonalInformationVM()
