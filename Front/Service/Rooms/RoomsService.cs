@@ -33,7 +33,7 @@ namespace Front.Service.Rooms
         }
         public List<GetRoomTypeOutputDTO> GetRoomType()
         {
-            var roomTypes = _repo.GetAll<RoomType>().ToList();
+            var roomTypes = _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).ToList();
             var result = new List<GetRoomTypeOutputDTO>();
             roomTypes.ForEach(rt =>
             {
@@ -73,66 +73,41 @@ namespace Front.Service.Rooms
                 //選取日期不能跟RoomEvent日期有交集
             }
 
-            if (input.Person != 0)
-            {
-                tmp = tmp.Where(r => r.GuestCount >= input.Person);
-            }
-
-            //var aa = tmp.ToList().Select(r => new RoomVM
-            //{
-
-            //    BedCount = _repo.GetAll<RoomFacility>()
-            //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed),
-            //});
-            //var bb = tmp.ToList().Select(r => new RoomVM
-            //{
-
-            //    BedCount = _repo.GetAll<RoomFacility>()
-            //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
-            //});
             result.VM = new RoomlistVM
             {
                 City = input.City.ToString(),
-                Rooms = tmp.ToList().Select(r =>               
-                new RoomVM
-                {
-                    RoomId = r.RoomId,
-                    Title = r.RoomName,
-                    ImgUrl = _repo.GetAll<ImageFile>()
+                Rooms = tmp.ToList().Select(r =>
+                    new RoomVM
+                    {
+                        RoomId = r.RoomId,
+                        Title = r.RoomName,
+                        ImgUrl = _repo.GetAll<ImageFile>()
                                     .FirstOrDefault(img => img.RoomId == r.RoomId).Picture,
-                    HouseInfo = r.Description,
-                    BedCount = _repo.GetAll<RoomFacility>()
+                        HouseInfo = r.Description,
+                        BedCount = _repo.GetAll<RoomFacility>()
                                     .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed),
-                    BathCount = _repo.GetAll<RoomFacility>()
+                        BathCount = _repo.GetAll<RoomFacility>()
                                     .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
-                    RentPrice = (int)r.BasicPrice,
-                    Rating = CalStar.CalRoomStar(_repo, r.RoomId),
-                }
+                        RentPrice = (int)r.BasicPrice,
+                        Rating = CalStar.CalRoomStar(_repo, r.RoomId),
+                        RoomTypeId = _repo.GetAll<RoomType>().SingleOrDefault(rt => rt.RoomTypeId == r.RoomTypeId).RoomTypeId,
+                        FacilityItem = 
+                            _repo.GetAll<RoomFacility>().Where(rf => rf.RoomId == r.RoomId).ToList()
+                            .Select (rf =>
+                                new FacilityIcon
+                                {
+                                    FacilityId = rf.FacilityId,
+                                    FacilityName = _repo.GetAll<Facility>().SingleOrDefault(f => f.FacilityId == rf.FacilityId).FacilityName,
+                                }
+                            ).ToList(),
 
+                    }
                 ).ToList(),
             };
-
-            //foreach( var r in tmp.ToList())
+            //foreach (var room in result.VM.Rooms)
             //{
-            //    RoomVM rvm = new RoomVM()
-            //    {
-            //        Title = r.RoomName,
-            //        HouseInfo = r.Description,
-            //        RentPrice = (int)r.BasicPrice,
-            //        Rating = 1,
-            //    };
-
-            //    rvm.ImgUrl = _repo.GetAll<ImageFile>()
-            //                        .FirstOrDefault(img => img.RoomId == r.RoomId).Picture;
-            //    rvm.BedCount = _repo.GetAll<RoomFacility>()
-            //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed);
-            //    rvm.BathCount = _repo.GetAll<RoomFacility>()
-            //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath);
-
-
-            //    result.VM.Rooms.Add(rvm);
-            //};
-
+            //    result.VM.Rooms.ToList().Select(r => )
+            //}
 
             result.IsSuccess = true;
 

@@ -30,5 +30,14 @@ namespace Front.Models.ViewModels.Rooms
         public int BathCount { get; set; }
         public int RentPrice { get; set; }
         public double Rating { get; set; }
+        public int RoomTypeId { get; set; }
+        public List<FacilityIcon>? FacilityItem { get; set; }
+    }
+
+    public class FacilityIcon
+    {
+        public int FacilityId { get; set; }
+        public string FacilityName { get; set; }
+        //public string FacilityDisplay { get; set; }
     }
 }
