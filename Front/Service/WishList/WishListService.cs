@@ -46,7 +46,31 @@ namespace Front.Service.WishList
 
         public WishListApiOutputDTO DeleteWishList(WishListApiInputDTO input)
         {
-            throw new System.NotImplementedException();
+            var result = new WishListApiOutputDTO()
+            {
+                IsSuccess = false,
+            };
+
+            var entity = new MVCModels.DataModels.WishList()
+            {
+                UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.UserEmail).UserId,
+                RoomId = input.RoomId,
+                InsertTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+            };
+
+            try
+            {
+                _repo.Delete<MVCModels.DataModels.WishList>(entity);
+                _repo.SaveChanges();
+                result.IsSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+            }
+
+            return result;
         }
     }
 }

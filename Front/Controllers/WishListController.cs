@@ -91,25 +91,18 @@ namespace Front.Controllers
         //    return CreatedAtAction("GetRoom", new { id = room.RoomId }, room);
         //}
 
-        //// DELETE: api/WishList/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteRoom(int id)
-        //{
-        //    var room = await _context.Rooms.FindAsync(id);
-        //    if (room == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // DELETE: api/WishList/5
+        [HttpDelete("{id}")]
+        public WishListApiOutputDTO DeleteRoom([FromBody] int roomId)
+        {
+            var userEmail = User.Identity.Name;
+            var inputDto = new WishListApiInputDTO() { UserEmail = userEmail, RoomId = roomId };
+            var outputDto = _service.DeleteWishList(inputDto);
+            //var result = new WishListApiOutputDTO() { IsSuccess=true};
+            return outputDto;
 
-        //    _context.Rooms.Remove(room);
-        //    await _context.SaveChangesAsync();
+        }
 
-        //    return NoContent();
-        //}
-
-        //private bool RoomExists(int id)
-        //{
-        //    return _context.Rooms.Any(e => e.RoomId == id);
-        //}
+        
     }
 }
