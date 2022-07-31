@@ -20,11 +20,13 @@ using Front.Service.RoomDetail;
 using Front.Service.Order;
 using Front.Service.Account_setting;
 using Front.Service.Payment.Service;
+using Front.Service.WishList;
 
 namespace Front
 {
     public class Startup
     {
+        readonly string CorsPolicy = "_CorsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,14 +54,27 @@ namespace Front
 
                     //options.AccessDeniedPath = new PathString("/Account/AccessDenied");
                 });
-                
+            services.AddCors(options =>
+            {
+                options.AddPolicy(CorsPolicy, builder => {
+                    builder.AllowAnyMethod();  //for Delete
+                    builder.AllowAnyHeader();   //for post
+                    builder.AllowAnyOrigin();   //for CORS
+
+                    //builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+
+                    //builder.WithOrigins("http://mis.ncu.edu.tw").AllowAnyHeader().AllowAnyMethod();
+                    //builder.WithOrigins("http://localhost:44373", "https://localhost:5001").AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
             services.AddScoped<IRoomsService, RoomsService>(); 
             services.AddScoped<IRoomDetailService, RoomDetailService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();
-
+            services.AddScoped<IWishListService, WishListService>();
             services.AddScoped<IAccount_settingService, Account_settingService>();
 
         }
@@ -79,6 +94,8 @@ namespace Front
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCors(CorsPolicy);
 
             app.UseRouting();
 

@@ -1,5 +1,8 @@
 ﻿@using Front.Models.ViewModels.Rooms
 @model RoomlistVM
+@*@{
+    int index = 0;
+}*@
 
 @functions{
     private void Star(double star)
@@ -55,132 +58,29 @@
                     <h3>@room.HouseInfo</h3>
 
                     <p>@room.BedCount 床 / @room.BathCount 廁所 </p>
-                    
+
                     @{Star(room.Rating);}
+                    <br/>
+                    <button onclick="InsertWishList(@room.roomId)" class="btnc" style="cursor: pointer; border: none; background-color: transparent;">
+                        <i class="far fa-heart index_@room.roomId" style="display:block"></i>
+                        <i class="fas fa-heart"style="display:none"></i>
+
+                    </button>
                     <div class="house-price">
                         <h4>$@room.RentPrice<span>/ 天</span></h4>
                     </div>
                 </div>
             </div>
             }
-           
-            @*<div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s2.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家j</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s3.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s4.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s5.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>
-            <div class="house">
-                <div class="house-img">
-                    <a href="house.html">
-                        <img src="~/images/image-s6.png" alt="">
-                    </a>
-                </div>
-                <div class="house-info">
-                    <p>陽印成他老家</p>
-                    <a href="house.html">
-                        <h3>單人套房內含對外窗</h3>
-                    </a>
-                    <p>1 床 / 1 廁所 / Wifi / 廚房</p>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <i class="far fa-star"></i>
-                    <div class="house-price">
-                        <p>2 人</p>
-                        <h4>$ 100 <span>/ 天</span></h4>
-                    </div>
-                </div>
-            </div>*@
         </div>
-    </div>
-
-    
+    </div
 </div>
+
+@*@section endJS{
+    var wishList = document.querySelector("btnc")
+    function DisplayLike(roomId){
+        var element = document.querySelector(`.index(${roomId})`);
+        console.log(element);
+        element.classList.toggle("mystyle");
+    }
+}*@
