@@ -60,15 +60,17 @@ namespace Front.Service.Rooms
             //    BedCount = _repo.GetAll<RoomFacility>()
             //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
             //});
-            var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
-
+            var user = 1;
+            if(input.Email != null)
+            {
+                user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
+            }
+            
             result.VM = new RoomlistVM
             {
                 City = input.City.ToString(),
                 WishList = _repo.GetAll<MVCModels.DataModels.WishList>().Where(wl => wl.UserId == user).Select(wl => wl.RoomId).ToList(),
                 Rooms = tmp.ToList().Select(r =>
-
-
                 new RoomVM
                 {
                     roomId = r.RoomId,

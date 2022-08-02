@@ -24,8 +24,7 @@ namespace Back.Controllers
         }
 
         [HttpGet("~/[controller]/[action]/{city?}")]
-        [Authorize]
-
+        //[Authorize]
         //city search
         public IActionResult Roomlist([FromRoute]string city)
         {
@@ -38,10 +37,14 @@ namespace Back.Controllers
             {
                 inputDto.City = (City)Enum.Parse(typeof(City), city);
             }
+            //var vm = new GetRoomsCardOutputDTO();
+
             var userEmail = User.Identity.Name;
             inputDto.Email = userEmail;
+ 
             var outputDto = _service.GetRoomsCard(inputDto);
-            var vm = outputDto.VM;//
+            var vm = outputDto.VM;
+
             return View(vm);
         }
         [HttpPost]
