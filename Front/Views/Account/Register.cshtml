@@ -1,9 +1,9 @@
 ﻿@using Front.Models.ViewModels.Account
 @model RegisterVM
 
-@if(ViewData["message"] != null)
+@if(TempData["message"] != null)
 {
-    <script>alert( "@Html.Raw(@ViewData["message"] )" );</script>
+    <script>alert( "@Html.Raw(@TempData["message"] )" );</script>
 }
     <form method ="post">
         <div class="content" id="app">
@@ -111,9 +111,9 @@
                 data:{
                     //儲存註冊表單的資料
                     signup:{
-                        account:'',
-                        password:'',
-                        checkPassword:''
+                        account: '@Model?.Email',
+                        password:'@Model?.Password',
+                        checkPassword:'@Model?.PasswordConfirm'
                     },
                     //儲存表單驗證相關
                     signupCheck:{
