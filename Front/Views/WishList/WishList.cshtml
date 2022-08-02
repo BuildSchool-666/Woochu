@@ -48,27 +48,20 @@
 <div class="container">
     <div class="list-container">
         <div class="left-col">
-            @if (!(Model.City == "0"))
-            {
-                <h1>選擇地點 : @Model.City</h1>
-            }
-            else
-            {
-                <h1>選擇地點 : 全部</h1>
-            }
+            
 
-            @foreach (var room in Model.Rooms)
+            @foreach(var room in Model.Rooms)
             {
-                <div class="house">
-                    <div class="house-img">
-                        <a href="~/RoomDetail/RoomDetail/@room.roomId">
-                            <img src="@room.ImgUrl" alt="">
-                        </a>
-                    </div>
-                    <div class="house-info">
-                        <p> @room.Title</p>
-
-                        <h3>@room.HouseInfo</h3>
+            <div class="house">
+                <div class="house-img">
+                    <a href="~/RoomDetail/RoomDetail/@room.roomId">
+                        <img src="@room.ImgUrl" alt="">
+                    </a>
+                </div>
+                <div class="house-info">
+                    <p> @room.Title</p>
+                    
+                    <h3>@room.HouseInfo</h3>
 
                     <p>@room.BedCount 床 / @room.BathCount 廁所 </p>
 

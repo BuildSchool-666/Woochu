@@ -10,6 +10,7 @@ namespace Front.Models.DTOModels.Rooms
     }
     public class GetRoomsCardInputDTO
     {
+        public string Email { get; set; }
         public City City { get; set; }
         public DateTime? CheckinTime { get; set; }
         public DateTime? CheckoutTime { get; set; }

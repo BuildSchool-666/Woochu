@@ -1,6 +1,7 @@
 ﻿using Front.Models.DTOModels.Rooms;
 using Front.Models.ViewModels.Rooms;
 using Front.Service.Rooms;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCModels.MyEnum;
 using System;
@@ -23,7 +24,7 @@ namespace Back.Controllers
         }
 
         [HttpGet("~/[controller]/[action]/{city?}")]
-
+        //[Authorize]
         //city search
         public IActionResult Roomlist([FromRoute]string city)
         {
@@ -36,9 +37,14 @@ namespace Back.Controllers
             {
                 inputDto.City = (City)Enum.Parse(typeof(City), city);
             }
+            //var vm = new GetRoomsCardOutputDTO();
 
+            var userEmail = User.Identity.Name;
+            inputDto.Email = userEmail;
+ 
             var outputDto = _service.GetRoomsCard(inputDto);
-            var vm = outputDto.VM;//
+            var vm = outputDto.VM;
+
             return View(vm);
         }
         [HttpPost]
