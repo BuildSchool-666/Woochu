@@ -38,11 +38,12 @@ namespace Front.Controllers
                 PasswordConfirm = requestParam.PasswordConfirm
             };
             var outputDto = _service.CreateAccount(inputDto);
-            ViewData["message"] = outputDto.Message;
+            
 
             if (!outputDto.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, outputDto.Message);
+                TempData["message"] = outputDto.Message;
                 return View(requestParam);
             }
 
