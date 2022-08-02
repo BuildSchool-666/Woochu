@@ -30,6 +30,19 @@
             <div>尚無評價</div>
         }
     }
+    private void InWishList(int roomId)
+    {
+
+
+        if (Model.WishList.Any(wl => wl == roomId))
+        {
+            <i class="far fa-heart index_@roomId fas"></i>
+        }
+        else
+        {
+            <i class="far fa-heart index_@roomId"></i>
+        }
+    }
 }
 
 <div class="container">
@@ -62,9 +75,8 @@
                     @{Star(room.Rating);}
                     <br/>
                     <button onclick="InsertWishList(@room.roomId)" class="btnc" style="cursor: pointer; border: none; background-color: transparent;">
-                        <i class="far fa-heart index_@room.roomId" style="display:block"></i>
-                        <i class="fas fa-heart"style="display:none"></i>
-
+                       @* <i class="far fa-heart" ></i>  *@     @*index_@room.roomId*@
+                        @{InWishList(room.roomId);}
                     </button>
                     <div class="house-price">
                         <h4>$@room.RentPrice<span>/ 天</span></h4>

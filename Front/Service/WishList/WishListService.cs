@@ -44,23 +44,46 @@ namespace Front.Service.WishList
             return result;
         }
 
+        //public WishListApiOutputDTO DeleteWishList(WishListApiInputDTO input)
+        //{
+        //    var result = new WishListApiOutputDTO()
+        //    {
+        //        IsSuccess = false,
+        //    };
+        //    var target = _repo.GetAll<Pokemon>().FirstOrDefault(x => x.Id == query.Id);
+
+        //    _repository.Delete(target);
+        //    _repository.Save();
+        //    try
+        //    {
+        //        _repo.Delete<MVCModels.DataModels.WishList>(target);
+        //        _repo.SaveChanges();
+        //        result.IsSuccess = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        result.IsSuccess = false;
+        //        result.Message = ex.Message;
+        //    }
+
+        //    return result;
+
+        //}
+
         public WishListApiOutputDTO DeleteWishList(WishListApiInputDTO input)
         {
             var result = new WishListApiOutputDTO()
             {
                 IsSuccess = false,
             };
+            var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.UserEmail).UserId;
 
-            var entity = new MVCModels.DataModels.WishList()
-            {
-                UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.UserEmail).UserId,
-                RoomId = input.RoomId,
-                InsertTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
-            };
+            var wishList = _repo.GetAll<MVCModels.DataModels.WishList>().SingleOrDefault(wl => wl.UserId == user && wl.RoomId == input.RoomId);
+            
 
             try
             {
-                _repo.Delete<MVCModels.DataModels.WishList>(entity);
+                _repo.Delete<MVCModels.DataModels.WishList>(wishList);
                 _repo.SaveChanges();
                 result.IsSuccess = true;
             }

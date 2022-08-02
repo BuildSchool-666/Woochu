@@ -15,6 +15,7 @@ namespace Front.Models.ViewModels.Rooms
     public class RoomlistVM
     {
         public string City { get; set; }
+        public List<int> WishList { get; set; }
 
         public List<RoomVM> Rooms{ get; set; }
     }

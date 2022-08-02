@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MVCModels.DataModels;
 using Front.Service.WishList;
 using Front.Models.DTOModels.WishList;
+using MVCModels.APIModels;
 
 namespace Front.Controllers
 {
@@ -92,15 +93,22 @@ namespace Front.Controllers
         //}
 
         // DELETE: api/WishList/5
-        [HttpDelete("{id}")]
-        public WishListApiOutputDTO DeleteRoom([FromBody] int roomId)
+        [HttpDelete("Delete")]
+        public IActionResult DeleteWishList([FromBody] int roomId)
         {
             var userEmail = User.Identity.Name;
             var inputDto = new WishListApiInputDTO() { UserEmail = userEmail, RoomId = roomId };
             var outputDto = _service.DeleteWishList(inputDto);
-            //var result = new WishListApiOutputDTO() { IsSuccess=true};
-            return outputDto;
+            
+            if(outputDto.IsSuccess == true)
+            {
+                return Ok(new BaseResult(true,APIStatus.Success,""));
+            }
+            else
+            {
+                return Ok(new BaseResult(true, APIStatus.Fail, ""));
 
+            }
         }
 
         

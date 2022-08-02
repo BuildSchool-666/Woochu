@@ -60,30 +60,14 @@ namespace Front.Service.Rooms
             //    BedCount = _repo.GetAll<RoomFacility>()
             //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
             //});
+            var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
+
             result.VM = new RoomlistVM
             {
                 City = input.City.ToString(),
+                WishList = _repo.GetAll<MVCModels.DataModels.WishList>().Where(wl => wl.UserId == user).Select(wl => wl.RoomId).ToList(),
                 Rooms = tmp.ToList().Select(r =>
-                //{
-                //    RoomVM rvm = new RoomVM()
-                //    {
-                //        Title = r.RoomName,
-                //        HouseInfo = r.Description,
-                //        RentPrice = (int)r.BasicPrice,
-                //        Rating = 2.5,
-                //    };
 
-                //    rvm.ImgUrl = _repo.GetAll<ImageFile>()
-                //                        .FirstOrDefault(img => img.RoomId == r.RoomId).Picture;
-                //    rvm.BedCount = _repo.GetAll<RoomFacility>()
-                //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed);
-
-                //    rvm.BathCount = _repo.GetAll<RoomFacility>()
-                //                        .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath);
-
-
-                //    return rvm;
-                //}
 
                 new RoomVM
                 {
@@ -98,6 +82,7 @@ namespace Front.Service.Rooms
                                     .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
                     RentPrice = (int)r.BasicPrice,
                     Rating = CalStar.CalRoomStar(_repo, r.RoomId),
+                    
                 }
 
                 ).ToList(),
