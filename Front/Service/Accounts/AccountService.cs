@@ -37,16 +37,17 @@ namespace Front.Service.Accounts
                 result.Message = "Email已存在";
                 return result;
             }
-            if (input.Password != input.PasswordConfirm)
-            {
-                result.Message = "密碼不相符";
-                return result;
-            }
+            //if (input.Password != input.PasswordConfirm)
+            //{
+            //    result.Message = "密碼不相符";
+            //    return result;
+            //}
             var entity = new User
             {
                 Email = input.Email,
                 Password = Encryption.SHA256(input.Password),
                 CreateTime = System.DateTime.UtcNow,
+                EmailVerify = false
             };
 
             _repo.Create(entity);

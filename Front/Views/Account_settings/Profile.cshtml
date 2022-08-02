@@ -2,68 +2,54 @@
 @{
     ViewData["Title"] = "Profile";
 }
+<div class="content d-flex justify-content-center">
+    <div class="leftbox border w-25 m-3">
+        <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
+            @if(Model.PersonalPhoto == null)
+            {
+                <div class="picture-container mb-5">
+                <div class="picture">
+                    <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+                        class="picture-src" id="wizardPicturePreview" title="">
+                    <input type="file" id="wizard-picture" name="File" >
+                </div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
+            }
+            else
+            {
+                <div class="picture-container mb-5">
+                <div class="picture">
+                    <img src="@Model.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
+                    <input type="file" id="wizard-picture" name="File">
+                </div>
+                </div>
+            <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
+            }
+        </form>
+        <h6>身分驗證</h6>
+        <p>透過身分驗證徽章展示你真的是本人。</p>
+        <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
+        <hr>
+        <h5>@Model.LastName 已確認</h5>
+        <p>@Model.Email</p>
+    </div>
+    <div class="rightbox w-75 m-3">
+        <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
+        <p class="mb-5">加入時間:@Model.CreateTime</p>
+        <div class="mb-3">
+            <label for="iEditor" class="form-label">關於我</label>
+            <form action="Profile" method="post">
+                <textarea name="About" id="editor">
+                    @Model.About
+                </textarea>
+                <p><input type="submit" value="Submit"></p>
+            </form>
+        </div>
+    </div>
+</div>
 
-@if(Model.PersonalPhoto == null)
-{
-        <div class="content d-flex justify-content-center">
-        <div class="leftbox border w-25 m-3">
-            <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
-                <div class="picture-container mb-5">
-                    <div class="picture">
-                        <img src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
-                            class="picture-src" id="wizardPicturePreview" title="">
-                        <input type="file" id="wizard-picture" name="File" >
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
-            </form>
-            <h6>身分驗證</h6>
-            <p>透過身分驗證徽章展示你真的是本人。</p>
-            <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
-            <hr>
-            <h5>@Model.LastName 已確認</h5>
-            <p>@Model.Email</p>
-        </div>
-        <div class="rightbox w-50 m-3">
-            <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
-            <p class="mb-5">加入時間:@Model.CreateTime</p>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-        <div class="content d-flex justify-content-center">
-        <div class="leftbox border w-25 m-3">
-            <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
-                <div class="picture-container mb-5">
-                    <div class="picture">
-                        <img src="@Model.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
-                        <input type="file" id="wizard-picture" name="File">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-outline-dark" id="btn-upload"  disabled="disabled">點擊上傳</button>
-            </form>
-            <h6>身分驗證</h6>
-            <p>透過身分驗證徽章展示你真的是本人。</p>
-            <button type="button" class="btn btn-outline-dark fw-bold">取得徽章</button>
-            <hr>
-            <h5>@Model.LastName 已確認</h5>
-            <p>@Model.Email</p>
-        </div>
-        <div class="rightbox w-50 m-3">
-            <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
-            <p class="mb-5">加入時間: @Model.CreateTime</p>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">關於我</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
-        </div>
-    </div>
-}
+
  
 
 @section topCSS
@@ -133,10 +119,28 @@ else
             font-weight: bolder;
             font-size: larger;
         }
+        textarea{
+            margin-bottom:15px;
+        }
     </style>
 }
 @section endJS
-{
+{ 
+    	
+    <script type="text/javascript" src="~/lib/ckeditor5SimpleUpload/build/ckeditor.js"></script>
+    <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),
+        {
+            simpleUpload:{
+                uploadUrl:'api/CKeditor/CKEditorMedia'
+            }
+        })
+        .catch( error => {
+            console.error( error );
+        } );
+    </script>
+
     <script>
         $(document).ready(function () {
             // Prepare the preview for profile picture
@@ -157,5 +161,6 @@ else
         }
     </script>
     <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
+  
 }
 
