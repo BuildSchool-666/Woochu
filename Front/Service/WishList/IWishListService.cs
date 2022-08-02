@@ -1,4 +1,5 @@
-﻿using Front.Models.DTOModels.WishList;
+﻿using Front.Models.DTOModels.RoomDetail;
+using Front.Models.DTOModels.WishList;
 
 namespace Front.Service.WishList
 {
@@ -6,5 +7,7 @@ namespace Front.Service.WishList
     {
         WishListApiOutputDTO CreateWishList(WishListApiInputDTO input);
         WishListApiOutputDTO DeleteWishList(WishListApiInputDTO input);
+        GetWishListOutputDTO GetWishList(GetWishListInputDTO input);
+
     }
 }
