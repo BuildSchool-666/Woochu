@@ -96,11 +96,42 @@
         </div>
     </div>
 </div>
+<div id="app">
+    <div class="options">
+        <h3>Size</h3>
+        <template v-for="option in size">
+            <input :id="option" type="checkbox" :value="option" v-model="checked.size"><label :for="option">{{ option
+                }}</label>
+        </template>
 
+        <h3>Heel</h3>
+        <template v-for="option in heel">
+            <input :id="option" type="checkbox" :value="option" v-model="checked.heel"><label :for="option">{{ option
+                }}</label>
+        </template>
+
+        <h3>Color</h3>
+        <template v-for="option in color">
+            <input :id="option" type="checkbox" :value="option" v-model="checked.color"><label :for="option">{{ option
+                }}</label>
+        </template>
+            
+    </div>
+    <div class="shoes">
+        <div v-for="shoe in shoes" v-show="visible(shoe.size, shoe.heel, shoe.color)">
+            <h3>{{ shoe.name }}</h3>
+            <p>Sizes: <template v-for="(size, index) in shoe.size">{{ size }}{{ index == shoe.size.length - 1 ? '' : ',' }}</template></p>
+            <p>Heel: <template v-for="(heel, index) in shoe.heel">{{ heel }}{{ index == shoe.heel.length - 1 ? '' : ', '}}</template></p>
+            <p>Color: <template v-for="(color, index) in shoe.color">{{ color }}{{ index == shoe.color.length - 1 ? '' :', ' }}</template></p>
+        </div>
+    </div>
+</div>
 @section topCSS{
 
 }
 
 @section endJS{
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <link href="~/js/RoomListFilter.js" />
 }
