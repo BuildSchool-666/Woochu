@@ -62,7 +62,7 @@ namespace Front.Service.RoomDetail
                 HostName = (_repo.GetAll<User>()
                                 .SingleOrDefault(u => u.UserId == room.UserId).LastName)
                             + " " +
-                           (_repo.GetAll<User>()
+                            (_repo.GetAll<User>()
                                 .SingleOrDefault(u => u.UserId == room.UserId).FirstName),
                 HostPic = "",
                 HostRatingStar = 0.0,

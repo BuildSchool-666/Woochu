@@ -100,7 +100,6 @@ namespace Front.Service.Rooms
                                     FacilityName = _repo.GetAll<Facility>().SingleOrDefault(f => f.FacilityId == rf.FacilityId).FacilityName,
                                 }
                             ).ToList(),
-
                     }
                 ).ToList(),
             };
