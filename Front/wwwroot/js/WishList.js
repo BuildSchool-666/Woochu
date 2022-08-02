@@ -14,7 +14,7 @@ function InsertWishList(roomId) {
     console.log(a)
     console.log(element);
 
-    const webapiUrl = "/api/WishList/";
+    const webapiUrl = "/api/WishListAPI/";
 
     if (element.classList.contains("fas")) {
         let request = new Request(webapiUrl + "Delete", {

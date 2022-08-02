@@ -9,24 +9,25 @@ using MVCModels.DataModels;
 using Front.Service.WishList;
 using Front.Models.DTOModels.WishList;
 using MVCModels.APIModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Front.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WishListController : ControllerBase
+    public class WishListAPIController : ControllerBase
     {
         private readonly IWishListService _service;
 
-        public WishListController(IWishListService service)
+        public WishListAPIController(IWishListService service)
         {
             _service = service;
         }
 
 
         // POST: api/WishList
-        [HttpPost]
-        [Route("Create")]
+        
+        [HttpPost("Create")]       
         public WishListApiOutputDTO CreaateWishList([FromBody] int roomId)
         {
             var userEmail = User.Identity.Name;
@@ -93,6 +94,7 @@ namespace Front.Controllers
         //}
 
         // DELETE: api/WishList/5
+        
         [HttpDelete("Delete")]
         public IActionResult DeleteWishList([FromBody] int roomId)
         {
