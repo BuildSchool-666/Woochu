@@ -5,7 +5,6 @@ namespace Front.Models.ViewModels.Account
     public class LoginVM
     {
         
-        public string Phone { get; set; }
         [Required(ErrorMessage ="要填喔")]
         [EmailAddress]
         public string Email { get; set; }

@@ -38,7 +38,7 @@ namespace Front.Controllers
             inputDto.Email = User.Identity.Name;
 
             var outputDto = _service.GetUserData(inputDto);
-
+                
             if (!outputDto.IsSuccess)
             {
                 return Redirect("/");
@@ -69,25 +69,28 @@ namespace Front.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Profile([FromForm] IFormFile File)
+        public async Task<IActionResult> Profile([FromForm] IFormFile File, string About)
         {
-            var inputDto = new UploadImgInputDTO()
+            var outputDTO = new UploadImgOutputDTO();
+            if (File != null)
             {
-                File = File
-            };
-            var outputDTO = await _cloudinaryService.UploadAsync(inputDto);
+                var inputDto = new UploadImgInputDTO()
+                {
+                    File = File
+                };
+                outputDTO = await _cloudinaryService.UploadAsync(inputDto);
 
+            }
             var input = new PersonalDetailsInputDTO()
             {
                 Email = User.Identity.Name,
                 VM = new PersonalInformationVM
                 {
-                    PersonalPhoto = outputDTO.Url
+                    PersonalPhoto = outputDTO.Url,
+                    About = About
                 }
             };
-
-            var output = _service.UpdateProfilePhoto(input);
-
+            var output = _service.UpdateProfile(input);
             if (!output.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, output.Message);

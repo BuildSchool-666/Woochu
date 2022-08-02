@@ -43,7 +43,9 @@ namespace Front.Service.Account_setting
                Email = user.Email,
                Gender = user.Gender,
                PersonalPhoto = user.PersonalPhoto,
-               CreateTime = (DateTime)user.CreateTime
+               CreateTime = (DateTime)user.CreateTime,
+               Dob = user.Dob,
+               About = user.About,
             };
             
             result.IsSuccess = true;
@@ -79,6 +81,10 @@ namespace Front.Service.Account_setting
             {
                 user.Email = input.Email;
             }
+            if(input.VM.Dob != null)
+            {
+                user.Dob = input.VM.Dob;
+            }
 
             //var member = _repo.GetAll<User>().SingleOrDefault(r => r.UserId == input.UserId);
             //var entity = new User
@@ -105,7 +111,7 @@ namespace Front.Service.Account_setting
             return result;
         }
         
-        public PersonalDetailsOutputDTO UpdateProfilePhoto(PersonalDetailsInputDTO input)
+        public PersonalDetailsOutputDTO UpdateProfile(PersonalDetailsInputDTO input)
         {
             var result = new PersonalDetailsOutputDTO
             {
@@ -121,8 +127,17 @@ namespace Front.Service.Account_setting
             User user = new User();
             try
             {
-                user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
-                user.PersonalPhoto = input.VM.PersonalPhoto;
+                if(input.VM.PersonalPhoto != null)
+                {
+                    user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
+                    user.PersonalPhoto = input.VM.PersonalPhoto;
+                }
+                if(input.VM.About != null)
+                {
+                    user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
+                    user.About = input.VM.About;
+                }
+                
 
                 _repo.Update(user);
                 _repo.SaveChanges();
@@ -142,7 +157,8 @@ namespace Front.Service.Account_setting
                LastName = user.LastName,
                FirstName = user.FirstName,
                CreateTime = (DateTime)user.CreateTime,
-               Email = user.Email
+               Email = user.Email,
+               About = user.About
                
                
             };

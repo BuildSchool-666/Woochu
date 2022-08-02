@@ -38,7 +38,7 @@ namespace Front.Controllers
                 PasswordConfirm = requestParam.PasswordConfirm
             };
             var outputDto = _service.CreateAccount(inputDto);
-            TempData["message"] = outputDto.Message;
+            ViewData["message"] = outputDto.Message;
 
             if (!outputDto.IsSuccess)
             {
@@ -72,11 +72,12 @@ namespace Front.Controllers
             };
             //var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
             var outputDto = _service.LoginAccount(inputDto);
-            TempData["message"] = outputDto.Message;
+            ViewData["message"] = outputDto.Message;
             if (!outputDto.IsSuccess)
             {
                 ModelState.AddModelError(string.Empty, outputDto.Message);
                 return View(requestParam);
+
             }
 
             return Redirect(returnUrl ?? "/");

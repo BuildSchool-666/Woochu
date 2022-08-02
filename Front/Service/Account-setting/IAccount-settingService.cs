@@ -6,7 +6,7 @@ namespace Front.Service.Account_setting
     {
         PersonalDetailsOutputDTO GetUserData(PersonalDetailsInputDTO input);
         PersonalDetailsOutputDTO UpdateUserData(PersonalDetailsInputDTO input);
-        PersonalDetailsOutputDTO UpdateProfilePhoto(PersonalDetailsInputDTO input);
+        PersonalDetailsOutputDTO UpdateProfile(PersonalDetailsInputDTO input);
 
     }
 }

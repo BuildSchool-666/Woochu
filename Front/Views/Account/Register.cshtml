@@ -1,55 +1,45 @@
 ﻿@using Front.Models.ViewModels.Account
 @model RegisterVM
 
-@if(TempData["message"] != null)
+@if(ViewData["message"] != null)
 {
-    <script>alert( "@Html.Raw(@TempData["message"] )" );</script>
+    <script>alert( "@Html.Raw(@ViewData["message"] )" );</script>
 }
-<form method ="post">
-    <div class="content">
-        <div class="box w-50 m-auto border border-secondary rounded">
-            <div class="title p-3 text-center border-bottom fw-bold">
-                登入或註冊
-            </div>
-            <div class="Box m-5">
-                <h1>Airbnb 歡迎你</h1>
-                <label class="form-floating w-100" id="Phone">
-                    <input type="text" class="form-control" id="floatingInputValue" placeholder="電話號碼">
-                    <label for="floatingInputValue">電話號碼</label>
-                </label>
-                <label class="form-floating w-100" id="Email" style="display:none;">
-                    <input name="Email" type="text" class="form-control" id="floatingInputValue" placeholder="Email" value="@Model?.Email">
-                    <label for="floatingInputValue">電子郵件</label>
-                </label>
-                <label class="form-floating w-100" id="Password" style="display:none;">
-                    <input name="Password" type="password" class="form-control" id="floatingInputValue" placeholder="Password" value="@Model?.Password">
-                    <label for="floatingInputValue">密码</label>
-                </label>
-                <label class="form-floating w-100" id="PasswordConfirm" style="display:none;">
-                    <input name="PasswordConfirm" type="password" class="form-control" id="floatingInputValue" placeholder="PasswordConfirm" value="@Model?.PasswordConfirm">
-                    <label for="floatingInputValue">密码確認</label>
-                </label>
-                <span>我們會打電話或傳簡訊，以確認你的電話號碼。可能會產生一般簡訊和數據傳輸費用。<a href="#">私隱政策</a></span>
-                <button class="btn w-100 text-light mt-3 mb-3 fw-bold continue" type="submit">繼續</button>
-                <hr class="line" />
-                <div class="hr-text">或</div>
-                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6">
-                    <i class="fa-brands fa-google"></i>
-                    繼續使用Google登入
-                </button>
-                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6" id="ByEmail">
-                   <i class="fa-solid fa-envelope"></i>
-                    繼續使用Email登入
-                </button>
-                <button type="button" class="btn btn-outline-dark w-100 fw-bold fs-6" id="ByPhone" style="display:none;">
-                    <i class="fa-solid fa-phone"></i>
-                    繼續使用手机登入
-                </button> 
+    <form method ="post">
+        <div class="content" id="app">
+            <div class="box w-50 m-auto border border-secondary rounded">
+                <div class="title p-3 text-center border-bottom fw-bold">
+                    註冊
+                </div>
+                <div class="Box m-5">
+                    <h1>Airbnb 歡迎你</h1>
+                    <label class="form-floating w-100" id="Email">
+                        <input v-model="signup.account" name="Email" type="text" class="form-control" id="floatingInputValue" placeholder="Email" value="@Model?.Email" :class="{'is-invalid':signupCheck.accountError}">
+                        <label for="floatingInputValue">電子郵件</label>
+                        <div class="text-danger small mt-1">
+                            {{signupCheck.accountErrorMsg}}
+                        </div>
+                    </label>
+                    <label class="form-floating w-100" id="Password">
+                        <input v-model="signup.password" name="Password" type="password" class="form-control" id="floatingInputValue" placeholder="Password" value="@Model?.Password" :class="{'is-invalid':signupCheck.passwordError}">
+                        <label for="floatingInputValue">密码</label>
+                        <div class="text-danger small mt-1">
+                            {{signupCheck.passwordErrorMsg}}
+                        </div>
+                    </label>
+                    <label class="form-floating w-100" id="PasswordConfirm">
+                        <input v-model="signup.checkPassword" name="PasswordConfirm" type="password" class="form-control" id="floatingInputValue" placeholder="PasswordConfirm" value="@Model?.PasswordConfirm" :class="{'is-invalid':signupCheck.checkPasswordError}">
+                        <label for="floatingInputValue">密码確認</label>
+                        <div class="text-danger small mt-1">
+                            {{signupCheck.checkPasswordErrorMsg}}
+                        </div>
+                    </label>
+                    <span>我們會傳邮件，以確認您的電子郵件。<a href="#">私隱政策</a></span>
+                    <button class="btn w-100 text-light mt-3 mb-3 fw-bold continue" type="submit" v-bind:disabled="addVerify">繼續</button>
+                </div>
             </div>
         </div>
-    </div>
-</form>
-
+    </form>
 
 @section topCSS
 {
@@ -111,40 +101,112 @@
         }     
     </style>
 }
+@section endJS{
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <script>
+            //聲明式渲染
+            const app = new Vue({
+                el:'#app',
+                //資料,state
+                data:{
+                    //儲存註冊表單的資料
+                    signup:{
+                        account:'',
+                        password:'',
+                        checkPassword:''
+                    },
+                    //儲存表單驗證相關
+                    signupCheck:{
+                        accountError:false,
+                        accountErrorMsg:'',
+                        passwordError:false,
+                        passwordErrorMsg:'',
+                        checkPasswordError:false,
+                        checkPaswordErrorMsg:'',
+                    },
+                    //送出按鈕驗證
+                    addVerify: true
+                },
+                watch:{
+                    'signup.account':{
+                        immediate: true,
+                        handler: function(){
+                            if(this.signup.account =='')
+                            {
+                                this.signupCheck.accountError = true
+                                this.signupCheck.accountErrorMsg = '帳號不得為空'
+                            }
+                            else if(this.signup.account.length < 8 )
+                            {
+                                this.signupCheck.accountError = true
+                                this.signupCheck.accountErrorMsg = '帳號不得小於8碼'
+                            }
+                            else
+                            {
+                                this.signupCheck.accountError = false
+                                this.signupCheck.accountErrorMsg = ''
+                            }
+                            this.checkAddVerify()
+                        }
+                    },
+                    'signup.password':{
+                        immediate: true,
+                        handler: function()
+                        {
+                            this.signupCheck.checkPasswordError = false
+                            this.signupCheck.checkPaswordErrorMsg = ''
+
+                            //let passwordRegex = /^[0-9]*$/
+                            //if(!passwordRegex.test(this.signup.password))
+                            //{
+                            //    this.signupCheck.passwordError = true
+                            //    this.signupCheck.passwordErrorMsg = '密碼必須為數字'
+                            //}
+                            //else if(this.signup.password != '')
+                            //{
+                            //    this.signupCheck.passwordError = true
+                            //    this.signupCheck.passwordErrorMsg = '密碼與第一次輸入不吻合'
+                            //}
+                            //else
+                            //{
+                            //    this.signupCheck.passwordError = false
+                            //    this.signupCheck.passwordErrorMsg = ''
+                            //}
+                            this.checkAddVerify()
+                        }
+                    },
+                    'signup.checkPassword':{
+                        immediate: false,
+                        handler: function(){
+                            if(this.signup.checkPassword != this.signup.password)
+                            {
+                                this.signupCheck.checkPasswordError = true
+                                this.signupCheck.checkPasswordErrorMsg = '密碼與第一次輸入不吻合'
+                            }
+                            else
+                            {
+                                this.signupCheck.checkPasswordError = false
+                                this.signupCheck.checkPasswordErrorMsg = ''
+                            }
+                            this.checkAddVerify();
+                        }
+                    }
+                },
+                methods:{
+                    checkAddVerify(){
+                        for(let prop in this.signupCheck)
+                        {
+                            if(this.signupCheck[prop] == true)
+                            {
+                                this.addVerify = true
+                                return
+                            }
+                            this.addVerify = false;
+                        }
+                    }
+                }   
+            })
+        </script>
+}
         
 
-    @section endJS
-    {
-         <script>
-              const btn_ByEmail = document.getElementById('ByEmail')
-              const Email = document.getElementById('Email')
-              const Phone = document.getElementById('Phone')
-              const btn_ByPhone = document.getElementById('ByPhone')
-              const Password = document.getElementById('Password')
-              const PasswordComfirm = document.getElementById('PasswordComfirm')
-
-              btn_ByEmail.onclick = () =>
-              {
-                  Email.setAttribute("style","display:block;")
-                  btn_ByPhone.setAttribute("style","display:block;")
-                  btn_ByEmail.setAttribute("style","display:none;")
-                  Phone.setAttribute("style","display:none;")
-                  Password.setAttribute("style","display:block;")
-                  PasswordConfirm.setAttribute("style","display:block;")
-
-              }
-
-              btn_ByPhone.onclick = () =>
-              {
-                  Phone.setAttribute("style","display:block;")
-                  btn_ByEmail.setAttribute("style","display:block;")
-                  btn_ByPhone.setAttribute("style","display:none;")
-                  Email.setAttribute("style","display:none;")
-                  Password.setAttribute("style","display:none;")
-                  PasswordConfirm.setAttribute("style","display:none;")
-              }
-          </script>
-          <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
-         
-
-    }
