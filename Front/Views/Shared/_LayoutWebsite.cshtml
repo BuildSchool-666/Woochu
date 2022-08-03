@@ -7,10 +7,7 @@
     <title>@ViewData["Title"] - Front</title>
     <link rel="stylesheet" href="~/css/Reset1.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-    <script src="~/lib/fontawesome/js/all.js"/>
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
-
-
     @await RenderSectionAsync("topCSS", required: false)
     @await RenderSectionAsync("topJS", required: false)
 </head>
@@ -113,6 +110,7 @@
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/fontawesome/js/all.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/Layout.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
