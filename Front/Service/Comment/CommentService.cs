@@ -2,6 +2,7 @@
 using Front.Models.DTOModels;
 using Front.Models.ViewModels.Comment;
 using Front.Service.Comment;
+using Microsoft.AspNetCore.Mvc;
 using MVCModels.DataModels;
 using MVCModels.Repositories;
 using System;
@@ -16,7 +17,7 @@ namespace Front.Service.Comment
         {
             _repo = repo;
         }
-
+        
         public CommentApiOutputDTO CreateComment(CommentApiInputDTO input)
         {
             var result = new CommentApiOutputDTO()
@@ -33,7 +34,7 @@ namespace Front.Service.Comment
                 Accuracy = input.Accuracy,
                 Communication = input.Communication,
                 CheckIn = input.CheckIn,
-                Cp = input.Cp,
+                Cp = input.CP,
                 Location = input.Location,
 
             };

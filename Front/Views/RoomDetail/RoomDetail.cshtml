@@ -102,7 +102,7 @@
 
         <section class="house-comment">
             <div class="comment-rating">
-                @*@{Star(Model.RatingStar);}*@
+
                 @{var roomStar = Math.Round(Model.RatingStar, 1); }
                 <i class="fas fa-star"> @roomStar</i>
                     <h3>@Model.CommentCount 則評論</h3>

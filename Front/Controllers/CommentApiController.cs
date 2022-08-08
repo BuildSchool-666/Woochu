@@ -24,13 +24,26 @@ namespace Front.Controllers
 
         // POST api/<CommentApiController>
         [HttpPost("Create")]
-        public CommentApiOutputDTO CreateComment([FromBody] int roomId)
+        public IActionResult CreateComment([FromBody] CommentApiInputDTO input )
         {
             var userEmail = User.Identity.Name;
-            var inputDto = new CommentApiInputDTO() { Email = userEmail, RoomId = roomId };
+
+            //var Cleanliness = 
+            var inputDto = new CommentApiInputDTO() {
+                Email = userEmail, 
+                RoomId = input.RoomId,
+                Cleanliness = input.Cleanliness,
+                Accuracy = input.Accuracy,
+                Communication=input.Communication,
+                Location=input.Location,
+                CheckIn = input.CheckIn, 
+                CP=input.CP,
+                comment=input.comment,
+                //Created = input.Created 
+            };
             var outputDto = _service.CreateComment(inputDto);
             
-            return outputDto;
+            return Ok();
         }
 
         
