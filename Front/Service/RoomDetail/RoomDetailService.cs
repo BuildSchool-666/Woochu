@@ -30,7 +30,7 @@ namespace Front.Service.RoomDetail
             }
 
             var room = _repo.GetAll<Room>().SingleOrDefault(r => r.RoomId == input.RoomId);
-            var roomStar = _repo.GetAll<Comment>().Where(c => c.RoomId == input.RoomId);
+            var roomStar = _repo.GetAll<MVCModels.DataModels.Comment>().Where(c => c.RoomId == input.RoomId);
             
             result.VM = new RoomDetailVM()
             {
@@ -56,7 +56,7 @@ namespace Front.Service.RoomDetail
                 CheckInStar = roomStar.Select(c => c.CheckIn).Average(),
                 ValueStar = roomStar.Select(c => c.Cp).Average(),
                 RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
-                CommentCount = _repo.GetAll<Comment>().Count(c => c.RoomId == input.RoomId),
+                CommentCount = _repo.GetAll<MVCModels.DataModels.Comment>().Count(c => c.RoomId == input.RoomId),
                 CommentItem = new List<CommentInformation>(),
                 HostId = room.UserId,
                 HostName = (_repo.GetAll<User>()
@@ -88,7 +88,7 @@ namespace Front.Service.RoomDetail
                 }
                 
             });
-            var roomCommentList = _repo.GetAll<Comment>()       //everyone's comment to the room
+            var roomCommentList = _repo.GetAll<MVCModels.DataModels.Comment>()       //everyone's comment to the room
                                 .Where(c => c.RoomId == input.RoomId).ToList();
             roomCommentList.ForEach(rc =>
             {

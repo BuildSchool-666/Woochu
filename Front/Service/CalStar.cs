@@ -18,7 +18,7 @@ namespace Front.Service
         public static double CalRoomStar(WoochuRepository _repo, int roomId)
         {
             double score = 0;
-            var roomComment = _repo.GetAll<Comment>().Where(c => c.RoomId == roomId).ToList();
+            var roomComment = _repo.GetAll<MVCModels.DataModels.Comment>().Where(c => c.RoomId == roomId).ToList();
 
             roomComment.ForEach(cs =>
             {

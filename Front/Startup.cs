@@ -22,6 +22,7 @@ using Front.Service.Payment.Service;
 using Front.Service.Accounts;
 using Front.Service.Cloudinarys;
 using Front.Service.WishList;
+using Front.Service.Comment;
 
 namespace Front
 {
@@ -77,6 +78,7 @@ namespace Front
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<CloudinaryService>();
             services.AddScoped<IWishListService, WishListService>();
+            services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IAccount_settingService, Account_settingService>();
 
         }
