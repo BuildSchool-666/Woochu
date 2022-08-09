@@ -14,6 +14,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Front.Models.DTOModels.Cloudinary;
 using Front.Service.Cloudinarys;
+using System.Dynamic;
 
 namespace Front.Controllers
 {
@@ -51,21 +52,19 @@ namespace Front.Controllers
             //return View(user);
 
         }
-        public async Task<IActionResult> Profile()
+        public IActionResult Profile()
         {
             var inputDto = new PersonalDetailsInputDTO();
-
             inputDto.Email = User.Identity.Name;
+            var email = User.Identity.Name;
 
+            var Profile = _service.GetUserData(inputDto);
+            var MyRoom = _service.GetMyRoom(email);
+            dynamic vm = new ExpandoObject();
+            vm.RoomCard = MyRoom;
+            vm.Profile = Profile.VM;
 
-            var outputDto = _service.GetUserData(inputDto);
-
-            if (!outputDto.IsSuccess)
-            {
-                return Redirect("/");
-
-            }
-            return View(outputDto.VM);
+            return View(vm);
         }
 
         [HttpPost]
@@ -97,6 +96,7 @@ namespace Front.Controllers
                 return View(output);
             }
             return View(output.VM);
+
 
         }
 

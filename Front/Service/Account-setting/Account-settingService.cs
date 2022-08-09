@@ -9,6 +9,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System;
+using Front.Models.DTOModels.RoomDetail;
+using Front.Models.DTOModels.Account_setting;
+using Front.Models.ViewModels.Rooms;
 
 namespace Front.Service.Account_setting
 {
@@ -35,6 +38,7 @@ namespace Front.Service.Account_setting
             }
 
             var user = _repo.GetAll<User>().SingleOrDefault(r => r.Email == input.Email);
+            
 
             result.VM = new PersonalInformationVM()
             {
@@ -168,6 +172,33 @@ namespace Front.Service.Account_setting
             return result;
         }
 
+        public GetMyRoomListOutputDTO GetMyRoom(string email)
+        {
+            var result = new GetMyRoomListOutputDTO
+            { 
+                IsSuccess = false,
+            };
+            if (false)
+            {
+                result.Message = "some failure msg";
+            }
+            var hostId = _repo.GetAll<User>().SingleOrDefault(r => r.Email == email).UserId;
+            var Room = _repo.GetAll<Room>().Where(r => r.UserId == hostId).ToList();
+            result.VM = Room.Select(r =>
+                new RoomVM
+                {
+                    Title = r.RoomName,
+                    HouseInfo = r.Description,
+                    ImgUrl = _repo.GetAll<ImageFile>().FirstOrDefault(img => img.RoomId == r.RoomId).Picture,
+                    Rating = CalStar.CalRoomStar(_repo, r.RoomId),
+                }
+            ).ToList();
+
+            result.IsSuccess = true;
+
+            return result;
+        }
+    
     }
 
 
