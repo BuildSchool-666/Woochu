@@ -10,5 +10,7 @@ namespace Front.Models.DTOModels.RoomDetail
     public class GetRoomsDetailInputDTO
     {
         public int RoomId { get; set; }
+
+        public string Email { get; set; }
     }
 }

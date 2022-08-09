@@ -1,11 +1,39 @@
-﻿@using Front.Models.ViewModels
+﻿@*@using Front.Models.ViewModels;*@
+@model dynamic
 @{
     ViewData["Title"] = "Profile";
+}
+@functions{
+    private void Star(double star)
+    {
+        if(!double.IsNaN(star)){
+            int num = (int)(star * 2);
+            int devide = num / 2;
+            int half = num % 2;
+            int left = 5 - devide - half;
+
+            for(int i=0;i < devide;i++)
+            {
+                <i class="fas fa-star"></i>
+            }
+            for(int i=0;i < half;i++)
+            {
+                <i class="fas fa-star-half-alt"></i>
+            }
+            for(int i=0;i < left;i++)
+            {
+                <i class="far fa-star"></i>
+            }
+        }
+        else{
+            <div>尚無評價</div>
+        }
+    }
 }
 <div class="content d-flex justify-content-center">
     <div class="leftbox border w-25 m-3">
         <form asp-action="Profile" enctype="multipart/form-data" class="mb-3" method="post" >
-            @if(Model.PersonalPhoto == null)
+            @if(Model.Profile.PersonalPhoto == null)
             {
                 <div class="picture-container mb-5">
                 <div class="picture">
@@ -20,7 +48,7 @@
             {
                 <div class="picture-container mb-5">
                 <div class="picture">
-                    <img src="@Model.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
+                    <img src="@Model.Profile.PersonalPhoto" class="picture-src" id="wizardPicturePreview" title="">
                     <input type="file" id="wizard-picture" name="File">
                 </div>
                 </div>
@@ -30,22 +58,52 @@
         <h6>身分驗證</h6>
         <p>透過身分驗證徽章展示你真的是本人。</p>
         <hr>
-        <h5>@Model.LastName 已確認</h5>
-        <p>@Model.Email</p>
+        <h5>@Model.Profile.LastName 已確認</h5>
+        <p>@Model.Profile.Email</p>
     </div>
     <div class="rightbox w-75 m-3">
-        <h1 class="fw-bold">嗨！我是 @Model.LastName</h1>
-        <p class="mb-5">加入時間:@Model.CreateTime</p>
+        <h1 class="fw-bold">嗨！我是 @Model.Profile.LastName</h1>
+        <p class="mb-5">加入時間:@Model.Profile.CreateTime</p>
         <div class="mb-3">
             <label for="iEditor" class="form-label">關於我</label>
             <form action="Profile" method="post">
                 <textarea name="About" id="editor">
-                    @Model.About
+                    @Model.Profile.About
                 </textarea>
                 <p><input type="submit" value="Submit"></p>
             </form>
         </div>
+        <hr />
+        @if(Model.RoomCard.VM.Count !=  0)
+        {
+        <h2>我的房源</h2>
+        <div class="Room">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach(var room in Model.RoomCard.VM)
+                    {
+                            <div class="swiper-slide">
+                            <div class="card" style="width: 18rem;">
+                                <img src="@room.ImgUrl" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                        @{Star(room.Rating);}  @*(@Model.RoomCard.CommentCount 則評論)*@
+                                    <h5 class="card-title">@room.Title</h5>
+                                    <p class="card-text">@room.HouseInfo</p>
+                                </div>
+                            </div>
+                        </div>  
+                    }
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            
+        </div>
+        }
+
     </div>
+    
 </div>
 
 
@@ -53,6 +111,7 @@
 
 @section topCSS
 {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <style>
         
         .leftbox {
@@ -107,7 +166,6 @@
 
         .picture-src{
             width: 100%;
-            
         }
         h6
         {
@@ -121,11 +179,65 @@
         textarea{
             margin-bottom:15px;
         }
+        .Room
+        {
+            height: 100%;
+        }
+       .swiper {
+            width: 100%;
+            /*height: 100%;*/
+        }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 10px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        /*display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;*/
+        display: flex;
+       /* -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;*/
+        justify-content: center;
+      /*  -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;*/
+        align-items: center;
+      }
+
+      /*.swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }*/
     </style>
 }
 @section endJS
 { 
-    	
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 2,
+            spaceBetween: 30,
+            slidesPerGroup: 2,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
     <script type="text/javascript" src="~/lib/ckeditor5SimpleUpload/build/ckeditor.js"></script>
     <script>
     ClassicEditor
@@ -160,6 +272,7 @@
         }
     </script>
     <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
+ 
   
 }
 

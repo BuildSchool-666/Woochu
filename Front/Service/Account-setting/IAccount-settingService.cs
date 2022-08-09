@@ -1,4 +1,5 @@
-﻿using Front.Models.DTOModels.Account_setting_DTO;
+﻿using Front.Models.DTOModels.Account_setting;
+using Front.Models.DTOModels.Account_setting_DTO;
 
 namespace Front.Service.Account_setting
 {
@@ -7,6 +8,7 @@ namespace Front.Service.Account_setting
         PersonalDetailsOutputDTO GetUserData(PersonalDetailsInputDTO input);
         PersonalDetailsOutputDTO UpdateUserData(PersonalDetailsInputDTO input);
         PersonalDetailsOutputDTO UpdateProfile(PersonalDetailsInputDTO input);
+        GetMyRoomListOutputDTO GetMyRoom(string email);
 
     }
 }

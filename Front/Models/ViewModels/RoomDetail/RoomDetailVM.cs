@@ -33,6 +33,8 @@ namespace Front.Models.ViewModels.RoomDetails
         public double HostRatingStar { get; set; }
         public DateTime JoinTime { get; set; }
         public int LastOnlineTime { get; set; }
+
+        public int RoomType { get; set; }
     }
     public class FacilityIcon
     {
@@ -54,5 +56,12 @@ namespace Front.Models.ViewModels.RoomDetails
         public double LocationStar { get; set; }
         public double CheckInStar { get; set; }
         public double ValueStar { get; set; }
+    }
+    public class RoomType
+    {
+        public int RoomTypeId { get; set; }
+        public string RoomTypeName { get; set; }
+        public int? ParentId { get; set; }
+
     }
 }
