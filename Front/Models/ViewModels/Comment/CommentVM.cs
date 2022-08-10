@@ -33,7 +33,7 @@ namespace Front.Models.ViewModels.Comment
         public DateTime CheckOutDate { get; set; }
         public decimal TotalPrice { get; set; }
         public string Email { get; set; }
-        public string content { get; set; }
+        public string? content { get; set; }
 
 
     }

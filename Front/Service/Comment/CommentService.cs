@@ -96,13 +96,7 @@ namespace Front.Service.Comment
             //var hostId = _repo.GetAll<User>().FirstOrDefault(x => x.Email == input.Email)
             var order = _repo.GetAll<MVCModels.DataModels.Order>().Where(x => x.CustomerId == user.UserId);
             //var room = _repo.GetAll<MVCModels.DataModels.Room>().Where(x => x.UserId == order.HostId);
-            int a;
-            var comment = _repo.GetAll<MVCModels.DataModels.Comment>().FirstOrDefault(x => x.UserId == user.UserId);
-            int? commentid = null;
-            if(comment != null)
-            {
-                commentid = comment.CommentId;
-            }
+
             result.vm = new CommentlistVM
             {
                 Comment = order.ToList().Select(o => new CommentVM
@@ -117,8 +111,8 @@ namespace Front.Service.Comment
                     CheckOutDate = o.CheckOutDate,
                     TotalPrice = o.TotalPrice,
                     Email = user.Email,
-                    commentId = commentid,
-                    content = comment.Content,
+                    commentId = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).CommentId : null,
+                    //content = _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).Content,
                 }).ToList(),
                 
 

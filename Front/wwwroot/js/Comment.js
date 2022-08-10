@@ -6,26 +6,32 @@
 //    element.classList.toggle("mystyle");
 //}
 $(document).ready(function () {
+    $("#comment").attr("display","block");
+    $("#delete").attr("display", "none");
+    var classList = $('.Save').attr('value').split(/\s+/);
 
-    
+   
+        $(".Save").click(function () {
+            $(`.${classList[0]}`).hide();
+            $(`.${classList[1]}`).show();
+            window.location.reload();
+            parent.location.reload();
+            opener.location.reload();
+            top.location.reload();
+            });
+
+
+        $(".Delete").click(function () {
+            $(`.${classList[0]}`).show();
+            $(`.${classList[1]}`).hide();
+            window.location.reload();
+            parent.location.reload();
+            opener.location.reload();
+            top.location.reload();
+        });
+    });
  
 
-    $(".Save").click(function () {
-        $("#comment").hide();
-        $("#delete").show();
-        window.location.reload();
-    });
-
-    $(".Delete").click(function () {
-        $("#comment").show();
-        $("#delete").hide();
-        window.location.reload();
-        parent.location.reload();
-        opener.location.reload();
-        top.location.reload();
-    });
-
-});
 function InsertComment(roomId) {
     console.log(roomId);
     const webapiUrl = "/api/CommentApi/";

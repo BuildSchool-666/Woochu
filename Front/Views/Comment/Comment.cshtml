@@ -7,28 +7,28 @@ ViewData["Title"] = "Comment";
 
 @functions
 {
-    public void InComment(int? commentId)
+    public void InComment(int? commentId, int index)
     {
 
         if(commentId == null)
         {
-            <button id="comment" type="button" class="btn comment" data-toggle="modal" data-target="#exampleModal"
+            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal"
                                 style="background-color: #ff5361; color: white; display:block;" >
                                 Comment
             </button>
 
-            <button id="delete" type="button" class="delete btn" data-toggle="modal" data-target="#exampleModal2"
+            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2"
                                 style="background-color: #ff5361; color: white; display:none;">
                                 Delete
             </button>
         }
         else
         {
-            <button id="comment" type="button" class="btn comment" data-toggle="modal" data-target="#exampleModal"
+            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal"
                     style="background-color: #ff5361; color: white; display:none;" >
                     Comment
             </button>
-            <button id="delete" type="button" class="delete btn" data-toggle="modal" data-target="#exampleModal2"
+            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2"
                                 style="background-color: #ff5361; color: white; display:block;">
                                 Delete
             </button>
@@ -51,16 +51,16 @@ ViewData["Title"] = "Comment";
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Comment)
+                @foreach (var item in (Model.Comment).Select((value, index) => new { value, index }))
                {
                     <tr>
-                        <td>@item.HostName</td>
-                        <td>@item.RoomTitle</td>
-                        <td>@item.OrderDate</td>
-                        <td>@item.CheckInDate</td>
-                        <td>@item.CheckOutDate</td>
-                        <td>@item.TotalPrice</td>
-                        <td>@{InComment(item.commentId);}</td>
+                        <td>@item.value.HostName</td>
+                        <td>@item.value.RoomTitle</td>
+                        <td>@item.value.OrderDate</td>
+                        <td>@item.value.CheckInDate</td>
+                        <td>@item.value.CheckOutDate</td>
+                        <td>@item.value.TotalPrice</td>
+                        <td>@{InComment(item.value.commentId,item.index);}</td>
 
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -128,7 +128,7 @@ ViewData["Title"] = "Comment";
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" onclick="InsertComment(@item.RoomId)" data-dismiss="modal" class="btn Save"
+                                            <button type="submit" onclick="InsertComment(@item.value.RoomId)" data-dismiss="modal" id='Save' class="btn Save" value="comment_@item.index delete_@item.index"
                                                 style="background-color: #ff5361; color: white;">Save changes</button>
                                         </div>
                                     </form>
@@ -157,14 +157,14 @@ ViewData["Title"] = "Comment";
                                         </div>
                                     </div>
                                     <div class="content">
-                                        <p> @item.content
+                                        <p> @item.value.content
                                         </p>
                                     </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button class="btn Delete" onclick="DeleteComment(@item.RoomId)" data-dismiss="modal"
+                                        <button class="btn Delete" onclick="DeleteComment(@item.value.RoomId)" data-dismiss="modal"
                                             style="background-color: #ff5361; color: white;">Delete</button>
                                     </div>
                                 </div>
