@@ -6,13 +6,8 @@
     {
         foreach(var item in fIcon)
         {
-    <i class="@item.FacilityDisplay"><p>@item.FacilityName</p></i> 
+    <i class="@item.FacilityDisplay"></i> <p>@item.FacilityName</p>
         }
-        //<i class="fas fa-paw"><p>可攜帶寵物</p></i> 
-        //<i class="fas fa-coffee"><p>早餐</p></i>
-        //<i class="fas fa-smoking"><p>可吸煙</p></i>
-        //<i class="fas fa-calendar-check"><p>可長期住宿</p></i>
-        //<i class="fas fa-desktop"><p>電腦</p></i>
     }
     private void Star(double star)
     {
@@ -56,17 +51,11 @@
         </div>
         <div class="gallery">
             <div class="gallery-img-1"><img src="@Model.ImgUrls[0]"></div>
-            @*<div class="gallery-img-1"><img src="~/images/house-1.png"></div>*@
             @for(int i = 1;i<@Model.ImgUrls.Count;i++)
             {
             <div><img src=" @Model.ImgUrls[i]"></div>
             }
-@*                      
-            <div><img src="~/images/house-2.png"></div>
-            <div><img src="~/images/house-3.png"></div>
-            <div><img src="~/images/house-4.png"></div>
-            <div><img src="~/images/house-5.png"></div>
-*@       </div>
+        </div>
         
         <div class="small-details">
             <h2>@Model.RoomInfo</h2>
@@ -90,8 +79,7 @@
         <div class="service-item">
             <h4>有提供的設備與服務</h4>
             <div class="groupitem">
-                @*<i class="fas fa-umbrella-beach"><p>海灘（緊鄰沙灘</p></i> 
-                <i class="fas fa-paw"><p>可攜帶寵物</p></i> *@
+
                 @{FacilityPrint(Model.FacilityItem);}
             </div>
         </div>
