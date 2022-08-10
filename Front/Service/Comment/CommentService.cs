@@ -112,7 +112,7 @@ namespace Front.Service.Comment
                     TotalPrice = o.TotalPrice,
                     Email = user.Email,
                     commentId = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).CommentId : null,
-                    //content = _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).Content,
+                    content = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).Content : null,
                 }).ToList(),
                 
 
