@@ -42,8 +42,16 @@ namespace Front.Controllers
                 //Created = input.Created 
             };
             var outputDto = _service.CreateComment(inputDto);
-            
-            return Ok();
+
+            if (outputDto.IsSuccess == true)
+            {
+                return Ok(new BaseResult(true, APIStatus.Success, ""));
+            }
+            else
+            {
+                return Ok(new BaseResult(true, APIStatus.Fail, ""));
+
+            }
         }
 
         
