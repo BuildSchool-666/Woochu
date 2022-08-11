@@ -7,6 +7,11 @@ namespace MVCModels.DataModels
 {
     public partial class Order
     {
+        public Order()
+        {
+            Comments = new HashSet<Comment>();
+        }
+
         public string OrderId { get; set; }
         public int CustomerId { get; set; }
         public int HostId { get; set; }
@@ -22,5 +27,6 @@ namespace MVCModels.DataModels
 
         public virtual User Customer { get; set; }
         public virtual Room Room { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

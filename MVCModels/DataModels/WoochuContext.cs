@@ -36,7 +36,7 @@ namespace MVCModels.DataModels
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=woochu.database.windows.net;Database=Woochu;User ID=bs;Password=P@ssword;");
+                optionsBuilder.UseSqlServer("Data Source=woochu.database.windows.net; Database=Woochu; Trusted_Connection=False;Encrypt=True; User ID=bs;Password=P@ssword;");
             }
         }
 
@@ -115,15 +115,19 @@ namespace MVCModels.DataModels
 
                 entity.Property(e => e.Location).HasComment("地點");
 
+                entity.Property(e => e.OrderId)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
                 entity.Property(e => e.RoomId).HasComment("房源ID");
 
                 entity.Property(e => e.UserId).HasComment("使用者ID");
 
-                entity.HasOne(d => d.Room)
+                entity.HasOne(d => d.Order)
                     .WithMany(p => p.Comments)
-                    .HasForeignKey(d => d.RoomId)
+                    .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Comment_Room");
+                    .HasConstraintName("FK_Comment_Order");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Comments)
@@ -229,7 +233,9 @@ namespace MVCModels.DataModels
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.OrderId).HasComment("訂單ID");
+                entity.Property(e => e.OrderId)
+                    .HasMaxLength(20)
+                    .HasComment("訂單ID");
 
                 entity.Property(e => e.AdultCount).HasComment("成人數");
 
@@ -258,8 +264,6 @@ namespace MVCModels.DataModels
                 entity.Property(e => e.TotalPrice)
                     .HasColumnType("decimal(18, 0)")
                     .HasComment("總價");
-
-                entity.Property(e => e.HostId).HasComment("房東ID");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Orders)

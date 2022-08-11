@@ -10,7 +10,6 @@ namespace MVCModels.DataModels
         public Room()
         {
             AltPrices = new HashSet<AltPrice>();
-            Comments = new HashSet<Comment>();
             ImageFiles = new HashSet<ImageFile>();
             Orders = new HashSet<Order>();
             RoomEvents = new HashSet<RoomEvent>();
@@ -43,7 +42,6 @@ namespace MVCModels.DataModels
         public virtual RoomType RoomType { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<AltPrice> AltPrices { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<ImageFile> ImageFiles { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<RoomEvent> RoomEvents { get; set; }
