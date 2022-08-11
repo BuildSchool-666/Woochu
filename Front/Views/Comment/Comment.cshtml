@@ -57,7 +57,7 @@ ViewData["Title"] = "Comment";
             </thead>
             <tbody>
                 @foreach (var item in (Model.Comment).Select((value, index) => new { value, index }))
-               {
+                {
                     <tr>
                         <td>@item.value.HostName</td>
                         <td>@item.value.RoomTitle</td>
