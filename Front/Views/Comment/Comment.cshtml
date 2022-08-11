@@ -12,23 +12,23 @@ ViewData["Title"] = "Comment";
 
         if(commentId == null)
         {
-            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal"
+            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
                                 style="background-color: #ff5361; color: white; display:block;" >
                                 Comment
             </button>
 
-            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2"
+            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2_@index"
                                 style="background-color: #ff5361; color: white; display:none;">
                                 Delete
             </button>
         }
         else
         {
-            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal"
+            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
                     style="background-color: #ff5361; color: white; display:none;" >
                     Comment
             </button>
-            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2"
+            <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2_@index"
                                 style="background-color: #ff5361; color: white; display:block;">
                                 Delete
             </button>
@@ -62,12 +62,12 @@ ViewData["Title"] = "Comment";
                         <td>@item.value.TotalPrice</td>
                         <td>@{InComment(item.value.commentId,item.index);}</td>
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        <div class="modal fade" id="exampleModal_@item.index" tabindex="-1" aria-labelledby="exampleModalLabel_@item.index"
                         aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content" style="height: 500px; ">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">comment</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel_@item.index">comment</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -119,7 +119,7 @@ ViewData["Title"] = "Comment";
 
                                         <div class="commentRequest">
                                             <label for="validationServer01" class="validationServer01">請輸入評論 : </label>
-                                            <textarea placeholder="請輸入100字以內的評論" name="mytext" rows="3" cols="50"
+                                            <textarea placeholder="請輸入100字以內的評論" name="mytext" class="text_@item.index" rows="3" cols="50"
                                                 id="validationServer01" maxlength="100" required
                                                 style="font-size:16px;"></textarea>
 
@@ -128,7 +128,7 @@ ViewData["Title"] = "Comment";
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" onclick="InsertComment(@item.value.RoomId)" data-dismiss="modal" id='Save' class="btn Save" value="comment_@item.index delete_@item.index"
+                                            <button type="submit" onclick="InsertComment(@item.value.RoomId,@item.index)" data-dismiss="modal" id='Save' class="btn Save" value="comment_@item.index delete_@item.index"
                                                 style="background-color: #ff5361; color: white;">Save changes</button>
                                         </div>
                                     </form>
@@ -137,12 +137,12 @@ ViewData["Title"] = "Comment";
                         </div>
                     </div>
 
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="exampleModal2_@item.index" tabindex="-1" aria-labelledby="exampleModalLabel_@item.index"
                         aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete The Comment</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel_@item.index">Delete The Comment</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

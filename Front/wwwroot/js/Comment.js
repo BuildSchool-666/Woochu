@@ -32,7 +32,7 @@ $(document).ready(function () {
     });
  
 
-function InsertComment(roomId) {
+function InsertComment(roomId,index) {
     console.log(roomId);
     const webapiUrl = "/api/CommentApi/";
 
@@ -55,7 +55,7 @@ function InsertComment(roomId) {
     //    });
     
     let score = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
-    let text = document.querySelector("textarea").value;
+    let text = $(`.text_${index}`).val();
     //var html = $("#validationServer01").val();
     console.log(text);
 
