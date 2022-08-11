@@ -42,14 +42,14 @@ namespace Front.Service.Account_setting
 
             result.VM = new PersonalInformationVM()
             {
-               FirstName = user.FirstName,
-               LastName = user.LastName,
-               Email = user.Email,
-               Gender = user.Gender,
-               PersonalPhoto = user.PersonalPhoto,
-               CreateTime = (DateTime)user.CreateTime,
-               Dob = user.Dob,
-               About = user.About,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Gender = user.Gender,
+                PersonalPhoto = user.PersonalPhoto,
+                CreateTime = (DateTime)user.CreateTime,
+                Dob = user.Dob,
+                About = user.About,
             };
             
             result.IsSuccess = true;
