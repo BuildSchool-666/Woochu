@@ -28,6 +28,7 @@ namespace Front.Service.Comment
             {
                 RoomId = input.RoomId,
                 UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId,
+                OrderId = input.OrderId,
                 Content = input.comment,
                 CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 Cleanliness = input.Cleanliness,
@@ -36,6 +37,7 @@ namespace Front.Service.Comment
                 CheckIn = input.CheckIn,
                 Cp = input.CP,
                 Location = input.Location,
+
 
             };
             try
@@ -111,8 +113,9 @@ namespace Front.Service.Comment
                     CheckOutDate = o.CheckOutDate,
                     TotalPrice = o.TotalPrice,
                     Email = user.Email,
-                    commentId = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).CommentId : null,
-                    content = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).Content : null,
+                    commentId = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.OrderId == o.OrderId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.OrderId == o.OrderId).CommentId : null,
+                    content = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.OrderId == o.OrderId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.OrderId == o.OrderId).Content : null,
+                    OrderId = o.OrderId,
                 }).ToList(),
                 
 

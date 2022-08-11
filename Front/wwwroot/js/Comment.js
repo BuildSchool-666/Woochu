@@ -6,14 +6,13 @@
 //    element.classList.toggle("mystyle");
 //}
 $(document).ready(function () {
-    $("#comment").attr("display","block");
-    $("#delete").attr("display", "none");
+
     var classList = $('.Save').attr('value').split(/\s+/);
 
    
         $(".Save").click(function () {
-            $(`.${classList[0]}`).hide();
-            $(`.${classList[1]}`).show();
+            $(`.${classList[0]}`).css("display", "none");
+            $(`.${classList[1]}`).css("display", "block");
             window.location.reload();
             parent.location.reload();
             opener.location.reload();
@@ -22,8 +21,8 @@ $(document).ready(function () {
 
 
         $(".Delete").click(function () {
-            $(`.${classList[0]}`).show();
-            $(`.${classList[1]}`).hide();
+            $(`.${classList[0]}`).css("display", "block");
+            $(`.${classList[1]}`).css("display", "none");
             window.location.reload();
             parent.location.reload();
             opener.location.reload();
@@ -32,8 +31,9 @@ $(document).ready(function () {
     });
  
 
-function InsertComment(roomId,index) {
+function InsertComment(roomId,index,orderid) {
     console.log(roomId);
+
     const webapiUrl = "/api/CommentApi/";
 
 
@@ -66,14 +66,16 @@ function InsertComment(roomId,index) {
             "content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-            RoomId : roomId,
+            RoomId: roomId,
             Cleanliness: score,
             Accuracy : score,
             Communication : score,
-            location: score,
+            Location: score,
             CheckIn: score,
             CP: score,
-            comment : text,
+            comment: text,
+            OrderId: ""+orderid,
+
 
 
         })

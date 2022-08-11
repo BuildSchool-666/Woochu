@@ -34,6 +34,7 @@ namespace Front.Models.ViewModels.Comment
         public decimal TotalPrice { get; set; }
         public string Email { get; set; }
         public string? content { get; set; }
+        public string OrderId { get; set; }
 
 
     }

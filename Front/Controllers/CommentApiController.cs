@@ -30,7 +30,8 @@ namespace Front.Controllers
 
             //var Cleanliness = 
             var inputDto = new CommentApiInputDTO() {
-                Email = userEmail, 
+                Email = userEmail,
+                
                 RoomId = input.RoomId,
                 Cleanliness = input.Cleanliness,
                 Accuracy = input.Accuracy,
@@ -39,6 +40,7 @@ namespace Front.Controllers
                 CheckIn = input.CheckIn, 
                 CP=input.CP,
                 comment=input.comment,
+                OrderId=input.OrderId,
                 //Created = input.Created 
             };
             var outputDto = _service.CreateComment(inputDto);

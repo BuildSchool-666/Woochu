@@ -28,6 +28,7 @@ namespace Front.Models.DTOModels
         public DateTime Created { get; set; }
         public string Email { get; set; }
         public int RoomId { get; set; }
+        public string OrderId { get; set; }
     }
     
 

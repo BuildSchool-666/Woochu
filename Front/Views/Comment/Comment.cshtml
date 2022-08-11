@@ -7,12 +7,12 @@ ViewData["Title"] = "Comment";
 
 @functions
 {
-    public void InComment(int? commentId, int index)
+    public void InComment(int? commentId, int index, string orderid)
     {
 
-        if(commentId == null)
+        if(Model.Comment[index].commentId == null )
         {
-            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
+                        <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
                                 style="background-color: #ff5361; color: white; display:block;" >
                                 Comment
             </button>
@@ -24,15 +24,20 @@ ViewData["Title"] = "Comment";
         }
         else
         {
-            <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
-                    style="background-color: #ff5361; color: white; display:none;" >
-                    Comment
+                    
+                        <button id="comment" type="button" class="btn comment_@index" data-toggle="modal" data-target="#exampleModal_@index"
+                                style="background-color: #ff5361; color: white; display:none;" >
+                                Comment
             </button>
+
             <button id="delete" type="button" class="delete_@index btn" data-toggle="modal" data-target="#exampleModal2_@index"
                                 style="background-color: #ff5361; color: white; display:block;">
                                 Delete
             </button>
+
+
         }
+
     }
 } 
 
@@ -60,7 +65,7 @@ ViewData["Title"] = "Comment";
                         <td>@item.value.CheckInDate</td>
                         <td>@item.value.CheckOutDate</td>
                         <td>@item.value.TotalPrice</td>
-                        <td>@{InComment(item.value.commentId,item.index);}</td>
+                        <td>@{InComment(item.value.commentId,item.index,@item.value.OrderId);}</td>
 
                         <div class="modal fade" id="exampleModal_@item.index" tabindex="-1" aria-labelledby="exampleModalLabel_@item.index"
                         aria-hidden="true">
@@ -128,7 +133,7 @@ ViewData["Title"] = "Comment";
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" onclick="InsertComment(@item.value.RoomId,@item.index)" data-dismiss="modal" id='Save' class="btn Save" value="comment_@item.index delete_@item.index"
+                                            <button type="submit" onclick="InsertComment(@item.value.RoomId,@item.index,'@item.value.OrderId')" data-dismiss="modal" id='Save' class="btn Save" value="comment_@item.index delete_@item.index"
                                                 style="background-color: #ff5361; color: white;">Save changes</button>
                                         </div>
                                     </form>
