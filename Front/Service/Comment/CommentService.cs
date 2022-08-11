@@ -59,9 +59,10 @@ namespace Front.Service.Comment
             {
                 IsSuccess = false,
             };
-            var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
-            var comment = _repo.GetAll<MVCModels.DataModels.Comment>().SingleOrDefault(wl => wl.UserId == user && wl.CommentId == input.CommentId);
-
+            //var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
+            //var comment = _repo.GetAll<MVCModels.DataModels.Comment>().SingleOrDefault(wl => wl.UserId == user && wl.CommentId == input.CommentId);
+            var user = _repo.GetAll<User>().FirstOrDefault(x => x.Email == input.Email);
+            var comment = _repo.GetAll<MVCModels.DataModels.Comment>().FirstOrDefault(x => x.RoomId == input.RoomId && x.UserId == user.UserId);
 
             try
             {
@@ -110,6 +111,8 @@ namespace Front.Service.Comment
                     CheckOutDate = o.CheckOutDate,
                     TotalPrice = o.TotalPrice,
                     Email = user.Email,
+                    commentId = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).CommentId : null,
+                    content = _repo.GetAll<MVCModels.DataModels.Comment>().Any(x => x.UserId == user.UserId && x.RoomId == o.RoomId) ? _repo.GetAll<MVCModels.DataModels.Comment>().First(x => x.UserId == user.UserId && x.RoomId == o.RoomId).Content : null,
                 }).ToList(),
                 
 

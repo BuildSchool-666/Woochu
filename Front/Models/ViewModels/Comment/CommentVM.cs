@@ -18,12 +18,13 @@ namespace Front.Models.ViewModels.Comment
         public List<CommentVM> Comment { get; set; }
 
 
+
     }
 
     public class CommentVM
     {
         public int UserId { get; set; }
-        public int CommentId { get; set; }
+        public int? commentId { get; set; }
         public int RoomId { get; set; }
         public string RoomTitle { get; set; }
         public string HostName { get; set; }
@@ -32,9 +33,16 @@ namespace Front.Models.ViewModels.Comment
         public DateTime CheckOutDate { get; set; }
         public decimal TotalPrice { get; set; }
         public string Email { get; set; }
+        public string? content { get; set; }
 
-        
+
     }
+    //public class CommentId
+    //{
+    //    public int commentId { get; set; }
+    //}
+
+
     public class OrderList
     {
         public DateTime OrderDate { get; set; }
