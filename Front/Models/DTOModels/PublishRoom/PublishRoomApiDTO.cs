@@ -1,22 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 
-#nullable disable
-
-namespace MVCModels.DataModels
+namespace Front.Models.DTOModels.PublishRoom
 {
-    public partial class Room
+    public class PublishRoomApiInputDTO
     {
-        public Room()
-        {
-            AltPrices = new HashSet<AltPrice>();
-            ImageFiles = new HashSet<ImageFile>();
-            Orders = new HashSet<Order>();
-            RoomEvents = new HashSet<RoomEvent>();
-            RoomFacilities = new HashSet<RoomFacility>();
-            WishLists = new HashSet<WishList>();
-        }
-
         public int RoomId { get; set; }
         public string RoomName { get; set; }
         public int UserId { get; set; }
@@ -38,14 +25,10 @@ namespace MVCModels.DataModels
         public decimal? Discount { get; set; }
         public decimal? BasicPrice { get; set; }
         public decimal? ServiceCharge { get; set; }
-
-        public virtual RoomType RoomType { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<AltPrice> AltPrices { get; set; }
-        public virtual ICollection<ImageFile> ImageFiles { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<RoomEvent> RoomEvents { get; set; }
-        public virtual ICollection<RoomFacility> RoomFacilities { get; set; }
-        public virtual ICollection<WishList> WishLists { get; set; }
+        public string UserEmail { get; set; }
     }
+    public class PublishRoomApiOutputDTO : BaseOutputDTO
+    {
+    }
+
 }
