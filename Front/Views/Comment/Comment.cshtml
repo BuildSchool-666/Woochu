@@ -169,8 +169,8 @@ ViewData["Title"] = "Comment";
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button class="btn Delete" onclick="DeleteComment(@item.value.RoomId)" data-dismiss="modal"
-                                            style="background-color: #ff5361; color: white;">Delete</button>
+                                        <button class="btn Delete" onclick="DeleteComment(@item.value.RoomId,'@item.value.OrderId')" data-dismiss="modal"
+                                              style="background-color: #ff5361; color: white;">Delete</button>
                                     </div>
                                 </div>
                             </div>

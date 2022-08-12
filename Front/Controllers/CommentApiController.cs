@@ -60,10 +60,10 @@ namespace Front.Controllers
 
         // DELETE api/<CommentApiController>/5
         [HttpDelete("Delete")]
-        public IActionResult DeleteComment([FromBody] int roomId)
+        public IActionResult DeleteComment([FromBody] CommentApiDeleteInputDTO input)
         {
             var userEmail = User.Identity.Name;
-            var inputDto = new CommentApiInputDTO() { Email = userEmail, RoomId = roomId };
+            var inputDto = new CommentApiDeleteInputDTO() { Email = userEmail,RoomId = input.RoomId, OrderId = input.OrderId };
             var outputDto = _service.DeleteComment(inputDto);
 
             if (outputDto.IsSuccess == true)

@@ -6,7 +6,7 @@ namespace Front.Service.Comment
     {
         GetCommentOutputDTO GetComment(GetCommentInputDTO input);
         CommentApiOutputDTO CreateComment(CommentApiInputDTO input);
-        CommentApiOutputDTO DeleteComment(CommentApiInputDTO input);
+        CommentApiOutputDTO DeleteComment(CommentApiDeleteInputDTO input);
 
     }
 }

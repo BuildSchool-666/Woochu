@@ -30,9 +30,16 @@ namespace Front.Models.DTOModels
         public int RoomId { get; set; }
         public string OrderId { get; set; }
     }
-    
 
-        public class CommentApiOutputDTO : BaseOutputDTO
+    public class CommentApiDeleteInputDTO
+    {
+        public string Email { get; set; }
+        public int RoomId { get; set; }
+        public string OrderId { get; set; }
+    }
+
+
+    public class CommentApiOutputDTO : BaseOutputDTO
     {
 
     }

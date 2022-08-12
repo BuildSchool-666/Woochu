@@ -55,7 +55,7 @@ namespace Front.Service.Comment
             return result;
         }
 
-        public CommentApiOutputDTO DeleteComment(CommentApiInputDTO input)
+        public CommentApiOutputDTO DeleteComment(CommentApiDeleteInputDTO input)
         {
             var result = new CommentApiOutputDTO()
             {
@@ -63,8 +63,9 @@ namespace Front.Service.Comment
             };
             //var user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email).UserId;
             //var comment = _repo.GetAll<MVCModels.DataModels.Comment>().SingleOrDefault(wl => wl.UserId == user && wl.CommentId == input.CommentId);
-            var user = _repo.GetAll<User>().FirstOrDefault(x => x.Email == input.Email);
-            var comment = _repo.GetAll<MVCModels.DataModels.Comment>().FirstOrDefault(x => x.RoomId == input.RoomId && x.UserId == user.UserId);
+            var userid = _repo.GetAll<User>().FirstOrDefault(x => x.Email == input.Email).UserId;
+            var comment = _repo.GetAll<MVCModels.DataModels.Comment>().FirstOrDefault(wl => wl.UserId == userid && wl.RoomId == input.RoomId && wl.OrderId == input.OrderId);
+
 
             try
             {

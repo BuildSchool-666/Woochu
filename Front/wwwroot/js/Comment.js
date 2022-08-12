@@ -7,26 +7,16 @@
 //}
 $(document).ready(function () {
 
-    var classList = $('.Save').attr('value').split(/\s+/);
 
    
         $(".Save").click(function () {
-            $(`.${classList[0]}`).css("display", "none");
-            $(`.${classList[1]}`).css("display", "block");
             window.location.reload();
-            parent.location.reload();
-            opener.location.reload();
-            top.location.reload();
+           
             });
 
 
         $(".Delete").click(function () {
-            $(`.${classList[0]}`).css("display", "block");
-            $(`.${classList[1]}`).css("display", "none");
             window.location.reload();
-            parent.location.reload();
-            opener.location.reload();
-            top.location.reload();
         });
     });
  
@@ -99,8 +89,8 @@ function InsertComment(roomId,index,orderid) {
         //.catch(ex => { msg.innerText = ex; });
 }
 
-function DeleteComment(roomId) {
-    console.log(roomId);
+function DeleteComment(roomid,orderId) {
+    console.log(orderId);
     const webapiUrl = "/api/CommentApi/";
 
 
@@ -109,9 +99,10 @@ function DeleteComment(roomId) {
         headers: {
             "content-type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify(
-                roomId
-        )
+        body: JSON.stringify({
+            RoomId: roomid,
+            Orderid: "" + orderId,
+        })
     });
     fetch(request)
         .then(response => {
