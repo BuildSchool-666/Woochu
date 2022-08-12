@@ -17,36 +17,38 @@ namespace Front.Service.PublishRoom
             _repo = repo;
         }
        
-        public IEnumerable<RoomTypeVM> GetRoomTypeParent()
+        public IEnumerable<PublishRoomVM> GetRoomTypeParent()
         {
-            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).Select(x => new RoomTypeVM()
+            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).Select(x => new PublishRoomVM()
+            {
+                //RoomTypeItem.
+                RoomTypeId = x.RoomTypeId,
+                RoomTypeName = x.RoomTypeName
+            });
+        }
+        public IEnumerable<PublishRoomVM> GetRoomType(int parentId)
+        {
+            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == parentId).Select(x => new PublishRoomVM()
             {
                 RoomTypeId = x.RoomTypeId,
                 RoomTypeName = x.RoomTypeName
             });
         }
-        public IEnumerable<RoomTypeVM> GetRoomType()
-        {
-            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId != null).Select(x => new RoomTypeVM()
-            {
-                RoomTypeId = x.RoomTypeId,
-                RoomTypeName = x.RoomTypeName
-            });
-        }
-        public PublishRoomApiOutputDTO CreateRoom(PublishRoomApiInputDTO input)
+        public PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail)
         {
             var result = new PublishRoomApiOutputDTO()
             {
-                IsSuccess = true,
+                IsSuccess = false,
                 Message = null
             };
 
             var entity = new Room()
             {
-                UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.UserEmail).UserId,
-                RoomTypeId = input.RoomTypeId,
-                CreateTime = System.DateTime.UtcNow,
-                UpdateTime = System.DateTime.UtcNow
+                //UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == userEmail).UserId,
+                UserId = 4,
+                RoomTypeId = roomTypeId,
+                CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+                UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
             };
             try
             {

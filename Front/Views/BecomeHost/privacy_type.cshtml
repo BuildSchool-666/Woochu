@@ -22,13 +22,13 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="complete-set">
+            <button v-on:click="SendValue(0)" type="button" class="type" id="complete-set" >
                 <p class="grouptitle"><strong>整套房源</strong></p>
                 </button>
-            <button type="button" class="type" id="detached-room">
+            <button v-on:click="SendValue(1)" type="button" class="type" id="detached-room">
                 <p class="grouptitle"><strong>獨立房間</strong></p>
                 </button>
-            <button type="button" class="type" id="shared-room">
+            <button v-on:click="SendValue(2)" type="button" class="type" id="shared-room">
                 <p class="grouptitle"><strong>合住房間</strong></p>
                 </button>
         </div>

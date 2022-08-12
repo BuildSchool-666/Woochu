@@ -72,7 +72,7 @@ namespace Front.Service.Account_setting
             User user = _repo.GetAll<User>().SingleOrDefault(u => u.Email == input.Email);
             if (input.VM.FirstName !=null && input.VM.LastName != null)
             {
-
+                
                 user.FirstName = input.VM.FirstName;
                 user.LastName = input.VM.LastName;
                     //Gender = input.VM.Gender,
@@ -183,7 +183,7 @@ namespace Front.Service.Account_setting
                 result.Message = "some failure msg";
             }
             var hostId = _repo.GetAll<User>().SingleOrDefault(r => r.Email == email).UserId;
-            var Room = _repo.GetAll<Room>().Where(r => r.UserId == hostId).ToList();
+            var Room = _repo.GetAll<Room>().Where(r => r.UserId == hostId && r.BasicPrice != null).ToList();
             result.VM = Room.Select(r =>
                 new RoomVM
                 {
