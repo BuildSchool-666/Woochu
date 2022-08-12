@@ -79,16 +79,18 @@ namespace Front.Controllers
            
         }
 
-        [HttpPut("Update/{result}")]
-        public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
+        [HttpPut]
+        public IActionResult Update(PublishRoomApiInputDTO input)
         {
-            var a = (RoomPage)Enum.Parse(typeof(RoomPage), result);
-            //if(a == RoomPage.amenities)
-            //{
-            //    _publishRoomService.GetAmenities()
-            //}
-
-            return Ok(new APIResult(APIStatus.Success, string.Empty, a));
+            try
+            {
+                _publishRoomService.UpdateRoom(input);
+                return Ok(new APIResult(APIStatus.Success, string.Empty, true));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
+            }
 
         }
 }

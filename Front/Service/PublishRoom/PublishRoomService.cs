@@ -17,23 +17,23 @@ namespace Front.Service.PublishRoom
             _repo = repo;
         }
        
-        public IEnumerable<PublishRoomVM> GetRoomTypeParent()
-        {
-            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).Select(x => new PublishRoomVM()
-            {
-                //RoomTypeItem.
-                RoomTypeId = x.RoomTypeId,
-                RoomTypeName = x.RoomTypeName
-            });
-        }
-        public IEnumerable<PublishRoomVM> GetRoomType(int parentId)
-        {
-            return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == parentId).Select(x => new PublishRoomVM()
-            {
-                RoomTypeId = x.RoomTypeId,
-                RoomTypeName = x.RoomTypeName
-            });
-        }
+        //public IEnumerable<PublishRoomVM> GetRoomTypeParent()
+        //{
+        //    return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).Select(x => new PublishRoomVM()
+        //    {
+        //        //RoomTypeItem.
+        //        RoomTypeId = x.RoomTypeId,
+        //        RoomTypeName = x.RoomTypeName
+        //    });
+        //}
+        //public IEnumerable<PublishRoomVM> GetRoomType(int parentId)
+        //{
+        //    return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == parentId).Select(x => new PublishRoomVM()
+        //    {
+        //        RoomTypeId = x.RoomTypeId,
+        //        RoomTypeName = x.RoomTypeName
+        //    });
+        //}
         public PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail)
         {
             var result = new PublishRoomApiOutputDTO()
@@ -65,18 +65,30 @@ namespace Front.Service.PublishRoom
         }
         public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)
         {
+            var result = new PublishRoomApiOutputDTO()
+            {
+                IsSuccess = false,
+                Message = null
+            };
+
             var target = _repo.GetAll<Room>().FirstOrDefault(x => x.RoomId == input.RoomId);
             target.RoomTypeId = input.RoomTypeId;
             target.PrivacyTypeId = input.PrivacyTypeId;
             target.Address = input.Address;
             target.GuestCount = input.GuestCount;
             var targetfacility = _repo.GetAll<RoomFacility>().SingleOrDefault(rf => rf.RoomId == input.RoomId && rf.FacilityId == 13);
-            
-            //var targetfacility;
-           
-            var a = new PublishRoomApiOutputDTO();
-
-            return a;
+            try
+            {
+                _repo.Update(target);
+                _repo.SaveChanges();
+                result.IsSuccess = true;
+            }
+            catch(Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message;
+            }
+            return result;
         }
     }
 }

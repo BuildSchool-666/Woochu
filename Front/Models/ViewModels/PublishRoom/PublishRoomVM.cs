@@ -23,4 +23,5 @@ namespace Front.Models.ViewModels.PublishRoom
         public int RoomPrivacyId { get; set; }
         public string RoomPrivacyName { get; set; }
     }
+
 }
