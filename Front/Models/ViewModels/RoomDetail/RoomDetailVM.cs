@@ -8,7 +8,6 @@ namespace Front.Models.ViewModels.RoomDetails
     {
         public int RoomId { get; set; }
         public string Title { get; set; }
-        public string Address { get; set; }
         public string RoomInfo { get; set; }
         public int BrowseCount { get; set; }
         public int BedCount { get; set; }
@@ -18,6 +17,9 @@ namespace Front.Models.ViewModels.RoomDetails
         public List<FacilityIcon>? FacilityItem { get; set; }
         public int RentPrice { get; set; }
         public string Description { get; set; }
+        public string City { get; set; }
+        public string District { get; set; }
+        public string Address { get; set; }
         public double CleanlinessStar { get; set; }
         public double AccuracyStar { get; set; }
         public double CommunicationStar { get; set; }

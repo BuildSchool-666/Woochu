@@ -29,7 +29,7 @@ namespace Front.Service.Rooms
                 result.Message = "some failure msg";
             }
 
-            var tmp = _repo.GetAll<Room>();
+            var tmp = _repo.GetAll<Room>().Where(r => r.BasicPrice != null);
 
             if (input.City != 0)
             {

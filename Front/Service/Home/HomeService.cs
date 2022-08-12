@@ -84,7 +84,7 @@ namespace Front.Service.Home
 
             result.VM = new IndexVM()
             {
-                CityCards = _repo.GetAll<Room>()
+                CityCards = _repo.GetAll<Room>().Where(r => r.BasicPrice != null)
                     .AsEnumerable()
                     .GroupBy(r => r.City)
                     .Select(g => new CityCard

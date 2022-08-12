@@ -6,7 +6,7 @@
     {
         foreach(var item in fIcon)
         {
-    <i class="@item.FacilityDisplay"></i> <p>@item.FacilityName</p>
+    <div class="col-6 d-flex my-3"><div class="d-flex justify-content-end col-4"><i class=" @item.FacilityDisplay  justify-content-center"></i></div> <p class="col-8 d-flex align-items-center">@item.FacilityName</p></div>
         }
     }
     private void Star(double star)
@@ -92,73 +92,10 @@
             <div class="comment-rating">
 
                 @{var roomStar = Math.Round(Model.RatingStar, 1); }
-                <i class="fas fa-star"> @roomStar</i>
+                <i class="fas fa-star"> </i>@roomStar
                     <h3>@Model.CommentCount 則評論</h3>
                 </div>
-                @*<div class="score">
-                ll
-                    <div class="score-point">
-                        <div class="title-score">乾淨度</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.CleanlinessStar</div>
-                        </div>
-                    </div>
-                    <div class="score-point">
-                        <div class="title-score">準確性</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.AccuracyStar</div>
-                        </div>
-                    </div>
-                    <div class="score-point">
-                        <div class="title-score">溝通</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.CommunicationStar</div>
-                        </div>
-                    </div>
-
-                    <div class="score-point">
-                        <div class="title-score">位置</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.LocationStar</div>
-                        </div>
-                    </div>
-                    <div class="score-point">
-                        <div class="title-score">入住</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.CheckInStar</div>
-                        </div>
-                    </div>
-                    <div class="score-point">
-                        <div class="title-score">性價比</div>
-                        <div class="point">
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100"
-                                    aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="pppp">@Model.ValueStar</div>
-                        </div>
-                    </div>
-                </div>*@
+                
 
             </section>
             <div class="swiper mySwiper">
@@ -183,33 +120,13 @@
                             <div class="rating">
                                 @*@{Star(person.PersonRatingStar);}*@
                                 @{var personStar = Math.Round(person.PersonRatingStar, 1); }
-                                <i class="fas fa-star">@personStar</i>    
+                                <i class="fas fa-star"></i>@personStar
                             </div>
                         </div>
                     </div>
                 }
                     
-                    @*<div class="swiper-slide card">
-                        <div class="card-content">
-                            <div class="list">
-                                <div class="image">
-                                    <img src="https:raw.githubusercontent.com/ycm123/FileStorage/main/20712.jpg">
-                                </div>
-                                <div class="name-profession">
-                                    <span class="name">余仲恩</span>
-                                    <p>4月 2022</p>
-                                </div>
-                            </div>
-                            <div class="comment">
-                                <p>很棒的公寓！有很多空間。非常好的位置。高速WiFi。</p>
-                            </div>
-
-                            <div class="rating">
-                                <i class="fas fa-star">4</i>
-                            </div>
-                        </div>
-                    </div>
-                    *@
+                   
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -228,14 +145,13 @@
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115631.41940935176!2d121.49146110148175!3d25.08554513658272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ac6b61dbbd8b%3A0xbcd1baad5c06a482!2z5Y-w5YyX5biC!5e0!3m2!1szh-TW!2stw!4v1653807291819!5m2!1szh-TW!2stw"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <b>新竹市東區明湖路775巷青草湖自行車道</b>
-                <p>這就像第二個家 .</p>
+                <b>@Model.City @Model.District @Model.Address</b>
             </div>
 
             <hr class="line">
 
             <div class="host">
-                <img src="~/images/host.png" alt="">
+                <img src="@Model.HostPic" alt="">
                 <div>
                     <h2>房東 : @Model.HostName</h2>
                     <p>

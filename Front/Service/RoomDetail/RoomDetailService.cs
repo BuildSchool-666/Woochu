@@ -36,7 +36,7 @@ namespace Front.Service.RoomDetail
             {
                 RoomId = room.RoomId,
                 Title = room.RoomName,
-                Address = room.Address,
+                
                 RoomInfo = "RoomInfo",
                 BrowseCount = (int)room.BrowseCount,
                 BedCount = _repo.GetAll<RoomFacility>()
@@ -49,6 +49,9 @@ namespace Front.Service.RoomDetail
                 FacilityItem = new List<FacilityIcon>(),
                 RentPrice = (int)room.BasicPrice,
                 Description = room.Description,
+                City = room.City,
+                District = room.District,
+                Address = room.Address,
                 CleanlinessStar = roomStar.Select(c => c.Cleanliness).Average(),
                 AccuracyStar = roomStar.Select(c => c.Accuracy).Average(),
                 CommunicationStar = roomStar.Select(c => c.Communication).Average(),
@@ -64,7 +67,7 @@ namespace Front.Service.RoomDetail
                             + " " +
                            (_repo.GetAll<User>()
                                 .SingleOrDefault(u => u.UserId == room.UserId).FirstName),
-                HostPic = "",
+                HostPic = _repo.GetAll<User>().SingleOrDefault(u => u.UserId == room.UserId).PersonalPhoto,
                 HostRatingStar = 0.0,
                 JoinTime = room.CreateTime,
                 LastOnlineTime = 200 / 60,

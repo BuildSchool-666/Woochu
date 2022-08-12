@@ -46,7 +46,7 @@ namespace Front.Service.Accounts
             {
                 Email = input.Email,
                 Password = Encryption.SHA256(input.Password),
-                CreateTime = System.DateTime.UtcNow,
+                CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 EmailVerify = false
             };
 
@@ -79,7 +79,7 @@ namespace Front.Service.Accounts
             if(user.EmailVerify==false)
             {
                 user.EmailVerify = true;
-                user.CreateTime = DateTime.UtcNow;
+                user.CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime;
 
                 _repo.Update(user);
                 _repo.SaveChanges();
