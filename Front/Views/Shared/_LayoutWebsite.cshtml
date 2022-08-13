@@ -32,7 +32,7 @@
                     <div class="Location-input">
                         <label>地點</label>
                         <select name="City">
-                            <option value="0" selected>選擇前往地點 ?</option>
+                            <option value="0" selected>選擇地點:</option>
                             @foreach(int i in Enum.GetValues( typeof(City)) ){
                             <option value="@i">@( (City)i  )</option>
                             };

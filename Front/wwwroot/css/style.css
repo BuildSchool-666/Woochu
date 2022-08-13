@@ -1,6 +1,5 @@
 ﻿* {
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
 }
 
 
@@ -16,12 +15,15 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 7%;
+    padding: 30px 7%;
 }
 
 .logo {
-    width: 160px;
+    width: 130px;
     cursor: pointer;
+}
+nav #navBar p {
+    color: white;
 }
 
 .nav-links li {
@@ -33,6 +35,7 @@ nav {
 .nav-links li a {
     text-decoration: none;
     color: white;
+    font-size: 16px;
 }
 
 .register-btn {
@@ -54,16 +57,18 @@ nav {
     color: #fff;
     transition: all 0.3s ease;
 }
-
+.dropbtn i{
+    padding-right:20px;
+}
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    min-width: 120px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
+    
 }
 
 .dropdown-content a {
@@ -71,6 +76,10 @@ nav {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+.dropdown-content a:hover {
+    background-color: #ff5361;
+    color:white;
 }
 
 .show {
@@ -91,25 +100,26 @@ nav {
 
 .search-bar {
     background-color: white;
-    width: 70%;
-    margin: 30px auto;
-    padding: 6px 10px 6px 30px;
+    width: 1050px;
+    max-width:1000px;
+    margin: 80px auto;
+    padding: 2px 0px 2px 20px;
     border-radius: 50px;
 }
 
 .search-bar div {
-    padding: 0 20px;
-    font-size: 20px;
+    padding: 0 30px;
+    font-size: 15px;
 }
 
 .search-bar form {
     display: flex;
     align-items: center;
-    /* flex-wrap: wrap; */
+/*     flex-wrap: wrap; */
 }
 
 .search-bar form input {
-    font-size: 20px;
+    font-size: 14px;
     display: block;
     border: 0;
     outline: none;
@@ -126,11 +136,11 @@ nav {
     cursor: pointer;
 }
 
-.Location-input select {
+/*.Location-input select {
     font-size: 20px;
     outline: none;
     padding-top: 10px;
-}
+}*/
 
 .search-bar form button img {
     width: 15px;
@@ -138,6 +148,9 @@ nav {
 }
 
 .search-bar form select {
+    font-size: 14px;
+    padding-top: 5%;
+    outline: none;
     border: none;
     border-bottom: 1px solid #ccc;
     width: 100%;
@@ -149,16 +162,17 @@ nav {
 
 /* ---------- */
 .sup-title {
-    margin: 50px 0 50px;
-    font-size: 1.6vw;
-    font-weight: 500;
+    margin: 60px 0;
+    font-size: 1.3vw;
+    border-bottom:1px solid black;
+    font-weight: 600;
     font-style: italic;
     color: black;
 }
 
 .exclusives {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 80px;
 }
 
@@ -180,6 +194,7 @@ nav {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .exclusives .item {
@@ -194,38 +209,6 @@ nav {
 }
 
 
-/* --------- */
-
-.cta {
-    margin: 80px 0;
-    background-image: linear-gradient(to right, #3f2321, transparent), url(https://www.ascham.nsw.edu.au/wp-content/uploads/2017/07/Duntrim-House-Aschams-beautiful-new-boarding-facility-small.jpg);
-    block-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    padding: 5%;
-    color: white;
-}
-
-.cta h3 {
-    font-size: 3vw;
-    line-height: 5.3vw;
-    font-weight: 500;
-}
-
-.cta p {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.cta-btn {
-    background-color: #ff5361;
-    color: white;
-    text-decoration: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    margin-top: 20px;
-    display: inline-block;
-}
 
 /* --------- */
 
@@ -238,6 +221,7 @@ nav {
 
 .stories div img {
     width: 100%;
+    height: 100%;
     border-radius: 10px;
 }
 
@@ -258,7 +242,7 @@ nav {
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 10px 6px 6px rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 26px;
     font-weight: 600;
@@ -281,7 +265,7 @@ nav {
 /* -------- */
 .about-msg {
     text-align: center;
-    margin: 150px 300px;
+    margin: 150px 0px;
     color: #333;
     font-size: 17px;
     line-height: 2;
@@ -289,8 +273,13 @@ nav {
 
 .about-msg h2 {
     font-size: 28px;
-    margin-bottom: 30px;
+    margin: 60px;
     font-weight: 500;
+    border-bottom: 1px solid black;
+}
+.about-msg img{
+    margin-bottom: -10px;
+    padding-left: 30px ;
 }
 
 /* ------- */
@@ -411,8 +400,8 @@ nav .hidden-btn {
     .search-bar form select {
         border-bottom: 1px solid #ddd;
         width: 100%;
+        padding-top: 20px;
         margin-bottom: 20px;
-        margin-top: 10px;
         padding-bottom: 10px;
     }
 
@@ -432,28 +421,10 @@ nav .hidden-btn {
     }
 
     .sup-title {
-        font-size: 6vw;
+        font-size: 2vw;
     }
 
-    .cta {
-        padding: 15% 5%;
-    }
-
-    .cta h3 {
-        font-size: 7vw;
-        line-height: 8vw;
-    }
-
-    .cta p {
-        font-size: 14px;
-    }
-
-    .cta-btn {
-        padding: 6px 15px;
-        border-radius: 4px;
-        margin-top: 10px;
-        font-size: 14px;
-    }
+    
 
     .stories p {
         font-size: 22px;

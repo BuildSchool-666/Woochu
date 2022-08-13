@@ -4,13 +4,12 @@
 @*@if(SignInManager<TUser>.IsSignedIn(User))*@
 {
  
-    <p style="color:grey;">您好! @User.Identity.Name</p>
     <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn register-btn">
-            <i class="fas fa-bars" style="font-size: 20px;"></i>
-            <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+            <i class="fas fa-bars" style="font-size: 20px; padding-right: 20px;"></i>
+            <p style="color:black; font-weight:600;">您好! @User.Identity.Name</p>
         </button>
-        <div id="myDropdown" class="dropdown-content">
+        <div id="myDropdown" style="width:15%" class="dropdown-content" >
                 @*<p>@User.Identity.Name</p>*@
             <a asp-area="" asp-controller="Account" asp-action="Logout">登出</a>
             <a href="~/BecomeHost/Index">出租房源</a>
