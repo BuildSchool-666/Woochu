@@ -7,6 +7,7 @@
 //}
 
 
+
 function InsertWishList(roomId) {
     console.log(roomId);
     var element = document.querySelector(`.index_${roomId}`);
