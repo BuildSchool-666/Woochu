@@ -12,30 +12,11 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button v-on:click="SendValue(6)" type="button" class="type" id="rental" value="6">
-                <p class="grouptitle"><strong>出租住所</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">集合住宅大樓或複合式建築中的出租屋。</p>
+            <button v-for="roomType in roomTypeList" v-on:click="SendValue(roomType.roomTypeId)" type="button" class="type" id="rental" value="roomType.roomTypeId">
+                <p class="grouptitle"><strong>{{ roomType.roomTypeName }}</strong></p>
             </button>
-            <button v-on:click="SendValue(7)" type="button" class="type" id="private" value="7" >
-                <p class="grouptitle"><strong>私有公寓</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">位於集合住宅大樓或複合式建築的住處，產權歸住戶所有。</p>
-            </button>
-            <button v-on:click="SendValue(8)" type="button" class="type" id="loft" value="8">
-                <p class="grouptitle"><strong>Loft空間</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">開放式的公寓，內牆可能較矮。</p>
-            </button>
-            <button v-on:click="SendValue" type="button" class="type" id="serviced">
-                <p class="grouptitle"><strong>服務式公寓</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">由專業管理公司提供飯店式管理服務的公寓。</p>
-            </button>
-            <button v-on:click="SendValue" type="button" class="type" id="cuban">
-                <p class="grouptitle"><strong>古巴式家庭旅館</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">古巴式家庭旅館內的獨立房間。</p>
-            </button>
-            <button v-on:click="SendValue" type="button" class="type" id="holiday-house">
-                <p class="grouptitle"><strong>度假屋</strong></p>
-                <p style="font-size: 14px; color:#9D9D9D; width: 70%;">裝潢齊全的出租房源，包括廚房和浴室，且可能會提供前台等客房服務。</p>
-            </button>
+
+              
         </div>
         <div class="last-bar">
             <button type="button" class="back"><strong>返回</strong></button>
@@ -242,7 +223,56 @@
 }
 
 @section EndJS{
-    @*<script>
+
+<script>
+let app = new Vue({
+    el:'#app',
+    data:{
+        value: {
+            RoomTypeId: 0,
+        },
+        addVerify:true,
+        roomTypeList: [],
+    },
+    mounted() {
+        document.addEventListener('DOMContentLoaded', function() {
+            axios.get('/api/PublishRoomAPI/GetRoomType/' + sessionStorage.getItem("roomTypeGroupId"))
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.status === 20000) {
+                        app.roomTypeList = res.data.result
+                        console.log(app.roomTypeList)
+                    }
+                })
+        });
+    },
+    methods:{
+        SendValue(value){
+            console.log(value),
+            this.addVerify = false
+            this.value.RoomTypeId = value
+        },
+        CreateRoom(){
+            axios.post('/api/PublishRoomAPI/Create', this.value)
+            .then((res) =>
+				{
+					console.log(res)
+					if(res.data.status === 20000)
+					{
+						toastr.success('新增成功')
+                        window.location.href="privacy_type"
+					}
+					else
+                    {
+						toastr.error('新增失敗')
+					}
+				})
+            }
+                
+    }  
+})
+
+@*
         const btn = document.getElementById('next');
          window.onload = function(){
                 btn.style.backgroundColor = "#D0D0D0";
@@ -277,73 +307,9 @@
                 btn.onclick = function(){
             location.href = "@Url.Action("privacy_type","BecomeHost")"; 
             }};
-    </script>*@
+            *@
 
 
-    <script>
-
-        let app = new Vue({
-            el:'#app',
-            data:{
-                value: {
-                    roomPropertyId: 0,
-                },
-                addVerify:true
-            },
-            methods:{
-                SendValue(value){
-                    console.log(value),
-                    this.addVerify = false
-                    this.value.roomPropertyId = value
-                },
-                CreateRoom(){
-                    axios.post('/api/PublishRoomAPI/Create', this.value)
-                    .then((res) =>
-						{
-							console.log(res)
-							if(res.data.status === 20000)
-							{
-								toastr.success('新增成功')
-                                window.location.href="privacy_type"
-							}
-							else
-                            {
-								toastr.error('新增失敗')
-							}
-						})
-                    }
-                
-            }  
-        })
+        
     </script>
-    @*<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>*@
-	
-	@*<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-	*@
-	@*<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-		integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-		crossorigin="anonymous"
-	></script>*@
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-    ></script>
-    @*<script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"
-    ></script>
-    <!-- toastr -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>*@
-    <!-- Axios -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
-        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
-        crossorigin="anonymous"
-    ></script>
 }

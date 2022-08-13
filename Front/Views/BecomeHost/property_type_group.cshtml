@@ -9,7 +9,12 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="apartmentbtn">
+            <button v-for="roomType in roomTypeList" type="button" v-on:click="Check(roomType.roomTypeId)" class="type" v-bind:id="roomType.roomTypeId">
+                <p><strong>{{ roomType.roomTypeName }}</strong></p>
+                <img src="https://a0.muscache.com/im/pictures/eadbcbdb-d57d-44d9-9a76-665a7a4d1cd7.jpg?im_w=240" alt="">
+            </button>
+
+            @*<button type="button" class="type" id="apartmentbtn">
                 <p><strong>公寓</strong></p>
                 <img src="https://a0.muscache.com/im/pictures/eadbcbdb-d57d-44d9-9a76-665a7a4d1cd7.jpg?im_w=240" alt="">
             </button>
@@ -32,11 +37,11 @@
             <button type="button" class="type" id="hotelbtn">
                 <p><strong>精品旅店</strong></p>
                 <img src="https://a0.muscache.com/im/pictures/a2c9ad21-b159-4fd2-b417-d810fb23c6a9.jpg?im_w=240" alt="">
-            </button>
+            </button>*@
         </div>
         <div class="last-bar">
             <button type="button" class="back"><strong>返回</strong></button>
-            <button type="button" class="next text-white" id="next">下一步</button>
+            <button type="button" class="next text-white" id="next" :disabled="checked" :style="checkedStyle" v-on:click="GoNextPage">下一步</button>
         </div>
     </div>
 </div>
@@ -214,55 +219,54 @@
     </style>
 }
 @section EndJS{
-    <script>
-        const nextpageBtn = document.getElementById('next');
-        const aprt = document.getElementById('apartmentbtn');
-        const detached = document.getElementById('detachedbtn');
-        const building = document.getElementById('buidingbtn');
-        const special = document.getElementById('specialbtn');
-        const family = document.getElementById('familybtn');
-        const hotel = document.getElementById('hotelbtn');
+<script>
+const nextpageBtn = document.getElementById('next');
 
-            aprt.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href = "@Url.Action("property_type_apartment","BecomeHost")";
-            }
-            };
 
-            detached.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href ="@Url.Action("property_type_detached","BecomeHost")";
+let app = new Vue({
+    el: '.right',
+    data: {
+        roomTypeList: [],
+        checked: true,
+        roomTypeGroupId: 0,
+    },
+    mounted() {
+        document.addEventListener('DOMContentLoaded', function() {
+            axios.get('/api/PublishRoomAPI/GetRoomTypeParent')
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.status === 20000) {
+                        app.roomTypeList = res.data.result
+                        console.log(app.roomTypeList)
+                    }
+                })
+        });
+    },
+    computed: {
+        checkedStyle() {
+            return {
+                backgroundColor: app.checked ? '' : 'black',
             }
-            };
+        }
+    },
+    methods: {
+        Check(roomTypeId) {
+            app.checked = false;
+            app.roomTypeGroupId = roomTypeId
+            console.log(app.roomTypeGroupId)
+        },
+        GoNextPage() {
+            const Id = app.roomTypeGroupId
+            //this.$router.push({
+            //    path: 'BecomeHost/property_type', params: { id:  Id  }
+            //})
+            //sessionStorage.setItem("roomTypeGroupId", Id);
+            sessionStorage['roomTypeGroupId'] = Id;
+            window.location = 'property_type';
+            //axios.post('/api/PublishRoomAPI/GetRoomTypeParent')
+        }
+    }
+});
 
-            building.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href = "@Url.Action("property_type_building","BecomeHost")";
-            }
-            };
-
-            special.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href = "@Url.Action("property_type_uniqueproperties","BecomeHost")";
-            }
-            };
-
-            family.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href ="@Url.Action("property_type_homestay","BecomeHost")";
-            }
-            };
-
-            hotel.onclick = function(){
-            nextpageBtn.style.backgroundColor = "black";
-            nextpageBtn.onclick = function(){
-            location.href ="@Url.Action("property_type_boutiquehotel","BecomeHost")";
-            }
-            };
     </script>
 }

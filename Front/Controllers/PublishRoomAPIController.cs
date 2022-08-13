@@ -20,50 +20,53 @@ namespace Front.Controllers
         {
             _publishRoomService = publishRoomService;
         }
-        /// <summary>
-        /// 一轉到二頁
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        //[HttpPost("GetRoomTypeParent")]
-        //public IActionResult GetRoomTypeParent()
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomTypeParent();
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
-        ////[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
-        ////public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
-        ////{
-        ////    try
-        ////    {
-        ////        var result = _publishRoomService.GetRoomTypeParent();
-        ////        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        ////    }
-        ////}
-        //[HttpPost("GetRoomType")]
-        //public IActionResult GetRoomType([FromBody] int roomTypeId)
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomType(roomTypeId);
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
+
+        [HttpGet("GetRoomTypeParent")]
+        public IActionResult GetRoomTypeParent()
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomTypeParent();
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+        [HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
+        public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomTypeParent();
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+
+        ///
+        ///<summary>
+        ///一轉到二頁
+        ///</summary>
+        ///<param name = "input" ></ param >
+        ///< returns ></ returns >
+        [HttpGet("GetRoomType/{roomTypeGroupId}")]
+        public IActionResult GetRoomType([FromRoute] int roomTypeGroupId)
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomType(roomTypeGroupId);
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
 
         /// <summary>
         ///二頁創建房源

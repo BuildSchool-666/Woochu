@@ -16,32 +16,7 @@ namespace Front.Controllers
             return View();
         }
 
-        public IActionResult property_type_apartment()
-        {
-            return View();
-        }
-
-        public IActionResult property_type_boutiquehotel()
-        {
-            return View();
-        }
-
-        public IActionResult property_type_building()
-        {
-            return View();
-        }
-
-        public IActionResult property_type_detached()
-        {
-            return View();
-        }
-
-        public IActionResult property_type_homestay()
-        {
-            return View();
-        }
-
-        public IActionResult property_type_uniqueproperties()
+        public IActionResult property_type()
         {
             return View();
         }
