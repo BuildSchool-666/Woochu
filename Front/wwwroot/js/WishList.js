@@ -28,8 +28,7 @@ function InsertWishList(roomId) {
         fetch(request)
             .then(response => {
                 if (response.ok) {
-                    $(".index_11").attr("data-prefix", "far");
-                    window.location.reload();
+                    $(`.index_${roomId}`).attr("data-prefix", "far");
                     return response.text();
                 }
                 else {
@@ -48,8 +47,7 @@ function InsertWishList(roomId) {
         fetch(request)
             .then(response => {
                 if (response.ok) {
-                    $(".index_11").attr("data-prefix", "fas");
-                    window.location.reload();
+                    $(`.index_${roomId}`).attr("data-prefix", "fas");
                     return response.text();
                 }
                 else {
