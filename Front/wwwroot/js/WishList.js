@@ -10,13 +10,14 @@
 function InsertWishList(roomId) {
     console.log(roomId);
     var element = document.querySelector(`.index_${roomId}`);
-    var a = document.querySelector('.fa-heart')
-    console.log(a)
+    var a = $(`.index_${roomId}`).attr("data-prefix")
     console.log(element);
+    console.log(a);
+
 
     const webapiUrl = "/api/WishListAPI/";
 
-    if (element.classList.contains("fas")) {
+    if (a == "fas") {
         let request = new Request(webapiUrl + "Delete", {
             method: "DELETE",
             headers: {
@@ -27,7 +28,8 @@ function InsertWishList(roomId) {
         fetch(request)
             .then(response => {
                 if (response.ok) {
-                    element.classList.toggle("fas");
+                    $(".index_11").attr("data-prefix", "far");
+                    window.location.reload();
                     return response.text();
                 }
                 else {
@@ -46,7 +48,8 @@ function InsertWishList(roomId) {
         fetch(request)
             .then(response => {
                 if (response.ok) {
-                    element.classList.toggle("fas");
+                    $(".index_11").attr("data-prefix", "fas");
+                    window.location.reload();
                     return response.text();
                 }
                 else {

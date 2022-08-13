@@ -79,7 +79,8 @@ nav #navBar p {
 }
 .dropdown-content a:hover {
     background-color: #ff5361;
-    color:white;
+    color: white;
+    transition: all 0.3s ease;
 }
 
 .show {
