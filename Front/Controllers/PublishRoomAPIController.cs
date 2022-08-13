@@ -20,6 +20,11 @@ namespace Front.Controllers
         {
             _publishRoomService = publishRoomService;
         }
+        /// <summary>
+        /// 一轉到二頁
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         //[HttpPost("GetRoomTypeParent")]
         //public IActionResult GetRoomTypeParent()
         //{
@@ -60,25 +65,38 @@ namespace Front.Controllers
         //    }
         //}
 
-        [HttpPost("Create/{roomTypeId}")]
-        public IActionResult Create([FromRoute]int roomTypeId)
+        /// <summary>
+        ///二頁創建房源
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        public IActionResult Create(PublishRoomApiInputDTO input)
         {
             try
             {
                 var userEmail = User.Identity.Name;
-                _publishRoomService.CreateRoom(roomTypeId, userEmail);
-                //List<string> roomPrivacy = new List<string>();
-                //foreach(var i in Enum.GetNames(typeof(PrivacyType)))
-                //{ roomPrivacy.Add(i); }
-                return Ok(new APIResult(APIStatus.Success, string.Empty, roomTypeId));
+                _publishRoomService.CreateRoom(input);
+
+                List<string> roomPrivacy = new List<string>();
+                foreach (var i in Enum.GetNames(typeof(PrivacyType)))
+                { roomPrivacy.Add(i); }
+
+                return Ok(new APIResult(APIStatus.Success, string.Empty, roomPrivacy));
             }
             catch (Exception ex)
             {
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
-           
         }
-
+        
+        /// <summary>
+        /// 後十幾頁的資料update
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPut("Update/{result}")]
         public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
         {
@@ -87,9 +105,8 @@ namespace Front.Controllers
             //{
             //    _publishRoomService.GetAmenities()
             //}
-
             return Ok(new APIResult(APIStatus.Success, string.Empty, a));
-
         }
-}
+        
+    }
 }

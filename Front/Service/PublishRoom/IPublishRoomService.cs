@@ -7,7 +7,7 @@ namespace Front.Service.PublishRoom
 {
     public interface IPublishRoomService
     {
-        PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail);
+        void CreateRoom(PublishRoomApiInputDTO input);
         PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input);
         IEnumerable<PublishRoomVM> GetRoomTypeParent();
         IEnumerable<PublishRoomVM> GetRoomType(int ParentId);

@@ -34,34 +34,20 @@ namespace Front.Service.PublishRoom
                 RoomTypeName = x.RoomTypeName
             });
         }
-        public PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail)
+        public void CreateRoom(PublishRoomApiInputDTO input)
         {
-            var result = new PublishRoomApiOutputDTO()
-            {
-                IsSuccess = false,
-                Message = null
-            };
-
             var entity = new Room()
             {
                 //UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == userEmail).UserId,
                 UserId = 4,
-                RoomTypeId = roomTypeId,
+                RoomTypeId = input.RoomTypeId,
                 CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
             };
-            try
-            {
-                _repo.Create<Room>(entity);
-                _repo.SaveChanges();
-                result.IsSuccess = true;
-            }
-            catch (Exception ex)
-            {
-                result.IsSuccess = false;
-                result.Message = ex.Message;
-            }
-            return result;
+            
+            _repo.Create<Room>(entity);
+            _repo.SaveChanges();
+
         }
         public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)
         {
