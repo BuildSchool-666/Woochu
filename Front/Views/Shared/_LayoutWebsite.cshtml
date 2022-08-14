@@ -24,7 +24,7 @@
             @await Html.PartialAsync("_NavLoginPartial",(object)Model)
             <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
         </nav>
-    
+
         <div class="container">
             <h1>Find Your Next Stay</h1>
             <div class="search-bar">
@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("_NavLoginPartial",(object)Model)
 
     @RenderBody()
     <div class="container">

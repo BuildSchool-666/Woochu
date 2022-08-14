@@ -19,7 +19,7 @@
                                 <p class="fs-6" id="name">@Model.FirstName @Model.LastName</p>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#btnname" aria-expanded="false" aria-controls="btnname">
                                     編輯
                                 </button>
@@ -38,7 +38,7 @@
                                          <input type="text" class="form-control" name="LastName" placeholder="Last name" id="LastName" value="@Model?.LastName" />
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-dark" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
+                                <button type="submit" class="btn btn-sub" id="btn_name" data-bs-toggle="collapse" data-bs-target="#btnname">儲存</button>
                             </form>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                                 <span id="gender">@Model.Gender</span>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#btngender" aria-expanded="false" aria-controls="collapseExample"
                                     aria-expanded="false" aria-controls="btngender">
                                     編輯
@@ -65,7 +65,7 @@
                                     <option value="2">女</option>
                                     <option value="3">其他</option>
                                 </select>
-                                <button type="submit" class="btn btn-dark" id="btn_gender" data-bs-toggle="collapse" data-bs-target="#btngender">儲存</button>
+                                <button type="submit" class="btn btn-sub" id="btn_gender" data-bs-toggle="collapse" data-bs-target="#btngender">儲存</button>
                             </form>
                         </div>
                         
@@ -78,7 +78,7 @@
                                 <span class="fs-6" id="DOB"></span>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#btnDOB" aria-expanded="false" aria-controls="collapseExample"
                                 aria-expanded="false" aria-controls="btnDOB">
                                     編輯
@@ -90,7 +90,7 @@
                                 <input type="date" class="form-control" id="selectDOB" value="">
                                 <label for="selectDOB">出生日期</label>
                             </form>
-                            <button type="button" class="btn btn-dark" id="btn_DOB" data-bs-toggle="collapse" data-bs-target="#btnDOB">儲存</button>
+                            <button type="button" class="btn btn-sub" id="btn_DOB" data-bs-toggle="collapse" data-bs-target="#btnDOB">儲存</button>
                         </div>
                         
                         
@@ -102,7 +102,7 @@
                                 <span class="fs-6" id="email">@Model.Email</span>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#btnEmail" aria-expanded="false" aria-controls="collapseExample"
                                 aria-expanded="false" aria-controls="btnEmail">
                                     編輯
@@ -115,7 +115,7 @@
                                 <input type="emailAddress" class="form-control" id="emailAddress" placeholder="name@example.com" value="">
                                 <label for="floatingInput">Email address</label>
                             </form>
-                            <button type="button" class="btn btn-dark" id="btn_Email" data-bs-toggle="collapse" data-bs-target="#btnEmail">儲存</button>
+                            <button type="button" class="btn btn-sub" id="btn_Email" data-bs-toggle="collapse" data-bs-target="#btnEmail">儲存</button>
                         </div>
                         
                     </div>
@@ -127,7 +127,7 @@
                                 <span>聯絡電話（作為旅客和 Airbnb 與你聯繫的方式）。你可以新增其他號碼並選擇使用方式。</span>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#btnContact" aria-expanded="false" aria-controls="collapseExample"
                                 aria-expanded="false" aria-controls="btnContact">
                                     編輯
@@ -149,7 +149,7 @@
                                 <label for="floatingInput">電話號碼</label>
                             </form>
                             <p class="mb-3">我們會傳送驗證碼，以驗證你的號碼。可能會產生一般簡訊和數據傳輸費用。</p>
-                            <button type="button" class="btn btn-dark" id="btn_Contact" data-bs-toggle="collapse" data-bs-target="#btnContact">儲存</button>
+                            <button type="button" class="btn btn-sub" id="btn_Contact" data-bs-toggle="collapse" data-bs-target="#btnContact">儲存</button>
                         </div>
                         
                     </div>
@@ -159,7 +159,7 @@
                             <span class="fs-6">未提供</span>
                         </div>
                         <div class="edit">
-                            <button class="btn btn-link text-dark">
+                            <button class="btn btn-link btn-sub">
                                 新增
                             </button>
                         </div>
@@ -171,7 +171,7 @@
                                 <span class="fs-6">未提供</span>
                             </div>
                             <div class="edit">
-                                <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-link btn-sub" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#btnAddress" aria-expanded="false" aria-controls="collapseExample"
                                 aria-expanded="false" aria-controls="btnAddress">
                                     編輯
@@ -199,7 +199,7 @@
                             <span class="fs-6">未提供</span>
                         </div>
                         <div class="edit">
-                            <button class="btn btn-link text-dark">
+                            <button class="btn btn-link btn-sub">
                                 新增
                             </button>
                         </div>
@@ -220,106 +220,3 @@
 
     </div>
 
-@section topCSS{
-   <style>
-       .container
-       {
-           width:1000px;
-       }
-       .data
-       {
-           width:55%;
-       }
-       .information
-       {
-           width:32%
-       }
-       a{
-           color:black;
-       }
-       h1{
-           font-size:23px;
-           font-weight: bold;
-           margin-bottom: 70px;
-
-       }
-       .btn {
-            font-weight: bold;
-
-        }
-
-        .nav {
-            margin-left: 10px;
-        }
-
-       /* media only screen and (max-width: 768px) {
-            .data {
-                width: 100% !important;
-            }
-        }*/
-   </style>
-}
-
-@section endJS
-{
-    <script src="https://kit.fontawesome.com/e744a5dda8.js" crossorigin="anonymous"></script>
-    <script>
-        const btn_name = document.querySelector('#btn_name')
-        const name = document.querySelector('#name')
-        const firstname = document.querySelector('#FirstName')
-        const lastname = document.querySelector('#LastName')
-
-        btn_name.onclick = () =>
-        {
-           name.innerText = firstname.value + lastname.value
-        }
-
-        const btn_gender = document.querySelector('#btn_gender')
-        const gender = document.querySelector('#gender')
-        const selectGender = document.querySelector('#selectGender')
-
-        btn_gender.onclick = () =>
-        {
-            if(selectGender.value == '')
-            gender.innerText = '未指定'
-            else
-            gender.innerText = selectGender.Text
-            
-        }
-
-        const btn_DOB = document.querySelector('#btn_DOB')
-        const DOB = document.querySelector('#DOB')
-        const selectDOB = document.querySelector('#selectDOB')
-        
-        btn_DOB.onclick = () => 
-        {
-            DOB.innerText = selectDOB.value
-        }
-        
-        const btn_email = document.querySelector('#btn_Email')
-        const email = document.querySelector('#email')
-        const emailAdress = document.querySelector('#emailAddress')
-
-        btn_email.onclick = () =>
-        {
-            email.innerText = emailAdress.value
-        }
-
-        const btn_Contact = document.querySelector('#btn_Contact')
-        const contact = document.querySelector('#contact')
-        const phoneNumber = document.querySelector('#phoneNumber')
-
-        btn_Contact.onclick = () =>
-        {
-            contact.innerText = phoneNumber.value
-        }
-
-        function CheckINT()
-        {
-            if (isNaN(phoneNumber.value)) {
-                alert("Must input numbers");
-                return false;
-            }
-        }
-    </script>
-}

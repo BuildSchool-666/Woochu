@@ -58,16 +58,16 @@
         </div>
         
         <div class="small-details">
-            <h2>@Model.RoomInfo</h2>
-            <p>(2) 人/@Model.BedCount 床/@Model.BathCount 廁所</p>
-            <h4>$@Model.RentPrice/day</h4>
+            <h4>價格 : $@Model.RentPrice / day</h4>
+            <p>@Model.BedCount <strong>床</strong> / @Model.BathCount <strong>廁所</strong></p>
+
         </div>
         <form class="check-form" method="post" action="~/Order/bankAccount/@Model.RoomId">
             <div>
                 <label>入住時間 : </label>
                 <input type="datetime-local" id="checkin-time" name="CheckinTime" value="">
             </div>
-            <div>
+            <div class="checkout">
                 <label>退房時間 : </label>
                 <input type="datetime-local" id="checkout-time" name="CheckoutTime" value="">
             </div>
@@ -97,9 +97,10 @@
                 </div>
                 
 
-            </section>
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper content">
+        </section>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper content">
                 @foreach(var person in Model.CommentItem)
                 {
                     <div class="swiper-slide card">
@@ -127,11 +128,14 @@
                 }
                     
                    
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
             </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+
 
             <hr class="line">
 

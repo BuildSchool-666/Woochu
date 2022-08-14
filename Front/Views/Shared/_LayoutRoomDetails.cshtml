@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Front</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/Reset1.css" />
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/lib/fontawesome/css/all.css" />
@@ -16,13 +15,13 @@
 <body>
     <header>
         <nav id="navBar" class="navbar-white">
-            <a href="website.html">
+            <a href="~/">
                 <img src="~/images/whoochu.red.png" class="logo" alt="">
             </a>
             <ul class="nav-links">
                 <li><a id='homePage' href="~/">首頁</a></li>
                 <li><a id='roomList' href="~/Rooms/roomlist">房屋清單</a></li>
-                <li><a id='roomType' class="active"  href="~/RoomDetails/roomDetails">熱門房型</a></li>
+                <li><a id='roomType' class="active"  href="~/RoomDetail/roomDetail/6">熱門房型</a></li>
             </ul>
             @*<div class="dropdown">
                 <button onclick="myFunction()" class="dropbtn register-btn">
@@ -96,13 +95,11 @@
             <p>Copyright © 2022, Easy Tutorials</p>
         </div>
     </div>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/swiper/js/swiper-bundle.min.js"></script>
-    <script src="~/lib/fontawesome/js/all.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/Layout.js"></script>
+    <script src="~/lib/fontawesome/js/all.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
     @await RenderSectionAsync("endJS", required: false)
     @await RenderSectionAsync("endCSS", required: false)

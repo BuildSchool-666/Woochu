@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Front</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/Reset.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/account.css" />
+    <link rel="stylesheet" href="~/css/account.js" />
+
+
+    @*<script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>*@
+    <script src="~/lib/fontawesome/js/all.js"></script>
+
+    @await RenderSectionAsync("topCSS", required: false)
+    @await RenderSectionAsync("topJS", required: false)
+</head>
+<body>
+    <header>
+        <nav id="navBar" class="navbar-white">
+            <a href="~/Home/">
+                <img src="~/images/whoochu.red.png" class="logo" alt="">
+            </a>
+            <ul class="nav-links ">
+                <li><a href="~/Home/">首頁</a></li>
+                <li><a href="~/Rooms/roomlist" class="active">房屋清單</a></li>
+                <li><a href="~/RoomDetail/roomDetail/6">熱門房型</a></li>
+            </ul>
+            @await Html.PartialAsync("_NavLoginPartial",(object)Model)
+            @* <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn register-btn">
+                    <i class="fas fa-bars" style="font-size: 20px;"></i>
+                    <i class="fas fa-user-circle" style="font-size: 30px;"></i>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="/Account/Login">登入</a>
+                    <a href="/Account/Register">註冊</a>
+                    <a href="#home">出租房源</a>
+                </div>
+            </div>*@
+            <i class="fas fa-bars hidden-btn" onclick="togglebtn()"></i>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <hr>
+    <footer class="all">
+        <span class="menu">
+            <h3>用戶支援</h3>
+            <ul>
+                <li><a href="#">說明中心</a></li>
+                <li><a href="#">AirCover</a></li>
+                <li><a href="#">安全資訊</a></li>
+                <li><a href="#">支援身心障礙人士</a></li>
+                <li><a href="#">退訂選項</a></li>
+                <li><a href="#">我們的新冠肺炎因應措施</a></li>
+                <li><a href="#">回報社區問題</a></li>
+            </ul>
+        </span>
+        <span class="menu">
+            <h3>社區</h3>
+            <ul>
+                <li><a href="#">Airbnb.org:救災住宿</a></li>
+                <li><a href="#">支援阿富汗難民</a></li>
+                <li><a href="#">消弭歧視</a></li>
+            </ul>
+        </span>
+        <span class="menu">
+            <h3>出租房源和舉辦體驗</h3>
+            <ul>
+                <li><a href="#">開始出租／舉辦體驗</a></li>
+                <li><a href="#">專為房東提供的 AirCover</a></li>
+                <li><a href="#">瀏覽待客資源</a></li>
+                <li><a href="#">前往我們的社區論壇</a></li>
+                <li><a href="#">落實負責任出租和舉辦體驗的方法</a></li>
+            </ul>
+        </span>
+        <span class="menu">
+            <h3>關於</h3>
+            <ul>
+                <li><a href="#">Airbnb 新聞中心</a></li>
+                <li><a href="#">了解新功能</a></li>
+                <li><a href="#">來自 Airbnb 創辦人的信</a></li>
+                <li><a href="#">工作機會</a></li>
+                <li><a href="#">投資人</a></li>
+            </ul>
+        </span>
+    </footer>
+    <div class="footer">
+        <a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>
+        <a href="http://youtube.com"><i class="fab fa-youtube"></i></a>
+        <a href="http://twitter.com"><i class="fab fa-twitter"></i></a>
+        <a href="http://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+        <a href="http://instagram.com"><i class="fab fa-instagram"></i></a>
+        <hr>
+        <p>Copyright © 2022, Easy Tutorials</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.7/dist/vue.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/Layout.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("endJS", required: false)
+    @await RenderSectionAsync("endCSS", required: false)
+</body>
+</html>

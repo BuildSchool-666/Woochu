@@ -1,0 +1,296 @@
+﻿
+
+.btn
+{
+    font-weight: bold;
+    color: #008489;
+}
+
+.nav {
+    margin-left: 10px;
+    font-weight: bold;
+}
+.row {
+    margin-top: 150px;
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.container {
+    margin-bottom: 100px;
+    width: 1200px;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+
+
+.save {
+    background-color: #008489;
+    color: white;
+    font-weight: bold;
+}
+
+.content {
+    margin-top: 150px;
+}
+
+
+
+.dropdown-content {
+    width: 100px;
+}
+
+h1 {
+    font-size: large;
+    font-weight: bold;
+    margin: 20px 0px;
+}
+
+.continue {
+    background-color: #ff385c;
+}
+
+.continue:hover {
+    background-color: #da0b64;
+}
+
+span {
+    font-size: small;
+}
+
+
+hr.line {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.hr-text {
+    height: 20px;
+    width: 50px;
+    position: relative;
+    left: 45%;
+    top: -30px;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 4px;
+    background-color: white;
+}
+
+button {
+    margin: 10px 0px;
+}
+
+.form-floating {
+    margin: 5px 0px;
+}
+
+.all {
+    padding: 50px 7%;
+}
+.link {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.card-title {
+    color: black;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px !important;
+    border-color: white;
+}
+
+.card:hover {
+    transform: translate(-10px, -10px);
+    transition: transform 60s;
+    box-shadow: 10px 10px #ccc;
+    color: black;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-link {
+    text-decoration: none;
+    color: black;
+}
+.dropbtn{
+    padding: 5px 10px;
+}
+.dropbtn svg{
+    margin:auto;
+    padding-left:5px !important;
+}
+.dropbtn p{
+    font-size:13px;
+    margin:auto;
+}
+
+.tab {
+    overflow: hidden;
+    border-bottom: lightgray 1px solid;
+}
+
+.tablinks {
+    color: #717171;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 16px;
+    transition: 0.3s;
+}
+
+    /* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #eee;
+    border-radius: 10%;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+    margin-top: 20px;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 0%;
+}
+
+p {
+    font-size: 14px;
+    color: #717171;
+    margin: 0;
+}
+
+.box button {
+    color: black;
+    font-weight: bold;
+    padding: 0%;
+}
+
+.box {
+    margin-bottom: 20px;
+}
+.btn-sub {
+    background: #ff5361;
+    color: white;
+}
+.data {
+    width: 55%;
+}
+
+.information {
+    width: 32%
+}
+
+.btn {
+    font-weight: bold;
+}
+
+.nav {
+    margin-left: 10px;
+}
+
+#toggle_checkbox {
+    display: none;
+}
+
+#toggle_checkbox2 {
+    display: none;
+}
+
+.edit {
+    position: relative;
+}
+
+label {
+    position: absolute;
+    top: -10px;
+    /* right: 30px; */
+    left: -100px;
+    display: block;
+    width: 140px;
+    height: 70px;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+    label:before {
+        top: 28px;
+        left: 50px;
+        width: 30px;
+        height: 30px;
+        border: 3px solid red;
+    }
+
+    label:after {
+        top: 20px;
+        right: 0;
+        width: 100px;
+        height: 45px;
+        border: 3px solid #143240;
+    }
+
+    
+
+#toggle_checkbox:checked + label:before {
+    top: 20px;
+    left: 50px;
+    width: 100px;
+    height: 45px;
+    border-color: #143240;
+}
+
+#toggle_checkbox:checked + label:after {
+    top: 28px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    border-color: green;
+}
+
+#toggle_checkbox2:checked + label:before {
+    top: 20px;
+    left: 50px;
+    width: 100px;
+    height: 45px;
+    border-color: #143240;
+}
+
+#toggle_checkbox2:checked + label:after {
+    top: 28px;
+    right: 0px;
+    width: 30px;
+    height: 30px;
+    border-color: green;
+}

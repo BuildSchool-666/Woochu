@@ -31,68 +31,6 @@
 </form>
 
 
-    @section topCSS
-    {
-        <style>
-            .content
-            {
-                margin-top:150px;
-            }
-            h1
-            {
-                font-size: large;
-                font-weight: bold;
-                margin: 20px 0px;
-            }
-            .continue
-            {
-                background-color: #ff385c;
-            }
-            .continue:hover
-            {
-                background-color: #da0b64;
-            }
-            span
-            {
-                font-size: small;
-            }
-            a
-            {
-                color: black;
-                font-weight: bold;
-            }
-            hr.line 
-            {
-                border: 0;
-                height: 0;
-                border-top: 1px solid rgba(0,0,0,0.1);
-                border-bottom: 1px solid rgba(255,255,255,0.3);
-            }
-            .hr-text
-            {
-                height: 20px;
-                width: 50px;
-                position: relative;
-                left: 45%; 
-                top: -30px;
-                vertical-align: middle; 
-                text-align: center;
-                border-radius: 4px;
-                background-color: white;
-            }
-            button
-            {
-                margin:10px 0px;
-            }
-            .form-floating
-            {
-                margin:5px 0px;
-            
-            }     
-        </style>
-    }
-
-
     @section Scripts
     {
         @await Html.PartialAsync("_ValidationScriptsPartial")

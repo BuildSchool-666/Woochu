@@ -61,6 +61,7 @@ nav #navBar p {
     padding-right:20px;
 }
 .dropdown-content {
+
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -68,7 +69,6 @@ nav #navBar p {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
-    
 }
 
 .dropdown-content a {
@@ -152,6 +152,7 @@ nav #navBar p {
     font-size: 14px;
     padding-top: 5%;
     outline: none;
+    background: transparent;
     border: none;
     border-bottom: 1px solid #ccc;
     width: 100%;
@@ -376,7 +377,39 @@ nav .hidden-btn {
         transform: translate(0, 50%);
         bottom: 50%;
     }
+    .basic-longin {
+        display: block !important;
+        padding: 20px 0;
+        background:#ff5361;
+        position:fixed;
+        left:0;
+        right:0;
+        bottom:0;
+        text-align:center;
+    }
 
+    .basic-longin a {
+        text-decoration: none;
+        padding:0 2%;
+        color: white;
+    }
+
+    .basic-unlongin {
+        display: block !important;
+        padding: 20px 0;
+        background: #ff5361;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .basic-unlongin a {
+        text-decoration: none;
+        padding: 0 8%;
+        color: white;
+    }
     .hidemenu {
         max-height: 300px;
     }
@@ -446,7 +479,6 @@ nav .hidden-btn {
     top: 0;
     width: 100%;
     z-index: 100;
-    padding: 20px 15%;
 }
 
 .navbar-white .nav-links li a {
@@ -520,7 +552,7 @@ nav .hidden-btn {
     margin: 4px 0;
 }
 
-.house-info i {
+.house-info svg {
     color: #ff5361;
     font-size: 18px;
     margin: 10px 1px;
@@ -560,7 +592,7 @@ nav .hidden-btn {
         font-size: 18px;
     }
 
-    .house-info i {
+    .house-info svg {
         font-size: 16px;
     }
 
@@ -572,32 +604,24 @@ nav .hidden-btn {
 
 /* ------house-details pages ------ */
 .house-details {
-    padding: 0 15%;
+    padding: 0 7%;
     margin-top: 100px;
 }
 
 .house-title {
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
-    .house-title h1 {
-        font-weight: 600;
-    }
+.house-title h1 {
+    font-weight: 600;
+    font-size:20px;
+}
 
-    .house-title .rating {
-        flex-direction: column;
-        margin: 10px 0;
-    }
+.house-title div{
+    padding:10px 6px;
+}
 
-        .house-title .rating p {
-            font-size: 20px;
-        }
 
-    .house-title i {
-        color: #ff5361;
-        font-size: 26px;
-        padding: 10px 0;
-    }
 
 .gallery {
     display: grid;
@@ -606,40 +630,85 @@ nav .hidden-btn {
     margin: 20px 0;
 }
 
-    .gallery div img {
-        width: 100%;
-        display: block;
-        border-radius: 10px;
-    }
+.gallery div img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px;
+}
 
 .gallery-img-1 {
     grid-area: first;
 }
 
-.small-details p {
+
+
+.small-details h4 {
+    margin-top:40px ;
+    font-weight: 800;
     font-size: 20px;
 }
 
-.small-details h2 {
-    font-weight: 500;
-    margin-bottom: 10px;
+.small-details p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+strong {
+    font-weight: bold;
 }
 
-.small-details h4 {
-    text-align: left;
-    padding-top: 20px;
-    font-size: 22px;
-}
-
-.service-item {
+.check-form {
+    margin: 80px 0;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
     display: flex;
-    flex-direction: column;
-    margin: 80px 0 60px;
+    align-items: center;
+    padding: 10px 50px;
+}
+.check-form div {
+    margin: 20px;
+    padding: 0 100px 0 0;
+}
+.check-form label {
+    display: block;
+    padding-bottom:10px;
+    font-size:16px;
 }
 
-    .service-item h4 {
-        font-size: 30px;
-    }
+.check-form input {
+    margin-top: 5px;
+    font-size: 16px;
+    padding-left:20px;
+    background: transparent;
+    border: 0;
+    outline: none;
+}
+.check-form .checkout{
+    flex:1;
+}
+.check-form button {
+    background: #ff5361;
+    border: 0;
+    outline: none;
+    color: white;
+    padding: 25px;
+    width: 350px;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.check-form button:hover {
+    background: #FFA1A1;
+    transform: scale(1.15);
+    transition: 0.3s;
+}
+
+.checkout {
+    flex: 1;
+}
+
 
 .groupitem {
     display: flex;
@@ -647,77 +716,43 @@ nav .hidden-btn {
     width: 100%;
     border: 1px solid black;
 }
+.service-item {
+    display: flex;
+    flex-direction: column;
+    margin: 80px 0 60px;
+}
 
-    .groupitem i {
-        display: flex;
-        width: 50%;
-        box-sizing: border-box;
-        padding: 30px 20px;
-        font-size: 20px;
-    }
-
-    .groupitem p {
-        padding: 0 20px;
-    }
+.service-item h4 {
+    font-size: 20px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+.groupitem .my-3 {
+    display: flex;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 20px 10px;
+    font-size: 16px;
+}
+.groupitem .d-flex {
+    justify-content: start !important;
+    margin:auto;
+    padding:20px 0;
+    width:30%;
+}
+.groupitem p {
+    padding: 0px;
+}
 
 .line {
     border: 0;
     height: 1px;
     background: black;
     width: 100%;
-    max-width: 900px;
     margin: 20px 0 50px;
 }
 
-.check-form {
-    margin: 30px 0;
-    background: #fff;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 10px 50px;
-}
 
-    .check-form label {
-        display: block;
-    }
-
-    .check-form div {
-        margin: 20px;
-        padding: 0 100px 0 0;
-    }
-
-    .check-form input {
-        margin-top: 5px;
-        background: transparent;
-        border: 0;
-        outline: none;
-    }
-
-    .check-form a {
-        background: #ff5361;
-        border: 0;
-        outline: none;
-        color: white;
-        padding: 18px;
-        width: 350px;
-        border-radius: 8px;
-        font-size: 16px;
-        text-align: center;
-        text-decoration: none;
-    }
-
-        .check-form a:hover {
-            color: aliceblue;
-            transform: scale(1.05);
-            transition: 0.3s;
-        }
-
-.checkout {
-    flex: 1;
-}
 
 /* ------house---comment */
 .house-comment {
@@ -729,19 +764,22 @@ nav .hidden-btn {
     margin-bottom: 30px;
 }
 
-    .comment-rating i {
-        font-size: 20px;
-        font-weight: 600;
-        padding: 0 0 10px 0;
-    }
+.comment-rating svg {
+    font-weight: 600;
+    color:#ff5361;
+}
 
-    .comment-rating h3 {
-        font-size: 15px;
-    }
+.comment-rating h3 {
+    margin-top: 10px;
+    font-size: 15px;
+}
 
 .house-comment .score {
     display: flex;
     flex-wrap: wrap;
+}
+.rating svg {
+    color: #ff5361;
 }
 
 .house-comment .score-point {
@@ -817,43 +855,45 @@ nav .hidden-btn {
             border-radius: 20px 20px 0 0;
         }
 
-            .house-details .swiper .card .card-content .list {
-                display: flex;
-                background-color: #ff5361;
-                border-radius: 20px 20px 0 0;
-            }
+.house-details .swiper .card .card-content .list {
+    display: flex;
+    background-color: #ff5361;
+    border-radius: 20px 20px 0 0;
+}
 
-                .house-details .swiper .card .card-content .list .name-profession {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    margin: auto;
-                    color: white;
-                }
+.house-details .swiper .card .card-content .list .name-profession {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    color: white;
+}
 
-                    .house-details .swiper .card .card-content .list .name-profession .name {
-                        font-size: 20px;
-                        font-weight: 500;
-                        letter-spacing: 3px;
-                    }
+.house-details .swiper .card .card-content .list .name-profession .name {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
 
-                    .house-details .swiper .card .card-content .list .name-profession p {
-                        font-size: 15px;
-                    }
+.house-details .swiper .card .card-content .list .name-profession p {
+    font-size: 10px;
+    text-align:center;
+    padding-top:5px;
+}
 
-            .house-details .swiper .card .card-content .comment {
-                font-size: 15px;
-                padding: 20px 10px;
-                height: 200px;
-            }
+.house-details .swiper .card .card-content .comment {
+    font-size: 15px;
+    padding: 20px 10px;
+    height: 200px;
+}
 
-                .house-details .swiper .card .card-content .comment p {
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 8;
-                    overflow: hidden;
-                }
+.house-details .swiper .card .card-content .comment p {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+}
 
         .house-details .swiper .card .rating {
             display: flex;
@@ -943,20 +983,20 @@ nav .hidden-btn {
     align-items: center;
 }
 
-    .host img {
-        width: 80px;
-        border-radius: 50%;
-        margin-right: 30px;
-    }
+.host img {
+    width: 80px;
+    border-radius: 50%;
+    margin-right: 30px;
+}
 
-    .host h2 {
-        margin-bottom: 10px;
-        font-weight: 500;
-    }
+.host h2 {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
 
-    .host i {
-        color: #ff5361;
-    }
+.host span svg {
+    color: #ff5361;
+}
 
 .contact-host {
     display: inline-block;
@@ -1036,6 +1076,7 @@ nav .hidden-btn {
 
     .check-form {
         padding: 10px 30px;
+        flex-wrap:wrap;
     }
 
     .check-form div {
@@ -1109,4 +1150,12 @@ nav .hidden-btn {
         display: flex;
         width: 100%;
     }
+}
+
+.comment{
+    padding: 0 7%;
+}
+.container1 {
+    padding: 0 7%;
+    margin-top: 100px;
 }
