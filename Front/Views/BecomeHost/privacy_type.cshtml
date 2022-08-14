@@ -132,24 +132,37 @@
             justify-content: space-between;
         }
 
-        .back{
+        .back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            width: 20vh;
             position: relative;
             top: 0;
             left: 0;
-            background-color: transparent;
-            border:none;
-            text-decoration: underline;
+            border-radius: 10px;
+            background-color: #D0D0D0;
+            border: none;
+            transition-duration: 1s;
         }
 
-        .next{
+        .back:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .next {
             position: relative;
-            right:0;
-            top:0;
-            padding:10px 15px;
+            right: 0;
+            top: 0;
+            padding: 10px 15px;
             width: 20vh;
-            border-radius:10px;
+            border-radius: 10px;
             border: none;
-            background-color: 	#D0D0D0;
+            background-color: #D0D0D0;
+            transition-duration: 1s;
         }
 
         ::-webkit-scrollbar {

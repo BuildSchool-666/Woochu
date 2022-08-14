@@ -48,7 +48,6 @@ namespace Front.Controllers
             }
         }
 
-        ///
         ///<summary>
         ///一轉到二頁
         ///</summary>

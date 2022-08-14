@@ -7,7 +7,6 @@
     <div class="right">
         <div class="d-flex">
             <div class="btngroup">
-                @* <button type="button" class="btn-h"><strong>協助</strong></button>*@
                 <a class="btn-h" href="~/BecomeHost/Index"><strong>退出</strong></a>
             </div>
         </div>
@@ -19,8 +18,8 @@
               
         </div>
         <div class="last-bar">
-            <button type="button" class="back"><strong>返回</strong></button>
-            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" v-bind:disabled="addVerify"><a href="@Url.Action("privacy_type","BecomeHost")"></a>下一步</button>
+            <a href="/BecomeHost/property_type_group" class="back"><strong>返回</strong></a>
+            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify"><a href="@Url.Action("privacy_type","BecomeHost")"></a>下一步</button>
         </div>
     </div>
 </div>
@@ -104,16 +103,19 @@
             justify-content: flex-end;
             z-index: 0;
         }
-        .btn-h{
-            text-decoration:none;
-            color:black;
-            width: 20%;
+        .btn-h {
+            text-decoration: none;
+            color: black;
+            width: 30%;
             background-color: #F0F0F0;
             border-radius: 20px;
-            border:none;
+            border: none;
             margin: 10px;
-            padding: 5px 10px;
-            font-size: 10px;
+            font-size: 1.2em;
+        }
+        .btn-h:hover {
+            color: white;
+            background-color: red;
         }
 
         .last-bar{
@@ -128,25 +130,36 @@
             justify-content: space-between;
         }
 
-        .back{
+        .back {
+            display: flex;
+            align-items: center;
+            justify-content : center;
+            text-decoration: none;
+            color: white;
+            width: 20vh;
             position: relative;
             top: 0;
             left: 0;
-            background-color: transparent;
-            border:none;
-            text-decoration: underline;
+            border-radius: 10px;
+            background-color: #D0D0D0;
+            border: none;
+            transition-duration: 1s;
+        }
+        .back:hover {
+            background-color: black;
+            color: white;
         }
 
-        .next{
+        .next {
             position: relative;
-            right:0;
-            top:0;
-            padding:10px 15px;
+            right: 0;
+            top: 0;
+            padding: 10px 15px;
             width: 20vh;
-            border-radius:10px;
+            border-radius: 10px;
             border: none;
             background-color: #D0D0D0;
-           
+            transition-duration: 1s;
         }
 
         ::-webkit-scrollbar {
@@ -210,7 +223,7 @@
             text-decoration:none;
             color:black;
             height: 35px;
-            padding: 5px 15px;
+            transition-duration:1s;
         }
 
         .last-bar{
@@ -246,7 +259,14 @@ let app = new Vue({
                 })
         });
     },
-    methods:{
+    computed: {
+        checkedStyle() {
+            return {
+                backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
+            }
+        }
+    },
+    methods: {
         SendValue(value){
             console.log(value),
             this.addVerify = false
@@ -272,44 +292,5 @@ let app = new Vue({
     }  
 })
 
-@*
-        const btn = document.getElementById('next');
-         window.onload = function(){
-                btn.style.backgroundColor = "#D0D0D0";
-            };
-        document.getElementById("rental").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-        document.getElementById("private").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-         document.getElementById("loft").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-         document.getElementById("serviced").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-         document.getElementById("cuban").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-         document.getElementById("holiday-house").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("privacy_type","BecomeHost")"; 
-            }};
-            *@
-
-
-        
-    </script>
+</script>
 }
