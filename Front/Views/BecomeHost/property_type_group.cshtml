@@ -1,60 +1,26 @@
-﻿<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>選擇一般住宿類型</title>
-    </head>
-<body>
-    <div class="d-flex justify-content-center">
-        <div class="title">
-            <h1 class="text-white"><strong>你想出租哪種類型的房源？</strong></h1>
-        </div>
-        <div class="right">
-            <div class="d-flex">
+﻿<div class="d-flex justify-content-center">
+    <div class="title">
+        <h1 class="text-white"><strong>你想出租哪種類型的房源？</strong></h1>
+    </div>
+    <div class="right">
+        <div class="d-flex">
             <div class="btngroup">
-                <button type="button" class="btn-h"><strong>協助</strong></button>
-                <button type="button" class="btn-h"><strong>儲存並退出</strong></button>
+                <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
             </div>
         </div>
         <div class="property-type-group" >
-            <button type="button" class="type" id="apartmentbtn">
-                <p><strong>公寓</strong></p>
+            <button v-for="roomType in roomTypeList" type="button" v-on:click="Check(roomType.roomTypeId)" class="type" v-bind:id="roomType.roomTypeId">
+                <p><strong>{{ roomType.roomTypeName }}</strong></p>
                 <img src="https://a0.muscache.com/im/pictures/eadbcbdb-d57d-44d9-9a76-665a7a4d1cd7.jpg?im_w=240" alt="">
             </button>
-            <button type="button" class="type" id="detachedbtn">
-                <p><strong>獨棟屋房</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/d1af74db-58eb-46bf-b3f5-e42b6c9892db.jpg?im_w=240" alt="">
-            </button>
-            <button type="button" class="type"  id="buidingbtn">
-                <p><strong>附屬建築</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/32897901-1870-4895-8e23-f08dc0e61750.jpg?im_w=240" alt="">
-            </button>
-            <button type="button" class="type" id="specialbtn">
-                <p><strong>獨特房源</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/7ad56bb1-ed9f-4dcb-a14c-2523da331b44.jpg?im_w=240" alt="">
-            </button>
-            <button type="button" class="type" id="familybtn">
-                <p><strong>家庭式旅館</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/d52fb4e7-39a4-46df-9bf9-67e56d35eeca.jpg?im_w=240" alt="">
-            </button>
-            <button type="button" class="type" id="hotelbtn">
-                <p><strong>精品旅店</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/a2c9ad21-b159-4fd2-b417-d810fb23c6a9.jpg?im_w=240" alt="">
-            </button>
         </div>
-            <div class="last-bar">
-                <button type="button" class="back"><strong>返回</strong></button>
-                <button type="button" class="next text-white" id="next">下一步</button>
-            </div>
+        <div class="last-bar">
+            <a href="~/BecomeHost/Index" class="back"><strong>返回</strong></a>
+            <button type="button" class="next text-white" id="next" :disabled="checked" :style="checkedStyle" v-on:click="GoNextPage">下一步</button>
+        </div>
     </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    </body>
-</html>
+</div>
+
 @section TopCSS{
     <style>
         .title{
@@ -89,7 +55,6 @@
             height: 30vh;
             margin-top: 5vh;
             margin-left: 10vh;
-            /* margin-bottom: 50vh; */
         }
         
         .type{
@@ -135,6 +100,8 @@
             z-index: 0;
         }
         .btn-h{
+            text-decoration:none;
+            color:black;
             width: 20%;
             background-color: #F0F0F0;
             border-radius: 20px;
@@ -156,24 +123,37 @@
             justify-content: space-between;
         }
 
-        .back{
+        .back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            width: 20vh;
             position: relative;
             top: 0;
             left: 0;
-            background-color: transparent;
-            border:none;
-            text-decoration: underline;
+            border-radius: 10px;
+            background-color: #D0D0D0;
+            border: none;
+            transition-duration: 1s;
         }
 
-        .next{
+        .back:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .next {
             position: relative;
-            right:0;
-            top:0;
-            padding:10px 15px;
+            right: 0;
+            top: 0;
+            padding: 10px 15px;
             width: 20vh;
-            border-radius:10px;
+            border-radius: 10px;
             border: none;
-            background-color: 	#D0D0D0;
+            background-color: #D0D0D0;
+            transition-duration: 1s;
         }
 
         ::-webkit-scrollbar {
@@ -212,9 +192,12 @@
             width: 50%;
             background-color: white;
         }
-        .btn-h{
+        .btn-h {
+            text-decoration: none;
+            color: black;
             height: 35px;
-            padding: 5px 15px;
+            font-size: 10px;
+            transition-duration:1s;
         }
 
         .last-bar{
@@ -224,55 +207,53 @@
     </style>
 }
 @section EndJS{
-    <script>
-        const btn = document.getElementById('next');
-        const aprt = document.getElementById('apartmentbtn');
-        const detached = document.getElementById('detachedbtn');
-        const building = document.getElementById('buidingbtn');
-        const special = document.getElementById('specialbtn');
-        const family = document.getElementById('familybtn');
-        const hotel = document.getElementById('hotelbtn');
+<script>
+const nextpageBtn = document.getElementById('next');
 
-            aprt.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href = "@Url.Action("property_type_apartment","BecomeHost")";
-            }
-            };
 
-            detached.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href ="@Url.Action("property_type_detached","BecomeHost")";
+let app = new Vue({
+    el: '.right',
+    data: {
+        roomTypeList: [],
+        checked: true,
+        roomTypeGroupId: 0,
+    },
+    mounted() {
+        document.addEventListener('DOMContentLoaded', function() {
+            axios.get('/api/PublishRoomAPI/GetRoomTypeParent')
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.status === 20000) {
+                        app.roomTypeList = res.data.result
+                        console.log(app.roomTypeList)
+                    }
+                })
+        });
+        if (sessionStorage['roomTypeGroupId']) {
+            @*document.getElementById(`${sessionStorage['roomTypeGroupId']}`).focus();*@
+            this.Check(sessionStorage['roomTypeGroupId']);
+        }
+    },
+    computed: {
+        checkedStyle() {
+            return {
+                backgroundColor: this.checked ? '#D0D0D0' : 'black',
             }
-            };
+        }
+    },
+    methods: {
+        Check(roomTypeId) {
+            this.checked = false;
+            this.roomTypeGroupId = roomTypeId
+            console.log(this.roomTypeGroupId)
+        },
+        GoNextPage() {
+            const Id = this.roomTypeGroupId
+            sessionStorage['roomTypeGroupId'] = Id;
+            window.location = 'property_type';
+        }
+    }
+});
 
-            building.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href = "@Url.Action("property_type_building","BecomeHost")";
-            }
-            };
-
-            special.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href = "@Url.Action("property_type_uniqueproperties","BecomeHost")";
-            }
-            };
-
-            family.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href ="@Url.Action("property_type_homestay","BecomeHost")";
-            }
-            };
-
-            hotel.onclick = function(){
-            btn.style.backgroundColor = "black";
-            btn.onclick = function(){
-            location.href ="@Url.Action("property_type_boutiquehotel","BecomeHost")";
-            }
-            };
     </script>
 }

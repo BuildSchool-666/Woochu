@@ -20,38 +20,26 @@ namespace Front.Controllers
         {
             _publishRoomService = publishRoomService;
         }
-        //[HttpPost("GetRoomTypeParent")]
-        //public IActionResult GetRoomTypeParent()
+
+        [HttpGet("GetRoomTypeParent")]
+        public IActionResult GetRoomTypeParent()
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomTypeParent();
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+        //[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
+        //public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
         //{
         //    try
         //    {
         //        var result = _publishRoomService.GetRoomTypeParent();
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
-        ////[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
-        ////public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
-        ////{
-        ////    try
-        ////    {
-        ////        var result = _publishRoomService.GetRoomTypeParent();
-        ////        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        ////    }
-        ////}
-        //[HttpPost("GetRoomType")]
-        //public IActionResult GetRoomType([FromBody] int roomTypeId)
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomType(roomTypeId);
         //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
         //    }
         //    catch (Exception ex)
@@ -60,45 +48,67 @@ namespace Front.Controllers
         //    }
         //}
 
-        [HttpPost("Create/{roomTypeId}")]
-        public IActionResult Create([FromRoute]int roomTypeId)
+        ///<summary>
+        ///一轉到二頁
+        ///</summary>
+        ///<param name = "input" ></ param >
+        ///< returns ></ returns >
+        [HttpGet("GetRoomType/{roomTypeGroupId}")]
+        public IActionResult GetRoomType([FromRoute] int roomTypeGroupId)
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomType(roomTypeGroupId);
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+
+        /// <summary>
+        ///二頁創建房源
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        public IActionResult Create(PublishRoomApiInputDTO input)
         {
             try
             {
                 var userEmail = User.Identity.Name;
-                _publishRoomService.CreateRoom(roomTypeId, userEmail);
-                //List<string> roomPrivacy = new List<string>();
-                //foreach(var i in Enum.GetNames(typeof(PrivacyType)))
-                //{ roomPrivacy.Add(i); }
-                return Ok(new APIResult(APIStatus.Success, string.Empty, roomTypeId));
+                _publishRoomService.CreateRoom(input);
+
+                List<string> roomPrivacy = new List<string>();
+                foreach (var i in Enum.GetNames(typeof(PrivacyType)))
+                { roomPrivacy.Add(i); }
+
+                return Ok(new APIResult(APIStatus.Success, string.Empty, roomPrivacy));
             }
             catch (Exception ex)
             {
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
-           
         }
-
-        [HttpPut]
-        public IActionResult Update(PublishRoomApiInputDTO input)
+        
+        /// <summary>
+        /// 後十幾頁的資料update
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPut("Update/{result}")]
+        public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
         {
-            try
-            {
-                _publishRoomService.UpdateRoom(input);
-                VVM room = new VVM { roomId = 1, ProId = 1 };
-                return Ok(new APIResult(APIStatus.Success, string.Empty, room));
-            }
-            catch (Exception ex)
-            {
-                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
-            }
-
+            var a = (RoomPage)Enum.Parse(typeof(RoomPage), result);
+            //if(a == RoomPage.amenities)
+            //{
+            //    _publishRoomService.GetAmenities()
+            //}
+            return Ok(new APIResult(APIStatus.Success, string.Empty, a));
         }
-        public class VVM
-        {
-            public int roomId { get; set; }
-            public int ProId { get; set;}
-            public int PriId { get; set; }
-        }
+        
     }
 }

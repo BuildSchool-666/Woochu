@@ -1,32 +1,28 @@
 ﻿
-<div class="d-flex justify-content-center">
+
+<div class="d-flex justify-content-center" id="app">
     <div class="title">
-        <h1 class="text-white"><strong>房客會住哪種空間？</strong></h1>
+        <h1 class="text-white"><strong>下列哪項最能確切描述你的房源？</strong></h1>
     </div>
     <div class="right">
         <div class="d-flex">
             <div class="btngroup">
-                <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
+                <a class="btn-h" href="~/BecomeHost/Index"><strong>退出</strong></a>
             </div>
         </div>
         <div class="property-type-group" >
-            <button v-on:click="SendValue(0)" type="button" class="type" id="complete-set" >
-                <p class="grouptitle"><strong>整套房源</strong></p>
+            <button v-for="roomType in roomTypeList" v-on:click="SendValue(roomType.roomTypeId)" type="button" class="type" :id="roomType.roomTypeId">
+                <p class="grouptitle"><strong>{{ roomType.roomTypeName }}</strong></p>
             </button>
-            <button v-on:click="SendValue(1)" type="button" class="type" id="detached-room">
-                <p class="grouptitle"><strong>獨立房間</strong></p>
-            </button>
-            <button v-on:click="SendValue(2)" type="button" class="type" id="shared-room">
-                <p class="grouptitle"><strong>合住房間</strong></p>
-            </button>
+
+              
         </div>
         <div class="last-bar">
-            <a href="/BecomeHost/property_type" class="back"><strong>返回</strong></a>
-            <button type="button" class="next text-white" id="next">下一步</button>
+            <a href="/BecomeHost/property_type_group" class="back"><strong>返回</strong></a>
+            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
 </div>
-
 
 @section TopCSS{
     <style>
@@ -52,7 +48,6 @@
             position: fixed;
             right: 0;
             bottom: -10vh;
-            /* overflow: scroll; */
             background-color: white;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
@@ -108,16 +103,19 @@
             justify-content: flex-end;
             z-index: 0;
         }
-        .btn-h{
-            text-decoration:none;
-            color:black;
-            width: 20%;
+        .btn-h {
+            text-decoration: none;
+            color: black;
+            width: 30%;
             background-color: #F0F0F0;
             border-radius: 20px;
-            border:none;
+            border: none;
             margin: 10px;
-            padding: 5px 10px;
-            font-size: 10px;
+            font-size: 1.2em;
+        }
+        .btn-h:hover {
+            color: white;
+            background-color: red;
         }
 
         .last-bar{
@@ -135,7 +133,7 @@
         .back {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content : center;
             text-decoration: none;
             color: white;
             width: 20vh;
@@ -147,7 +145,6 @@
             border: none;
             transition-duration: 1s;
         }
-
         .back:hover {
             background-color: black;
             color: white;
@@ -168,16 +165,17 @@
         ::-webkit-scrollbar {
         width: 0px;
         }
+
     </style>
     <style media="screen and (min-width:744px)">
-        .title{           
+        .title{
             width: 50%;
-            height: 100vh; 
+            height: 100vh;
             align-items: center;
 
         }
         .title h1{
-            text-align: center;
+        
             font-size: 50px;
         }
 
@@ -187,6 +185,8 @@
             bottom: 0;
             
         }
+        ::-webkit-scrollbar {
+        width: 0px;}
 
         .property-type-group{
             height: 60vh;
@@ -198,13 +198,13 @@
             height: 15vh;
             width: 80%;
             align-items: center;
-            justify-content:left;   
+            justify-content:left;             
         }
 
         .grouptitle{
             width: 30%;
             padding-right:20px;
-            /* margin-right: 10px; */
+    
         }
 
         .property-type-group p{
@@ -214,85 +214,90 @@
         }
 
         .btngroup{
-            right:-25%;
             width: 50%;
             background-color: white;
+            z-index: 0;
+            right:-25%;
         }
         .btn-h{
             text-decoration:none;
             color:black;
             height: 35px;
-            padding: 5px 15px;
+            transition-duration:1s;
         }
 
         .last-bar{
+            display: flex;
             width: 50%;
+            right:0;
+            bottom:0;   
         }
     </style>
 }
 
 @section EndJS{
-    @*<script>
 
-        const btn = document.getElementById('next');
-        window.onload = function(){
-                btn.style.backgroundColor = "#D0D0D0";
-            };
-
-        document.getElementById("complete-set").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("location","BecomeHost")" ;  
-            }};
-        
-        document.getElementById("detached-room").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href ="@Url.Action("location","BecomeHost")" ;  
-            }};
-
-        document.getElementById("shared-room").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("location","BecomeHost")" ;  
-            }};
-    </script>*@
-    <script>
-        let app = new Vue({
-            el:"#app",
-            data:{
-                currentRoom:{},
-                addVerify:true
-            },
-            methods:{
-                SendValue(value){
-                    console.log(value),
-                    this.addVerify = false,
-                    this.currentRoom={}
-                    this.value = value
-                },
-                updatePokemon() {
-						axios({
-							method:'put',
-							url:'/api/PublishRoomAPI/Update',
-							data:this.currentPokemon
-						})
-						
-						.then((res) => {
-							if(res.data.status === 20000)
-							{
-								toastr.success('更新成功')
-								this.getAllPokemon()
-								$('#edit-modal').modal('hide')
-							}
-							else{
-								toastr.error('更新失敗')
-							}
-						})
-					},
+<script>
+let app = new Vue({
+    el:'#app',
+    data:{
+        value: {
+            RoomTypeId: 0,
+        },
+        roomTypeId: 0,
+        addVerify:true,
+        roomTypeList: [],
+    },
+    mounted() {
+        document.addEventListener('DOMContentLoaded', function() {
+            axios.get('/api/PublishRoomAPI/GetRoomType/' + sessionStorage.getItem("roomTypeGroupId"))
+                .then((res) => {
+                    console.log(res)
+                    if (res.data.status === 20000) {
+                        app.roomTypeList = res.data.result
+                        console.log(app.roomTypeList)
+                    }
+                })
+        });
+        if (sessionStorage['roomTypeId']) {
+            this.SendValue(sessionStorage['roomTypeId'])
+        }
+    },
+    computed: {
+        checkedStyle() {
+            return {
+                backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
             }
+        }
+    },
+    methods: {
+        SendValue(value){
+            console.log(value),
+            this.addVerify = false
+            this.value.RoomTypeId = value
+            this.roomTypeId = value
+        },
+        CreateRoom(){
+            axios.post('/api/PublishRoomAPI/Create', this.value)
+            .then((res) =>
+				{
+					console.log(res)
+					if(res.data.status === 20000)
+					{
+						toastr.success('新增成功')
+                        const Id = this.roomTypeId
+                        sessionStorage['roomTypeId'] = Id;
+                        window.location = 'privacy_type';
+					}
+					else
+                    {
+						toastr.error('新增失敗')
+					}
+				})
+            }
+                
+    }  
+})
 
-
-        })
-    </script>
+</script>
 }

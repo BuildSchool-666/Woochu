@@ -4,6 +4,7 @@ namespace Front.Models.DTOModels.PublishRoom
 {
     public class PublishRoomApiInputDTO
     {
+        public string UserEmail { get; set; }
         public int RoomId { get; set; }
         public string RoomName { get; set; }
         public int UserId { get; set; }
@@ -25,7 +26,6 @@ namespace Front.Models.DTOModels.PublishRoom
         public decimal? Discount { get; set; }
         public decimal? BasicPrice { get; set; }
         public decimal? ServiceCharge { get; set; }
-        public string UserEmail { get; set; }
     }
     public class PublishRoomApiOutputDTO : BaseOutputDTO
     {
