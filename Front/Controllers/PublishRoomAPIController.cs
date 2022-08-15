@@ -85,7 +85,8 @@ namespace Front.Controllers
             try
             {
                 _publishRoomService.UpdateRoom(input);
-                return Ok(new APIResult(APIStatus.Success, string.Empty, true));
+                VVM room = new VVM { roomId = 1, ProId = 1 };
+                return Ok(new APIResult(APIStatus.Success, string.Empty, room));
             }
             catch (Exception ex)
             {
@@ -93,5 +94,11 @@ namespace Front.Controllers
             }
 
         }
-}
+        public class VVM
+        {
+            public int roomId { get; set; }
+            public int ProId { get; set;}
+            public int PriId { get; set; }
+        }
+    }
 }
