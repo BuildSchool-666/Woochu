@@ -34,19 +34,19 @@ namespace Front.Controllers
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
             }
         }
-        [HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
-        public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
-        {
-            try
-            {
-                var result = _publishRoomService.GetRoomTypeParent();
-                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-            }
-            catch (Exception ex)
-            {
-                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-            }
-        }
+        //[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
+        //public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
+        //{
+        //    try
+        //    {
+        //        var result = _publishRoomService.GetRoomTypeParent();
+        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+        //    }
+        //}
 
         ///<summary>
         ///一轉到二頁

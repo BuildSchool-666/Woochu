@@ -229,7 +229,8 @@ let app = new Vue({
                     }
                 })
         });
-        if (sessionStorage['roomTypeGroupId'] != null) {
+        if (sessionStorage['roomTypeGroupId']) {
+            @*document.getElementById(`${sessionStorage['roomTypeGroupId']}`).focus();*@
             this.Check(sessionStorage['roomTypeGroupId']);
         }
     },
@@ -248,13 +249,8 @@ let app = new Vue({
         },
         GoNextPage() {
             const Id = this.roomTypeGroupId
-            //this.$router.push({
-            //    path: 'BecomeHost/property_type', params: { id:  Id  }
-            //})
-            //sessionStorage.setItem("roomTypeGroupId", Id);
             sessionStorage['roomTypeGroupId'] = Id;
             window.location = 'property_type';
-            //axios.post('/api/PublishRoomAPI/GetRoomTypeParent')
         }
     }
 });

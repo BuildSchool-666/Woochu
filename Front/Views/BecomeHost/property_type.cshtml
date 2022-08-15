@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button v-for="roomType in roomTypeList" v-on:click="SendValue(roomType.roomTypeId)" type="button" class="type" id="rental" value="roomType.roomTypeId">
+            <button v-for="roomType in roomTypeList" v-on:click="SendValue(roomType.roomTypeId)" type="button" class="type" :id="roomType.roomTypeId">
                 <p class="grouptitle"><strong>{{ roomType.roomTypeName }}</strong></p>
             </button>
 
@@ -19,7 +19,7 @@
         </div>
         <div class="last-bar">
             <a href="/BecomeHost/property_type_group" class="back"><strong>返回</strong></a>
-            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify"><a href="@Url.Action("privacy_type","BecomeHost")"></a>下一步</button>
+            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
 </div>
@@ -244,6 +244,7 @@ let app = new Vue({
         value: {
             RoomTypeId: 0,
         },
+        roomTypeId: 0,
         addVerify:true,
         roomTypeList: [],
     },
@@ -258,6 +259,9 @@ let app = new Vue({
                     }
                 })
         });
+        if (sessionStorage['roomTypeId']) {
+            this.SendValue(sessionStorage['roomTypeId'])
+        }
     },
     computed: {
         checkedStyle() {
@@ -271,6 +275,7 @@ let app = new Vue({
             console.log(value),
             this.addVerify = false
             this.value.RoomTypeId = value
+            this.roomTypeId = value
         },
         CreateRoom(){
             axios.post('/api/PublishRoomAPI/Create', this.value)
@@ -280,7 +285,9 @@ let app = new Vue({
 					if(res.data.status === 20000)
 					{
 						toastr.success('新增成功')
-                        window.location.href="privacy_type"
+                        const Id = this.roomTypeId
+                        sessionStorage['roomTypeId'] = Id;
+                        window.location = 'privacy_type';
 					}
 					else
                     {
