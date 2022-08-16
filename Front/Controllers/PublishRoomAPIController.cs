@@ -34,19 +34,6 @@ namespace Front.Controllers
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
             }
         }
-        //[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
-        //public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomTypeParent();
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
 
         ///<summary>
         ///一轉到二頁
@@ -81,10 +68,37 @@ namespace Front.Controllers
                 var userEmail = User.Identity.Name;
                 var result = _publishRoomService.CreateRoom(input);
 
+                return Ok(new APIResult(APIStatus.Success, string.Empty, true));
+            }   
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
+            }
+        }
 
-                //List<string> roomPrivacy = new List<string>();
-                //foreach (var i in Enum.GetNames(typeof(PrivacyType)))
-                //{ roomPrivacy.Add(i); }
+        /// <summary>
+        /// 後十幾頁的資料update
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        //[HttpPut("Update/{result}")]
+        //public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
+        //{
+        //    var a = (RoomPage)Enum.Parse(typeof(RoomPage), result);
+        //    //if(a == RoomPage.amenities)
+        //    //{
+        //    //    _publishRoomService.GetAmenities()
+        //    //}
+        //    return Ok(new APIResult(APIStatus.Success, string.Empty, a));
+        //}
+
+        [HttpGet("GetFacility")]
+        public IActionResult GetFacility()
+        {
+            try
+            {
+                var result = _publishRoomService.GetFacility();
 
                 return Ok(new APIResult(APIStatus.Success, string.Empty, result));
             }
@@ -93,23 +107,5 @@ namespace Front.Controllers
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
         }
-        
-        /// <summary>
-        /// 後十幾頁的資料update
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        [HttpPut("Update/{result}")]
-        public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
-        {
-            var a = (RoomPage)Enum.Parse(typeof(RoomPage), result);
-            //if(a == RoomPage.amenities)
-            //{
-            //    _publishRoomService.GetAmenities()
-            //}
-            return Ok(new APIResult(APIStatus.Success, string.Empty, a));
-        }
-        
     }
 }

@@ -23,6 +23,7 @@
     </PackageReference>
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +46,7 @@
     <None Remove="Service\Payment\Service\" />
     <None Remove="Models\DTOModels\Payment\" />
     <None Remove="Models\ViewModels\Payment\" />
+    <None Remove="Dapper" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service\Payment\" />
