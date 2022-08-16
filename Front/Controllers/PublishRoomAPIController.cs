@@ -107,5 +107,7 @@ namespace Front.Controllers
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
         }
+
+
     }
 }
