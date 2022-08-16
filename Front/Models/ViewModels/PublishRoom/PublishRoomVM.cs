@@ -6,12 +6,10 @@ namespace Front.Models.ViewModels.PublishRoom
     {
         public int RoomTypeId { get; set; }
         public string RoomTypeName { get; set; }
-
         public string UserEmail { get; set; }
-        //public int RoomPrivacyId { get; set; }
-        //public string RoomPrivacyName { get; set; }
-        //public List<RoomTypeVM> RoomTypeItem { get; set; }
-        //public List<RoomPrivacyVM> RoomPrivacyItem { get; set; }
+        public int FacilityId { get; set; }
+        public string FacilityName { get; set; }
+        public string Icon { get; set; }
     }
     public class RoomTypeVM
     {

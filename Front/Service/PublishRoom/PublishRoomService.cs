@@ -34,41 +34,62 @@ namespace Front.Service.PublishRoom
                 RoomTypeName = x.RoomTypeName
             });
         }
-        public PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail)
+        public void CreateRoom(PublishRoomApiInputDTO input)
         {
             var entity = new Room()
             {
                 //UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == userEmail).UserId,
+                RoomName = input.RoomName,
                 UserId = 4,
                 RoomTypeId = input.RoomTypeId,
-                CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+                PrivacyTypeId = input.PrivacyTypeId,
+                GuestCount = input.GuestCount,
+                City = input.City,
+                District = input.District,
+                Address = input.Address,
+                ZipCode = input.ZipCode,
                 UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+                CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+                RoomStatus = 1,
+                Description = input.Description,
+                BasicPrice = input.BasicPrice,
+                ServiceCharge = input.ServiceCharge,
             };
             
             _repo.Create<Room>(entity);
             _repo.SaveChanges();
 
         }
-        public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)
+        //public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)
+        //{
+        //    var target = _repo.GetAll<Room>().FirstOrDefault(x => x.RoomId == input.RoomId);
+        //    target.RoomTypeId = input.RoomTypeId;
+        //    target.PrivacyTypeId = input.PrivacyTypeId;
+        //    target.Address = input.Address;
+        //    target.GuestCount = input.GuestCount;
+        //    var targetfacility = _repo.GetAll<RoomFacility>().SingleOrDefault(rf => rf.RoomId == input.RoomId && rf.FacilityId == 13);
+        //    try
+        //    {
+        //        _repo.Update(target);
+        //        _repo.SaveChanges();
+        //        result.IsSuccess = true;
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        result.IsSuccess = false;
+        //        result.Message = ex.Message;
+        //    }
+        //    return result;
+        //}
+
+        public IEnumerable<PublishRoomVM> GetFacility()
         {
-            var target = _repo.GetAll<Room>().FirstOrDefault(x => x.RoomId == input.RoomId);
-            target.RoomTypeId = input.RoomTypeId;
-            target.PrivacyTypeId = input.PrivacyTypeId;
-            target.Address = input.Address;
-            target.GuestCount = input.GuestCount;
-            var targetfacility = _repo.GetAll<RoomFacility>().SingleOrDefault(rf => rf.RoomId == input.RoomId && rf.FacilityId == 13);
-            try
+            return _repo.GetAll<Facility>().Select(f => new PublishRoomVM()
             {
-                _repo.Update(target);
-                _repo.SaveChanges();
-                result.IsSuccess = true;
-            }
-            catch(Exception ex)
-            {
-                result.IsSuccess = false;
-                result.Message = ex.Message;
-            }
-            return result;
+                FacilityId = f.FacilityId,
+                FacilityName = f.FacilityName,
+                Icon = f.Icon,
+            });
         }
     }
 }
