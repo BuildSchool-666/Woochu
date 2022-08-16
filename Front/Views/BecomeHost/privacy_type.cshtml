@@ -1,5 +1,5 @@
 ﻿
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center" id="app">
     <div class="title">
         <h1 class="text-white"><strong>房客會住哪種空間？</strong></h1>
     </div>
@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="property-type-group" >
-            <button v-on:click="SendValue(0)" type="button" class="type" id="complete-set" >
+            <button v-on:click="SendValue(0)" type="button" class="type" id="complete-set" value=0>
                 <p class="grouptitle"><strong>整套房源</strong></p>
             </button>
             <button v-on:click="SendValue(1)" type="button" class="type" id="detached-room">
@@ -22,7 +22,7 @@
         </div>
         <div class="last-bar">
             <a href="/BecomeHost/property_type" class="back"><strong>返回</strong></a>
-            <button type="button" class="next text-white" id="next">下一步</button>
+            <button v-on:click="Next()" type="button" class="next text-white" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
 </div>
@@ -232,64 +232,62 @@
 }
 
 @section EndJS{
-    @*<script>
-
-        const btn = document.getElementById('next');
-        window.onload = function(){
-                btn.style.backgroundColor = "#D0D0D0";
-            };
-
-        document.getElementById("complete-set").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("location","BecomeHost")" ;  
-            }};
-        
-        document.getElementById("detached-room").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href ="@Url.Action("location","BecomeHost")" ;  
-            }};
-
-        document.getElementById("shared-room").onclick = function(){
-                btn.style.backgroundColor = "black";
-                btn.onclick = function(){
-            location.href = "@Url.Action("location","BecomeHost")" ;  
-            }};
-    </script>*@
     <script>
         let app = new Vue({
             el:"#app",
             data:{
-                currentRoom:{},
+                value:{
+                    privacyId: 0,
+                },
+                privacyId: 0,
                 addVerify:true
+            },          
+            mounted(){
+                if (sessionStorage['privacyId']) {
+                    this.SendValue(sessionStorage['privacyId'])
+                }
+            },
+            computed: {
+                checkedStyle() {
+                    return {
+                        backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
+                    }
+                }
             },
             methods:{
                 SendValue(value){
-                    console.log(value),
-                    this.addVerify = false,
-                    this.currentRoom={}
-                    this.value = value
+                    console.log(value)
+                    this.addVerify = false
+                    this.value.privacyId = value
+                    this.privacyId = value
                 },
-                updatePokemon() {
-						axios({
-							method:'put',
-							url:'/api/PublishRoomAPI/Update',
-							data:this.currentPokemon
-						})
+                Next(){
+                    const Id = this.privacyId
+                    var obj = JSON.parse(sessionStorage['currentRoom'])
+                    Object.assign(obj,{'privacyId':Id})
+                    sessionStorage.removeItem('currentRoom');
+                    sessionStorage.setItem('currentRoom',JSON.stringify(obj))
+                    window.location = 'location2';
+                }
+
+     //           updatePokemon() {
+					//	axios({
+					//		method:'put',
+					//		url:'/api/PublishRoomAPI/Update',
+					//		data:this.currentPokemon
+					//	})
 						
-						.then((res) => {
-							if(res.data.status === 20000)
-							{
-								toastr.success('更新成功')
-								this.getAllPokemon()
-								$('#edit-modal').modal('hide')
-							}
-							else{
-								toastr.error('更新失敗')
-							}
-						})
-					},
+					//	.then((res) => {
+					//		if(res.data.status === 20000)
+					//		{
+					//			toastr.success('更新成功')
+					//			$('#edit-modal').modal('hide')
+					//		}
+					//		else{
+					//			toastr.error('更新失敗')
+					//		}
+					//	})
+					//},
             }
 
 

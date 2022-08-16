@@ -19,7 +19,7 @@
         </div>
         <div class="last-bar">
             <a href="/BecomeHost/property_type_group" class="back"><strong>返回</strong></a>
-            <button v-on:click="CreateRoom()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
+            <button v-on:click="Next()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
 </div>
@@ -250,7 +250,8 @@ let app = new Vue({
     },
     mounted() {
         document.addEventListener('DOMContentLoaded', function() {
-            axios.get('/api/PublishRoomAPI/GetRoomType/' + sessionStorage.getItem("roomTypeGroupId"))
+            var obj = JSON.parse(sessionStorage.getItem("currentRoom"))
+            axios.get('/api/PublishRoomAPI/GetRoomType/' + obj.roomTypeGroupId)
                 .then((res) => {
                     console.log(res)
                     if (res.data.status === 20000) {
@@ -277,24 +278,36 @@ let app = new Vue({
             this.value.RoomTypeId = value
             this.roomTypeId = value
         },
-        CreateRoom(){
-            axios.post('/api/PublishRoomAPI/Create', this.value)
-            .then((res) =>
-				{
-					console.log(res)
-					if(res.data.status === 20000)
-					{
-						toastr.success('新增成功')
-                        const Id = this.roomTypeId
-                        sessionStorage['roomTypeId'] = Id;
-                        window.location = 'privacy_type';
-					}
-					else
-                    {
-						toastr.error('新增失敗')
-					}
-				})
-            }
+        Next(){
+            const Id = this.roomTypeId
+            var obj = JSON.parse(sessionStorage['currentRoom'])
+            Object.assign(obj,{'roomTypeId':Id})
+            sessionStorage.removeItem('currentRoom');
+            sessionStorage.setItem('currentRoom',JSON.stringify(obj))
+            window.location = 'privacy_type';
+       
+        }
+
+    //    CreateRoom(){
+    //        axios.post('/api/PublishRoomAPI/Create', this.value)
+    //        .then((res) =>
+				//{
+				//	console.log(res)
+				//	if(res.data.status === 20000)
+				//	{
+				//		toastr.success('新增成功')
+    //                    const Id = this.roomTypeId
+    //                    sessionStorage['roomTypeId'] = Id;
+    //                    sessionStorage['room'] = JSON.stringify( res.data.result;
+
+    //                    window.location = 'privacy_type';
+				//	}
+				//	else
+    //                {
+				//		toastr.error('新增失敗')
+				//	}
+				//})
+    //        }
                 
     }  
 })

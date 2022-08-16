@@ -217,6 +217,7 @@ let app = new Vue({
         roomTypeList: [],
         checked: true,
         roomTypeGroupId: 0,
+        currentRoom:{}
     },
     mounted() {
         document.addEventListener('DOMContentLoaded', function() {
@@ -249,7 +250,8 @@ let app = new Vue({
         },
         GoNextPage() {
             const Id = this.roomTypeGroupId
-            sessionStorage['roomTypeGroupId'] = Id;
+            var roomTypeGroupId = {'roomTypeGroupId':Id }
+            sessionStorage['currentRoom'] = JSON.stringify(roomTypeGroupId)
             window.location = 'property_type';
         }
     }

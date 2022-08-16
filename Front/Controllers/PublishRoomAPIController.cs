@@ -79,13 +79,14 @@ namespace Front.Controllers
             try
             {
                 var userEmail = User.Identity.Name;
-                _publishRoomService.CreateRoom(input);
+                var result = _publishRoomService.CreateRoom(input);
 
-                List<string> roomPrivacy = new List<string>();
-                foreach (var i in Enum.GetNames(typeof(PrivacyType)))
-                { roomPrivacy.Add(i); }
 
-                return Ok(new APIResult(APIStatus.Success, string.Empty, roomPrivacy));
+                //List<string> roomPrivacy = new List<string>();
+                //foreach (var i in Enum.GetNames(typeof(PrivacyType)))
+                //{ roomPrivacy.Add(i); }
+
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
             }
             catch (Exception ex)
             {

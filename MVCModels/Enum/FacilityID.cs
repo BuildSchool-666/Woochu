@@ -8,7 +8,8 @@ namespace MVCModels.MyEnum
 {
     public enum FacilityID
     {
-        Bed = 11,
+        BedRoom = 11,
         Bath = 12,
+        Bed = 13
     }
 }

@@ -16,7 +16,7 @@ namespace Front.Service.PublishRoom
         {
             _repo = repo;
         }
-       
+
         public IEnumerable<PublishRoomVM> GetRoomTypeParent()
         {
             return _repo.GetAll<RoomType>().Where(rt => rt.ParentId == null).Select(x => new PublishRoomVM()
@@ -34,7 +34,7 @@ namespace Front.Service.PublishRoom
                 RoomTypeName = x.RoomTypeName
             });
         }
-        public PublishRoomApiOutputDTO CreateRoom(int roomTypeId, string userEmail)
+        public PublishRoomApiInputDTO CreateRoom(PublishRoomApiInputDTO input)
         {
             var entity = new Room()
             {
@@ -44,12 +44,23 @@ namespace Front.Service.PublishRoom
                 CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
             };
-            
+
             _repo.Create<Room>(entity);
             _repo.SaveChanges();
 
+            var room = _repo.GetAll<Room>().OrderByDescending(r => r.CreateTime).FirstOrDefault(r => r.UserId == 4);
+            var result = new PublishRoomApiInputDTO()
+            {
+                 RoomId = room.RoomId,
+                 UserId = room.UserId,
+                 RoomTypeId = room.RoomTypeId,
+            };
+
+
+            return result;
+
         }
-        public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)
+        public void UpdateRoom(PublishRoomApiInputDTO input)
         {
             var target = _repo.GetAll<Room>().FirstOrDefault(x => x.RoomId == input.RoomId);
             target.RoomTypeId = input.RoomTypeId;
@@ -57,18 +68,9 @@ namespace Front.Service.PublishRoom
             target.Address = input.Address;
             target.GuestCount = input.GuestCount;
             var targetfacility = _repo.GetAll<RoomFacility>().SingleOrDefault(rf => rf.RoomId == input.RoomId && rf.FacilityId == 13);
-            try
-            {
-                _repo.Update(target);
-                _repo.SaveChanges();
-                result.IsSuccess = true;
-            }
-            catch(Exception ex)
-            {
-                result.IsSuccess = false;
-                result.Message = ex.Message;
-            }
-            return result;
+            _repo.Update(target);
+            _repo.SaveChanges();
+            
         }
     }
 }
