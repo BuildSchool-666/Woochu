@@ -8,7 +8,7 @@
     <div class="right">
         <div class="d-flex">
             <div class="btngroup">
-               <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
+                <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
             </div>
             <div class="pricearea">
                 <h2>价格</h2>
@@ -293,6 +293,7 @@
 							{
 								toastr.success('新增成功')
 								$('#create-modal').modal('hide')
+                                window.location="/"
 							}
 							else{
 								toastr.error('新增失敗')

@@ -294,7 +294,7 @@
                 Next(){
                     const Id = this.privacyId
                     var obj = JSON.parse(sessionStorage['currentRoom'])
-                    Object.assign(obj,{'privacyId':Id})
+                    Object.assign(obj,{'PrivacyTypeId':Id})
                     sessionStorage.removeItem('currentRoom');
                     sessionStorage.setItem('currentRoom',JSON.stringify(obj))
                     window.location = 'location2';

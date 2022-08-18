@@ -5,7 +5,6 @@
     <div class="right" >
         <div class="d-flex">
             <div class="btngroup">
-               @* <button type="button" class="btn-h text-white"><strong>退出</strong></button>*@
                 <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
             </div>
         </div>
@@ -24,7 +23,7 @@
                 <div class="form-floating">
                     <input v-model="Address" type="text" class="form-control" id="address" :class="{'is-invalid':Check.AddressInput}" />
                     <label for="floatingInput">街道地址</label>
-                     <div class="text-danger small mt-1">
+                    <div class="text-danger small mt-1">
                         {{Check.AddressErrorMsg}}
                     </div>
                 </div>
@@ -390,126 +389,126 @@
         btnNext.location = 'floor_plan'
     }
 </script>*@
- <script>
-     let app = new Vue({
-            el:"#app",
-            data:
-            {
-                Address:'',
-                City:'',
-                State:'',
-                ZipCode:'',
-                Check:{
-                    AddressInput:false,
-                    AddressErrorMsg:'',
-                    CityInput:false,
-                    CityErrorMsg:'',
-                    StateInput:false,
-                    StateErrorMsg:'',
-                    ZipCpdeInput:false,
-                    ZipCodeErrorMsg:''
-                },
-                addVerify: true
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:
+        {
+            Address:'',
+            City:'',
+            State:'',
+            ZipCode:'',
+            Check:{
+                AddressInput:false,
+                AddressErrorMsg:'',
+                CityInput:false,
+                CityErrorMsg:'',
+                StateInput:false,
+                StateErrorMsg:'',
+                ZipCpdeInput:false,
+                ZipCodeErrorMsg:''
             },
-            watch:{
-                Address:{
-                    immediate: true,
-                    handler: function(){
-                        if(this.Address == '')
-                        {
-                            this.Check.AddressInput = true
-                            this.Check.AddressErrorMsg = '不得为空' 
-                        }
-                        else
-                        {
-                            this.Check.AddressInput = false
-                            this.Check.AddressErrorMsg = ''
-                        }
-                        this.checkAddVerify()
-                    }   
-                },
-                City:{
-                    immediate: true,
-                    handler: function(){
-                        if(this.City == '')
-                        {
-                            this.Check.CityInput = true
-                            this.Check.CityErrorMsg = '不得为空' 
-                        }
-                        else
-                        {
-                            this.Check.CityInput = false
-                            this.Check.CityErrorMsg = ''
-                        }
-                        this.checkAddVerify()
-                    }   
-                },
-                State:{
-                    immediate: true,
-                    handler: function(){
-                        if(this.State == '')
-                        {
-                            this.Check.StateInput = true
-                            this.Check.StateErrorMsg = '不得为空' 
-                        }
-                        else
-                        {
-                            this.Check.StateInput = false
-                            this.Check.StateErrorMsg = ''
-                        }
-                        this.checkAddVerify()
-                    }   
-                },
-                ZipCode:{
-                    immediate: true,
-                    handler: function(){
-                        if(this.ZipCode == '')
-                        {
-                            this.Check.ZipCodeInput = true
-                            this.Check.ZipCodeErrorMsg = '不得为空' 
-                        }
-                        else
-                        {
-                            this.Check.ZipCodeInput = false
-                            this.Check.ZipCodeErrorMsg = ''
-                        }
-                        this.checkAddVerify()
-                    }   
-                }
-                
-            },
-            computed: {
-                checkedStyle() {
-                    return {
-                        backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
-                    }   
-                }
-            },
-            methods:{
-                checkAddVerify(){
-                    for(let prop in this.Check)
+            addVerify: true
+        },
+        watch:{
+            Address:{
+                immediate: true,
+                handler: function(){
+                    if(this.Address == '')
                     {
-                        if(this.Check[prop] == true)
-                        {
-                            this.addVerify = true
-                            return
-                        }
-                        this.addVerify = false;
+                        this.Check.AddressInput = true
+                        this.Check.AddressErrorMsg = '不得为空' 
                     }
-                },
-                Next(){
-                    const Address = this.Address
-                    const City = this.City
-                    const State = this.State
-                    const ZipCode = this.ZipCode
-                    
-                    var obj = JSON.parse(sessionStorage['currentRoom'])
-                    Object.assign(obj,{'Address':Address,'City':City,'State':State,'ZipCode':ZipCode})
-                    sessionStorage.removeItem('currentRoom');
-                    sessionStorage.setItem('currentRoom',JSON.stringify(obj))
-                    window.location = 'floor_plan';
-                }
+                    else
+                    {
+                        this.Check.AddressInput = false
+                        this.Check.AddressErrorMsg = ''
+                    }
+                    this.checkAddVerify()
+                }   
+            },
+            City:{
+                immediate: true,
+                handler: function(){
+                    if(this.City == '')
+                    {
+                        this.Check.CityInput = true
+                        this.Check.CityErrorMsg = '不得为空' 
+                    }
+                    else
+                    {
+                        this.Check.CityInput = false
+                        this.Check.CityErrorMsg = ''
+                    }
+                    this.checkAddVerify()
+                }   
+            },
+            State:{
+                immediate: true,
+                handler: function(){
+                    if(this.State == '')
+                    {
+                        this.Check.StateInput = true
+                        this.Check.StateErrorMsg = '不得为空' 
+                    }
+                    else
+                    {
+                        this.Check.StateInput = false
+                        this.Check.StateErrorMsg = ''
+                    }
+                    this.checkAddVerify()
+                }   
+            },
+            ZipCode:{
+                immediate: true,
+                handler: function(){
+                    if(this.ZipCode == '')
+                    {
+                        this.Check.ZipCodeInput = true
+                        this.Check.ZipCodeErrorMsg = '不得为空' 
+                    }
+                    else
+                    {
+                        this.Check.ZipCodeInput = false
+                        this.Check.ZipCodeErrorMsg = ''
+                    }
+                    this.checkAddVerify()
+                }   
             }
+                
+        },
+        computed: {
+            checkedStyle() {
+                return {
+                    backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
+                }   
+            }
+        },
+        methods:{
+            checkAddVerify(){
+                for(let prop in this.Check)
+                {
+                    if(this.Check[prop] == true)
+                    {
+                        this.addVerify = true
+                        return
+                    }
+                    this.addVerify = false;
+                }
+            },
+            Next(){
+                const Address = this.Address
+                const City = this.City
+                const State = this.State
+                const ZipCode = this.ZipCode
+                    
+                var obj = JSON.parse(sessionStorage['currentRoom'])
+                Object.assign(obj,{'Address':Address,'City':City,'District':State,'ZipCode':ZipCode})
+                sessionStorage.removeItem('currentRoom');
+                sessionStorage.setItem('currentRoom',JSON.stringify(obj))
+                window.location = 'floor_plan';
+            }
+        }
     })
- </script>   
+</script>   
 }

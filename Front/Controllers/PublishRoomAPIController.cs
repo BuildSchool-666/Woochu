@@ -69,32 +69,22 @@ namespace Front.Controllers
             try
             {
                 var userEmail = User.Identity.Name;
-                _publishRoomService.CreateRoom(input);
+                input.userEmail = userEmail;
+
+                var roomId = _publishRoomService.CreateRoom(input);
+
+                _publishRoomService.CreateImage(input, roomId);
+
+                _publishRoomService.CreateFacility(input, roomId);
 
                 return Ok(new APIResult(APIStatus.Success, string.Empty, true));
-            }   
+            }
             catch (Exception ex)
             {
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
         }
 
-        /// <summary>
-        /// 後十幾頁的資料update
-        /// </summary>
-        /// <param name="result"></param>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        //[HttpPut("Update/{result}")]
-        //public IActionResult Update([FromRoute] string result, [FromBody] PublishRoomVM input)
-        //{
-        //    var a = (RoomPage)Enum.Parse(typeof(RoomPage), result);
-        //    //if(a == RoomPage.amenities)
-        //    //{
-        //    //    _publishRoomService.GetAmenities()
-        //    //}
-        //    return Ok(new APIResult(APIStatus.Success, string.Empty, a));
-        //}
 
         [HttpGet("GetFacility")]
         public IActionResult GetFacility()
@@ -110,12 +100,13 @@ namespace Front.Controllers
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
         }
+
         [HttpGet("GetCloudinary")]
         public IActionResult GetCloudinary()
         {
             var builder = new ConfigurationBuilder()
-                  .SetBasePath(Directory.GetCurrentDirectory())
-                  .AddJsonFile("appsettings.json");
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
             var config = builder.Build();
             try
             {
