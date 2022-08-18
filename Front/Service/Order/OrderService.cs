@@ -47,10 +47,6 @@ namespace Front.Service.Order
                 CustomerId = customer.UserId,
                 Title = room.RoomName,
                 RoomInfo = "RoomInfo",
-                BedCount = _repo.GetAll<RoomFacility>()
-                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
-                BathCount = _repo.GetAll<RoomFacility>()
-                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
                 RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
@@ -62,7 +58,18 @@ namespace Front.Service.Order
                 ServiceFee = (int)room.ServiceCharge,
                 TotalPrice = roomTotalPrice,
             };
-
+            try
+            {
+                result.VM.BedCount = _repo.GetAll<RoomFacility>()
+                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity;
+                result.VM.BathCount = _repo.GetAll<RoomFacility>()
+                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity;
+            }
+            catch
+            {
+                result.VM.BedCount = 0;
+                result.VM.BathCount = 0;
+            }
 
             result.IsSuccess = true;
             return result;

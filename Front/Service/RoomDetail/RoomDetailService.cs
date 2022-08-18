@@ -39,11 +39,7 @@ namespace Front.Service.RoomDetail
                 
                 RoomInfo = "RoomInfo",
                 BrowseCount = (int)room.BrowseCount,
-                //BedCount = _repo.GetAll<RoomFacility>()
-                //                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
                 PersonCount = (int)room.GuestCount,
-                //BathCount = _repo.GetAll<RoomFacility>()
-                //                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
                 FacilityItem = new List<FacilityIcon>(),
@@ -67,6 +63,19 @@ namespace Front.Service.RoomDetail
                 JoinTime = room.CreateTime,
                 LastOnlineTime = 200 / 60,
             };
+
+            try
+            {
+                result.VM.BedCount = _repo.GetAll<RoomFacility>()
+                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity;
+                result.VM.BathCount = _repo.GetAll<RoomFacility>()
+                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity;
+            }
+            catch
+            {
+                result.VM.BedCount = 0;
+                result.VM.BathCount = 0;
+            }
 
             var roomFacilityIdList = _repo.GetAll<RoomFacility>()
                                 .Where(rf => rf.RoomId == input.RoomId).Select(rf => rf.FacilityId).ToList();
@@ -130,19 +139,19 @@ namespace Front.Service.RoomDetail
             return result;
         }
 
-        //public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
-        //{
-        //    double score =
-        //        CleanlinessStar
-        //        + AccuracyStar
-        //        + CommunicationStar
-        //        + LocationStar
-        //        + CheckInStar
-        //        + ValueStar;
+        public double CalPersonStar(double CleanlinessStar, double AccuracyStar, double CommunicationStar, double LocationStar, double CheckInStar, double ValueStar)
+        {
+            double score =
+                CleanlinessStar
+                + AccuracyStar
+                + CommunicationStar
+                + LocationStar
+                + CheckInStar
+                + ValueStar;
 
-        //    score /= 6;
-        //    decimal.Round((decimal)score, 1);
-        //    return score;
-        //}
+            score /= 6;
+            decimal.Round((decimal)score, 1);
+            return score;
+        }
     }
 }

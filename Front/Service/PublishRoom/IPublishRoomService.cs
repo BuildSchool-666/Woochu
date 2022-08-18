@@ -13,7 +13,8 @@ namespace Front.Service.PublishRoom
 
         IEnumerable<PublishRoomVM> GetRoomTypeParent();
         IEnumerable<PublishRoomVM> GetRoomType(int ParentId);
-        //IEnumerable<PublishRoomVM> GetFacility();
+        IEnumerable<PublishRoomVM> GetFacility();
+
 
     }
 }

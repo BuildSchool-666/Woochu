@@ -1,22 +1,25 @@
-﻿<div class="d-flex justify-content-center">
+﻿
+
+<div class="d-flex justify-content-center" id="app">
     <div class="title">
-        <h1 class="text-white"><strong>你想出租哪種類型的房源？</strong></h1>
+        <h1 class="text-white"><strong>下列哪項最能確切描述你的房源？</strong></h1>
     </div>
     <div class="right">
         <div class="d-flex">
             <div class="btngroup">
-                <a href="~/BecomeHost/Index" class="btn-h"><strong>退出</strong></a>
+                <a class="btn-h" href="~/BecomeHost/Index"><strong>退出</strong></a>
             </div>
         </div>
         <div class="property-type-group" >
-            <button v-for="roomType in roomTypeList" type="button" v-on:click="Check(roomType.roomTypeId)" class="type" v-bind:id="roomType.roomTypeId">
-                <p><strong>{{ roomType.roomTypeName }}</strong></p>
-                <img src="https://a0.muscache.com/im/pictures/eadbcbdb-d57d-44d9-9a76-665a7a4d1cd7.jpg?im_w=240" alt="">
+            <button v-for="roomType in roomTypeList" v-on:click="SendValue(roomType.roomTypeId)" type="button" class="type" :id="roomType.roomTypeId">
+                <p class="grouptitle"><strong>{{ roomType.roomTypeName }}</strong></p>
             </button>
+
+              
         </div>
         <div class="last-bar">
-            <a href="~/BecomeHost/Index" class="back"><strong>返回</strong></a>
-            <button type="button" class="next text-white" id="next" :disabled="checked" :style="checkedStyle" v-on:click="GoNextPage">下一步</button>
+            <a href="/BecomeHost/property_type_group" class="back"><strong>返回</strong></a>
+            <button v-on:click="Next()" type="button" class="next btn-dark" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
 </div>
@@ -55,6 +58,7 @@
             height: 30vh;
             margin-top: 5vh;
             margin-left: 10vh;
+            margin-bottom: 70vh;
         }
         
         .type{
@@ -93,13 +97,12 @@
             position: fixed;
             top:0;
             right: -50%;
-            justify-content:flex-end;
             background-color: transparent;
             padding-top: 20px;
             padding-bottom: 20px; 
+            justify-content: flex-end;
             z-index: 0;
         }
-
         .btn-h {
             text-decoration: none;
             color: black;
@@ -132,7 +135,7 @@
         .back {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content : center;
             text-decoration: none;
             color: white;
             width: 20vh;
@@ -144,7 +147,6 @@
             border: none;
             transition-duration: 1s;
         }
-
         .back:hover {
             background-color: black;
             color: white;
@@ -165,14 +167,17 @@
         ::-webkit-scrollbar {
         width: 0px;
         }
+
     </style>
     <style media="screen and (min-width:744px)">
-         .title{
+        .title{
             width: 50%;
             height: 100vh;
             align-items: center;
+
         }
         .title h1{
+        
             font-size: 50px;
         }
 
@@ -180,55 +185,76 @@
             width: 50%;
             height: 100vh;
             bottom: 0;
-            overflow: scroll;
+            
         }
-        
         ::-webkit-scrollbar {
-        width: 0px;
-        }
+        width: 0px;}
 
         .property-type-group{
             height: 60vh;
             margin-top: 18vh;
+            
+        }
         
+        .type{
+            height: 15vh;
+            width: 80%;
+            align-items: center;
+            justify-content:left;             
+        }
+
+        .grouptitle{
+            width: 30%;
+            padding-right:20px;
+    
+        }
+
+        .property-type-group p{
+            margin:10px 0px;
+            text-align:start;
+            
         }
 
         .btngroup{
-            right:-25%;
             width: 50%;
             background-color: white;
+            z-index: 0;
+            right:-25%;
         }
-        .btn-h {
-            text-decoration: none;
-            color: black;
+        .btn-h{
+            text-decoration:none;
+            color:black;
             height: 35px;
-            font-size: 10px;
             transition-duration:1s;
         }
 
         .last-bar{
             display: flex;
             width: 50%;
+            right:0;
+            bottom:0;   
         }
 
     </style>
 }
+
 @section EndJS{
+
 <script>
-const nextpageBtn = document.getElementById('next');
-
-
 let app = new Vue({
-    el: '.right',
-    data: {
+    el:'#app',
+    data:{
+        value: {
+            RoomTypeId: 0,
+        },
+        roomTypeId: 0,
+        addVerify:true,
         roomTypeList: [],
-        checked: true,
-        roomTypeGroupId: 0,
-        currentRoom:{}
     },
     mounted() {
         document.addEventListener('DOMContentLoaded', function() {
-            axios.get('/api/PublishRoomAPI/GetRoomTypeParent')
+            var obj = JSON.parse(sessionStorage.getItem("currentRoom"))
+            axios.get('/api/PublishRoomAPI/GetRoomType/' + obj.roomTypeGroupId)
                 .then((res) => {
                     console.log(res)
                     if (res.data.status === 20000) {
@@ -237,32 +263,57 @@ let app = new Vue({
                     }
                 })
         });
-        if (sessionStorage['roomTypeGroupId']) {
-            @*document.getElementById(`${sessionStorage['roomTypeGroupId']}`).focus();*@
-            this.Check(sessionStorage['roomTypeGroupId']);
+        if (sessionStorage['roomTypeId']) {
+            this.SendValue(sessionStorage['roomTypeId'])
         }
     },
     computed: {
         checkedStyle() {
             return {
-                backgroundColor: this.checked ? '#D0D0D0' : 'black',
+                backgroundColor: this.addVerify ? '#D0D0D0' : 'black',
             }
         }
     },
     methods: {
-        Check(roomTypeId) {
-            this.checked = false;
-            this.roomTypeGroupId = roomTypeId
-            console.log(this.roomTypeGroupId)
+        SendValue(value){
+            console.log(value),
+            this.addVerify = false
+            this.value.RoomTypeId = value
+            this.roomTypeId = value
         },
-        GoNextPage() {
-            const Id = this.roomTypeGroupId
-            var roomTypeGroupId = {'roomTypeGroupId':Id }
-            sessionStorage['currentRoom'] = JSON.stringify(roomTypeGroupId)
-            window.location = 'property_type';
+        Next(){
+            const Id = this.roomTypeId
+            var obj = JSON.parse(sessionStorage['currentRoom'])
+            Object.assign(obj,{'roomTypeId':Id})
+            sessionStorage.removeItem('currentRoom');
+            sessionStorage.setItem('currentRoom',JSON.stringify(obj))
+            window.location = 'privacy_type';
+       
         }
-    }
-});
 
-    </script>
+    //    CreateRoom(){
+    //        axios.post('/api/PublishRoomAPI/Create', this.value)
+    //        .then((res) =>
+				//{
+				//	console.log(res)
+				//	if(res.data.status === 20000)
+				//	{
+				//		toastr.success('新增成功')
+    //                    const Id = this.roomTypeId
+    //                    sessionStorage['roomTypeId'] = Id;
+    //                    sessionStorage['room'] = JSON.stringify( res.data.result;
+
+    //                    window.location = 'privacy_type';
+				//	}
+				//	else
+    //                {
+				//		toastr.error('新增失敗')
+				//	}
+				//})
+    //        }
+                
+    }  
+})
+
+</script>
 }

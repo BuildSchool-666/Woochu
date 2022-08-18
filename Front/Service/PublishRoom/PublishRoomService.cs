@@ -35,15 +35,16 @@ namespace Front.Service.PublishRoom
                 RoomTypeName = x.RoomTypeName
             });
         }
-        //public IEnumerable<PublishRoomVM> GetFacility()
-        //{
-        //    return _repo.GetAll<Facility>().Select(f => new PublishRoomVM()
-        //    {
-        //        FacilityId = f.FacilityId,
-        //        FacilityName = f.FacilityName,
-        //        Icon = f.Icon,
-        //    });
-        //}
+        public IEnumerable<PublishRoomVM> GetFacility()
+        {
+            return _repo.GetAll<Facility>().Select(f => new PublishRoomVM()
+            {
+                FacilityId = f.FacilityId,
+                FacilityName = f.FacilityName,
+                Icon = f.Icon,
+            });
+        }
+
 
         public int CreateRoom(PublishRoomApiInputDTO input)
         {
@@ -60,8 +61,10 @@ namespace Front.Service.PublishRoom
                 ZipCode = input.currentRoom.ZipCode,
                 UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+                PublishTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
                 RoomStatus = 1,
                 Description = input.currentRoom.Description,
+                BrowseCount = 0,
                 BasicPrice = input.currentRoom.BasicPrice,
                 ServiceCharge = input.currentRoom.ServiceCharge,
             };
@@ -74,12 +77,12 @@ namespace Front.Service.PublishRoom
             return roomId;
 
         }
-        
+
 
 
         public void CreateImage(PublishRoomApiInputDTO input, int roomId)
         {
-            for(var i = 1; i <= input.image.roomImgs.Length; i++)
+            for (var i = 1; i <= input.image.roomImgs.Length; i++)
             {
                 var entity = new ImageFile()
                 {
@@ -90,6 +93,8 @@ namespace Front.Service.PublishRoom
 
                 _repo.Create<ImageFile>(entity);
             }
+            _repo.SaveChanges();
+
         }
 
         public void CreateFacility(PublishRoomApiInputDTO input, int roomId)
@@ -107,6 +112,7 @@ namespace Front.Service.PublishRoom
                 Quantity = input.currentRoom.BedRoom,
             };
             var bath = new RoomFacility()
+
             {
                 RoomId = roomId,
                 FacilityId = 12,
@@ -127,6 +133,10 @@ namespace Front.Service.PublishRoom
 
                 _repo.Create<RoomFacility>(entity);
             }
+
+            _repo.SaveChanges();
+
+
         }
     }
 }

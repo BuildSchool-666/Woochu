@@ -1,12 +1,15 @@
 ﻿using Front.Models.APIBase;
+using Front.Models.ConfigModels;
 using Front.Models.DTOModels.PublishRoom;
 using Front.Models.ViewModels.PublishRoom;
 using Front.Service.PublishRoom;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using MVCModels.Enum;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Front.Controllers
 {
@@ -20,65 +23,106 @@ namespace Front.Controllers
         {
             _publishRoomService = publishRoomService;
         }
-        //[HttpPost("GetRoomTypeParent")]
-        //public IActionResult GetRoomTypeParent()
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomTypeParent();
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
-        ////[HttpPost("GetRoomTypeParent/{RoomTypeParent}")]
-        ////public IActionResult GetRoomTypeParent([FromRoute] int roomTypeParent)
-        ////{
-        ////    try
-        ////    {
-        ////        var result = _publishRoomService.GetRoomTypeParent();
-        ////        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        ////    }
-        ////}
-        //[HttpPost("GetRoomType")]
-        //public IActionResult GetRoomType([FromBody] int roomTypeId)
-        //{
-        //    try
-        //    {
-        //        var result = _publishRoomService.GetRoomType(roomTypeId);
-        //        return Ok(new APIResult(APIStatus.Success, string.Empty, result));
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
-        //    }
-        //}
 
-        [HttpPost("Create/{roomTypeId}")]
-        public IActionResult Create([FromRoute]int roomTypeId)
+        [HttpGet("GetRoomTypeParent")]
+        public IActionResult GetRoomTypeParent()
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomTypeParent();
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+
+        ///<summary>
+        ///一轉到二頁
+        ///</summary>
+        ///<param name = "input" ></ param >
+        ///< returns ></ returns >
+        [HttpGet("GetRoomType/{roomTypeGroupId}")]
+        public IActionResult GetRoomType([FromRoute] int roomTypeGroupId)
+        {
+            try
+            {
+                var result = _publishRoomService.GetRoomType(roomTypeGroupId);
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, null));
+            }
+        }
+
+        /// <summary>
+        ///二頁創建房源
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        public IActionResult Create(PublishRoomApiInputDTO input)
         {
             try
             {
                 var userEmail = User.Identity.Name;
-                //_publishRoomService.CreateRoom(roomTypeId, userEmail);
-                //List<string> roomPrivacy = new List<string>();
-                //foreach(var i in Enum.GetNames(typeof(PrivacyType)))
-                //{ roomPrivacy.Add(i); }
-                return Ok(new APIResult(APIStatus.Success, string.Empty, roomTypeId));
+                input.userEmail = userEmail;
+
+                var roomId = _publishRoomService.CreateRoom(input);
+
+                _publishRoomService.CreateImage(input, roomId);
+
+                _publishRoomService.CreateFacility(input, roomId);
+
+                return Ok(new APIResult(APIStatus.Success, string.Empty, true));
+
             }
             catch (Exception ex)
             {
                 return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
             }
-           
         }
 
 
+
+        [HttpGet("GetFacility")]
+        public IActionResult GetFacility()
+        {
+            try
+            {
+                var result = _publishRoomService.GetFacility();
+
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
+            }
+        }
+
+        [HttpGet("GetCloudinary")]
+        public IActionResult GetCloudinary()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+            var config = builder.Build();
+            try
+            {
+                var result = new CloudinaryJS()
+                {
+                    CLOUDINARY_URL = config["CloudinaryJS:CLOUDINARY_URL"],
+                    CLOUDINARY_UPLOAD_PRESET = config["CloudinaryJS:CLOUDINARY_UPLOAD_PRESET"]
+                };
+                return Ok(new APIResult(APIStatus.Success, string.Empty, result));
+            }
+            catch (Exception ex)
+            {
+                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
+            }
+        }
     }
 }

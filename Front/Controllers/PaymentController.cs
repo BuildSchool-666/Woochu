@@ -34,8 +34,8 @@ namespace Front.Controllers
                 MerchantId = "2000132",
                 HashKey = "5294y06JbISpM5x9",
                 HashIV = "v77hoKGq4kWxNNIS",
-                ServerUrl = "https://fb80-220-141-64-30.jp.ngrok.io/Payment/callback", 
-                ClientUrl = "https://fb80-220-141-64-30.jp.ngrok.io/"
+                ServerUrl = "https://woochu.azurewebsites.net/Payment/callback", 
+                ClientUrl = "https://woochu.azurewebsites.net/"
             };
             var transaction = new
             {

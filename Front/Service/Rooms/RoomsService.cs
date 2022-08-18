@@ -78,10 +78,6 @@ namespace Front.Service.Rooms
                     ImgUrl = _repo.GetAll<ImageFile>()
                                     .FirstOrDefault(img => img.RoomId == r.RoomId).Picture,
                     HouseInfo = r.Description,
-                    BedCount = _repo.GetAll<RoomFacility>()
-                                    .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bed),
-                    BathCount = _repo.GetAll<RoomFacility>()
-                                    .Count(rf => rf.RoomId == r.RoomId && rf.FacilityId == (int)FacilityID.Bath),
                     RentPrice = (int)r.BasicPrice,
                     Rating = CalStar.CalRoomStar(_repo, r.RoomId),
                     
@@ -89,6 +85,21 @@ namespace Front.Service.Rooms
 
                 ).ToList(),
             };
+            foreach(var r in result.VM.Rooms)
+            {
+                try
+                {
+                    r.BedCount = _repo.GetAll<RoomFacility>()
+                                    .SingleOrDefault(rf => rf.RoomId == r.roomId && rf.FacilityId == (int)FacilityID.Bed).Quantity;
+                    r.BathCount = _repo.GetAll<RoomFacility>()
+                                    .SingleOrDefault(rf => rf.RoomId == r.roomId && rf.FacilityId == (int)FacilityID.Bath).Quantity;
+                }
+                catch
+                {
+                    r.BedCount = 0;
+                    r.BathCount = 0;
+                }
+            }
 
             //foreach( var r in tmp.ToList())
             //{
