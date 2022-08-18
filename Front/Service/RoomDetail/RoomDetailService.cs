@@ -39,11 +39,11 @@ namespace Front.Service.RoomDetail
                 
                 RoomInfo = "RoomInfo",
                 BrowseCount = (int)room.BrowseCount,
-                BedCount = _repo.GetAll<RoomFacility>()
-                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
+                //BedCount = _repo.GetAll<RoomFacility>()
+                //                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bed).Quantity,
                 PersonCount = (int)room.GuestCount,
-                BathCount = _repo.GetAll<RoomFacility>()
-                                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
+                //BathCount = _repo.GetAll<RoomFacility>()
+                //                .SingleOrDefault(r => r.RoomId == input.RoomId && r.FacilityId == (int)FacilityID.Bath).Quantity,
                 ImgUrls = _repo.GetAll<ImageFile>()
                                 .Where(img => img.RoomId == input.RoomId).Select(img => img.Picture).ToList(),
                 FacilityItem = new List<FacilityIcon>(),
@@ -52,12 +52,7 @@ namespace Front.Service.RoomDetail
                 City = room.City,
                 District = room.District,
                 Address = room.Address,
-                CleanlinessStar = roomStar.Select(c => c.Cleanliness).Average(),
-                AccuracyStar = roomStar.Select(c => c.Accuracy).Average(),
-                CommunicationStar = roomStar.Select(c => c.Communication).Average(),
-                LocationStar = roomStar.Select(c => c.Location).Average(),
-                CheckInStar = roomStar.Select(c => c.CheckIn).Average(),
-                ValueStar = roomStar.Select(c => c.Cp).Average(),
+               
                 RatingStar = CalStar.CalRoomStar(_repo, input.RoomId),
                 CommentCount = _repo.GetAll<MVCModels.DataModels.Comment>().Count(c => c.RoomId == input.RoomId),
                 CommentItem = new List<CommentInformation>(),

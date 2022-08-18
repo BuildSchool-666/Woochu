@@ -66,7 +66,7 @@ namespace Front.Controllers
             try
             {
                 var userEmail = User.Identity.Name;
-                _publishRoomService.CreateRoom(roomTypeId, userEmail);
+                //_publishRoomService.CreateRoom(roomTypeId, userEmail);
                 //List<string> roomPrivacy = new List<string>();
                 //foreach(var i in Enum.GetNames(typeof(PrivacyType)))
                 //{ roomPrivacy.Add(i); }
@@ -79,19 +79,6 @@ namespace Front.Controllers
            
         }
 
-        [HttpPut]
-        public IActionResult Update(PublishRoomApiInputDTO input)
-        {
-            try
-            {
-                _publishRoomService.UpdateRoom(input);
-                return Ok(new APIResult(APIStatus.Success, string.Empty, true));
-            }
-            catch (Exception ex)
-            {
-                return Ok(new APIResult(APIStatus.Fail, ex.Message, false));
-            }
 
-        }
-}
+    }
 }

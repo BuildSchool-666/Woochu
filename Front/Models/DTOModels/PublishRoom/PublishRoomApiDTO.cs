@@ -4,6 +4,17 @@ namespace Front.Models.DTOModels.PublishRoom
 {
     public class PublishRoomApiInputDTO
     {
+        public string userEmail { get; set; }
+        public CurrentRoomObj currentRoom { get; set; }
+        public ImageObj image { get; set; }
+        public FacilityObj facility { get; set; }
+    }
+    public class PublishRoomApiOutputDTO : BaseOutputDTO
+    {
+    }
+
+    public class CurrentRoomObj
+    {
         public int RoomId { get; set; }
         public string RoomName { get; set; }
         public int UserId { get; set; }
@@ -25,10 +36,18 @@ namespace Front.Models.DTOModels.PublishRoom
         public decimal? Discount { get; set; }
         public decimal? BasicPrice { get; set; }
         public decimal? ServiceCharge { get; set; }
-        public string UserEmail { get; set; }
-    }
-    public class PublishRoomApiOutputDTO : BaseOutputDTO
-    {
+        public int Bed { get; set; }
+        public int BedRoom { get; set; }
+        public int Bath { get; set; }
     }
 
+    public class ImageObj
+    {
+        public string[] roomImgs { get; set; }
+    }
+
+    public class FacilityObj
+    {
+        public int[] roomFacility { get; set; }
+    }
 }
