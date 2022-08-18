@@ -73,7 +73,7 @@
             </div>*@  
         </div>
         <div class="last-bar">
-            <button type="button" class="back"><strong>返回</strong></button>
+            <a href="~/BecomeHost/privacy_type" class="back"><strong>返回</strong></a>
             <button v-on:click="Next()" type="button" class="next text-white" id="next" :style="checkedStyle" v-bind:disabled="addVerify">下一步</button>
         </div>
     </div>
@@ -123,16 +123,21 @@
         z-index: 0;
     }
 
-    .btn-h{
-        text-decoration:none;
-        color:black;
+    .btn-h {
+        text-decoration: none;
+        color: black;
         width: 20%;
         background-color: #F0F0F0;
         border-radius: 20px;
-        border:none;
+        border: none;
         margin: 10px;
         padding: 5px 10px;
+        transition-duration: 1s;
         font-size: 10px;
+    }
+    .btn-h:hover {
+        color: white;
+        background-color: red;
     }
 
     .last-bar {
@@ -150,19 +155,32 @@
     }
 
     .back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        width: 20vh;
         position: relative;
         top: 0;
-        left: 10px;
-        background-color: transparent;
-        border:none;
-        text-decoration: underline;
+        left: 15px;
+        border-radius: 10px;
+        background-color: #D0D0D0;
+        border: none;
+        transition-duration: 1s;
+        padding: 10px 15px;
     }
+
+    .back:hover {
+        background-color: black;
+        color: white;
+    }
+
 
     .next {
         position: relative;
         right:10px;
         top:0;
-        height: 50px;
         padding:10px 15px;
         width: 20vh;
         border-radius:10px;
@@ -354,6 +372,7 @@
     .btn-good{
         width: 40%;
     }
+    
 </style>
 
 }

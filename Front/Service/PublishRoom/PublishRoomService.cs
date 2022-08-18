@@ -36,39 +36,39 @@ namespace Front.Service.PublishRoom
         }
         public void CreateRoom(PublishRoomApiInputDTO input)
         {
-            var entity = new Room()
-            {
-                //UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == userEmail).UserId,
-                RoomName = input.RoomName,
-                UserId = 4,
-                RoomTypeId = input.RoomTypeId,
-                PrivacyTypeId = input.PrivacyTypeId,
-                GuestCount = input.GuestCount,
-                City = input.City,
-                District = input.District,
-                Address = input.Address,
-                ZipCode = input.ZipCode,
-                UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
-                CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
-                RoomStatus = 1,
-                Description = input.Description,
-                BasicPrice = input.BasicPrice,
-                ServiceCharge = input.ServiceCharge,
-            };
+            //var entity = new Room()
+            //{
+            //    //UserId = _repo.GetAll<User>().SingleOrDefault(u => u.Email == userEmail).UserId,
+            //    RoomName = input.RoomName,
+            //    UserId = 4,
+            //    RoomTypeId = input.RoomTypeId,
+            //    PrivacyTypeId = input.PrivacyTypeId,
+            //    GuestCount = input.GuestCount,
+            //    City = input.City,
+            //    District = input.District,
+            //    Address = input.Address,
+            //    ZipCode = input.ZipCode,
+            //    UpdateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+            //    CreateTime = (DateTimeOffset.Now - DateTimeOffset.Now.Offset).AddHours(8).DateTime,
+            //    RoomStatus = 1,
+            //    Description = input.Description,
+            //    BasicPrice = input.BasicPrice,
+            //    ServiceCharge = input.ServiceCharge,
+            //};
 
-            _repo.Create<Room>(entity);
-            _repo.SaveChanges();
+            //_repo.Create<Room>(entity);
+            //_repo.SaveChanges();
 
-            var room = _repo.GetAll<Room>().OrderByDescending(r => r.CreateTime).FirstOrDefault(r => r.UserId == 4);
-            var result = new PublishRoomApiInputDTO()
-            {
-                 RoomId = room.RoomId,
-                 UserId = room.UserId,
-                 RoomTypeId = room.RoomTypeId,
-            };
+            //var room = _repo.GetAll<Room>().OrderByDescending(r => r.CreateTime).FirstOrDefault(r => r.UserId == 4);
+            //var result = new PublishRoomApiInputDTO()
+            //{
+            //     RoomId = room.RoomId,
+            //     UserId = room.UserId,
+            //     RoomTypeId = room.RoomTypeId,
+            //};
 
 
-            return result;
+            //return result;
 
         }
         //public PublishRoomApiOutputDTO UpdateRoom(PublishRoomApiInputDTO input)

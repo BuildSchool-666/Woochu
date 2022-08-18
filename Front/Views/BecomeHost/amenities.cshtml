@@ -12,203 +12,19 @@
             <div class="question">
                 <p style="font-size:24px;"><strong>房源是否設有任何獨特的設備與服務？</strong></p>
                 <div class="button-group d-flex flex-wrap">
-                    <div v-for="" class="col-xl-4 col-5">
-                        <input type="checkbox"  id="swimming-pool" style="display: none;">
-                        <button class="button">
-                            <label for="swimming-pool" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                            <i class="fa-solid fa-person-swimming"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>游泳池</strong></p>
+                    <div v-for="(facility, index) in amenitiesList" class="col-xl-4 col-5">
+                        <input type="checkbox"  v-on:click="Check(facility.facilityId, index)" :name="facility.facilityId" v-bind:id="facility.facilityId" style="display: none;">
+                        <button :id=`btn${facility.facilityId}` class="button" @*:style="checkedStyle"*@>
+                            <label v-bind:for="facility.facilityId" style="width:100%; height:100%;padding:25px; cursor: pointer;">
+                            <i :class="facility.icon"></i>
+                            <p style="margin-top: 8px; font-size: 14px;"><strong>{{facility.facilityName}}</strong></p>
                             </label>
                         </button>
                     </div>
-                    @*<div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Massage-bath" style="display:none;" />
-                        <button class="button">
-                            <label for="Massage-bath" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-hot-tub-person"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>按摩浴池</strong></p>
-                            </label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Garden" style="display:none;">
-                        <button class="button">
-                        <label for="Garden" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                            <i class="fa-solid fa-house"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>庭院</strong><p>
-                            </label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Barbeque" style="display:none;">
-                        <button class="button">
-                            <label for="Barbeque" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-drumstick-bite"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>烤肉區</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5 ">
-                        <input type="checkbox" id="fire-burner" style="display:none;">
-                        <button class="button">
-                        <label for="fire-burner" style="width:100%; height:100%;padding:25px; cursor: pointer;"><i class="fa-solid fa-fire-burner"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>火坑</strong><p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="bowling-ball" style="display:none;">
-                        <button  class="button">
-                            <label for="bowling-ball" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-bowling-ball"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>撞球桌</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="fire-flame" style="display:none;">
-                        <button  class="button"><label for="fire-flame" style="width:100%; height:100%;padding:25px; cursor: pointer;"><i class="fa-solid fa-fire-flame-curved"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>室内壁爐</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Outdoor-dining-area" style="display:none;">
-                        <button class="button"><label for="Outdoor-dining-area" style="width:100%; height:100%;padding:25px; cursor: pointer;"><i class="fa-solid fa-utensils"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>戶外用餐區</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Sports-equipment" style="display:none;">
-                        <button class="button">
-                            <label for="Sports-equipment" style="width:100%; height:100%;padding:25px; cursor: pointer;"><i class="fa-solid fa-dumbbell"></i>
-                            <p style="margin-top: 8px; font-size: 14px;"><strong>運動器材</strong></p></label>
-                        </button>
-                    </div>
-                </div>                   
-            </div>
-            <div class="question mt-5">
-                <p style="font-size:24px;"><strong>這些最受旅客歡迎的設備與服務呢？</strong></p>
-                <div class="button-group d-flex flex-wrap">
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="WiFi" style="display:none;">
-                        <button class="button">
-                            <label for="WiFi" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-wifi"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>WIFI</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Television" style="display:none;">
-                        <button class="button">
-                            <label for="Television" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-tv"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>電視</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Kitchen" style="display:none;">
-                        <button type="button" class="button">
-                            <label for="Kitchen" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-kitchen-set"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>廚房</strong><p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Detergent" style="display:none;">
-                        <button type="button" class="button">
-                            <label for="Detergent" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-jug-detergent"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>洗衣機</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Free-carpark" style="display:none;">
-                        <button class="button">
-                            <label for="Free-carpark" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-car"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>建築物內免費停車</strong><p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Charge-carpark" style="display:none;">
-                        <button class="button">
-                            <label for="Charge-carpark" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>建築物內有收費停車位</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Air-con" style="display:none;">
-                        <button class="button">
-                            <label for="Air-con" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-fan"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>空調設備</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Work-Area" style="display:none;">
-                        <button class="button">
-                            <label for="Work-Area" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-briefcase"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>專門工作空間</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="outdoor-bath-cubicle" style="display:none;">
-                        <button class="button">
-                            <label for="outdoor-bath-cubicle" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-bath"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>戶外淋浴空間</strong></p></label>
-                        </button>
-                    </div>*@
-                </div>                  
-            @*</div>  
-            <div class="question mt-5">
-                <p style="font-size:24px;"><strong>是否備有以下保安設備？</strong></p>
-                <div class="button-group d-flex flex-wrap">
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Smog-alarms" style="display:none;">
-                        <button class="button">
-                            <label for="Smog-alarms" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>煙霾警報器</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Kit-medical" style="display:none;">
-                        <button class="button">
-                            <label for="Kit-medical" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-kit-medical"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>急救包</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Carbon-monoxide-alarm" style="display:none;">
-                        <button class="button">
-                            <label for="Carbon-monoxide-alarm" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-circle-exclamation"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>一氧化碳警報器</strong><p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="lock" style="display:none;">
-                        <button class="button">
-                            <label for="lock" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-lock"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>帶鎖的臥室</strong></p></label>
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-5">
-                        <input type="checkbox" id="Fire-extinguisher" style="display:none;">
-                        <button class="button">
-                            <label for="Fire-extinguisher" style="width:100%; height:100%;padding:25px; cursor: pointer;">
-                                <i class="fa-solid fa-fire-extinguisher"></i>
-                                <p style="margin-top: 8px; font-size: 14px;"><strong>滅火器</strong><p></label>
-                        </button>
-                    </div> *@
-                </div>                   
-            @*</div> *@ 
         </div>
         <div class="last-bar">
-            <button type="button" class="back"><strong>返回</strong></button>
-            <button type="button" class="next text-white" id="next">下一步</button>
+            <a href="~/BecomeHost/floor_plan" class="back"><strong>返回</strong></a>
+            <button v-on:click="Next()" type="button" class="next text-white" id="next">下一步</button>
         </div>
     </div>
 </div>
@@ -253,14 +69,21 @@
         justify-content: flex-end;
         z-index: 0;
     }
-    .btn-h{
+    .btn-h {
+        text-decoration: none;
+        color: black;
         width: 20%;
         background-color: #F0F0F0;
         border-radius: 20px;
-        border:none;
+        border: none;
         margin: 10px;
         padding: 5px 10px;
+        transition-duration: 1s;
         font-size: 10px;
+    }
+    .btn-h:hover {
+        color: white;
+        background-color: red;
     }
 
     .last-bar{
@@ -275,13 +98,25 @@
         justify-content: space-between;
     }
 
-    .back{
-        position: relative;
-        top: 0;
-        left: 0;
-        background-color: transparent;
-        border:none;
-        text-decoration: underline;
+    .back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            width: 20vh;
+            position: relative;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background-color: #D0D0D0;
+            border: none;
+            transition-duration: 1s;
+    }
+
+    .back:hover {
+        background-color: black;
+        color: white;
     }
 
     .next{
@@ -313,12 +148,15 @@
         background-color: white;
         border-radius: 10px;
     }
+    .checked{
+        border: 2px solid black;
+    }
 
     .button:hover{
         border:2px solid black;
     }
 
-    #swimming-pool:checked ~ .button{
+    #facilityId:checked ~ .button{
         border:2px solid black;
     }
 
@@ -472,7 +310,72 @@
         let app = new Vue ({
             el :'#app',
             data :{
+                amenitiesList:[],
+                checked: true,
+                facilityId: 0,
+                facilityList:[]
+            },
+            mounted(){
+                document.addEventListener('DOMContentLoaded',function(){
+                    axios.get('/api/PublishRoomAPI/GetFacility')
+                    .then((res) =>{
+                        console.log(res)
+                        if(res.data.status === 20000){
+                            app.amenitiesList = res.data.result
+                            console.log(app.amenitiesList)
+                        }
+                    })
+                });
+            },
+            computed: {
+                checkedStyle() {
+                    return {
+                         border: this.checked ? '1px solid #D0D0D0' : '2px solid black',
+                    }
+                }
+            },
+            methods:{
+                Check(facilityId, index) {
+                    app.facilityId = facilityId
+                    //this.checked(facilityId) = false;
+                    console.log(app.facilityId)
+                    if(document.getElementsByName(`${facilityId}`)[0].checked)
+                    {
+                        document.getElementById(`btn${facilityId}`).style.border = '2px solid black';
+                        this.facilityList.push(`${facilityId}`)
+                        //Object.assign(app.checkedObj,{[`${facilityId}`]:1});
+                    }
+                    else
+                    {
+                        document.getElementById(`btn${facilityId}`).style.border = '1px solid #D0D0D0';
+                        this.facilityList.remove(`${facilityId}`)
+                        //this.$delete(this.checkedObj, facilityId);
+                    }
 
+                },
+                Next(){
+                    //var arr = document.querySelectorAll('input[type=checkbox]:checked')
+                    //for(var i = 0; i <= arr.length; i++ )
+                    //{
+                    //    const obj = Object.assign(arr, '1')
+                    //    console.log(obj)
+                    //}
+                    //const facilityId = document.getElementsByName(`${facilityId}`)[0].checked
+                    
+                    //var obj = JSON.parse(sessionStorage['currentRoom'])
+                    //Object.assign(obj,{'GuestCount':GuestCount})
+                    //sessionStorage.removeItem('currentRoom');
+                    //sessionStorage.setItem('currentRoom',JSON.stringify(obj))
+                    var facilityObj = {'roomFacility':this.facilityList}
+                    //var roomfacility = this.checkedObj
+                    sessionStorage['facility'] = JSON.stringify(facilityObj)
+
+                   
+                    //Object.assign(obj,this.checkedObj)
+                    //sessionStorage.removeItem('facility');
+                    //sessionStorage.setItem('facility',JSON.stringify(obj))
+                    window.location ='photo';
+                }
             }
         })
     </script>

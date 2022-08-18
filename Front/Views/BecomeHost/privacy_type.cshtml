@@ -218,16 +218,46 @@
             width: 50%;
             background-color: white;
         }
-        .btn-h{
-            text-decoration:none;
-            color:black;
-            height: 35px;
-            padding: 5px 15px;
+        .btn-h {
+            text-decoration: none;
+            color: black;
+            width: 20%;
+            background-color: #F0F0F0;
+            border-radius: 20px;
+            border: none;
+            margin: 10px;
+            padding: 5px 10px;
+            transition-duration: 1s;
+            font-size: 10px;
+        }
+        .btn-h:hover {
+            color: white;
+            background-color: red;
         }
 
         .last-bar{
             width: 50%;
         }
+        .back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            width: 20vh;
+            position: relative;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            background-color: #D0D0D0;
+            border: none;
+            transition-duration: 1s;
+        }
+
+            .back:hover {
+                background-color: black;
+                color: white;
+            }
     </style>
 }
 
@@ -270,24 +300,7 @@
                     window.location = 'location2';
                 }
 
-     //           updatePokemon() {
-					//	axios({
-					//		method:'put',
-					//		url:'/api/PublishRoomAPI/Update',
-					//		data:this.currentPokemon
-					//	})
-						
-					//	.then((res) => {
-					//		if(res.data.status === 20000)
-					//		{
-					//			toastr.success('更新成功')
-					//			$('#edit-modal').modal('hide')
-					//		}
-					//		else{
-					//			toastr.error('更新失敗')
-					//		}
-					//	})
-					//},
+    
             }
 
 

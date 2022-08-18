@@ -67,7 +67,7 @@
             </div>*@
         </div>
         <div class="last-bar">
-            <button type="button" class="back"><strong>返回</strong></button>
+            <a href="~/BecomeHost/location2" class="back"><strong>返回</strong></a>
             <button v-on:click="Next()" type="button" class="next text-white">下一步</button>
         </div>
     </div>
@@ -111,14 +111,21 @@
         justify-content: flex-end;
         z-index: 0;
     }
-    .btn-h{
+    .btn-h {
+        text-decoration: none;
+        color: black;
         width: 20%;
         background-color: #F0F0F0;
         border-radius: 20px;
-        border:none;
+        border: none;
         margin: 10px;
         padding: 5px 10px;
+        transition-duration: 1s;
         font-size: 10px;
+    }
+    .btn-h:hover {
+        color: white;
+        background-color: red;
     }
 
     .last-bar{
@@ -133,13 +140,25 @@
         justify-content: space-between;
     }
 
-    .back{
+    .back {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white;
+        width: 20vh;
         position: relative;
         top: 0;
         left: 0;
-        background-color: transparent;
-        border:none;
-        text-decoration: underline;
+        border-radius: 10px;
+        background-color: #D0D0D0;
+        border: none;
+        transition-duration: 1s;
+    }
+
+    .back:hover {
+        background-color: black;
+        color: white;
     }
 
     .next{
@@ -476,12 +495,9 @@
                     const Bath = this.Bath
 
                     var obj = JSON.parse(sessionStorage['currentRoom'])
-                    Object.assign(obj,{'GuestCount':GuestCount})
+                    Object.assign(obj,{'GuestCount':GuestCount,'Bed':Bed,'BedRoom':BedRoom,'Bath':Bath})
                     sessionStorage.removeItem('currentRoom');
                     sessionStorage.setItem('currentRoom',JSON.stringify(obj))
-
-                    var roomfacility = {'13':Bed ,'11':BedRoom ,'12':Bath }
-                    sessionStorage['facility'] = JSON.stringify(roomfacility)
 
                     window.location ='amenities';
                 }
