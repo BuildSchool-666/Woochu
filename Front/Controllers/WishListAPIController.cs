@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Front.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class WishListAPIController : ControllerBase

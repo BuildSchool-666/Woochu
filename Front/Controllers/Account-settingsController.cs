@@ -15,9 +15,11 @@ using Microsoft.AspNetCore.Http;
 using Front.Models.DTOModels.Cloudinary;
 using Front.Service.Cloudinarys;
 using System.Dynamic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Front.Controllers
 {
+    [Authorize]
     public class Account_settingsController : Controller
     {
         private readonly IAccount_settingService _service;

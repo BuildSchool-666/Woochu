@@ -1,11 +1,14 @@
 ﻿using Front.Models.DTOModels.RoomDetail;
 using Front.Service.WishList;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace Front.Controllers
 {
+    [Authorize]
+
     public class WishListController : Controller
     {
         private readonly IWishListService _service;
