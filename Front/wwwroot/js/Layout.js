@@ -40,8 +40,8 @@ var ey = endDate.getFullYear();
 let em = String(endDate.getMonth() + 1).padStart(2, '0');
 let ed = String(endDate.getDate()).padStart(2, '0');
 
-var h = new Date().getHours();
-var min = new Date().getMinutes();
+var h = String(new Date().getHours()).padStart(2, '0') ;
+var min = String(new Date().getMinutes()).padStart(2, '0') ;
 
 var CheckInTime = sy + "-" + sm + "-" + sd + "T" + h + ":" + min;
 var CheckOutTime = ey + "-" + em + "-" + ed + "T" + h + ":" + min;

@@ -7,7 +7,7 @@ using System;
 
 namespace Front.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
