@@ -16,24 +16,7 @@ namespace Front.Controllers
         {
             _service = service;
         }
-        //[HttpGet]
-        //public IActionResult BankAccount([FromRoute] int roomId)
-        //{
-        //    var inputDto = new GetorderDetailInputDTO();
 
-        //    inputDto.RoomId = roomId;
-
-        //    var outputDto = _service.GetOrderData(inputDto);
-
-
-        //    if (!outputDto.IsSuccess)
-        //    {
-        //        return Redirect("/");
-        //        //return RedirectToAction("Index","Home");
-        //    }
-        //    return View(outputDto.VM);
-        //}
-        
         [HttpPost("~/[controller]/[action]/{roomId}")]
         public IActionResult BankAccount([FromForm] OrderFilterForm requestParam, [FromRoute] int roomId)
         {
